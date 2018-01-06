@@ -68,12 +68,27 @@ if ( !defined( GAAD_PLUGIN_TEMPLATE_NAMESPACE . 'GAAD_PLUGIN_TEMPLATE_DIR') )
 if ( !defined( GAAD_PLUGIN_TEMPLATE_NAMESPACE . 'GAAD_PLUGIN_TEMPLATE_URL') )
 	define( GAAD_PLUGIN_TEMPLATE_NAMESPACE . 'GAAD_PLUGIN_TEMPLATE_URL', WP_PLUGIN_URL . '/' . GAAD_PLUGIN_TEMPLATE_NAME );
 
+if ( !defined( GAAD_PLUGIN_TEMPLATE_NAMESPACE . 'GAAD_PLUGIN_TEMPLATE_FORCE_CREATE_SQL_TABLES') )
+	/*
+	* Forces to create sql tables even in there are some in the database. Created mostly for developmnet reasons
+	*/
+	define( GAAD_PLUGIN_TEMPLATE_NAMESPACE . 'GAAD_PLUGIN_TEMPLATE_FORCE_CREATE_SQL_TABLES', true );
+
+if ( !defined( GAAD_PLUGIN_TEMPLATE_NAMESPACE . 'GAAD_PLUGIN_TEMPLATE_SQL_TABLE_PREFIX') )
+	/*
+	* String will be used as prefix for plugins sql tables names
+	*/
+	define( GAAD_PLUGIN_TEMPLATE_NAMESPACE . 'GAAD_PLUGIN_TEMPLATE_SQL_TABLE_PREFIX', GAAD_PLUGIN_TEMPLATE_NAMESPACE . '_' );
+
+
+
 if ( !defined( GAAD_PLUGIN_TEMPLATE_NAMESPACE . 'GAAD_PLUGIN_TEMPLATE_FORCE_FILES_UPDATED') )
 	define( GAAD_PLUGIN_TEMPLATE_NAMESPACE . 'GAAD_PLUGIN_TEMPLATE_FORCE_FILES_UPDATED', true );
 
 	is_file( GAAD_PLUGIN_TEMPLATE_AUTOLOAD ) ?  require_once( GAAD_PLUGIN_TEMPLATE_AUTOLOAD ) : false;
 	
 	
+	require_once( 'inc/class-sql.php' );
 	require_once( 'inc/class-json-data.php' );
 	require_once( 'inc/class-rest.php' );	
 	require_once( 'inc/register-routers.php' );

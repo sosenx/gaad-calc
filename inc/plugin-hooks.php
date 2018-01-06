@@ -10,6 +10,7 @@ $core_hooks->add_hook( 'action', 'wp_enqueue_scripts', array(GAAD_PLUGIN_TEMPLAT
 
 $core_hooks->add_hook( 'action', 'wp_enqueue_scripts', GAAD_PLUGIN_TEMPLATE_NAMESPACE . 'actions::core_styles');
 
+$core_hooks->add_hook( 'action', 'init', array(GAAD_PLUGIN_TEMPLATE_NAMESPACE . 'sql::app_sql_tables_check', 10, 0, true));
 $core_hooks->add_hook( 'action', 'init', array(GAAD_PLUGIN_TEMPLATE_NAMESPACE . 'actions::app_shortcodes', 10, 0, true));
 $core_hooks->add_hook( 'action', 'init', array( GAAD_PLUGIN_TEMPLATE_NAMESPACE . 'actions::localisation', 10, 0 ) );
 
@@ -21,6 +22,8 @@ $core_hooks->add_hook( 'filter', array('style_loader_src', 'script_loader_src'),
 //defer
 $core_hooks->add_hook( 'filter', array('script_loader_tag' ), array( GAAD_PLUGIN_TEMPLATE_NAMESPACE . 'filters::add_defer_attribute', 10, 2 ) );
 $core_hooks->add_hook( 'filter', array('clean_url' ), array( GAAD_PLUGIN_TEMPLATE_NAMESPACE . 'admin_actions::ikreativ_async_scripts', 11, 1) );
+$core_hooks->add_hook( 'filter', array('show_admin_bar' ), array( '__return_false', 10, 0) );
+
 
 //ajax
 //$core_hooks->add_hook( 'action', 'wp_ajax_nopriv_', array('actions::', 10, 0, true));
