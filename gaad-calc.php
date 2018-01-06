@@ -89,6 +89,7 @@ if ( !defined( GAAD_PLUGIN_TEMPLATE_NAMESPACE . 'GAAD_PLUGIN_TEMPLATE_FORCE_FILE
 	
 	
 	require_once( 'inc/class-sql.php' );
+	require_once( 'inc/class-register-taxonomies.php' );
 	require_once( 'inc/class-json-data.php' );
 	require_once( 'inc/class-rest.php' );	
 	require_once( 'inc/register-routers.php' );
@@ -98,6 +99,19 @@ if ( !defined( GAAD_PLUGIN_TEMPLATE_NAMESPACE . 'GAAD_PLUGIN_TEMPLATE_FORCE_FILE
 	require_once( 'inc/class-actions.php' );
 	require_once( 'inc/class-admin-actions.php' );
 	require_once( 'inc/plugin-hooks.php' );
-
 	
+	require_once( 'class/class-call-stack.php' );
+	require_once( 'class/class-cprocess.php' );
+	require_once( 'class/abstract-class-calc-product.php' );
+	require_once( 'class/class-calculate.php' );
+
+	new register_taxonomies();
+
+	$calc = new calculate( array('pa_sizemm'=>'90x50',
+'pa_volume'=>100,
+'pa_paper'=>'couted-300g',
+'pa_print'=>44,
+'pa_wrap'=>'gloss',
+'pa_spot_uv'=>10,
+'product_id'=>75));
 ?>

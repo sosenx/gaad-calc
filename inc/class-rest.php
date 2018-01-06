@@ -4,7 +4,61 @@ namespace gcalc;
 
 class rest{
 
-	/*
+
+	/**
+	* Zwraca gówny model aplikacji.
+	*
+	* @return string 
+	*/
+	public static function app_model( ){
+		global $post;
+		$h = \gcalc\rest::getHeaders( "/^pa_.*/", true );
+		$product_id = \is_single('product') ? $post->ID : -1;
+		$calc = new calculate( $h['selected'], $product_id );
+		$r = array( 
+			'plugin_name' => "gcalc",
+			'handler' => "app_model",
+			'status' => 200,
+			'headers' => $h,
+			'output' => $calc->get_calculation_array()
+		);
+		return json_encode( $r );
+	}
+
+	public static function rest_calculate_callback( $data = NULL ){
+		$h = \gcalc\rest::getHeaders( "/^pa_.*/", true );
+		$product_id = \gcalc\rest::getHeaders( "/product_id/" );	
+		$product_id = count( $product_id ) == 0 ? -1 : (int) $product_id[ "product_id" ];
+		$calc = new calculate( $h['selected'], $product_id );
+
+		$r = array( 
+			'plugin_name' => "gcalc",
+			'handler' => "app_model",
+			'status' => 200,
+			'product_id' => $calc->get_PID(),
+			'calculation_id' => $calc->get_CID(),
+
+			'headers' => $h,
+			'output' => $calc->get_calculation_array()
+		);
+		return json_decode(json_encode( $r ));
+	}
+
+	public static function rest_test_callback( $data = NULL ){
+		$r = array( 'plugin_name' => "gcalc\\rest::rest_test_callback" );
+		return json_encode( $r );
+	}
+
+
+
+
+
+
+
+
+
+
+	/**
 	* Zwraca tablicę z nagówkami. Możliwe podanie jest wyrażenia regularnego jakie mają speniać klucze dodawanych nagówków.
 	*
 	* @param string regexp wyrażenie regularne jakie mają speniać nagówki. Jego brak spowoduje zwrócenie wszystkich nagówków.
@@ -36,22 +90,6 @@ class rest{
 		}
 
 		return $return_rest ? array( 'selected' => $h, 'others' => $rh ) : $h;
-	}
-
-	public static function app_model( $data = NULL ){
-		$h = \gcalc\rest::getHeaders( "/^pa_.*/", true );		
-		$r = array( 
-			'plugin_name' => "gcalc",
-			'handler' => "app_model",
-			'status' => 200,
-			'headers' => $h
-		);
-		return json_encode( $r );
-	}
-
-	public static function rest_test_callback( $data = NULL ){
-		$r = array( 'plugin_name' => "gcalc\\rest::rest_test_callback" );
-		return json_encode( $r );
 	}
 	
 }
