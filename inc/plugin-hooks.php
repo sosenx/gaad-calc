@@ -3,6 +3,14 @@ namespace gcalc;
 
 
 $core_hooks = new hooks_mng( 'core' ); 
+
+
+
+
+$core_hooks->add_hook( 'action', 'woocommerce_before_product_object_save', array(GAAD_PLUGIN_TEMPLATE_NAMESPACE . 'actions::calculate_product_variation_before_save', 10, 2, true));
+
+
+
 $core_hooks->add_hook( 'action', 'wp_enqueue_scripts', array(GAAD_PLUGIN_TEMPLATE_NAMESPACE . 'actions::core_scripts', 10, 0, true));
 $core_hooks->add_hook( 'action', 'wp_enqueue_scripts', array(GAAD_PLUGIN_TEMPLATE_NAMESPACE . 'actions::common_scripts', 10, 0, true));
 $core_hooks->add_hook( 'action', 'wp_enqueue_scripts', GAAD_PLUGIN_TEMPLATE_NAMESPACE . 'actions::common_styles');

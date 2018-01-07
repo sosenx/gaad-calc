@@ -4,6 +4,19 @@ namespace gcalc;
 class actions {
   
   
+
+
+  public static function calculate_product_variation_before_save( $obj, $data_store ){
+    $calc = new calculate( $obj->get_attributes(), $obj->get_parent_id() );
+    //$calc->calc();
+    /*
+    * Tp jest befpre save, 
+    */
+    $obj->set_price( 666 );
+    $obj->set_regular_price( 666 );
+    print_r( $obj );
+  }
+
   public static function localisation(){
     $languages_dir = dirname( dirname( plugin_basename(__FILE__))) .'/languages/';
     load_plugin_textdomain('gaad-mailer', false, $languages_dir );    

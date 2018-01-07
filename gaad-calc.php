@@ -68,11 +68,48 @@ if ( !defined( GAAD_PLUGIN_TEMPLATE_NAMESPACE . 'GAAD_PLUGIN_TEMPLATE_DIR') )
 if ( !defined( GAAD_PLUGIN_TEMPLATE_NAMESPACE . 'GAAD_PLUGIN_TEMPLATE_URL') )
 	define( GAAD_PLUGIN_TEMPLATE_NAMESPACE . 'GAAD_PLUGIN_TEMPLATE_URL', WP_PLUGIN_URL . '/' . GAAD_PLUGIN_TEMPLATE_NAME );
 
+
 if ( !defined( GAAD_PLUGIN_TEMPLATE_NAMESPACE . 'GAAD_PLUGIN_TEMPLATE_FORCE_CREATE_SQL_TABLES') )
 	/*
 	* Forces to create sql tables even in there are some in the database. Created mostly for developmnet reasons
 	*/
-	define( GAAD_PLUGIN_TEMPLATE_NAMESPACE . 'GAAD_PLUGIN_TEMPLATE_FORCE_CREATE_SQL_TABLES', true );
+	define( GAAD_PLUGIN_TEMPLATE_NAMESPACE . 'GAAD_PLUGIN_TEMPLATE_FORCE_CREATE_SQL_TABLES', false );
+
+
+if ( !defined( GAAD_PLUGIN_TEMPLATE_NAMESPACE . 'GAAD_PLUGIN_TEMPLATE_FORCE_CREATE_WOO_ELEMENTS') )
+	/*
+	* Forces to create all WP or WOO related objects and elements (posts, products, taxonomies, terms etc.)
+	* Created mostly for developmnet reasons.
+	*/
+	define( GAAD_PLUGIN_TEMPLATE_NAMESPACE . 'GAAD_PLUGIN_TEMPLATE_FORCE_CREATE_WOO_ELEMENTS', false );
+
+
+
+if ( !defined( GAAD_PLUGIN_TEMPLATE_NAMESPACE . 'GAAD_PLUGIN_TEMPLATE_DISABLE_CREATE_PRODUCTS') )
+	/*
+	* Disables predefined product creation
+	* Created mostly for developmnet reasons.
+	*/
+	define( GAAD_PLUGIN_TEMPLATE_NAMESPACE . 'GAAD_PLUGIN_TEMPLATE_DISABLE_CREATE_PRODUCTS', false );
+
+
+if ( !defined( GAAD_PLUGIN_TEMPLATE_NAMESPACE . 'GAAD_PLUGIN_TEMPLATE_DISABLE_CREATE_ATTRIBUTES') )
+	/*
+	* Disables predefined attributes creation
+	* Created mostly for developmnet reasons.
+	*/
+	define( GAAD_PLUGIN_TEMPLATE_NAMESPACE . 'GAAD_PLUGIN_TEMPLATE_DISABLE_CREATE_ATTRIBUTES', true );
+
+
+
+if ( !defined( GAAD_PLUGIN_TEMPLATE_NAMESPACE . 'GAAD_PLUGIN_TEMPLATE_CREATE_VARIATIONS') )
+	/*
+	* Disables predefined attributes creation
+	* Created mostly for developmnet reasons.
+	*/
+	define( GAAD_PLUGIN_TEMPLATE_NAMESPACE . 'GAAD_PLUGIN_TEMPLATE_CREATE_VARIATIONS', true );
+
+
 
 if ( !defined( GAAD_PLUGIN_TEMPLATE_NAMESPACE . 'GAAD_PLUGIN_TEMPLATE_SQL_TABLE_PREFIX') )
 	/*
@@ -88,8 +125,8 @@ if ( !defined( GAAD_PLUGIN_TEMPLATE_NAMESPACE . 'GAAD_PLUGIN_TEMPLATE_FORCE_FILE
 	is_file( GAAD_PLUGIN_TEMPLATE_AUTOLOAD ) ?  require_once( GAAD_PLUGIN_TEMPLATE_AUTOLOAD ) : false;
 	
 	
-	require_once( 'inc/class-sql.php' );
-	require_once( 'inc/class-register-taxonomies.php' );
+	require_once( 'inc/class-sql.php' );	
+	require_once( 'inc/class-register-woo-elements.php' );
 	require_once( 'inc/class-json-data.php' );
 	require_once( 'inc/class-rest.php' );	
 	require_once( 'inc/register-routers.php' );
@@ -105,13 +142,6 @@ if ( !defined( GAAD_PLUGIN_TEMPLATE_NAMESPACE . 'GAAD_PLUGIN_TEMPLATE_FORCE_FILE
 	require_once( 'class/abstract-class-calc-product.php' );
 	require_once( 'class/class-calculate.php' );
 
-	new register_taxonomies();
+	new register_woo_elements();
 
-	$calc = new calculate( array('pa_sizemm'=>'90x50',
-'pa_volume'=>100,
-'pa_paper'=>'couted-300g',
-'pa_print'=>44,
-'pa_wrap'=>'gloss',
-'pa_spot_uv'=>10,
-'product_id'=>75));
 ?>
