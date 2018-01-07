@@ -8,13 +8,10 @@ class actions {
 
   public static function calculate_product_variation_before_save( $obj, $data_store ){
     $calc = new calculate( $obj->get_attributes(), $obj->get_parent_id() );
-    //$calc->calc();
-    /*
-    * Tp jest befpre save, 
-    */
-    $obj->set_price( 666 );
-    $obj->set_regular_price( 666 );
-    print_r( $obj );
+    $calc->calc();    
+    $obj->set_price( $calc->get_price() );
+    $obj->set_regular_price( $calc->get_price() );
+    return $obj;
   }
 
   public static function localisation(){

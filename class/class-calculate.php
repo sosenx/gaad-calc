@@ -14,6 +14,12 @@ class calculate extends calc_product{
 		$r=1;
 	}
 
+
+	public function calc(){}
+
+	public function get_price(){
+		return rand( 10, 100 );
+	}
 }
 
 
