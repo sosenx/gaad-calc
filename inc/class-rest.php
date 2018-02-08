@@ -4,6 +4,15 @@ namespace gcalc;
 
 class rest{
 
+	/**
+	* Auth method, blank
+	*
+	* @return bool 
+	*/
+	public static function api_client_auth(){
+		return true;
+	}	
+
 
 	/**
 	* Zwraca gówny model aplikacji.
@@ -22,7 +31,7 @@ class rest{
 			'headers' => $h,
 			'output' => $calc->get_calculation_array()
 		);
-		return json_encode( $r );
+		return json_decode(json_encode( $r ));
 	}
 
 	public static function rest_calculate_callback( $data = NULL ){
@@ -30,7 +39,7 @@ class rest{
 		$product_id = \gcalc\rest::getHeaders( "/product_id/" );	
 		$product_id = count( $product_id ) == 0 ? -1 : (int) $product_id[ "product_id" ];
 		$calc = new calculate( $h['selected'], $product_id );
-
+		
 		$r = array( 
 			'plugin_name' => "gcalc",
 			'handler' => "app_model",
@@ -46,7 +55,12 @@ class rest{
 
 	public static function rest_test_callback( $data = NULL ){
 		$r = array( 'plugin_name' => "gcalc\\rest::rest_test_callback" );
-		return json_encode( $r );
+		if(rest::api_client_auth()){
+			return json_decode(json_encode( $r ));	
+		} else{
+			return json_decode(json_encode( array( "error" => "auth" ) ));	
+		}
+		
 	}
 
 

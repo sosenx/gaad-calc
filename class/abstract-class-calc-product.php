@@ -44,6 +44,10 @@ abstract class calc_product{
 	* Array stores all calculations details
 	*/
 	private $calculation_array;
+	/**
+	* Matrix for calculation array. Helps working with protected/public types od calculations
+	*/
+	private $calculation_array_matrix;
 
 	/**
 	* Class constructor
@@ -63,7 +67,7 @@ abstract class calc_product{
 	* getter for calculation_array
 	*/
 	function get_calculation_array(){
-
+		return $this->calculation_array;
 	}
 
 	/**
@@ -80,6 +84,53 @@ abstract class calc_product{
 		return $this->product_id;
 	}
 
+
+
+	/**
+	* setter for calculation_array (brutal array overwriting, not recomended in common use, specific cases only)
+	*
+	* To manage parts of $calculation_array use other more sophisticated methods like set_calculation_array_part.
+	*
+	* @param array $calculation_array
+	*/
+	public function set_calculation_array( array $calculation_array ){
+		$this->calculation_array = $calculation_array;
+	}
+
+	
+
+	/**
+	* setter for calculation_array (brutal array overwriting, not recomended in common use, specific cases only)
+	*
+	* To manage parts of $calculation_array use other more sophisticated methods like set_calculation_array_part.
+	*
+	* @param array $calculation_array
+	*/
+	public function set_calculation_array_part( string $name, array $calculation_array_part, string $mode = "public" ){
+		echo $mode;
+	}
+
+	
+
+	/**
+	* Sets all parts of current calculation.
+	*
+	* 	
+	*/
+	public function create_calculation_array_matrix(){
+		/*
+		* Public and private sets of date for more complex frontend managament
+		*/
+		$calculation_array_matrix = array(
+			"public" => array(
+				'calc' => array()
+			),
+			"auth" => array(
+				'calc_details' => array()
+			)
+		);
+		return $calculation_array_matrix;
+	}
 
 
 }

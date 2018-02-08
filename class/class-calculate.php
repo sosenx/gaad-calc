@@ -9,13 +9,25 @@ namespace gcalc;
 */
 class calculate extends calc_product{
 
+	
+
 	function __construct( array $product_attributes, int $product_id = NULL ) {
 		parent::__construct( $product_attributes, $product_id );
-		$r=1;
+
+		$this->create_calculation_array_matrix();
+		$this->calc();
 	}
 
+	
 
-	public function calc(){}
+
+	public function calc(){
+		$this->set_calculation_array_part('calc', 
+			array( 
+				"price" => $this->get_price()
+			)
+		);
+	}
 
 	public function get_price(){
 		return rand( 10, 100 );
