@@ -24,7 +24,7 @@ abstract class calc_product{
 	* Base variables for calculation
 	*/
 	private $bvars;
-	/**
+	/** 
 	* Markup info object
 	*/
 	private $markup;
@@ -107,7 +107,13 @@ abstract class calc_product{
 	* @param array $calculation_array
 	*/
 	public function set_calculation_array_part( string $name, array $calculation_array_part, string $mode = "public" ){
-		echo $mode;
+		
+		/*
+		* Need some atention here and do some work with permission check
+		*/
+		$this->calculation_array[ $mode ][ $name ] = $calculation_array_part;
+
+
 	}
 
 	
