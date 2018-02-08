@@ -57,7 +57,7 @@ abstract class calc_product{
 		$this->bvars = $product_attributes;
 		$this->product_id = $product_id;
 		$this->CID = uniqid();
-		$this->todo = new call_stack;
+		$this->todo = new todo_list;
 
 		return $this;
 	}
