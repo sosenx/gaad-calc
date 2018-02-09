@@ -58,6 +58,9 @@ abstract class calc_product{
 		$this->product_id = $product_id;
 		$this->CID = uniqid();
 		$this->todo = new todo_list;
+		$this->markup = new product_markup( $this->bvars, $this->product_id );
+		$this->tax = new product_tax( $this->bvars, $this->product_id );
+
 
 		return $this;
 	}

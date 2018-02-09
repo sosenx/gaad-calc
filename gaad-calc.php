@@ -136,11 +136,18 @@ if ( !defined( GAAD_PLUGIN_TEMPLATE_NAMESPACE . 'GAAD_PLUGIN_TEMPLATE_FORCE_FILE
 	require_once( 'inc/class-admin-actions.php' );
 	require_once( 'inc/plugin-hooks.php' );
 	
-	require_once( 'class/class-call-stack.php' );
-	require_once( 'class/class-todo-list.php' );
-	require_once( 'class/class-cprocess.php' );
 	require_once( 'class/abstract-class-calc-product.php' );
 	require_once( 'class/class-calculate.php' );
+
+	
+
+	require_once( 'class/class-call-stack.php' );
+	require_once( 'class/class-todo-list.php' );
+	require_once( 'class/class-product-markup.php' );
+	require_once( 'class/class-product-tax.php' );
+	require_once( 'class/class-cprocess.php' );
+	
+	
 
 	new register_woo_elements();
 

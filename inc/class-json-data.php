@@ -38,7 +38,11 @@ class json_data {
 ta fn pobiera wszystkie niezbedne aplikacji dane
 */
   function get(){       
-    return json_decode( rest::app_model(), true );
+    $app_model = rest::app_model();
+    if ( !is_string( $app_model ) ) {
+      $app_model = "{ \"error\" : \"No model\" }";
+    }
+    return json_decode( $app_model, true );
   }
   
   
