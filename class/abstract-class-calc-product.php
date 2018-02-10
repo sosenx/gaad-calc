@@ -53,16 +53,35 @@ abstract class calc_product{
 	* Class constructor
 	*/
 	function __construct( array $product_attributes, int $product_id = NULL ) {
-
-		$this->bvars = $product_attributes;
-		$this->product_id = $product_id;
-		$this->CID = uniqid();
-		$this->todo = new todo_list;
-		$this->markup = new product_markup( $this->bvars, $this->product_id );
-		$this->tax = new product_tax( $this->bvars, $this->product_id );
-
-
+		
+		if ( !empty( $product_attributes ) ) {		
+			$this->bvars = $product_attributes;
+			$this->product_id = $product_id;
+			$this->CID = uniqid();
+			$this->todo = new todo_list( $this->generate_todo_list() );
+			$this->markup = new product_markup( $this->bvars, $this->product_id );
+			$this->tax = new product_tax( $this->bvars, $this->product_id );
+			$this->ship = new product_shipment( $this->bvars, $this->product_id );
+		}
 		return $this;
+	}
+
+
+	/**
+	* 
+	*/
+	function generate_todo_list(){
+
+
+		foreach ($this->bvars as $key => $value) {
+			$pa_class_name = '\gcalc\pa_\\' . str_replace( "pa_", "", $key );
+			if ( class_exists( $pa_class_name ) ) {
+				$pa_obj = new $pa_class_name( $this->bvars );
+				$this->todo->add( $pa_obj );
+				$r=1;
+			}
+		}
+		
 	}
 
 

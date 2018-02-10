@@ -32,7 +32,12 @@ abstract class call_stack{
 
 
 
-	function __construct(){	
+	public function __construct(){	
+	}
+
+
+	public function add( cprocess $cprocess ){	
+		$R=1;
 	}
 
 	

@@ -145,7 +145,10 @@ if ( !defined( GAAD_PLUGIN_TEMPLATE_NAMESPACE . 'GAAD_PLUGIN_TEMPLATE_FORCE_FILE
 	require_once( 'class/class-todo-list.php' );
 	require_once( 'class/class-product-markup.php' );
 	require_once( 'class/class-product-tax.php' );
+	require_once( 'class/class-product-shipment.php' );
+	
 	require_once( 'class/class-cprocess.php' );
+		require_once( 'class/calc-process/pa_format.php' );
 	
 	
 

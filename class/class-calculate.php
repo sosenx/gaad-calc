@@ -8,18 +8,16 @@ namespace gcalc;
 *
 */
 class calculate extends calc_product{
-
 	
-
-	function __construct( array $product_attributes, int $product_id = NULL ) {
-		parent::__construct( $product_attributes, $product_id );
-
-		$this->create_calculation_array_matrix();
-		$this->calc();
+	public function __construct( array $product_attributes, int $product_id = NULL ) {
+		if ( !empty( $product_attributes ) ) {
+			parent::__construct( $product_attributes, $product_id );
+			
+			$this->create_calculation_array_matrix();
+			$this->calc();
+		}
 	}
-
 	
-
 
 	public function calc(){
 		$this->set_calculation_array_part('calc', 

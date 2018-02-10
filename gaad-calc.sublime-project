@@ -2,18 +2,16 @@
 	"folders":
 	[
 		{
-			"path": "C:\\xampp7\\htdocs\\gaadcalc\\wp-content\\plugins\\gaad-calc"
+			"path": "."
 		}
 	],
 	"settings":
 	{
 		"xdebug":
 		{
-			"close_on_stop": true,
 			"launch_browser": false,
-			"max_depth": 10,
-			"super_globals": true,
-			"url": "http://127.0.0.1/gaadcalc/"
+			"max_depth": 5,					
+			"url": "http://127.0.0.1/gaadcalcapi/"
 		}
 	}
 }

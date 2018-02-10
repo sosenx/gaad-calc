@@ -2,7 +2,7 @@
 namespace gcalc;
 
 
-class cprocess{
+abstract class cprocess{
 
 	/**
 	* Process name
@@ -30,7 +30,8 @@ class cprocess{
 	private $ptotal;
 
 
-	function __construct(){	
+	function __construct( array $product_attributes, int $product_id ){	
+		
 	}
 
 	
