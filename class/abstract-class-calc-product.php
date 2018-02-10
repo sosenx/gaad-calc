@@ -58,30 +58,35 @@ abstract class calc_product{
 			$this->bvars = $product_attributes;
 			$this->product_id = $product_id;
 			$this->CID = uniqid();
-			$this->todo = new todo_list( $this->generate_todo_list() );
+			$this->todo = new todo_list( array() );
 			$this->markup = new product_markup( $this->bvars, $this->product_id );
 			$this->tax = new product_tax( $this->bvars, $this->product_id );
 			$this->ship = new product_shipment( $this->bvars, $this->product_id );
+
+			$this->generate_todo_list();
 		}
 		return $this;
 	}
 
 
 	/**
-	* 
+	* Generates process stack based on passed product attributes
+	*
+	* This list is a template classes array for further analisys and moderation. Actual calculations are managed elswhere.	 
+	*
 	*/
 	function generate_todo_list(){
-
+		$todo = array();
 
 		foreach ($this->bvars as $key => $value) {
-			$pa_class_name = '\gcalc\pa_\\' . str_replace( "pa_", "", $key );
+			$pa_class_name = '\gcalc\pa\\' . $key;
 			if ( class_exists( $pa_class_name ) ) {
-				$pa_obj = new $pa_class_name( $this->bvars );
-				$this->todo->add( $pa_obj );
-				$r=1;
-			}
-		}
-		
+				$pa_obj = 
+				$todo[ $key ] = new $pa_class_name( $this->bvars, $this->product_id );				
+			} 
+		}		
+		var_dump( $todo );
+		return $todo;
 	}
 
 

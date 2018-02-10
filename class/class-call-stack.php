@@ -32,7 +32,8 @@ abstract class call_stack{
 
 
 
-	public function __construct(){	
+	public function __construct( array $cpdata ){	
+		$this->plist = $cpdata;
 	}
 
 

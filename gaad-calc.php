@@ -123,7 +123,25 @@ if ( !defined( GAAD_PLUGIN_TEMPLATE_NAMESPACE . 'GAAD_PLUGIN_TEMPLATE_FORCE_FILE
 	define( GAAD_PLUGIN_TEMPLATE_NAMESPACE . 'GAAD_PLUGIN_TEMPLATE_FORCE_FILES_UPDATED', true );
 
 	is_file( \gcalc\GAAD_PLUGIN_TEMPLATE_AUTOLOAD ) ?  require_once( \gcalc\GAAD_PLUGIN_TEMPLATE_AUTOLOAD ) : false;
-		
+
+	require_once( 'class/class-ptotal.php' );
+
+	require_once( 'class/class-cprocess-calculation.php' );
+		require_once( 'class/calc-process-class/class-calc-pa_format.php' );
+		require_once( 'class/calc-process-class/class-calc-pa_naklad.php' );
+		require_once( 'class/calc-process-class/class-calc-pa_podloze.php' );
+		require_once( 'class/calc-process-class/class-calc-pa_zadruk.php' );
+		require_once( 'class/calc-process-class/class-calc-pa_wrap.php' );
+		require_once( 'class/calc-process-class/class-calc-pa_spot_uv.php' );
+
+	require_once( 'class/class-cprocess.php' );
+		require_once( 'class/calc-process/pa_format.php' );
+		require_once( 'class/calc-process/pa_naklad.php' );
+		require_once( 'class/calc-process/pa_podloze.php' );
+		require_once( 'class/calc-process/pa_zadruk.php' );
+		require_once( 'class/calc-process/pa_wrap.php' );
+		require_once( 'class/calc-process/pa_spot_uv.php' );
+
 	require_once( 'inc/class-sql.php' );	
 	require_once( 'inc/class-register-woo-elements.php' );
 	require_once( 'inc/class-json-data.php' );
@@ -147,10 +165,8 @@ if ( !defined( GAAD_PLUGIN_TEMPLATE_NAMESPACE . 'GAAD_PLUGIN_TEMPLATE_FORCE_FILE
 	require_once( 'class/class-product-tax.php' );
 	require_once( 'class/class-product-shipment.php' );
 	
-	require_once( 'class/class-cprocess.php' );
-		require_once( 'class/calc-process/pa_format.php' );
 	
-	
+		
 
 	new register_woo_elements();
 

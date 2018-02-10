@@ -4,9 +4,12 @@ namespace gcalc;
 
 class todo_list extends call_stack {
 
-	
 
-	function __construct(){	
+
+	function __construct( array $cpdata ){	
+		parent::__construct( $cpdata  );
+
+		return $this;
 	}
 
 	
