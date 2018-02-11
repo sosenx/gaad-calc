@@ -29,7 +29,7 @@ class rest{
 			'handler' => "app_model",
 			'status' => 200,
 			'headers' => $h,
-			'output' => $calc->get_calculation_array()
+			'output' => $calc->calc()
 		);
 		return json_decode(json_encode( $r ));
 	}
@@ -48,7 +48,7 @@ class rest{
 			'calculation_id' => $calc->get_CID(),
 
 			'headers' => $h,
-			'output' => $calc->get_calculation_array()
+			'output' => $calc->calc()
 		);
 		return json_decode(json_encode( $r ));
 	}

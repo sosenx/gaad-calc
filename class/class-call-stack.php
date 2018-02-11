@@ -41,6 +41,22 @@ abstract class call_stack{
 		$R=1;
 	}
 
+
+	/**
+	* Getter for plist
+	*/
+	public function get_plist( ){	
+		return $this->plist;
+	}
+
+
+	/**
+	* Setter for plist
+	*/
+	public function set_plist( array $plist ){	
+		$this->plist = $plist;
+	}
+
 	
 
 }

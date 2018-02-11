@@ -21,6 +21,10 @@ abstract class calc_product{
 	*/
 	private $todo;
 	/**
+	* Production processes done
+	*/
+	public $done = array();
+	/**
 	* Base variables for calculation
 	*/
 	private $bvars;
@@ -50,6 +54,11 @@ abstract class calc_product{
 	private $calculation_array_matrix;
 
 	/**
+	* Order that calculation needs to be done
+	*/
+	private $calc_order;
+
+	/**
 	* Class constructor
 	*/
 	function __construct( array $product_attributes, int $product_id = NULL ) {
@@ -62,10 +71,58 @@ abstract class calc_product{
 			$this->markup = new product_markup( $this->bvars, $this->product_id );
 			$this->tax = new product_tax( $this->bvars, $this->product_id );
 			$this->ship = new product_shipment( $this->bvars, $this->product_id );
-
+			$this->calc_order = new \gcalc\db\calc_order( $product_id );
+			
 			$this->generate_todo_list();
+			$this->process_todo_list();
+						
+
 		}
 		return $this;
+	}
+
+
+	/**
+	* calc product
+	*
+	*/
+	function calc(){
+		
+		return $this->done;
+	}
+	/**
+	* calculates process stack 
+	*
+	*/
+	function process_todo_list(){
+		$todo = array();		
+		$plist = $this->todo->get_plist();
+		$used = array();
+		$calc_order = $this->calc_order->get_order();
+		
+		foreach ( $calc_order as $key => $value) {
+			if ( $value != "*") {
+				$process = $plist[ $value ]; 
+				array_push( $todo, $process );
+				array_push( $used, $value );
+
+			} else {
+				foreach ( $plist as $key2 => $value2 ) {
+					if ( !in_array( $key2, $used ) ) {
+						$process = $plist[ $key2 ]; 
+						array_push( $used, $key2 );
+						array_push( $todo, $process );
+					}
+				}
+				break;
+			}
+		}		
+		
+		foreach ( $todo as $key => $value) {			
+			array_push( $this->done, $value->do() );
+		}
+
+		return $this->done;
 	}
 
 
@@ -85,7 +142,7 @@ abstract class calc_product{
 				$todo[ $key ] = new $pa_class_name( $this->bvars, $this->product_id );				
 			} 
 		}		
-		var_dump( $todo );
+		$this->todo->set_plist( $todo );		
 		return $todo;
 	}
 
@@ -110,6 +167,7 @@ abstract class calc_product{
 	function get_PID(){
 		return $this->product_id;
 	}
+
 
 
 

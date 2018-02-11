@@ -124,6 +124,8 @@ if ( !defined( GAAD_PLUGIN_TEMPLATE_NAMESPACE . 'GAAD_PLUGIN_TEMPLATE_FORCE_FILE
 
 	is_file( \gcalc\GAAD_PLUGIN_TEMPLATE_AUTOLOAD ) ?  require_once( \gcalc\GAAD_PLUGIN_TEMPLATE_AUTOLOAD ) : false;
 
+	require_once( 'class/db/class-calc-order.php' );
+	require_once( 'class/db/production-formats.php' );
 	require_once( 'class/class-ptotal.php' );
 
 	require_once( 'class/class-cprocess-calculation.php' );
