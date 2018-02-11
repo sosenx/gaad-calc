@@ -59,6 +59,11 @@ abstract class calc_product{
 	private $calc_order;
 
 	/**
+	* best_production_format object
+	*/
+	private $best_production_format;
+
+	/**
 	* Class constructor
 	*/
 	function __construct( array $product_attributes, int $product_id = NULL ) {
@@ -68,7 +73,7 @@ abstract class calc_product{
 			$this->product_id = $product_id;
 			$this->CID = uniqid();
 			$this->todo = new todo_list( array() );
-			$this->markup = new product_markup( $this->bvars, $this->product_id );
+			$this->markup = array();
 			$this->tax = new product_tax( $this->bvars, $this->product_id );
 			$this->ship = new product_shipment( $this->bvars, $this->product_id );
 			$this->calc_order = new \gcalc\db\calc_order( $product_id );
@@ -82,6 +87,8 @@ abstract class calc_product{
 	}
 
 
+
+
 	/**
 	* calc product
 	*
@@ -90,6 +97,7 @@ abstract class calc_product{
 		
 		return $this->done;
 	}
+
 	/**
 	* calculates process stack 
 	*
@@ -137,9 +145,8 @@ abstract class calc_product{
 
 		foreach ($this->bvars as $key => $value) {
 			$pa_class_name = '\gcalc\pa\\' . $key;
-			if ( class_exists( $pa_class_name ) ) {
-				$pa_obj = 
-				$todo[ $key ] = new $pa_class_name( $this->bvars, $this->product_id );				
+			if ( class_exists( $pa_class_name ) ) {				
+				$todo[ $key ] = new $pa_class_name( $this->bvars, $this->product_id, $this );				
 			} 
 		}		
 		$this->todo->set_plist( $todo );		
@@ -199,6 +206,22 @@ abstract class calc_product{
 		$this->calculation_array[ $mode ][ $name ] = $calculation_array_part;
 
 
+	}
+
+
+	/**
+	* setter best_production_format
+	*/
+	public function set_best_production_format( $best_production_format ){		
+		$this->best_production_format = $best_production_format;
+	}
+
+
+	/**
+	* Getter best_production_format
+	*/
+	public function get_best_production_format( ){		
+		return $this->best_production_format;
 	}
 
 	

@@ -42,10 +42,17 @@ abstract class cprocess_calculation{
 	*/
 	private $product_id;
 
+	/**
+	* Calculatro Class
+	*/
+	private $cclass;
 
-	function __construct( array $product_attributes, int $product_id ){	
+
+	function __construct( array $product_attributes, int $product_id, \gcalc\calculate $parent ){	
+		$this->parent = $parent;
 		$this->product_id = $product_id;
 		$this->cargs = $product_attributes;
+		$this->cclass = get_class( $parent );
 	}
 
 	function do( ){	

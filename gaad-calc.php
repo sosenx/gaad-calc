@@ -126,6 +126,9 @@ if ( !defined( GAAD_PLUGIN_TEMPLATE_NAMESPACE . 'GAAD_PLUGIN_TEMPLATE_FORCE_FILE
 
 	require_once( 'class/db/class-calc-order.php' );
 	require_once( 'class/db/production-formats.php' );
+	require_once( 'class/db/production-paper.php' );
+	require_once( 'class/db/class-product-markup.php' );
+
 	require_once( 'class/class-ptotal.php' );
 
 	require_once( 'class/class-cprocess-calculation.php' );
@@ -163,7 +166,7 @@ if ( !defined( GAAD_PLUGIN_TEMPLATE_NAMESPACE . 'GAAD_PLUGIN_TEMPLATE_FORCE_FILE
 
 	require_once( 'class/class-call-stack.php' );
 	require_once( 'class/class-todo-list.php' );
-	require_once( 'class/class-product-markup.php' );
+	
 	require_once( 'class/class-product-tax.php' );
 	require_once( 'class/class-product-shipment.php' );
 	

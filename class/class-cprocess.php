@@ -34,10 +34,15 @@ abstract class cprocess{
 	*/
 	private $done = false;
 
+	/**
+	* parent object
+	*/
+	private $parent;
+
 
 	
-	function __construct( array $product_attributes, int $product_id ){	
-		
+	function __construct( array $product_attributes, int $product_id, \gcalc\calculate $parent ){	
+		$this->parent = $parent;
 	}
 
 

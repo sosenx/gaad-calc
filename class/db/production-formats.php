@@ -19,6 +19,20 @@ class formats{
 	*/
 	public $splits;
 
+
+	/**
+	* Clicks costs
+	*/
+	public $clicks;
+
+	/**
+	* Translation array for formats
+	*/
+	public $str_dim_to_format;
+
+
+
+
 	function __construct( ){	
 		$this->aquire();
 	}
@@ -59,6 +73,16 @@ class formats{
 		$format = $format === "" ? "a4" : $format;
 		return isset( $this->clicks[ $format ]['*'] ) ? $this->clicks[ $format ]['*'] : array( .18, .28 );
 	}
+
+	/**
+	* Return click cost
+	*/
+	function get_str_dim_to_format( string $format = "" ){	
+		$format = $format === "" ? "a3" : $format;
+		return isset( $this->str_dim_to_format[ $format ] ) ? $this->str_dim_to_format[ $format ] : 'errorformat';
+	}
+
+
 
 	/**
 	* This function needs to aquire formats data from db, fo dev version it just sets an array
@@ -173,6 +197,18 @@ class formats{
 			)
 		);
 
+		$this->str_dim_to_format = array(
+			'330x487' => 'SRA3++',
+			'305x430' => 'RA3',
+			'315x440' => 'RA3+',
+			'215x305' => 'RA4',
+			'420x297' => 'A3',	
+			'487x330' => 'SRA3++',
+			'430X305' => 'RA3',
+			'440x315' => 'RA3+',
+			'305x215' => 'RA4',
+			'420x297' => 'A3'	
+		);
 
 	}
 

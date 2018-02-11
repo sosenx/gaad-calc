@@ -36,7 +36,7 @@ class calc_order{
 	*/
 	public function aquire( ){
 		$this->order = array(
-			'wizytowki' => array ( 'pa_format', 'pa_zadruk', '*' )
+			'wizytowki' => array ( 'pa_format', 'pa_podloze', 'pa_zadruk', '*' )
 		);
 
 	}
