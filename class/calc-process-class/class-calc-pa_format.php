@@ -125,10 +125,12 @@ $r=1;
 	function impose( array $product_dim, array $format ){	
 		$production_formats = new \gcalc\db\production\formats();
 		$split = $production_formats->get_split( implode( "x", $product_dim ) );
-		$prod_for_margins = $production_formats->get_prod_for_margins( implode( "x", $format ) );
+		
 		$print_color_mode = $this->get_print_color_mode('pa_zadruk');
+		$prod_for_margins = $production_formats->get_prod_for_margins( implode( "x", $format ), $print_color_mode );
 		$click = $production_formats->get_click( implode( "x", $format ), $print_color_mode );
 		$print_sides = $this->get_print_sides(); //0-1side, 1-2sides
+		$print_color_mode = $this->get_print_color_mode('pa_zadruk');
 		$click_cost = $click[ $print_sides ];
 		/*
 		* Impose cols
@@ -145,7 +147,7 @@ $r=1;
 		$row_split = $split[1];
 		$format_height = $format['height'] - ( $prod_for_margins['top'] + $prod_for_margins['bottom'] );
 		$rows = (int)( ( $format_height + $row_split ) / ( $product_dim['height'] + $row_split ) );
-				
+			
 		$impose_data = array(
 			'format' => $this->str_dim_to_format( $format['width'] .'x'. $format['height'] ),
 			'PPP' => $cols * $rows,
@@ -160,7 +162,7 @@ $r=1;
 		);
 
 		if ( $impose_data['PPP'] === 0 ) {
-			return false;
+			$impose_data['PPP'] = 1;
 		}
 		$impose_data[ 'lost_paper' ] = $impose_data['format_sq'] - ( $impose_data['product_sq'] * $impose_data['PPP'] );
 		$impose_data[ 'lost_paper_per_piece' ] = $impose_data['lost_paper'] / $impose_data['PPP'];
@@ -168,6 +170,10 @@ $r=1;
 		$impose_data[ 'print_cost' ] = $click_cost;
 		$impose_data[ 'xxx' ] =  ($impose_data[ 'lost_paper_per_piece' ] + $impose_data[ 'piece_cost' ]) / $impose_data[ 'PPP' ];
 		$impose_data[ 'xxx' ] = $impose_data[ 'xxx' ] < 0 ? 10000000 :  $impose_data[ 'xxx' ];
+		
+		$impose_data[ 'prod_for_margins' ] = $prod_for_margins;
+		$impose_data[ 'col_split' ] = $col_split;
+		$impose_data[ 'row_split' ] = $row_split;
 
 		return $impose_data;
 	}
