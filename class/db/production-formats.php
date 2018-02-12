@@ -97,7 +97,14 @@ class formats{
 		return isset( $this->wrap_cost[ $wrap ] ) ? $this->wrap_cost[ $wrap ] : 'errorwrap';
 	}
 
-
+	/**
+	* Return wrap cost
+	*/
+	function get_total_cost_equasion( int $product_id ){	
+		$product = new \WC_Product( $product_id );
+		$slug = $product->get_slug();		
+		return isset( $this->total_cost_equasion[ $slug ] ) ? $this->total_cost_equasion[ $slug ] : '-1';
+	}
 
 	/**
 	* This function needs to aquire formats data from db, fo dev version it just sets an array
@@ -249,12 +256,19 @@ class formats{
 
 
 		$this->wrap_cost = array(
+			'folia-brak' => 0,
 			'folia-blysk-dwustronnie' => .2,
 			'folia-blysk-jednostronnie' => .1,
 			'folia-mat-dwustronnie' => .2,
 			'folia-mat-jednostronnie' => .1,
 			'folia-soft-touch-dwustronnie' => .8,
 			'folia-soft-touch-jednostronnie' => .4,
+		);
+
+		$this->total_cost_equasion = array(
+			'wizytowki' => array(
+				'equasion' => 'podloze + zadruk + wrap + spot_uv'
+			)
 		);
 
 

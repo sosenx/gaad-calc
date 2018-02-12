@@ -110,23 +110,30 @@ abstract class calc_product{
 		
 		foreach ( $calc_order as $key => $value) {
 			if ( $value != "*") {
-				$process = $plist[ $value ]; 
-				array_push( $todo, $process );
-				array_push( $used, $value );
+
+				if ( !is_null( $plist[ $value ] ) ) {
+					$process = $plist[ $value ]; 
+					array_push( $todo, $process );
+					array_push( $used, $value );
+				}
+				
 
 			} else {
 				foreach ( $plist as $key2 => $value2 ) {
 					if ( !in_array( $key2, $used ) ) {
-						$process = $plist[ $key2 ]; 
-						array_push( $used, $key2 );
-						array_push( $todo, $process );
+						
+						if ( !is_null( $plist[ $key2 ] ) ) {
+							$process = $plist[ $key2 ]; 
+							array_push( $used, $key2 );
+							array_push( $todo, $process );
+						}							
 					}
 				}
 				break;
 			}
 		}		
 		
-		foreach ( $todo as $key => $value) {			
+		foreach ( $todo as $key => $value) {						
 			array_push( $this->done, $value->do() );
 		}
 
@@ -148,7 +155,8 @@ abstract class calc_product{
 			if ( class_exists( $pa_class_name ) ) {				
 				$todo[ $key ] = new $pa_class_name( $this->bvars, $this->product_id, $this );				
 			} 
-		}		
+		}	
+			
 		$this->todo->set_plist( $todo );		
 		return $todo;
 	}
@@ -173,6 +181,13 @@ abstract class calc_product{
 	*/
 	function get_PID(){
 		return $this->product_id;
+	}
+
+	/**
+	* getter bvars
+	*/
+	function get_bvars(){
+		return $this->bvars;
 	}
 
 
@@ -222,6 +237,14 @@ abstract class calc_product{
 	*/
 	public function get_best_production_format( ){		
 		return $this->best_production_format;
+	}
+
+
+	/**
+	* Getter todo
+	*/
+	public function get_todo( ){		
+		return $this->todo;
 	}
 
 	

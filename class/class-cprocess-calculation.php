@@ -66,7 +66,7 @@ abstract class cprocess_calculation{
 	*/
 	function parse_total( array $calc_total, array $extended = array()){			
 		$return = $calc_total;
-
+		$return[ 'name' ] = $this->get_name();
 		if ( !empty( $extended ) ) {
 			$return['extended'] = $extended;
 		}
@@ -100,6 +100,13 @@ abstract class cprocess_calculation{
 		$color = preg_match("/4x4|4x0/", $process_);
 		$bw = preg_match("/1x1|1x0/", $process_);
 		return $color ? '4x' : ( $bw ? '1x' : '4x');		
+	}
+
+	/**
+	* Getter for name
+	*/
+	function get_name( ){					
+		return $this->name;
 	}
 
 	

@@ -20,25 +20,11 @@ class pa_naklad extends \gcalc\cprocess_calculation{
 		$production_formats = new \gcalc\db\production\formats();
 		$pf = $this->parent->get_best_production_format();				
 		$sheets_quantity = (int)($this->cargs['pa_naklad'] / $pf['PPP']) + ( $this->cargs['pa_naklad'] % $pf['PPP'] > 0 ? 1 : 0 );
-		
-		$markup_db = new \gcalc\db\product_markup( $this->cargs, $this->product_id, $this);
-		$markup = $markup_db->get_markup();
-		$wrap_cost = $production_formats->get_wrap_cost( $this->cargs['pa_wrap'] );
+		$total_cost_equasion = $this->parent->parse_total_cost_equasion( $production_formats->get_total_cost_equasion( $this->product_id )['equasion'] );
 
-		$markup_ = 1;		
-		$production_cost = 1;
-		$total_price = $production_cost * $markup_;
 		
 		return $this->parse_total( 
-			array(
-				'production_cost' => $production_cost,
-				'total_price' => $total_price,
-				'markup_value' => $total_price - $production_cost,
-				'markup' => $markup_
-			),
-			array(				
-				'sheets_quantity' => $sheets_quantity
-			)
+			$total_cost_equasion
 		);
 	}
 
