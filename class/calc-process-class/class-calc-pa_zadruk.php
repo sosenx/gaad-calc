@@ -20,13 +20,26 @@ class pa_zadruk extends \gcalc\cprocess_calculation{
 	function calc(){
 		$pf = $this->parent->get_best_production_format();				
 		$sheets_quantity = (int)($this->cargs['pa_naklad'] / $pf['PPP']) + ( $this->cargs['pa_naklad'] % $pf['PPP'] > 0 ? 1 : 0 );
-		
-		$markup_db = new \gcalc\db\product_markup( $this->cargs, $this->product_id, $this->name);
+		$print_color_mode = $this->get_print_color_mode('pa_zadruk');
+		$markup_db = new \gcalc\db\product_markup( $this->cargs, $this->product_id, $this);
 		$markup = $markup_db->get_markup();
-		$total_price = $sheets_quantity * $pf['print_cost'];
-		//$markup_ = $total_price * $markup['markup'];
-
-		return $total_price;// + $markup_ ;
+		
+		$markup_ = $markup_db->get_markup_value( $sheets_quantity, $markup['markup'][$print_color_mode] );		
+		$production_cost = $sheets_quantity * $pf['print_cost'];
+		$total_price = $production_cost * $markup_;
+		
+		return $this->parse_total( 
+			array(
+				'production_cost' => $production_cost,
+				'total_price' => $total_price,
+				'markup_value' => $total_price - $production_cost,
+				'markup' => $markup_
+			),
+			array(
+				'print_cost' => $pf['print_cost'],
+				'sheets_quantity' => $sheets_quantity
+			)
+		);
 	}
 
 

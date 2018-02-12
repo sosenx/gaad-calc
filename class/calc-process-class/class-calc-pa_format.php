@@ -33,6 +33,30 @@ class pa_format extends \gcalc\cprocess_calculation{
 		return $this;
 	}
 
+
+	/**
+	* Calculates format costs (no costs in this case)
+	*/
+	function calc(){			
+		$pf = $this->parent->get_best_production_format();	
+		$sheets_quantity = (int)($this->cargs['pa_naklad'] / $pf['PPP']) + ( $this->cargs['pa_naklad'] % $pf['PPP'] > 0 ? 1 : 0 );
+		$markup_ = 1;		
+		$production_cost = $sheets_quantity * 0;
+		$total_price = $production_cost * $markup_;
+
+		return $this->parse_total( 			
+			array(
+				'production_cost' => $production_cost,
+				'total_price' => $total_price,
+				'markup_value' => $total_price - $production_cost,
+				'markup' => $markup_
+			),
+			array(				
+				'sheets_quantity' => $sheets_quantity
+			)
+		);
+	}
+
 	/**
 	*
 	*/
@@ -75,7 +99,8 @@ class pa_format extends \gcalc\cprocess_calculation{
 		$production_formats = new \gcalc\db\production\formats();
 		$split = $production_formats->get_split( implode( "x", $product_dim ) );
 		$prod_for_margins = $production_formats->get_prod_for_margins( implode( "x", $format ) );
-		$click = $production_formats->get_click( implode( "x", $format ) );
+		$print_color_mode = $this->get_print_color_mode('pa_zadruk');
+		$click = $production_formats->get_click( implode( "x", $format ), $print_color_mode );
 		$print_sides = $this->get_print_sides(); //0-1side, 1-2sides
 		$click_cost = $click[ $print_sides ];
 		/*
@@ -129,7 +154,7 @@ class pa_format extends \gcalc\cprocess_calculation{
 	*
 	*/
 	function do( ){	
-		$this->ptotal = new \gcalc\ptotal( 0, "+", NULL, $this->name );
+		$this->ptotal = new \gcalc\ptotal( $this->calc(), "+", NULL, $this->name );
 		$this->done = true;
 		return $this->ptotal;
 	}

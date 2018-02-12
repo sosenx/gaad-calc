@@ -62,6 +62,18 @@ abstract class cprocess_calculation{
 	}
 
 	/**
+	* 
+	*/
+	function parse_total( array $calc_total, array $extended = array()){			
+		$return = $calc_total;
+
+		if ( !empty( $extended ) ) {
+			$return['extended'] = $extended;
+		}
+		return $return;
+	}
+
+	/**
 	* Getter for done
 	*/
 	function get_done( ){			
@@ -76,6 +88,18 @@ abstract class cprocess_calculation{
 		$single = preg_match("/4x0|1x0/", $pa_zadruk);
 		$double = preg_match("/4x4|1x1/", $pa_zadruk);
 		return $double ? 1 : ( $single ? 0 : 1);		
+	}
+
+
+	/**
+	* Is double side
+	*/
+	function get_print_color_mode( string $process_slug = "" ){			
+		$process_slug = $process_slug == "" ? 'pa_zadruk' : $process_slug;
+		$process_ = $this->cargs[ $process_slug ];
+		$color = preg_match("/4x4|4x0/", $process_);
+		$bw = preg_match("/1x1|1x0/", $process_);
+		return $color ? '4x' : ( $bw ? '1x' : '4x');		
 	}
 
 	

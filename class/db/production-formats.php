@@ -30,6 +30,10 @@ class formats{
 	*/
 	public $str_dim_to_format;
 
+	/*
+	* 
+	*/
+	public $wrap_cost;
 
 
 
@@ -69,9 +73,11 @@ class formats{
 	/**
 	* Return click cost
 	*/
-	function get_click( string $format = "" ){	
+	function get_click( string $format = "", string $print_color_mode ){	
 		$format = $format === "" ? "a4" : $format;
-		return isset( $this->clicks[ $format ]['*'] ) ? $this->clicks[ $format ]['*'] : array( .18, .28 );
+		$print_color_mode = $print_color_mode === "" ? "4x" : $print_color_mode;
+
+		return isset( $this->clicks[$print_color_mode][ $format ]['*'] ) ? $this->clicks[$print_color_mode][ $format ]['*'] : array( .18, .28 );
 	}
 
 	/**
@@ -80,6 +86,15 @@ class formats{
 	function get_str_dim_to_format( string $format = "" ){	
 		$format = $format === "" ? "a3" : $format;
 		return isset( $this->str_dim_to_format[ $format ] ) ? $this->str_dim_to_format[ $format ] : 'errorformat';
+	}
+
+
+	/**
+	* Return wrap cost
+	*/
+	function get_wrap_cost( string $wrap = "" ){	
+		$wrap = $wrap === "" ? "a3" : $wrap;
+		return isset( $this->wrap_cost[ $wrap ] ) ? $this->wrap_cost[ $wrap ] : 'errorwrap';
 	}
 
 
@@ -180,21 +195,43 @@ class formats{
 		* Clicks cost, normative
 		*/
 		$this->clicks = array(
-			'330x487' => array(
-				'*' => array( .18, .28 ), 
+
+			'1x' => array(
+				'330x487' => array(
+					'*' => array( .018, .028 ), 
+				),
+				'305x430' => array(
+					'*' => array( .018, .028 ), 
+				),
+				'315x440' => array(
+					'*' => array( .018, .028 ), 
+				),
+				'215x305' => array(
+					'*' => array( .018, .028 ), 
+				),
+				'297x420' => array(
+					'*' => array( .018, .028 ), 
+				)
 			),
-			'305x430' => array(
-				'*' => array( .18, .28 ), 
-			),
-			'315x440' => array(
-				'*' => array( .18, .28 ), 
-			),
-			'215x305' => array(
-				'*' => array( .18, .28 ), 
-			),
-			'297x420' => array(
-				'*' => array( .18, .28 ), 
+			'4x' => array(
+				'330x487' => array(
+					'*' => array( .18, .28 ), 
+				),
+				'305x430' => array(
+					'*' => array( .18, .28 ), 
+				),
+				'315x440' => array(
+					'*' => array( .18, .28 ), 
+				),
+				'215x305' => array(
+					'*' => array( .18, .28 ), 
+				),
+				'297x420' => array(
+					'*' => array( .18, .28 ), 
+				)
 			)
+
+				
 		);
 
 		$this->str_dim_to_format = array(
@@ -209,6 +246,17 @@ class formats{
 			'305x215' => 'RA4',
 			'420x297' => 'A3'	
 		);
+
+
+		$this->wrap_cost = array(
+			'folia-blysk-dwustronnie' => .2,
+			'folia-blysk-jednostronnie' => .1,
+			'folia-mat-dwustronnie' => .2,
+			'folia-mat-jednostronnie' => .1,
+			'folia-soft-touch-dwustronnie' => .8,
+			'folia-soft-touch-jednostronnie' => .4,
+		);
+
 
 	}
 
