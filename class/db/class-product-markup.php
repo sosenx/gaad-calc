@@ -70,7 +70,7 @@ class product_markup{
 			'*' => array(
 				'pa_podloze' => array( 'markup' => 1.1),
 				'pa_wrap' => array( 'markup' => 1),
-				'pa_spot_uv' => array( 'markup' => 1),
+				'pa_spot_uv' => array( 'markup' => 1.6),
 				'pa_naklad' => array( 'markup' => 1),
 				'pa_zadruk' => array( 
 					'markup' => array(

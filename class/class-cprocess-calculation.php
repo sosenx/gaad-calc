@@ -81,6 +81,13 @@ abstract class cprocess_calculation{
 	}
 
 	/**
+	* Getter parent
+	*/
+	public function get_parent( ){		
+		return $this->parent;
+	}
+
+	/**
 	* Is double side
 	*/
 	function get_print_sides( ){			
@@ -88,6 +95,18 @@ abstract class cprocess_calculation{
 		$single = preg_match("/4x0|1x0/", $pa_zadruk);
 		$double = preg_match("/4x4|1x1/", $pa_zadruk);
 		return $double ? 1 : ( $single ? 0 : 1);		
+	}
+
+
+	/**
+	* Is double side
+	*/
+	function get_spot_uv_sides( ){			
+		$pa_attr = $this->cargs['pa_spot_uv'];
+		$single = preg_match("/jednostronnie/", $pa_attr );
+		$double = preg_match("/dwustronnie/", $pa_attr );
+		$none = preg_match("/brak/", $pa_attr );
+		return $double ? 1 : ( $single ? 0 : -1);		
 	}
 
 

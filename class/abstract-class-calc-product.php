@@ -156,7 +156,7 @@ abstract class calc_product{
 				$todo[ $key ] = new $pa_class_name( $this->bvars, $this->product_id, $this );				
 			} 
 		}	
-			
+
 		$this->todo->set_plist( $todo );		
 		return $todo;
 	}
@@ -245,6 +245,14 @@ abstract class calc_product{
 	*/
 	public function get_todo( ){		
 		return $this->todo;
+	}
+
+
+	/**
+	* Getter parent
+	*/
+	public function get_parent( ){		
+		return $this->parent;
 	}
 
 	

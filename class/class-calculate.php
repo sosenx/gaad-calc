@@ -36,6 +36,19 @@ class calculate extends calc_product {
 		}
 	}
 
+	/**
+	* Returns named process from done array
+	*/
+	public function get_todo_process( string $name ){
+		if ( $name != "" ) {
+			foreach ( $this->get_todo()->get_plist() as $key => $value ) {
+				if ( $value->name == $name) {
+					return $value;
+				}
+			}
+		}
+	}
+
 	public function parse_total_cost_equasion( string $equasion ){
 		$plist = $this->get_todo()->get_plist();
 		$parsed_equasion = $equasion;
@@ -63,9 +76,6 @@ class calculate extends calc_product {
 			);
 	}
 
-	public function get_price(){
-		return rand( 10, 100 );
-	}
 }
 
 

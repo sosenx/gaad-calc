@@ -52,7 +52,8 @@ class pa_format extends \gcalc\cprocess_calculation{
 				'markup' => $markup_
 			),
 			array(				
-				'sheets_quantity' => $sheets_quantity
+				'sheets_quantity' => $sheets_quantity,
+				'production_format' => $pf
 			)
 		);
 	}
@@ -85,10 +86,18 @@ class pa_format extends \gcalc\cprocess_calculation{
 			}
 			if ( $impose_[ $key ][ 'sg' ]['piece_cost'] < $min_lost[0]['piece_cost'] ) {
 				array_unshift( $min_lost, $impose_[ $key ][ 'sg' ] );
+			}			
+		}
+		
+		foreach ($min_lost as $key => $value) {
+			if( is_array($value) ){
+				$min_lost_best = $value;
+				break;
 			}
 		}
-		$this->parent->set_best_production_format( $min_lost[0] );
-		$this->best_production_format = $min_lost[0];		
+
+		$this->parent->set_best_production_format( $min_lost_best );
+		$this->best_production_format = $min_lost_best;		
 	}
 
 	/**
@@ -131,6 +140,10 @@ class pa_format extends \gcalc\cprocess_calculation{
 			'format_w' => $format['width'],
 			'format_h' => $format['height']		
 		);
+
+		if ( $impose_data['PPP'] === 0 ) {
+			return false;
+		}
 		$impose_data[ 'lost_paper' ] = $impose_data['format_sq'] - ( $impose_data['product_sq'] * $impose_data['PPP'] );
 		$impose_data[ 'lost_paper_per_piece' ] = $impose_data['lost_paper'] / $impose_data['PPP'];
 		$impose_data[ 'piece_cost' ] = $click_cost / $impose_data['PPP'];

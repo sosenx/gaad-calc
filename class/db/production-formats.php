@@ -35,6 +35,11 @@ class formats{
 	*/
 	public $wrap_cost;
 
+	/*
+	* 
+	*/
+	public $spot_uv_cost;
+
 
 
 	function __construct( ){	
@@ -59,7 +64,7 @@ class formats{
 	*/
 	function get_split( string $format = "" ){	
 		$format = $format === "" ? "a4" : $format;
-		return isset( $this->splits[ $format ] ) ? $this->splits[ $format ] : array( 5, 5 );
+		return isset( $this->splits[ $format ] ) ? $this->splits[ $format ] : $this->splits[ '*' ];
 	}
 
 	/**
@@ -104,6 +109,14 @@ class formats{
 		$product = new \WC_Product( $product_id );
 		$slug = $product->get_slug();		
 		return isset( $this->total_cost_equasion[ $slug ] ) ? $this->total_cost_equasion[ $slug ] : '-1';
+	}
+
+
+	/**
+	* Return wrap cost
+	*/
+	function get_spot_uv_cost( ){	
+		return $this->spot_uv_cost;
 	}
 
 	/**
@@ -158,7 +171,9 @@ class formats{
 		* Splits devided by formats
 		*/
 		$this->splits = array(
-			"90x50" => array( 7, 4) 
+			"*" => array( 7, 4),
+			"90x50" => array( 7, 4),
+			"180x50" => array( 7, 4) 
 		);
 
 		/*
@@ -269,6 +284,11 @@ class formats{
 			'wizytowki' => array(
 				'equasion' => 'podloze + zadruk + wrap + spot_uv'
 			)
+		);
+
+		$this->spot_uv_cost = array(
+			'cost' => 155,
+			'stack' => 1000
 		);
 
 

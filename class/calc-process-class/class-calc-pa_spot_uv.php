@@ -10,6 +10,7 @@ class pa_spot_uv extends \gcalc\cprocess_calculation{
 		$this->cargs = $product_attributes;
 		$this->dependencies = NULL;
 		$this->product_id = $product_id;
+		$this->parent = $parent;
 		return $this;
 	}
 
@@ -18,15 +19,32 @@ class pa_spot_uv extends \gcalc\cprocess_calculation{
 	*/
 	function calc(){
 		$production_formats = new \gcalc\db\production\formats();
+		$parent = $this->get_parent();
 		$pf = $this->parent->get_best_production_format();				
 		$sheets_quantity = (int)($this->cargs['pa_naklad'] / $pf['PPP']) + ( $this->cargs['pa_naklad'] % $pf['PPP'] > 0 ? 1 : 0 );
+		$format = $parent->get_todo_process( 'pa_format' );
+		$tmp = array( 'width' => $format->calculator->get_width(), 'height' => $format->calculator->get_height() );
+		$format_multiplier = ( $tmp['width'] <= 210 && $tmp['height'] <= 297 ) || ( $tmp['width'] <= 297 && $tmp['height'] <= 210 ) ? 1 : 2;
+		$spot_uv_sides = $this->get_spot_uv_sides(); //0-single, 1-double, -1 - none
 		
-		$markup_db = new \gcalc\db\product_markup( $this->cargs, $this->product_id, $this);
-		$markup = $markup_db->get_markup();
+		if ( $spot_uv_sides >= 0 ) {
+			$spot_uv_cost = $production_formats->get_spot_uv_cost( );
+			$uvstacks = (int)($sheets_quantity / $spot_uv_cost['stack']) + 
+				($sheets_quantity / $spot_uv_cost['stack'] > 0 && $sheets_quantity / $spot_uv_cost['stack'] < 1 ? 1 : 0 );
+			
+			$markup_db = new \gcalc\db\product_markup( $this->cargs, $this->product_id, $this );
+			$markup = $markup_db->get_markup();
 
-		$markup_ = 1;		
-		$production_cost = 0 * $sheets_quantity;
-		$total_price = $production_cost * $markup_;
+			$markup_ = $markup['markup'];		
+			$production_cost = $uvstacks * $spot_uv_cost['cost'];
+			$total_price = $production_cost * $markup_;
+
+		} else {				
+			$markup_ = 1;		
+			$production_cost = 0 * $sheets_quantity;
+			$total_price = $production_cost * $markup_;
+		}
+		
 		
 		return $this->parse_total( 
 			array(
