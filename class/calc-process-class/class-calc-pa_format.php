@@ -79,23 +79,41 @@ class pa_format extends \gcalc\cprocess_calculation{
 			);			
 		}		
 
-		$min_lost = array( array( 'piece_cost'=>10000 ) );
+		$min_lost = array( array( 'xxx'=>15000000 ) );
 		foreach ($impose_ as $key => $value) {
-			if ( $impose_[ $key ][ 'lg' ]['piece_cost'] < $min_lost[0]['piece_cost'] ) {
+
+			if ( $impose_[ $key ][ 'lg' ]['xxx'] < $min_lost[0]['xxx'] ) {
 				array_unshift( $min_lost, $impose_[ $key ][ 'lg' ] );
 			}
-			if ( $impose_[ $key ][ 'sg' ]['piece_cost'] < $min_lost[0]['piece_cost'] ) {
+			if ( $impose_[ $key ][ 'sg' ]['xxx'] < $min_lost[0]['xxx'] ) {
 				array_unshift( $min_lost, $impose_[ $key ][ 'sg' ] );
-			}			
+			}	
 		}
 		
+		$max_pieces = 0;
+		$max_pieces_format = false;
+	foreach ($min_lost as $key => $value) {
+		$T=1;
+		if ( !isset($value['PPP']) ) {
+			continue;
+		}
+
+		if ( $value['PPP'] > $max_pieces ) {
+			$max_pieces = $value['PPP'];
+			$max_pieces_format = $value;
+		}
+	}
+
+$min_lost_best = $max_pieces_format;
+$r=1;
+/*
 		foreach ($min_lost as $key => $value) {
 			if( is_array($value) ){
 				$min_lost_best = $value;
 				break;
 			}
 		}
-
+*/
 		$this->parent->set_best_production_format( $min_lost_best );
 		$this->best_production_format = $min_lost_best;		
 	}
@@ -118,7 +136,7 @@ class pa_format extends \gcalc\cprocess_calculation{
 		$w = 0;		
 		$col_split = $split[0];
 		$format_width = $format['width'] - ( $prod_for_margins['left'] + $prod_for_margins['right'] );
-		$cols = (int)($format_width / ( $product_dim['width'] + $col_split ));		
+		$cols = (int)( ( $format_width + $col_split ) / ( $product_dim['width'] + $col_split ));		
 
 		/*
 		* Impose rows
@@ -126,7 +144,7 @@ class pa_format extends \gcalc\cprocess_calculation{
 		$h = 0;		 
 		$row_split = $split[1];
 		$format_height = $format['height'] - ( $prod_for_margins['top'] + $prod_for_margins['bottom'] );
-		$rows = (int)( $format_height / ( $product_dim['height'] + $row_split ) );
+		$rows = (int)( ( $format_height + $row_split ) / ( $product_dim['height'] + $row_split ) );
 				
 		$impose_data = array(
 			'format' => $this->str_dim_to_format( $format['width'] .'x'. $format['height'] ),
@@ -148,7 +166,8 @@ class pa_format extends \gcalc\cprocess_calculation{
 		$impose_data[ 'lost_paper_per_piece' ] = $impose_data['lost_paper'] / $impose_data['PPP'];
 		$impose_data[ 'piece_cost' ] = $click_cost / $impose_data['PPP'];
 		$impose_data[ 'print_cost' ] = $click_cost;
-		
+		$impose_data[ 'xxx' ] =  ($impose_data[ 'lost_paper_per_piece' ] + $impose_data[ 'piece_cost' ]) / $impose_data[ 'PPP' ];
+		$impose_data[ 'xxx' ] = $impose_data[ 'xxx' ] < 0 ? 10000000 :  $impose_data[ 'xxx' ];
 
 		return $impose_data;
 	}

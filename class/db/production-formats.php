@@ -72,7 +72,7 @@ class formats{
 	*/
 	function get_prod_for_margins( string $format = "" ){	
 		$format = $format === "" ? "487x330" : $format;
-		return isset( $this->prod_for_margins[ $format ] ) ? $this->prod_for_margins[ $format ] : array( 'left'=>5, 'right'=>5, 'top'=>5, 'bottom'=>5 );
+		return isset( $this->prod_for_margins[ $format ] ) ? $this->prod_for_margins[ $format ] : array( 'left'=>0, 'right'=>0, 'top'=>0, 'bottom'=>0 );
 	}
 
 	/**
@@ -186,15 +186,33 @@ class formats{
 				'top' => 5, 
 				'bottom' => 5 
 			),
-			'305x430' => array(
+			'487x330' => array(
 				'left' => 7, 
 				'right' => 7,
 				'top' => 5, 
 				'bottom' => 5 
 			),
+			'305x430' => array(
+				'left' => 0, 
+				'right' => 0,
+				'top' => 0, 
+				'bottom' => 0 
+			),
+			'430x305' => array(
+				'left' => 0, 
+				'right' => 0,
+				'top' => 0, 
+				'bottom' => 0 
+			),
 			'315x440' => array(
-				'left' => 7, 
-				'right' => 7,
+				'left' => 5, 
+				'right' => 5,
+				'top' => 5, 
+				'bottom' => 5 
+			),
+			'440x315' => array(
+				'left' => 5, 
+				'right' => 5,
 				'top' => 5, 
 				'bottom' => 5 
 			),
@@ -229,27 +247,27 @@ class formats{
 					'*' => array( .018, .028 ), 
 				),
 				'215x305' => array(
-					'*' => array( .018, .028 ), 
+					'*' => array( .01, .032 ), 
 				),
 				'297x420' => array(
-					'*' => array( .018, .028 ), 
+					'*' => array( .022, .032 ), 
 				)
 			),
 			'4x' => array(
 				'330x487' => array(
-					'*' => array( .18, .28 ), 
+					'*' => array( .16, .26 ), 
 				),
 				'305x430' => array(
-					'*' => array( .18, .28 ), 
+					'*' => array( .16, .26 ), 
 				),
 				'315x440' => array(
-					'*' => array( .18, .28 ), 
+					'*' => array( .2, .35 ), 
 				),
 				'215x305' => array(
-					'*' => array( .18, .28 ), 
+					'*' => array( .12, .18 ), 
 				),
 				'297x420' => array(
-					'*' => array( .18, .28 ), 
+					'*' => array( .1, .15 ), 
 				)
 			)
 
@@ -263,12 +281,36 @@ class formats{
 			'215x305' => 'RA4',
 			'420x297' => 'A3',	
 			'487x330' => 'SRA3++',
-			'430X305' => 'RA3',
+			'430x305' => 'RA3',
 			'440x315' => 'RA3+',
 			'305x215' => 'RA4',
 			'420x297' => 'A3'	
 		);
 
+/*
+		$this->pre_impose_format = array(
+
+
+
+			'4x' => array(
+				'90x50' => 'SRA3++',
+				'85x55' => 'SRA3++',
+			),
+			'1x' => array(),
+
+
+
+			'305x430' => 'RA3',
+			'315x440' => 'RA3+',
+			'215x305' => 'RA4',
+			'420x297' => 'A3',	
+			'487x330' => 'SRA3++',
+			'430x305' => 'RA3',
+			'440x315' => 'RA3+',
+			'305x215' => 'RA4',
+			'420x297' => 'A3'	
+		);
+*/
 
 		$this->wrap_cost = array(
 			'folia-brak' => 0,
