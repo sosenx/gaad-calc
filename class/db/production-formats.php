@@ -90,7 +90,8 @@ class formats{
 	*/
 	function get_str_dim_to_format( string $format = "" ){	
 		$format = $format === "" ? "a3" : $format;
-		return isset( $this->str_dim_to_format[ $format ] ) ? $this->str_dim_to_format[ $format ] : 'errorformat';
+		$str_format = isset( $this->str_dim_to_format[ $format ] ) ? $this->str_dim_to_format[ $format ] : 'errorformat';
+		return $str_format;
 	}
 
 
@@ -126,16 +127,19 @@ class formats{
 		$this->formats = array(
 			'color' => array (				
 				'SRA3++'	=> 	array('width' => 330,'height' => 487),
-				'RA3' 		=> 	array('width' => 305,'height' => 430),
+				'SRA3'		=> 	array('width' => 320,'height' => 450),
+				'RA3' 		=> 	array('width' => 315,'height' => 430),
+				'RA3+' 		=> 	array('width' => 315,'height' => 440),
 				'RA4' 		=> 	array('width' => 215,'height' => 305),
 				'A3' 		=> 	array('width' => 297,'height' => 420),
-				'B3' 		=> 	array('width' => 350,'height' => 500),
+				//'B3' 		=> 	array('width' => 350,'height' => 500),
 				'B4' 		=> 	array('width' => 250,'height' => 350)
 			),
 
 			'bw' => array (
 				'SRA3++'	=> 	array('width' => 330,'height' => 487),
-				'RA3' 		=> 	array('width' => 305,'height' => 430),
+				'SRA3'		=> 	array('width' => 320,'height' => 450),
+				'RA3' 		=> 	array('width' => 315,'height' => 430),
 				'RA3+' 		=> 	array('width' => 315,'height' => 440),
 				'RA4' 		=> 	array('width' => 215,'height' => 305),
 				'A3' 		=> 	array('width' => 297,'height' => 420),
@@ -149,14 +153,9 @@ class formats{
 		*/
 		$this->splits = array(
 			'1x' => array(
-				"*" => array( 1, 1),
+				"*" => array( 2,2),
 				"90x50" => array( 7, 4),
-				"180x50" => array( 7, 4), 
-				"148x210" => array( 3.5, 3.5 ),
-				"105x148" => array( 3.5, 3.5 ),
-				"148x210" => array( 3.5, 3.5 ),
-				"210x297" => array( 3.5, 3.5 ),
-				"297x420" => array( 3.5, 3.5 ) 
+				"180x50" => array( 7, 4)				
 			),
 
 			'4x' => array(
@@ -259,19 +258,27 @@ class formats{
 			)
 		);
 
+
+		/*
+		* From dimensions to string format name
+		*/
 		$this->str_dim_to_format = array(
 			'330x487' => 'SRA3++',
-			'305x430' => 'RA3',
-			'315x440' => 'RA3+',
-			'215x305' => 'RA4',
-			'420x297' => 'A3',	
-
 			'487x330' => 'SRA3++',
-			'430x305' => 'RA3',
+			'320x450' => 'SRA3',
+			'450x320' => 'SRA3',
+			'315x430' => 'RA3',
+			'430x315' => 'RA3',
+			'315x440' => 'RA3+',
 			'440x315' => 'RA3+',
+			'215x305' => 'RA4',
 			'305x215' => 'RA4',
-			'297x420' => 'A3',	
-			
+			'420x297' => 'A3',	
+			'297x420' => 'A3',
+			'250x350' => 'B4',	
+			'350x250' => 'B4',
+			'350x500' => 'B3',	
+			'500x350' => 'B3'			
 		);
 
 /*
@@ -287,7 +294,7 @@ class formats{
 
 
 
-			'305x430' => 'RA3',
+			'315x430' => 'RA3',
 			'315x440' => 'RA3+',
 			'215x305' => 'RA4',
 			'420x297' => 'A3',	
