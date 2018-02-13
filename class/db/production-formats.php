@@ -175,21 +175,21 @@ class formats{
 				"*" => array( 4, 4),
 				"90x50" => array( 7, 4),
 				"180x50" => array( 7, 4), 
-				"148x210" => array( 3, 3),
-				"105x148" => array( 3, 3),
-				"148x210" => array( 3, 3),
-				"210x297" => array( 3, 3),
-				"297x420" => array( 3, 3) 
+				"148x210" => array( 3.5, 3.5 ),
+				"105x148" => array( 3.5, 3.5 ),
+				"148x210" => array( 3.5, 3.5 ),
+				"210x297" => array( 3.5, 3.5 ),
+				"297x420" => array( 3.5, 3.5 ) 
 			),
 
 			'4x' => array(
 				"*" => array( 0, 0),
 				"90x50" => array( 7, 4),
-				"180x50" => array( 7, 4), 				
-				"105x148" => array( 3, 3),
-				"148x210" => array( 3, 3),
-				"210x297" => array( 3, 3),
-				"297x420" => array( 3, 3)
+				"180x50" => array( 7, 4 ), 				
+				"105x148" => array( 1,1 ),
+				"148x210" => array( 1,1 ),
+				"210x297" => array( 1,1 ),
+				"297x420" => array( 1,1 )
 			),
 
 
@@ -203,52 +203,52 @@ class formats{
 		$this->prod_for_margins = array(
 			'1x' => array(
 				'330x487' => array(
-					'left' => 7, 
-					'right' => 7,
-					'top' => 5, 
-					'bottom' => 5 
+					'left' => 3, 
+					'right' => 3,
+					'top' => 3, 
+					'bottom' => 3 
 				),
 				'487x330' => array(
-					'left' => 7, 
-					'right' => 7,
-					'top' => 5, 
-					'bottom' => 5 
+					'left' => 3, 
+					'right' => 3,
+					'top' => 3, 
+					'bottom' => 3
 				),
 				'305x430' => array(
-					'left' => 0, 
-					'right' => 0,
-					'top' => 0, 
-					'bottom' => 0 
+					'left' => 3, 
+					'right' => 3,
+					'top' => 3, 
+					'bottom' => 3
 				),
 				'430x305' => array(
-					'left' => 0, 
-					'right' => 0,
-					'top' => 0, 
-					'bottom' => 0 
+					'left' => 3, 
+					'right' => 3,
+					'top' => 3, 
+					'bottom' => 3
 				),
 				'315x440' => array(
-					'left' => 5, 
-					'right' => 5,
-					'top' => 5, 
-					'bottom' => 5 
+					'left' => 3, 
+					'right' => 3,
+					'top' => 3, 
+					'bottom' => 3
 				),
 				'440x315' => array(
-					'left' => 5, 
-					'right' => 5,
-					'top' => 5, 
-					'bottom' => 5 
+					'left' => 3, 
+					'right' => 3,
+					'top' => 3, 
+					'bottom' => 3 
 				),
 				'215x305' => array(
-					'left' => 7, 
-					'right' => 7,
-					'top' => 5, 
-					'bottom' => 5 
+					'left' => 3, 
+					'right' => 3,
+					'top' => 3, 
+					'bottom' => 3
 				),
 				'297x420' => array(
-					'left' => 7, 
-					'right' => 7,
-					'top' => 5, 
-					'bottom' => 5 
+					'left' => 3, 
+					'right' => 3,
+					'top' => 3, 
+					'bottom' => 3 
 				)
 			),
 			'4x' => array(
