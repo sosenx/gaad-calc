@@ -124,9 +124,10 @@ $r=1;
 	*/
 	function impose( array $product_dim, array $format ){	
 		$production_formats = new \gcalc\db\production\formats();
-		$split = $production_formats->get_split( implode( "x", $product_dim ) );
-		
 		$print_color_mode = $this->get_print_color_mode('pa_zadruk');
+		$split = $production_formats->get_split( implode( "x", $product_dim ), $print_color_mode );
+		
+		
 		$prod_for_margins = $production_formats->get_prod_for_margins( implode( "x", $format ), $print_color_mode );
 		$click = $production_formats->get_click( implode( "x", $format ), $print_color_mode );
 		$print_sides = $this->get_print_sides(); //0-1side, 1-2sides

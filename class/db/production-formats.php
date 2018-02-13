@@ -62,9 +62,9 @@ class formats{
 	/**
 	* Return split by given format
 	*/
-	function get_split( string $format = "" ){	
+	function get_split( string $format = "", string $color_mode = "" ){	
 		$format = $format === "" ? "a4" : $format;
-		return isset( $this->splits[ $format ] ) ? $this->splits[ $format ] : $this->splits[ '*' ];
+		return isset( $this->splits[$color_mode][ $format ] ) ? $this->splits[$color_mode][ $format ] : $this->splits[ '*' ];
 	}
 
 	/**
@@ -171,11 +171,30 @@ class formats{
 		* Splits devided by formats
 		*/
 		$this->splits = array(
-			"*" => array( 7, 4),
-			"90x50" => array( 7, 4),
-			"180x50" => array( 7, 4), 
-			"148x210" => array( 3, 3),
-			"105x148" => array( 3, 3) 
+			'1x' => array(
+				"*" => array( 4, 4),
+				"90x50" => array( 7, 4),
+				"180x50" => array( 7, 4), 
+				"148x210" => array( 3, 3),
+				"105x148" => array( 3, 3),
+				"148x210" => array( 3, 3),
+				"210x297" => array( 3, 3),
+				"297x420" => array( 3, 3) 
+			),
+
+			'4x' => array(
+				"*" => array( 0, 0),
+				"90x50" => array( 7, 4),
+				"180x50" => array( 7, 4), 				
+				"105x148" => array( 3, 3),
+				"148x210" => array( 3, 3),
+				"210x297" => array( 3, 3),
+				"297x420" => array( 3, 3)
+			),
+
+
+
+			
 		);
 
 		/*
@@ -327,11 +346,13 @@ class formats{
 			'315x440' => 'RA3+',
 			'215x305' => 'RA4',
 			'420x297' => 'A3',	
+
 			'487x330' => 'SRA3++',
 			'430x305' => 'RA3',
 			'440x315' => 'RA3+',
 			'305x215' => 'RA4',
-			'420x297' => 'A3'	
+			'297x420' => 'A3',	
+			
 		);
 
 /*
