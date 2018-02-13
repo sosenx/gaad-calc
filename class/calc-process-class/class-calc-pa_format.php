@@ -148,12 +148,17 @@ $r=1;
 		$row_split = $split[1];
 		$format_height = $format['height'] - ( $prod_for_margins['top'] + $prod_for_margins['bottom'] );
 		$rows = (int)( ( $format_height + $row_split ) / ( $product_dim['height'] + $row_split ) );
-			
+		$cols_width = $cols * ( $col_split + $product_dim['width'] );
+		$rows_height= $rows * ( $row_split + $product_dim['height'] );
+
+		$cols = $cols_width > $format_width ? $cols-1 : $cols;
+		$rows = $rows_height > $format_height ? $rows-1 : $rows;
+
 		$impose_data = array(
 			'format' => $this->str_dim_to_format( $format['width'] .'x'. $format['height'] ),
 			'PPP' => $cols * $rows,
-			'cols_width' => $cols * ( $col_split + $product_dim['width'] ),
-			'rows_height' => $rows * ( $row_split + $product_dim['height'] ),
+			'cols_width' =>  $cols_width,
+			'rows_height' => $rows_height,
 			'cols' => $cols,
 			'rows' => $rows,
 			'product_sq' => ( $product_dim['width'] + $col_split ) * ( $product_dim['height'] + $row_split ),

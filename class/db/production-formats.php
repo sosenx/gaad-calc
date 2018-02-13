@@ -64,7 +64,7 @@ class formats{
 	*/
 	function get_split( string $format = "", string $color_mode = "" ){	
 		$format = $format === "" ? "a4" : $format;
-		return isset( $this->splits[$color_mode][ $format ] ) ? $this->splits[$color_mode][ $format ] : $this->splits[ '*' ];
+		return isset( $this->splits[$color_mode][ $format ] ) ? $this->splits[$color_mode][ $format ] : $this->splits[$color_mode][ '*' ];
 	}
 
 	/**
@@ -124,46 +124,23 @@ class formats{
 	*/
 	public function aquire( ){
 		$this->formats = array(
-			'color' => array ( 
-				'SRA3++' => array(
-					'width' => 330, 
-					'height' => 487 
-				),
-				'RA3' => array(
-					'width' => 305, 
-					'height' => 430 
-				),
-				'RA4' => array(
-					'width' => 215, 
-					'height' => 305 
-				),
-				'A3' => array(
-					'width' => 297, 
-					'height' => 420 
-				)
+			'color' => array (				
+				'SRA3++'	=> 	array('width' => 330,'height' => 487),
+				'RA3' 		=> 	array('width' => 305,'height' => 430),
+				'RA4' 		=> 	array('width' => 215,'height' => 305),
+				'A3' 		=> 	array('width' => 297,'height' => 420),
+				'B3' 		=> 	array('width' => 350,'height' => 500),
+				'B4' 		=> 	array('width' => 250,'height' => 350)
 			),
 
-			'bw' => array ( 
-				'SRA3++' => array(
-					'width' => 330, 
-					'height' => 487 
-				),
-				'RA3' => array(
-					'width' => 305, 
-					'height' => 430 
-				),
-				'RA3+' => array(
-					'width' => 315, 
-					'height' => 440 
-				),
-				'RA4' => array(
-					'width' => 215, 
-					'height' => 305 
-				),
-				'A3' => array(
-					'width' => 297, 
-					'height' => 420 
-				)
+			'bw' => array (
+				'SRA3++'	=> 	array('width' => 330,'height' => 487),
+				'RA3' 		=> 	array('width' => 305,'height' => 430),
+				'RA3+' 		=> 	array('width' => 315,'height' => 440),
+				'RA4' 		=> 	array('width' => 215,'height' => 305),
+				'A3' 		=> 	array('width' => 297,'height' => 420),
+				'B3' 		=> 	array('width' => 350,'height' => 500),
+				'B4' 		=> 	array('width' => 250,'height' => 350)
 			)	
 		);
 
@@ -172,7 +149,7 @@ class formats{
 		*/
 		$this->splits = array(
 			'1x' => array(
-				"*" => array( 4, 4),
+				"*" => array( 1, 1),
 				"90x50" => array( 7, 4),
 				"180x50" => array( 7, 4), 
 				"148x210" => array( 3.5, 3.5 ),
@@ -183,13 +160,13 @@ class formats{
 			),
 
 			'4x' => array(
-				"*" => array( 0, 0),
-				"90x50" => array( 7, 4),
-				"180x50" => array( 7, 4 ), 				
-				"105x148" => array( 1,1 ),
-				"148x210" => array( 1,1 ),
-				"210x297" => array( 1,1 ),
-				"297x420" => array( 1,1 )
+				"*" => array( 7, 7),
+				"90x50" => array( 7, 7),
+				"180x50" => array( 7, 7 ), 				
+				"105x148" => array( 7, 7 ),
+				"148x210" => array( 7, 7 ),
+				"210x297" => array( 7, 7 ),
+				"297x420" => array( 7, 7 )
 			),
 
 
@@ -202,104 +179,40 @@ class formats{
 		*/
 		$this->prod_for_margins = array(
 			'1x' => array(
-				'330x487' => array(
-					'left' => 3, 
-					'right' => 3,
-					'top' => 3, 
-					'bottom' => 3 
-				),
-				'487x330' => array(
-					'left' => 3, 
-					'right' => 3,
-					'top' => 3, 
-					'bottom' => 3
-				),
-				'305x430' => array(
-					'left' => 3, 
-					'right' => 3,
-					'top' => 3, 
-					'bottom' => 3
-				),
-				'430x305' => array(
-					'left' => 3, 
-					'right' => 3,
-					'top' => 3, 
-					'bottom' => 3
-				),
-				'315x440' => array(
-					'left' => 3, 
-					'right' => 3,
-					'top' => 3, 
-					'bottom' => 3
-				),
-				'440x315' => array(
-					'left' => 3, 
-					'right' => 3,
-					'top' => 3, 
-					'bottom' => 3 
-				),
-				'215x305' => array(
-					'left' => 3, 
-					'right' => 3,
-					'top' => 3, 
-					'bottom' => 3
-				),
-				'297x420' => array(
-					'left' => 3, 
-					'right' => 3,
-					'top' => 3, 
-					'bottom' => 3 
-				)
+				'330x487' => array('left' => 3,'right' => 3, 'top' => 3,'bottom' => 3),
+				'487x330' => array('left' => 3,'right' => 3, 'top' => 3,'bottom' => 3),
+				'320x450' => array('left' => 3,'right' => 3, 'top' => 3,'bottom' => 3),				
+				'450x320' => array('left' => 3,'right' => 3, 'top' => 3,'bottom' => 3),
+				'315x430' => array('left' => 3,'right' => 3, 'top' => 3,'bottom' => 3),
+				'430x315' => array('left' => 3,'right' => 3, 'top' => 3,'bottom' => 3),
+				'315x440' => array('left' => 3,'right' => 3, 'top' => 3,'bottom' => 3),
+				'440x315' => array('left' => 3,'right' => 3, 'top' => 3,'bottom' => 3),
+				'215x305' => array('left' => 3,'right' => 3, 'top' => 3,'bottom' => 3),
+				'305x215' => array('left' => 3,'right' => 3, 'top' => 3,'bottom' => 3),
+				'297x420' => array('left' => 3,'right' => 3, 'top' => 3,'bottom' => 3),
+				'420x297' => array('left' => 3,'right' => 3, 'top' => 3,'bottom' => 3),
+				'250x350' => array('left' => 3,'right' => 3, 'top' => 3,'bottom' => 3),
+				'350x250' => array('left' => 3,'right' => 3, 'top' => 3,'bottom' => 3),
+				'350x500' => array('left' => 3,'right' => 3, 'top' => 3,'bottom' => 3),
+				'500x350' => array('left' => 3,'right' => 3, 'top' => 3,'bottom' => 3)
 			),
 			'4x' => array(
-				'330x487' => array(
-					'left' => 7, 
-					'right' => 7,
-					'top' => 5, 
-					'bottom' => 5 
-				),
-				'487x330' => array(
-					'left' => 7, 
-					'right' => 7,
-					'top' => 5, 
-					'bottom' => 5 
-				),
-				'305x430' => array(
-					'left' => 6, 
-					'right' => 6,
-					'top' => 5, 
-					'bottom' => 5
-				),
-				'430x305' => array(
-					'left' => 3, 
-					'right' => 3,
-					'top' => 5, 
-					'bottom' => 5
-				),
-				'315x440' => array(
-					'left' => 7, 
-					'right' => 7,
-					'top' => 5, 
-					'bottom' => 5 
-				),
-				'440x315' => array(
-					'left' => 7, 
-					'right' => 7,
-					'top' => 5, 
-					'bottom' => 5  
-				),
-				'215x305' => array(
-					'left' => 7, 
-					'right' => 7,
-					'top' => 5, 
-					'bottom' => 5 
-				),
-				'297x420' => array(
-					'left' => 7, 
-					'right' => 7,
-					'top' => 5, 
-					'bottom' => 5 
-				)
+				'330x487' => array('left' => 5,'right' => 5, 'top' => 7,'bottom' => 7),
+				'487x330' => array('left' => 7,'right' => 7, 'top' => 5,'bottom' => 5),
+				'320x450' => array('left' => 5,'right' => 5, 'top' => 7,'bottom' => 7),				
+				'450x320' => array('left' => 7,'right' => 7, 'top' => 5,'bottom' => 5),
+				'315x430' => array('left' => 5,'right' => 5, 'top' => 7,'bottom' => 7),
+				'430x315' => array('left' => 7,'right' => 7, 'top' => 5,'bottom' => 5),
+				'315x440' => array('left' => 5,'right' => 5, 'top' => 7,'bottom' => 7),
+				'440x315' => array('left' => 7,'right' => 7, 'top' => 5,'bottom' => 5),
+				'215x305' => array('left' => 5,'right' => 5, 'top' => 7,'bottom' => 7),
+				'305x215' => array('left' => 7,'right' => 7, 'top' => 5,'bottom' => 5),
+				'297x420' => array('left' => 5,'right' => 5, 'top' => 7,'bottom' => 7),
+				'420x297' => array('left' => 7,'right' => 7, 'top' => 5,'bottom' => 5),
+				'250x350' => array('left' => 5,'right' => 5, 'top' => 7,'bottom' => 7),
+				'350x250' => array('left' => 7,'right' => 7, 'top' => 5,'bottom' => 5),
+				'350x500' => array('left' => 5,'right' => 5, 'top' => 7,'bottom' => 7),
+				'500x350' => array('left' => 7,'right' => 7, 'top' => 5,'bottom' => 5)
 			)
 		);
 
@@ -308,36 +221,42 @@ class formats{
 		* Clicks cost, normative
 		*/
 		$this->clicks = array(
-
 			'1x' => array(
-				'330x487' => array( '*' => array( .019, .028 ), ),
-				'305x430' => array( '*' => array( .019, .028 ), ),
-				'315x440' => array( '*' => array( .019, .028 ), ),
-				'215x305' => array(	'*' => array( .01, .032 ), 	),
-				'297x420' => array(	'*' => array( .019, .032 ), ),
-
-				'487x330' => array( '*' => array( .019, .028 ), ),
-				'430x305' => array( '*' => array( .019, .028 ), ),
-				'440x315' => array( '*' => array( .019, .028 ), ),
-				'305x215' => array(	'*' => array( .01, .032 ), 	),
-				'420x297' => array(	'*' => array( .019, .032 ), ),
+				'330x487' => array( '*' => array( .019, .028 )),
+				'487x330' => array( '*' => array( .019, .028 )),
+				'320x450' => array( '*' => array( .019, .028 )),
+				'450x320' => array( '*' => array( .019, .028 )),
+				'315x430' => array( '*' => array( .019, .028 )),
+				'430x315' => array( '*' => array( .019, .028 )),
+				'315x440' => array( '*' => array( .019, .028 )),
+				'440x315' => array( '*' => array( .019, .028 )),
+				'215x305' => array(	'*' => array( .010, .032 )),
+				'305x215' => array(	'*' => array( .010, .032 )),
+				'297x420' => array(	'*' => array( .019, .032 )),
+				'420x297' => array(	'*' => array( .019, .032 )),				
+				'250x350' => array(	'*' => array( .019, .032 )),
+				'350x250' => array(	'*' => array( .019, .032 )),
+				'350x500' => array(	'*' => array( .019, .032 )),
+				'500x350' => array(	'*' => array( .019, .032 ))
 			),
 			'4x' => array(
-				'330x487' => array(	'*' => array( .16, .26 ),),
-				'305x430' => array(	'*' => array( .16, .26 ),),
-				'315x440' => array(	'*' => array( .2, .35 ), ),
-				'215x305' => array(	'*' => array( .12, .18 ),),
-				'297x420' => array(	'*' => array( .1, .15 ), ),
-
-				'487x330' => array(	'*' => array( .16, .26 ),),
-				'430x305' => array(	'*' => array( .16, .26 ),),
-				'440x315' => array(	'*' => array( .2, .35 ), ),
-				'305x215' => array(	'*' => array( .12, .18 ),),
-				'420x297' => array(	'*' => array( .1, .15 ), )
-
+				'330x487' => array(	'*' => array( .160, .260 )),
+				'487x330' => array(	'*' => array( .160, .260 )),
+				'320x450' => array(	'*' => array( .160, .260 )),
+				'450x320' => array(	'*' => array( .160, .260 )),
+				'315x430' => array(	'*' => array( .160, .260 )),
+				'430x315' => array(	'*' => array( .160, .260 )),
+				'315x440' => array(	'*' => array( .200, .350 )),
+				'440x315' => array(	'*' => array( .200, .350 )),
+				'215x305' => array(	'*' => array( .120, .180 )),
+				'305x215' => array(	'*' => array( .120, .180 )),
+				'297x420' => array(	'*' => array( .100, .150 )),
+				'420x297' => array(	'*' => array( .100, .150 )),
+				'250x350' => array(	'*' => array( .160, .260 )),
+				'350x250' => array(	'*' => array( .160, .260 )),
+				'350x500' => array(	'*' => array( .160, .260 )),
+				'500x350' => array(	'*' => array( .160, .260 ))
 			)
-
-				
 		);
 
 		$this->str_dim_to_format = array(
@@ -393,7 +312,7 @@ class formats{
 		$this->total_cost_equasion = array(
 			'wizytowki' => array(
 				'equasion' => 'podloze + zadruk + wrap + spot_uv'
-			)
+			),
 		);
 
 		$this->spot_uv_cost = array(
