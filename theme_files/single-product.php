@@ -7,7 +7,7 @@ wp_head();
 global $post;
 $product_id = $post->ID;
 $pargs = array(
-	"pa_format" => "210x280",
+	"pa_format" => "170x240",
     "pa_podloze" => "kreda-150g",
     "pa_zadruk" => "dwustronnie-kolorowe-1x0-cmyk",     
     //"pa_zadruk" => "dwustronnie-kolorowe-1x1-cmyk",    
