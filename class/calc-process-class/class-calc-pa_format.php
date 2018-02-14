@@ -25,10 +25,8 @@ class pa_format extends \gcalc\cprocess_calculation{
 		$this->name = "pa_format";		
 		$this->cargs = $product_attributes;
 		$this->dependencies = NULL;
-
 		$this->parse_dimensions();
 		$this->calculate_best_production_format();
-
 
 		return $this;
 	}
@@ -47,12 +45,17 @@ class pa_format extends \gcalc\cprocess_calculation{
 
 		return $this->parse_total( 			
 			array(
+				
 				'production_cost' => $production_cost,
 				'total_price' => $total_price,
 				'markup_value' => $total_price - $production_cost,
 				'markup' => $markup_
 			),
 			array(				
+				'product' => array(
+					'width' => $this->get_width(),
+					'height' => $this->get_height(),
+				),
 				'sheets_quantity' => $sheets_quantity,
 				'production_format_short' => $pf['format'] .' '. $grain .' (' . $pf['format_w'] .'x'. $pf['format_h'] . ')',
 				'production_format' => $pf
@@ -108,6 +111,17 @@ class pa_format extends \gcalc\cprocess_calculation{
 
 		$min_lost_best = $max_pieces_format;
 
+		/*
+		*Calculate pallete format and quantity
+		*/
+		$grain = $min_lost_best['format_w'] > $min_lost_best['format_h'] ? 'SG' : 'LG';
+		$sheets_quantity = (int)($this->cargs['pa_naklad'] / $min_lost_best['PPP']) + ( $this->cargs['pa_naklad'] % $min_lost_best['PPP'] > 0 ? 1 : 0 );
+		$pallet_format = array(
+			'format' => $production_formats->get_pallet_format( $min_lost_best['format'], $grain ),
+			'quantity' => $sheets_quantity * $production_formats->get_pallet_format_factor()
+		);
+		$min_lost_best[ 'pallet_format' ] = $pallet_format;
+
 		$this->parent->set_best_production_format( $min_lost_best );
 		$this->best_production_format = $min_lost_best;		
 	}
@@ -159,6 +173,7 @@ class pa_format extends \gcalc\cprocess_calculation{
 		if ( $impose_data['PPP'] === 0 ) {
 			$impose_data['PPP'] = 1;
 		}
+
 		$impose_data[ 'lost_paper' ] = $impose_data['format_sq'] - ( $impose_data['product_sq'] * $impose_data['PPP'] );
 		$impose_data[ 'lost_paper_per_piece' ] = $impose_data['lost_paper'] / $impose_data['PPP'];
 		$impose_data[ 'piece_cost' ] = $click_cost / $impose_data['PPP'];

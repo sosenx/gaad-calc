@@ -40,6 +40,16 @@ class formats{
 	*/
 	public $spot_uv_cost;
 
+	/*
+	* 
+	*/
+	public $pallet_format;
+
+	/*
+	* 
+	*/
+	public $pallet_format_factor;
+
 
 
 	function __construct( ){	
@@ -104,6 +114,24 @@ class formats{
 	}
 
 	/**
+	* Return pallet_format
+	*/
+	function get_pallet_format( string $format_str, string $grain ){
+		$pallet_format = 
+			isset( $this->pallet_format[ strtolower( $grain ) ][ $format_str ] ) 
+				? $this->pallet_format[ strtolower( $grain ) ][ $format_str ]
+					: 'error_pallet_format';
+		return $pallet_format;
+	}
+
+	/**
+	* Return pallet_format_factor
+	*/
+	function get_pallet_format_factor( ){		
+		return isset( $this->pallet_format_factor ) ? $this->pallet_format_factor : -1;
+	}
+
+	/**
 	* Return wrap cost
 	*/
 	function get_total_cost_equasion( int $product_id ){	
@@ -147,6 +175,33 @@ class formats{
 				'B4' 		=> 	array('width' => 250,'height' => 350)
 			)	
 		);
+
+
+		$this->pallet_format_factor = 4;
+
+		$this->pallet_format = array (
+			'sg' => array (
+				'SRA3++'	=> 	array('width' => 1000,'height' => 	700),
+				'SRA3'		=> 	array('width' => 1000,'height' => 	700),
+				'RA3' 		=> 	array('width' => 630,'height' => 	860),
+				'RA3+' 		=> 	array('width' => 630,'height' => 	880),
+				'RA4' 		=> 	array('width' => 630,'height' => 	880),
+				'A3' 		=> 	array('width' => 630,'height' => 	880),
+				'B3' 		=> 	array('width' => 1000,'height' => 	700),
+				'B4' 		=> 	array('width' => 1000,'height' => 	700)
+			),
+			'lg' => array (
+				'SRA3++'	=> 	array('width' => 700,'height' => 1000 ),
+				'SRA3'		=> 	array('width' => 700,'height' => 1000 ),
+				'RA3' 		=> 	array('width' => 860,'height' => 630 ),
+				'RA3+' 		=> 	array('width' => 880,'height' => 630 ),
+				'RA4' 		=> 	array('width' => 880,'height' => 630 ),
+				'A3' 		=> 	array('width' => 880,'height' => 630 ),
+				'B3' 		=> 	array('width' => 700,'height' => 1000 ),
+				'B4' 		=> 	array('width' => 700,'height' => 1000 )
+			)
+		);	
+
 
 		/*
 		* Splits devided by formats

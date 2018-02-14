@@ -10,7 +10,7 @@
 		"xdebug":
 		{
 			"launch_browser": false,
-			"max_depth": 5,					
+			"max_depth": 10,					
 			"url": "http://127.0.0.1/gaadcalcapi/"
 		}
 	}
