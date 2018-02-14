@@ -109,22 +109,36 @@ class pa_format extends \gcalc\cprocess_calculation{
 			}
 		}
 
-		$min_lost_best = $max_pieces_format;
-
-		/*
-		*Calculate pallete format and quantity
-		*/
-		$grain = $min_lost_best['format_w'] > $min_lost_best['format_h'] ? 'SG' : 'LG';
-		$sheets_quantity = (int)($this->cargs['pa_naklad'] / $min_lost_best['PPP']) + ( $this->cargs['pa_naklad'] % $min_lost_best['PPP'] > 0 ? 1 : 0 );
-		$pallet_format = array(
-			'format' => $production_formats->get_pallet_format( $min_lost_best['format'], $grain ),
-			'quantity' => $sheets_quantity * $production_formats->get_pallet_format_factor()
-		);
-		$min_lost_best[ 'pallet_format' ] = $pallet_format;
+		$min_lost_best = $max_pieces_format;		
+		$min_lost_best[ 'pallet_format' ] = $this->calc_pallet_format( $min_lost_best );
 
 		$this->parent->set_best_production_format( $min_lost_best );
 		$this->best_production_format = $min_lost_best;		
 	}
+
+
+	/**
+	* Calculate pallete format and quantity from production format
+	*
+	*/
+	function calc_pallet_format( array $production_format ){	
+		$production_formats = new \gcalc\db\production\formats();
+		$pallet_format = array();
+		/*
+		*Calculate pallete format and quantity
+		*/
+		$grain = $production_format['format_w'] > $production_format['format_h'] ? 'SG' : 'LG';
+		$sheets_quantity = (int)($this->cargs['pa_naklad'] / $production_format['PPP']) 
+								+ ( $this->cargs['pa_naklad'] % $production_format['PPP'] > 0 ? 1 : 0 );
+		$pallet_format = array(
+			'format' => $production_formats->get_pallet_format( $production_format['format'], $grain ),
+			'quantity' => $sheets_quantity / $production_formats->get_pallet_format_factor(),			
+		);
+
+		$pallet_format[ 'label' ] = $this->cargs['pa_podloze'] .' '. $pallet_format['format']['width'] .'x'. $pallet_format['format']['height'] . ' ' . $grain;
+		return $pallet_format;
+	}
+
 
 	/**
 	* Do simple imposition and return math data

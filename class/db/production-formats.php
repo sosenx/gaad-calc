@@ -183,20 +183,20 @@ class formats{
 			'sg' => array (
 				'SRA3++'	=> 	array('width' => 1000,'height' => 	700),
 				'SRA3'		=> 	array('width' => 1000,'height' => 	700),
-				'RA3' 		=> 	array('width' => 630,'height' => 	860),
-				'RA3+' 		=> 	array('width' => 630,'height' => 	880),
-				'RA4' 		=> 	array('width' => 630,'height' => 	880),
-				'A3' 		=> 	array('width' => 630,'height' => 	880),
+				'RA3' 		=> 	array('width' => 860,'height' => 	630),
+				'RA3+' 		=> 	array('width' => 880,'height' => 	630),
+				'RA4' 		=> 	array('width' => 880,'height' => 	630),
+				'A3' 		=> 	array('width' => 880,'height' => 	630),
 				'B3' 		=> 	array('width' => 1000,'height' => 	700),
 				'B4' 		=> 	array('width' => 1000,'height' => 	700)
 			),
 			'lg' => array (
 				'SRA3++'	=> 	array('width' => 700,'height' => 1000 ),
 				'SRA3'		=> 	array('width' => 700,'height' => 1000 ),
-				'RA3' 		=> 	array('width' => 860,'height' => 630 ),
-				'RA3+' 		=> 	array('width' => 880,'height' => 630 ),
-				'RA4' 		=> 	array('width' => 880,'height' => 630 ),
-				'A3' 		=> 	array('width' => 880,'height' => 630 ),
+				'RA3' 		=> 	array('width' => 630,'height' => 860 ),
+				'RA3+' 		=> 	array('width' => 630,'height' => 880 ),
+				'RA4' 		=> 	array('width' => 630,'height' => 880 ),
+				'A3' 		=> 	array('width' => 630,'height' => 880 ),
 				'B3' 		=> 	array('width' => 700,'height' => 1000 ),
 				'B4' 		=> 	array('width' => 700,'height' => 1000 )
 			)
