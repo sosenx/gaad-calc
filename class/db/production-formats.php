@@ -275,41 +275,43 @@ class formats{
 		* Clicks cost, normative
 		*/
 		$this->clicks = array(
+
 			'1x' => array(
-				'330x487' => array( '*' => array( .019, .028 )),
-				'487x330' => array( '*' => array( .019, .028 )),
-				'320x450' => array( '*' => array( .019, .028 )),
-				'450x320' => array( '*' => array( .019, .028 )),
-				'315x430' => array( '*' => array( .019, .028 )),
-				'430x315' => array( '*' => array( .019, .028 )),
-				'315x440' => array( '*' => array( .019, .028 )),
-				'440x315' => array( '*' => array( .019, .028 )),
-				'215x305' => array(	'*' => array( .010, .032 )),
-				'305x215' => array(	'*' => array( .010, .032 )),
-				'297x420' => array(	'*' => array( .019, .032 )),
-				'420x297' => array(	'*' => array( .019, .032 )),				
-				'250x350' => array(	'*' => array( .019, .032 )),
-				'350x250' => array(	'*' => array( .019, .032 )),
-				'350x500' => array(	'*' => array( .019, .032 )),
-				'500x350' => array(	'*' => array( .019, .032 ))
+				'330x487' => array( '*' => array( .0155, .031 )), //SRA3++ LG
+				'487x330' => array( '*' => array( .0155, .031 )), //SRA3++ SG
+				'320x450' => array( '*' => array( .0155, .031 )), //SRA3 LG
+				'450x320' => array( '*' => array( .0155, .031 )), //SRA3 SG
+				'315x430' => array( '*' => array( .0155, .031 )), //RA3 LG
+				'430x315' => array( '*' => array( .0155, .031 )), //RA3 SG
+				'315x440' => array( '*' => array( .0155, .031 )), //RA3 LG
+				'440x315' => array( '*' => array( .0155, .031 )), //RA3 SG
+				'215x305' => array(	'*' => array( .0093, .031 )), //RA4 LG
+				'305x215' => array(	'*' => array( .0093, .031 )), //RA4 SG
+				'297x420' => array(	'*' => array( .0155, .031 )), //A3 LG
+				'420x297' => array(	'*' => array( .0155, .031 )), //A3 SG				
+				'250x350' => array(	'*' => array( .0093, .019 )), //B4 LG
+				'350x250' => array(	'*' => array( .0093, .019 )), //B4 SG
+				'350x500' => array(	'*' => array( .0155, .031 )), //B3 LG
+				'500x350' => array(	'*' => array( .0155, .031 ))  //B3 SG
 			),
+
 			'4x' => array(
-				'330x487' => array(	'*' => array( .160, .260 )),
-				'487x330' => array(	'*' => array( .160, .260 )),
-				'320x450' => array(	'*' => array( .160, .260 )),
-				'450x320' => array(	'*' => array( .160, .260 )),
-				'315x430' => array(	'*' => array( .160, .260 )),
-				'430x315' => array(	'*' => array( .160, .260 )),
-				'315x440' => array(	'*' => array( .200, .350 )),
-				'440x315' => array(	'*' => array( .200, .350 )),
-				'215x305' => array(	'*' => array( .120, .180 )),
-				'305x215' => array(	'*' => array( .120, .180 )),
-				'297x420' => array(	'*' => array( .100, .150 )),
-				'420x297' => array(	'*' => array( .100, .150 )),
-				'250x350' => array(	'*' => array( .160, .260 )),
-				'350x250' => array(	'*' => array( .160, .260 )),
-				'350x500' => array(	'*' => array( .160, .260 )),
-				'500x350' => array(	'*' => array( .160, .260 ))
+				'330x487' => array(	'*' => array( .14, .26 )), //SRA3++ LG
+				'487x330' => array(	'*' => array( .14, .26 )), //SRA3++ SG
+				'320x450' => array(	'*' => array( .14, .26 )), //SRA3 LG
+				'450x320' => array(	'*' => array( .14, .26 )), //SRA3 SG
+				'315x430' => array(	'*' => array( .14, .26 )), //RA3 LG
+				'430x315' => array(	'*' => array( .14, .26 )), //RA3 SG
+				'315x440' => array(	'*' => array( .14, .26 )), //RA3 LG
+				'440x315' => array(	'*' => array( .14, .26 )), //RA3 SG
+				'215x305' => array(	'*' => array( .07, .18 )), //RA4 LG
+				'305x215' => array(	'*' => array( .07, .18 )), //RA4 SG
+				'297x420' => array(	'*' => array( .07, .18 )), //A3 LG
+				'420x297' => array(	'*' => array( .07, .18 )), //A3 SG				
+				'250x350' => array(	'*' => array( .07, .18 )), //B4 LG
+				'350x250' => array(	'*' => array( .07, .26 )), //B4 SG
+				'350x500' => array(	'*' => array( .14, .26 )), //B3 LG
+				'500x350' => array(	'*' => array( .14, .26 ))  //B3 SG
 			)
 		);
 
