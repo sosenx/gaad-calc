@@ -29,7 +29,7 @@ class product_markup{
 		$this->parent = $parent;	
 		$this->product_id = $product_id;
 		$this->product = new \WC_Product( $product_id );
-		$this->slug = $this->product->get_name();
+		$this->slug = $this->product->get_slug();
 
 		$this->aquire();
 	}
@@ -54,8 +54,8 @@ class product_markup{
 	*
 	* Branches have irregular shape, needs to be treted individually with cprocess_calculation obj
 	*/
-	public function get_markup(){
-		$product_markup = $this->get_markups()[ $this->slug ] == NULL ? $this->get_markups()[ '*' ] : $this->get_markups()[ $this->slug ];
+	public function get_markup(){		
+		$product_markup = !array_key_exists( $this->slug, $this->get_markups() ) ? $this->get_markups()[ '*' ] : $this->get_markups()[ $this->slug ];
 		$process_markup = $product_markup[ $this->parent->name ]  == NULL ? 0 : $product_markup[ $this->parent->name ];
 		
 		return $process_markup;
@@ -68,7 +68,7 @@ class product_markup{
 	public function aquire( ){
 		$this->markups = array(
 			'*' => array(
-				'pa_podloze' => array( 'markup' => 1.1),
+				'pa_paper' => array( 'markup' => 1.1),
 				'pa_wrap' => array( 'markup' => 1),
 				'pa_spot_uv' => array( 'markup' => 1.6),
 				'pa_quantity' => array( 'markup' => 1),

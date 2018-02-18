@@ -2,16 +2,17 @@
 namespace gcalc\calc;
 
 
-class pa_podloze extends \gcalc\cprocess_calculation{
+class pa_paper extends \gcalc\cprocess_calculation{
 
 	/*
 	* Price per kg of used paper
 	*/
 	private $paper;
 
-	function __construct( array $product_attributes, int $product_id, \gcalc\calculate $parent ){	
-		parent::__construct( $product_attributes, $product_id, $parent );
-		$this->name = "pa_podloze";		
+	function __construct( array $product_attributes, int $product_id, \gcalc\calculate $parent, array $group ){	
+		parent::__construct( $product_attributes, $product_id, $parent, $group );
+		$this->name = "pa_paper";		
+		$this->group = $group;
 		$this->product_id = $product_id;
 		$this->cargs = $product_attributes;
 		$this->dependencies = NULL;
@@ -28,9 +29,9 @@ class pa_podloze extends \gcalc\cprocess_calculation{
 	function calc(){	
 		$c = $this->paper['price_per_kg'];
 		$weight = $this->paper['weight'];
-		$pf = $this->parent->get_best_production_format();		
+		$pf = $this->parent->get_best_production_format( $this->group );		
 		$sheet_cost = $pf['format_sq'] / 1000000 * $c * $weight;
-		$sheets_quantity = (int)($this->cargs['pa_quantity'] / $pf['PPP']) + ( $this->cargs['pa_quantity'] % $pf['PPP'] > 0 ? 1 : 0 );
+		$sheets_quantity = (int)($this->cargs['pa_quantity'] / $pf['pieces']) + ( $this->cargs['pa_quantity'] % $pf['pieces'] > 0 ? 1 : 0 );
 
 		$markup_db = new \gcalc\db\product_markup( $this->cargs, $this->product_id, $this);
 		$markup = $markup_db->get_markup();
@@ -58,7 +59,7 @@ class pa_podloze extends \gcalc\cprocess_calculation{
 	*/
 	public function get_paper(){
 		$production_paper_db = new \gcalc\db\production\paper();
-		$paper_slug = $this->cargs['pa_podloze'];
+		$paper_slug = $this->cargs['pa_paper'];
 		return $this->paper = $production_paper_db->get_paper( $paper_slug );
 	}
 

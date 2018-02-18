@@ -4,10 +4,10 @@ namespace gcalc\calc;
 
 class pa_wrap extends \gcalc\cprocess_calculation{
 
-	function __construct( array $product_attributes, int $product_id, \gcalc\calculate $parent ){	
-		parent::__construct( $product_attributes, $product_id, $parent );
-		$this->name = "pa_wrap";		
+	function __construct( array $product_attributes, int $product_id, \gcalc\calculate $parent, array $group ){	
+		parent::__construct( $product_attributes, $product_id, $parent, $group );
 		$this->cargs = $product_attributes;
+		$this->group = $group;
 		$this->dependencies = NULL;
 		$this->product_id = $product_id;
 		return $this;
@@ -18,8 +18,8 @@ class pa_wrap extends \gcalc\cprocess_calculation{
 	*/
 	function calc(){
 		$production_formats = new \gcalc\db\production\formats();
-		$pf = $this->parent->get_best_production_format();				
-		$sheets_quantity = (int)($this->cargs['pa_quantity'] / $pf['PPP']) + ( $this->cargs['pa_quantity'] % $pf['PPP'] > 0 ? 1 : 0 );
+		$pf = $this->parent->get_best_production_format( $this->group );				
+		$sheets_quantity = (int)($this->cargs['pa_quantity'] / $pf['pieces']) + ( $this->cargs['pa_quantity'] % $pf['pieces'] > 0 ? 1 : 0 );
 		
 		$markup_db = new \gcalc\db\product_markup( $this->cargs, $this->product_id, $this);
 		$markup = $markup_db->get_markup();

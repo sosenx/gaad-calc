@@ -115,7 +115,7 @@ class pa_format extends \gcalc\cprocess_calculation{
 			'quantity' => $sheets_quantity / $production_formats->get_pallet_format_factor(),			
 		);
 
-		$pallet_format[ 'label' ] = $this->cargs['pa_podloze'] .' '. $pallet_format['format']['width'] .'x'. $pallet_format['format']['height'] . ' ' . $grain;
+		$pallet_format[ 'label' ] = $this->cargs['pa_paper'] .' '. $pallet_format['format']['width'] .'x'. $pallet_format['format']['height'] . ' ' . $grain;
 		return $pallet_format;
 	}
 

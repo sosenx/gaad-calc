@@ -4,9 +4,10 @@ namespace gcalc\calc;
 
 class pa_spot_uv extends \gcalc\cprocess_calculation{
 
-	function __construct( array $product_attributes, int $product_id, \gcalc\calculate $parent ){	
-		parent::__construct( $product_attributes, $product_id, $parent );
+	function __construct( array $product_attributes, int $product_id, \gcalc\calculate $parent, array $group ){	
+		parent::__construct( $product_attributes, $product_id, $parent, $group );
 		$this->name = "pa_spot_uv";		
+		$this->group = $group;
 		$this->cargs = $product_attributes;
 		$this->dependencies = NULL;
 		$this->product_id = $product_id;
@@ -20,8 +21,8 @@ class pa_spot_uv extends \gcalc\cprocess_calculation{
 	function calc(){
 		$production_formats = new \gcalc\db\production\formats();
 		$parent = $this->get_parent();
-		$pf = $this->parent->get_best_production_format();				
-		$sheets_quantity = (int)($this->cargs['pa_quantity'] / $pf['PPP']) + ( $this->cargs['pa_quantity'] % $pf['PPP'] > 0 ? 1 : 0 );
+		$pf = $this->parent->get_best_production_format( $this->group );				
+		$sheets_quantity = (int)($this->cargs['pa_quantity'] / $pf['pieces']) + ( $this->cargs['pa_quantity'] % $pf['pieces'] > 0 ? 1 : 0 );
 		$format = $parent->get_todo_process( 'pa_format' );
 		$tmp = array( 'width' => $format->calculator->get_width(), 'height' => $format->calculator->get_height() );
 		$format_multiplier = ( $tmp['width'] <= 210 && $tmp['height'] <= 297 ) || ( $tmp['width'] <= 297 && $tmp['height'] <= 210 ) ? 1 : 2;

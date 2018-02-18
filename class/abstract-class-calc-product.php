@@ -129,8 +129,6 @@ abstract class calc_product{
 				);	
 			}
 
-		$ok = false;
-
 		}
 
 		$this->todo_groups = $todo_groups;
@@ -148,11 +146,25 @@ abstract class calc_product{
 		$calc_order = $this->calc_order->get_order();
 		
 		foreach ($calc_order as $group_name => $group) {
-			foreach ($group as $i => $process_name) {
-				if ( array_key_exists( $process_name, $plist ) && !in_array( $process_name, $used ) ) {
+			foreach ($group as $i => $process_name) { 
+				if ( $process_name === '*' ) {
+					
+					foreach ($plist as $key => $value) {
+						if ( preg_match( '/pa_'.$group_name.'_.*/', $key) && !in_array( $key, $used )) {
+							$process_name = $key;
+							$process = $plist[ $process_name ]; 
+							array_push( $todo, $process );
+							array_push( $used, $process_name );
+						}
+					}
+
+				}
+				elseif ( array_key_exists( $process_name, $plist ) && !in_array( $process_name, $used ) ) {
 					$process = $plist[ $process_name ]; 
 					array_push( $todo, $process );
 					array_push( $used, $process_name );
+				} else {
+					$r=1;
 				}
 			}
 		}
@@ -211,6 +223,8 @@ abstract class calc_product{
 	*/
 	function generate_todo_list(){
 		$todo = array();
+		$used = array();
+
 
 		//calculating formats
 		foreach ($this->todo_groups as $group_name => $value) {
@@ -229,8 +243,25 @@ abstract class calc_product{
 					} 
 			}
 			$todo[ $group_process_name ] = $new_todo;
+			array_push( $used, $group_process_name );
 		}
 
+		foreach ($this->todo_groups as $group_name => $group) {
+			foreach ($group as $process_name => $process) {
+				$process_name = 'pa_' . $group_name .'_' . str_replace( array( $group_name .'_', 'pa_'), array('', ''), $process_name);	
+
+				$pa_class_name = '\gcalc\pa\\' . $process['class_name'];
+
+				if ( !in_array( $process_name, $used ) && class_exists( $pa_class_name ) ) {	
+					$new_todo = new  $pa_class_name( $this->bvars, $this->product_id, $this, array( $group_name,  $process_name ) );
+
+					$todo[ $process_name ] = $new_todo;				
+					array_push( $used, $process_name );
+				}		
+			}
+			
+		}
+		
 
 
 		$this->todo->set_plist( $todo );				
@@ -334,11 +365,40 @@ abstract class calc_product{
 	/**
 	* Getter best_production_format
 	*/
-	public function get_best_production_format( array $group ){			
+	public function get_best_production_format( array $group ){		
+		$production_formats = new \gcalc\db\production\formats();	
+
 		if ( array_key_exists( $group[0], is_array($this->best_production_format) ? $this->best_production_format : array() ) ) {
-			return $this->best_production_format[ $group[0] ];
+			$group_name = $group[0];			
 		}		
-		return $this->best_production_format[ 'master' ];
+		$group_name = 'master';
+		$best_production_format =  $this->best_production_format[ $group_name ];
+		$best_production_format['format_sq'] = $best_production_format['width'] * $best_production_format['height'];
+
+		$print_process = str_replace('__', '_', 'pa_' . str_replace( 'master', '', $group_name ) . '_print');
+		$print_color_mode = $this->bvars[ $print_process ];
+		
+		$print_sides = $this->get_print_sides( $print_process );
+		$click = $production_formats->get_click( 
+			implode( "x", array($best_production_format['width'], $best_production_format['height']) ), $print_color_mode );
+		$click_cost = $click[ $print_sides ];
+
+		$best_production_format['print_color_mode'] = $print_color_mode;
+		$best_production_format['print_cost'] = $click_cost;
+
+$a =1;
+		return $best_production_format;
+	}
+
+
+	/**
+	* 
+	*/
+	function get_print_sides( string $print_process ){		
+		$pa_print = $this->bvars[ $print_process ];
+		$single = preg_match("/4x0|1x0/", $pa_print);
+		$double = preg_match("/4x4|1x1/", $pa_print);
+		return $double ? 1 : ( $single ? 0 : 1);		
 	}
 
 
