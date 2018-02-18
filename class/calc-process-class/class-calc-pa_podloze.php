@@ -30,7 +30,7 @@ class pa_podloze extends \gcalc\cprocess_calculation{
 		$weight = $this->paper['weight'];
 		$pf = $this->parent->get_best_production_format();		
 		$sheet_cost = $pf['format_sq'] / 1000000 * $c * $weight;
-		$sheets_quantity = (int)($this->cargs['pa_naklad'] / $pf['PPP']) + ( $this->cargs['pa_naklad'] % $pf['PPP'] > 0 ? 1 : 0 );
+		$sheets_quantity = (int)($this->cargs['pa_quantity'] / $pf['PPP']) + ( $this->cargs['pa_quantity'] % $pf['PPP'] > 0 ? 1 : 0 );
 
 		$markup_db = new \gcalc\db\product_markup( $this->cargs, $this->product_id, $this);
 		$markup = $markup_db->get_markup();

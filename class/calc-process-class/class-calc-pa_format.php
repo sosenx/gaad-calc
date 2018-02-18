@@ -20,8 +20,9 @@ class pa_format extends \gcalc\cprocess_calculation{
 	private $best_production_format;
 
 
-	function __construct( array $product_attributes, int $product_id, \gcalc\calculate $parent ){	
-		parent::__construct( $product_attributes, $product_id, $parent );
+	function __construct( array $product_attributes, int $product_id, \gcalc\calculate $parent, array $group ){	
+		parent::__construct( $product_attributes, $product_id, $parent, $group );
+		$this->group = $group;
 		$this->name = "pa_format";		
 		$this->cargs = $product_attributes;
 		$this->dependencies = NULL;
@@ -36,12 +37,12 @@ class pa_format extends \gcalc\cprocess_calculation{
 	* Calculates format costs (no costs in this case)
 	*/
 	function calc(){			
-		$pf = $this->parent->get_best_production_format();	
-		$sheets_quantity = (int)($this->cargs['pa_naklad'] / $pf['PPP']) + ( $this->cargs['pa_naklad'] % $pf['PPP'] > 0 ? 1 : 0 );
+		$pf = $this->parent->get_best_production_format( $this->group );	
+		$sheets_quantity = (int)($this->cargs['pa_quantity'] / $pf['pieces']) + ( $this->cargs['pa_quantity'] % $pf['pieces'] > 0 ? 1 : 0 );
 		$markup_ = 1;		
 		$production_cost = $sheets_quantity * 0;
 		$total_price = $production_cost * $markup_;
-		$grain = $pf['format_w'] > $pf['format_h'] ? 'SG' : 'LG';
+		$grain = $pf['grain'];
 
 		return $this->parse_total( 			
 			array(
@@ -57,11 +58,30 @@ class pa_format extends \gcalc\cprocess_calculation{
 					'height' => $this->get_height(),
 				),
 				'sheets_quantity' => $sheets_quantity,
-				'production_format_short' => $pf['format'] .' '. $grain .' (' . $pf['format_w'] .'x'. $pf['format_h'] . ')',
+				'production_format_short' => $pf['format'].' '.$grain.' ('. $pf['common_format']['width'] .'x'. $pf['common_format']['height'] . ')',
 				'production_format' => $pf
 			)
 		);
 	}
+	/**
+	* Calculates best production format fit
+	*/
+	function calc_common_format(  ){	
+		$width = $this->get_width();
+		$height = $this->get_height();
+		$production_formats = new \gcalc\db\production\formats();
+		$common_format = $production_formats->get_common_format();
+
+		$checked_formats = array();
+
+		foreach ( $common_format as $key => $cformat) {
+			if ( $cformat['width'] >= $width && $cformat['height'] >= $height ) {
+				$cformat['name'] = $key;
+				return $cformat;				
+			}
+		}
+		return false;
+	}	
 
 	/**
 	* Calculates best production format fit
@@ -70,50 +90,10 @@ class pa_format extends \gcalc\cprocess_calculation{
 		$production_formats = new \gcalc\db\production\formats();
 		$all_formats = $production_formats->get_formats();
 		$impose_ = array();
-
-		foreach ($all_formats as $key => $value) {
-			$impose_[$key] = array(
-				'lg' => $this->impose(
-					array( 'width' => $this->get_width(), 'height' => $this->get_height() ), // product net
-					array( 'width' => $value['width'], 'height' => $value['height'] ) //format
-				),
-				'sg' => $this->impose(
-					array( 'width' => $this->get_width(), 'height' => $this->get_height() ),
-					array( 'width' => $value['height'], 'height' => $value['width'] )
-				)
-			);			
-		}		
-
-		$min_lost = array( array( 'factor'=>15000000 ) );
-		foreach ($impose_ as $key => $value) {
-
-			if ( $impose_[ $key ][ 'lg' ]['factor'] < $min_lost[0]['factor'] ) {
-				array_unshift( $min_lost, $impose_[ $key ][ 'lg' ] );
-			}
-			if ( $impose_[ $key ][ 'sg' ]['factor'] < $min_lost[0]['factor'] ) {
-				array_unshift( $min_lost, $impose_[ $key ][ 'sg' ] );
-			}	
-		}
-		
-		$max_pieces = 0;
-		$max_pieces_format = false;
-		foreach ($min_lost as $key => $value) {
-		
-			if ( !isset($value['PPP']) ) {
-				continue;
-			}
-
-			if ( $value['PPP'] > $max_pieces ) {
-				$max_pieces = $value['PPP'];
-				$max_pieces_format = $value;
-			}
-		}
-
-		$min_lost_best = $max_pieces_format;		
-		$min_lost_best[ 'pallet_format' ] = $this->calc_pallet_format( $min_lost_best );
-
-		$this->parent->set_best_production_format( $min_lost_best );
-		$this->best_production_format = $min_lost_best;		
+		$print_color_mode = $this->get_print_color_mode('pa_print');
+		$std_format = $this->calc_common_format(); //a4, a5 etc 
+		$this->best_production_format = $production_formats->get_production_format( $std_format, $print_color_mode );
+		$this->parent->set_best_production_format( $this->best_production_format, $this->group );
 	}
 
 
@@ -128,8 +108,8 @@ class pa_format extends \gcalc\cprocess_calculation{
 		*Calculate pallete format and quantity
 		*/
 		$grain = $production_format['format_w'] > $production_format['format_h'] ? 'SG' : 'LG';
-		$sheets_quantity = (int)($this->cargs['pa_naklad'] / $production_format['PPP']) 
-								+ ( $this->cargs['pa_naklad'] % $production_format['PPP'] > 0 ? 1 : 0 );
+		$sheets_quantity = (int)($this->cargs['pa_quantity'] / $production_format['pieces']) 
+								+ ( $this->cargs['pa_quantity'] % $production_format['pieces'] > 0 ? 1 : 0 );
 		$pallet_format = array(
 			'format' => $production_formats->get_pallet_format( $production_format['format'], $grain ),
 			'quantity' => $sheets_quantity / $production_formats->get_pallet_format_factor(),			
@@ -146,14 +126,14 @@ class pa_format extends \gcalc\cprocess_calculation{
 	*/
 	function impose( array $product_dim, array $format ){	
 		$production_formats = new \gcalc\db\production\formats();
-		$print_color_mode = $this->get_print_color_mode('pa_zadruk');
+		$print_color_mode = $this->get_print_color_mode('pa_print');
 		$split = $production_formats->get_split( implode( "x", $product_dim ), $print_color_mode );
 		
 		
 		$prod_for_margins = $production_formats->get_prod_for_margins( implode( "x", $format ), $print_color_mode );
 		$click = $production_formats->get_click( implode( "x", $format ), $print_color_mode );
 		$print_sides = $this->get_print_sides(); //0-1side, 1-2sides
-		$print_color_mode = $this->get_print_color_mode('pa_zadruk');
+		$print_color_mode = $this->get_print_color_mode('pa_print');
 		$click_cost = $click[ $print_sides ];
 		/*
 		* Impose
@@ -173,7 +153,7 @@ class pa_format extends \gcalc\cprocess_calculation{
 		$rows_height= $rows * ( $row_split + $product_dim['height'] );
 		$impose_data = array(
 			'format' => $format_str,
-			'PPP' => $cols * $rows,
+			'pieces' => $cols * $rows,
 			'cols_width' =>  $cols_width,
 			'rows_height' => $rows_height,
 			'cols' => $cols,
@@ -184,15 +164,15 @@ class pa_format extends \gcalc\cprocess_calculation{
 			'format_h' => $format['height']		
 		);
 
-		if ( $impose_data['PPP'] === 0 ) {
-			$impose_data['PPP'] = 1;
+		if ( $impose_data['pieces'] === 0 ) {
+			$impose_data['pieces'] = 1;
 		}
 
-		$impose_data[ 'lost_paper' ] = $impose_data['format_sq'] - ( $impose_data['product_sq'] * $impose_data['PPP'] );
-		$impose_data[ 'lost_paper_per_piece' ] = $impose_data['lost_paper'] / $impose_data['PPP'];
-		$impose_data[ 'piece_cost' ] = $click_cost / $impose_data['PPP'];
+		$impose_data[ 'lost_paper' ] = $impose_data['format_sq'] - ( $impose_data['product_sq'] * $impose_data['pieces'] );
+		$impose_data[ 'lost_paper_per_piece' ] = $impose_data['lost_paper'] / $impose_data['pieces'];
+		$impose_data[ 'piece_cost' ] = $click_cost / $impose_data['pieces'];
 		$impose_data[ 'print_cost' ] = $click_cost;
-		$impose_data[ 'factor' ] =  ($impose_data[ 'lost_paper_per_piece' ] + $impose_data[ 'piece_cost' ]) / $impose_data[ 'PPP' ];
+		$impose_data[ 'factor' ] =  ($impose_data[ 'lost_paper_per_piece' ] + $impose_data[ 'piece_cost' ]) / $impose_data[ 'pieces' ];
 		$impose_data[ 'factor' ] = $impose_data[ 'factor' ] < 0 ? 10000000 :  $impose_data[ 'factor' ];
 		
 		$impose_data[ 'prod_for_margins' ] = $prod_for_margins;
@@ -226,7 +206,14 @@ class pa_format extends \gcalc\cprocess_calculation{
 	*
 	*/
 	function parse_dimensions( ){	
-		$dim = explode( "x", $this->cargs['pa_format'] ); 
+		$group = $this->get_group();
+		$array_key = str_replace('master_', '', 'pa_' . $group[0] . '_format');
+
+		if ( array_key_exists( $array_key, $this->get_cargs() ) ) {
+			$dim = explode( "x", $this->get_cargs()[ $array_key ] ); 
+		} else  {
+			$dim = explode( "x", $this->get_cargs()[ 'pa_format' ] );
+		}		
 		$this->set_width((int)$dim[0]);
 		$this->set_height((int)$dim[1]);		
 	}

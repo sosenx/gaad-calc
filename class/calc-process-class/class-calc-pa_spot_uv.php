@@ -21,7 +21,7 @@ class pa_spot_uv extends \gcalc\cprocess_calculation{
 		$production_formats = new \gcalc\db\production\formats();
 		$parent = $this->get_parent();
 		$pf = $this->parent->get_best_production_format();				
-		$sheets_quantity = (int)($this->cargs['pa_naklad'] / $pf['PPP']) + ( $this->cargs['pa_naklad'] % $pf['PPP'] > 0 ? 1 : 0 );
+		$sheets_quantity = (int)($this->cargs['pa_quantity'] / $pf['PPP']) + ( $this->cargs['pa_quantity'] % $pf['PPP'] > 0 ? 1 : 0 );
 		$format = $parent->get_todo_process( 'pa_format' );
 		$tmp = array( 'width' => $format->calculator->get_width(), 'height' => $format->calculator->get_height() );
 		$format_multiplier = ( $tmp['width'] <= 210 && $tmp['height'] <= 297 ) || ( $tmp['width'] <= 297 && $tmp['height'] <= 210 ) ? 1 : 2;

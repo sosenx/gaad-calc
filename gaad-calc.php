@@ -133,17 +133,19 @@ if ( !defined( GAAD_PLUGIN_TEMPLATE_NAMESPACE . 'GAAD_PLUGIN_TEMPLATE_FORCE_FILE
 
 	require_once( 'class/class-cprocess-calculation.php' );
 		require_once( 'class/calc-process-class/class-calc-pa_format.php' );
-		require_once( 'class/calc-process-class/class-calc-pa_naklad.php' );
+		require_once( 'class/calc-process-class/class-calc-pa_cover_format.php' );
+		require_once( 'class/calc-process-class/class-calc-pa_quantity.php' );
 		require_once( 'class/calc-process-class/class-calc-pa_podloze.php' );
-		require_once( 'class/calc-process-class/class-calc-pa_zadruk.php' );
+		require_once( 'class/calc-process-class/class-calc-pa_print.php' );
 		require_once( 'class/calc-process-class/class-calc-pa_wrap.php' );
 		require_once( 'class/calc-process-class/class-calc-pa_spot_uv.php' );
 
 	require_once( 'class/class-cprocess.php' );
 		require_once( 'class/calc-process/pa_format.php' );
-		require_once( 'class/calc-process/pa_naklad.php' );
+		require_once( 'class/calc-process/pa_cover_format.php' );
+		require_once( 'class/calc-process/pa_quantity.php' );
 		require_once( 'class/calc-process/pa_podloze.php' );
-		require_once( 'class/calc-process/pa_zadruk.php' );
+		require_once( 'class/calc-process/pa_print.php' );
 		require_once( 'class/calc-process/pa_wrap.php' );
 		require_once( 'class/calc-process/pa_spot_uv.php' );
 

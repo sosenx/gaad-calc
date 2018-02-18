@@ -71,8 +71,8 @@ class product_markup{
 				'pa_podloze' => array( 'markup' => 1.1),
 				'pa_wrap' => array( 'markup' => 1),
 				'pa_spot_uv' => array( 'markup' => 1.6),
-				'pa_naklad' => array( 'markup' => 1),
-				'pa_zadruk' => array( 
+				'pa_quantity' => array( 'markup' => 1),
+				'pa_print' => array( 
 					'markup' => array(
 						'1x' => array(
 							5 => 7,

@@ -20,6 +20,11 @@ abstract class calc_product{
 	* Production processes to calculate
 	*/
 	private $todo;
+
+	/**
+	* Production processes groups to calculate
+	*/
+	private $todo_groups;
 	/**
 	* Production processes done
 	*/
@@ -61,7 +66,7 @@ abstract class calc_product{
 	/**
 	* best_production_format object
 	*/
-	private $best_production_format;
+	private $best_production_format = array();
 
 	/**
 	* Class constructor
@@ -76,12 +81,7 @@ abstract class calc_product{
 			$this->markup = array();
 			$this->tax = new product_tax( $this->bvars, $this->product_id );
 			$this->ship = new product_shipment( $this->bvars, $this->product_id );
-			$this->calc_order = new \gcalc\db\calc_order( $product_id );
-			
-			$this->generate_todo_list();
-			$this->process_todo_list();
-						
-
+			$this->calc_order = new \gcalc\db\calc_order( $product_id );	
 		}
 		return $this;
 	}
@@ -94,9 +94,48 @@ abstract class calc_product{
 	*
 	*/
 	function calc(){
-		
+
+		$this->create_todos_groups();
+		$this->validate_todos_groups();
+		$this->generate_todo_list();
+		$this->process_todo_list();
 		return $this->done;
 	}
+
+
+
+
+
+	/**
+	* Check if main calculation layers are present in each group
+	* Main layers are format, paper
+	*
+	*/
+	function validate_todos_groups(){
+		$todo_groups = $this->get_todo_groups();
+
+		foreach ( $todo_groups as $group_name => $group) {
+			$ok = false;
+			foreach ($group as $process_name => $process) {
+				$pattern = '/pa_format|pa_'.$group_name.'_format/';
+				if ( preg_match( $pattern, $process_name ) ) {
+					$ok = true;
+				}
+			}
+
+			if ( !$ok) {
+				$todo_groups[ $group_name ][ 'pa_format' ] = array(
+					'class_name' => 'pa_format'
+				);	
+			}
+
+		$ok = false;
+
+		}
+
+		$this->todo_groups = $todo_groups;
+	}
+
 
 	/**
 	* calculates process stack 
@@ -108,30 +147,15 @@ abstract class calc_product{
 		$used = array();
 		$calc_order = $this->calc_order->get_order();
 		
-		foreach ( $calc_order as $key => $value) {
-			if ( $value != "*") {
-
-				if ( !is_null( $plist[ $value ] ) ) {
-					$process = $plist[ $value ]; 
+		foreach ($calc_order as $group_name => $group) {
+			foreach ($group as $i => $process_name) {
+				if ( array_key_exists( $process_name, $plist ) && !in_array( $process_name, $used ) ) {
+					$process = $plist[ $process_name ]; 
 					array_push( $todo, $process );
-					array_push( $used, $value );
+					array_push( $used, $process_name );
 				}
-				
-
-			} else {
-				foreach ( $plist as $key2 => $value2 ) {
-					if ( !in_array( $key2, $used ) ) {
-						
-						if ( !is_null( $plist[ $key2 ] ) ) {
-							$process = $plist[ $key2 ]; 
-							array_push( $used, $key2 );
-							array_push( $todo, $process );
-						}							
-					}
-				}
-				break;
 			}
-		}		
+		}
 		
 		foreach ( $todo as $key => $value) {						
 			array_push( $this->done, $value->do() );
@@ -142,6 +166,44 @@ abstract class calc_product{
 
 
 	/**
+	* Sorts todos into nested categorized lists
+	*
+	*/
+	function create_todos_groups(){		
+		$groups = array( 'master' => array() );
+		$groups_str = array();
+
+		//creating grounps or master group
+		foreach ($this->get_bvars() as $key => $value) {
+			$match = array();
+			if( preg_match( '/group_(.*)/', $key, $match ) ){
+				$groups[$match[1]] = array();
+				$groups_str[] = $match[1];
+				foreach ($this->bvars as $key2 => $value2) {
+					$match2 = array();
+					if ( preg_match( '/pa_' . $match[1] . '_(.*)/', $key2, $match2 ) ) {						
+						$class_name = str_replace( $match[1] . '_', '', $match2[0] );
+						$groups[ $match[ 1 ] ][ $key2 ]['class_name'] = $class_name;						
+					}
+				}				
+			} 
+		}
+
+		/*
+		* Master group
+		*/
+		$groups_str = implode( '|', $groups_str );
+		foreach ($this->bvars as $key => $value){
+			if( ! preg_match( '/pa_['. $groups_str .')]{2,}(.*)/', $key) && ! preg_match('/group_/', $key) ){
+				$class_name = $key;
+				$groups[ 'master' ][$key]['class_name'] = $class_name;				
+			} 
+		}
+
+		$this->todo_groups = $groups;		
+	}
+
+	/**
 	* Generates process stack based on passed product attributes
 	*
 	* This list is a template classes array for further analisys and moderation. Actual calculations are managed elswhere.	 
@@ -150,16 +212,45 @@ abstract class calc_product{
 	function generate_todo_list(){
 		$todo = array();
 
-		foreach ($this->bvars as $key => $value) {
-			$pa_class_name = '\gcalc\pa\\' . $key;
-			if ( class_exists( $pa_class_name ) ) {				
-				$todo[ $key ] = new $pa_class_name( $this->bvars, $this->product_id, $this );				
-			} 
-		}	
+		//calculating formats
+		foreach ($this->todo_groups as $group_name => $value) {
+			$group_process_name = 'pa_' . $group_name . '_format';
+			$pa_class_name = '\gcalc\pa\\' . 'pa_' . $group_name . '_format'; //format process class name			
+			if ( class_exists( $pa_class_name ) ) {
+				$new_todo =
+						new $pa_class_name( $this->bvars, $this->product_id, $this, array( $group_name,  $group_process_name ) );				
+					
+			} else {
 
-		$this->todo->set_plist( $todo );		
+				$pa_class_name = '\gcalc\pa\\pa_format'; //format process class name
+				if ( class_exists( $pa_class_name ) ) {									
+					$new_todo =
+						new $pa_class_name( $this->bvars, $this->product_id, $this, array( $group_name,  $group_process_name ) );				
+					} 
+			}
+			$todo[ $group_process_name ] = $new_todo;
+		}
+
+
+
+		$this->todo->set_plist( $todo );				
 		return $todo;
 	}
+
+
+
+	/**
+	* Finds format class name
+	*/
+	function find_in_group( string $proceses_name, array $group_procesess ){
+		foreach ($group_procesess as $key => $value) {
+			if ( preg_match('/.*_'.$proceses_name.'/', $key)) {
+				return $key;
+			}
+		}
+		return $proceses_name;
+	}
+
 
 
 	/**
@@ -188,6 +279,14 @@ abstract class calc_product{
 	*/
 	function get_bvars(){
 		return $this->bvars;
+	}
+
+
+	/**
+	* getter todo_groups
+	*/
+	function get_todo_groups(){
+		return $this->todo_groups;
 	}
 
 
@@ -227,16 +326,19 @@ abstract class calc_product{
 	/**
 	* setter best_production_format
 	*/
-	public function set_best_production_format( $best_production_format ){		
-		$this->best_production_format = $best_production_format;
+	public function set_best_production_format( $best_production_format, array $group){		
+		$this->best_production_format[$group[0]] = $best_production_format;
 	}
 
 
 	/**
 	* Getter best_production_format
 	*/
-	public function get_best_production_format( ){		
-		return $this->best_production_format;
+	public function get_best_production_format( array $group ){			
+		if ( array_key_exists( $group[0], is_array($this->best_production_format) ? $this->best_production_format : array() ) ) {
+			return $this->best_production_format[ $group[0] ];
+		}		
+		return $this->best_production_format[ 'master' ];
 	}
 
 

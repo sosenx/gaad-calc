@@ -19,7 +19,7 @@ class rest{
 	*
 	* @return string 
 	*/
-	public static function app_model( ){
+	public static function app_model( ){ return '{}';
 		global $post;
 		$h = \gcalc\rest::getHeaders( "/^pa_.*/", true );
 		$product_id = \is_single('product') ? $post->ID : -1;

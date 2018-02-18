@@ -2,11 +2,11 @@
 namespace gcalc\calc;
 
 
-class pa_zadruk extends \gcalc\cprocess_calculation{
+class pa_print extends \gcalc\cprocess_calculation{
 
 	function __construct( array $product_attributes, int $product_id, \gcalc\calculate $parent ){	
 		parent::__construct( $product_attributes, $product_id, $parent );
-		$this->name = "pa_zadruk";		
+		$this->name = "pa_print";		
 		$this->cargs = $product_attributes;
 		$this->product_id = $product_id;
 		$this->dependencies = NULL;
@@ -19,8 +19,8 @@ class pa_zadruk extends \gcalc\cprocess_calculation{
 	*/
 	function calc(){
 		$pf = $this->parent->get_best_production_format();				
-		$sheets_quantity = (int)($this->cargs['pa_naklad'] / $pf['PPP']) + ( $this->cargs['pa_naklad'] % $pf['PPP'] > 0 ? 1 : 0 );
-		$print_color_mode = $this->get_print_color_mode('pa_zadruk');
+		$sheets_quantity = (int)($this->cargs['pa_quantity'] / $pf['PPP']) + ( $this->cargs['pa_quantity'] % $pf['PPP'] > 0 ? 1 : 0 );
+		$print_color_mode = $this->get_print_color_mode('pa_print');
 		$markup_db = new \gcalc\db\product_markup( $this->cargs, $this->product_id, $this);
 		$markup = $markup_db->get_markup();
 		

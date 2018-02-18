@@ -62,8 +62,7 @@ class formats{
 	function get_formats( string $label = "" ){	
 		$label = $label === "" ? "all" : $label;
 		$color = $this->formats['color'];
-		$bw = $this->formats['bw'];
-		$lg = array();
+		$bw = $this->formats['bw'];		
 		$all = array_merge( $color, $bw );
 
 		return isset( $$label ) ? $$label : $all;
@@ -113,6 +112,16 @@ class formats{
 		return isset( $this->wrap_cost[ $wrap ] ) ? $this->wrap_cost[ $wrap ] : 'errorwrap';
 	}
 
+
+	/**
+	* Return common_format
+	*/
+	function get_common_format( ){			
+		return $this->common_format;
+	}
+
+
+
 	/**
 	* Return pallet_format
 	*/
@@ -142,6 +151,22 @@ class formats{
 
 
 	/**
+	* Return production_format
+	*/
+	function get_production_format( array $common_format, string $print_color_mode ){			
+		$print_color_mode_translate = array( '4x' => 'color', '1x' => 'bw');
+		$production_format = $this->production_formats[ $print_color_mode ][ $common_format['name'] ];		
+		$format_data = $this->get_formats( $print_color_mode_translate[$print_color_mode]) [ $production_format['format'] ];
+
+		$production_format = array_merge( $production_format, $format_data);
+		//$production_format['grain'] = $common_format['grain'];
+		$production_format['common_format'] = $common_format;
+
+		return isset( $production_format ) ? $production_format : '-1';
+	}
+
+
+	/**
 	* Return wrap cost
 	*/
 	function get_spot_uv_cost( ){	
@@ -152,6 +177,8 @@ class formats{
 	* This function needs to aquire formats data from db, fo dev version it just sets an array
 	*/
 	public function aquire( ){
+
+
 		$this->formats = array(
 			'color' => array (				
 				'SRA3++'	=> 	array('width' => 330,'height' => 487),
@@ -160,8 +187,10 @@ class formats{
 				'RA3+' 		=> 	array('width' => 315,'height' => 440),
 				'RA4' 		=> 	array('width' => 215,'height' => 305),
 				'A3' 		=> 	array('width' => 297,'height' => 420),
-				//'B3' 		=> 	array('width' => 350,'height' => 500),
-				'B4' 		=> 	array('width' => 250,'height' => 350)
+				//'B3' 		=> 	array('width' => 350,'height' => 500), 
+				'B4' 		=> 	array('width' => 250,'height' => 350),
+				'BN6' 		=> 	array('width' => 600,'height' => 330),
+				'BN7' 		=> 	array('width' => 700,'height' => 330)
 			),
 
 			'bw' => array (
@@ -177,18 +206,53 @@ class formats{
 		);
 
 
+		$this->production_formats = array(
+			'4x' => array (				
+		
+				'A6'	=> array( 'format' => 'RA3', 'pieces' => 8, 	'grain' => 'SG'),
+				'B6'	=> array( 'format' => 'SRA3++', 'pieces' => 8, 	'grain' => 'SG'),
+				'A5'	=> array( 'format' => 'RA3', 'pieces' => 4, 	'grain' => 'LG'),
+				'B5'	=> array( 'format' => 'SRA3++', 'pieces' => 4, 	'grain' => 'LG'),
+				'A4'	=> array( 'format' => 'RA3', 'pieces' => 2, 	'grain' => 'SG'),
+				'B4'	=> array( 'format' => 'SRA3++', 'pieces' => 1, 	'grain' => 'SG'),
+				'A3'	=> array( 'format' => 'SRA3++', 'pieces' => 1, 	'grain' => 'LG'),
+				'B3'	=> array( 'format' => 'SRA3++', 'pieces' => 1, 	'grain' => 'LG'),
+				'BN6'	=> array( 'format' => 'BN6', 'pieces' => 1, 	'grain' => 'SG'),
+				'BN7'	=> array( 'format' => 'BN7', 'pieces' => 1, 	'grain' => 'SG')
+
+			),
+
+			'1x' => array (
+				
+				'A6'	=> array( 'format' => 'RA3', 'pieces' => 8, 	'grain' => 'SG'),
+				'B6'	=> array( 'format' => 'B3', 'pieces' => 8, 		'grain' => 'SG'),
+				'A5'	=> array( 'format' => 'RA3', 'pieces' => 4, 	'grain' => 'LG'),
+				'B5'	=> array( 'format' => 'B3', 'pieces' => 4, 		'grain' => 'LG'),
+				'A4'	=> array( 'format' => 'RA3', 'pieces' => 2, 	'grain' => 'SG'),
+				'B4'	=> array( 'format' => 'B3', 'pieces' => 2, 		'grain' => 'SG'),
+				'A3'	=> array( 'format' => 'RA3', 'pieces' => 1, 	'grain' => 'LG'),
+				'B3'	=> array( 'format' => 'B3', 'pieces' => 1, 		'grain' => 'LG'),
+				'BN6'	=> array( 'format' => 'BN6', 'pieces' => 1, 	'grain' => 'SG'),
+				'BN7'	=> array( 'format' => 'BN7', 'pieces' => 1, 	'grain' => 'SG')
+
+			)	
+		);
+
+
 		$this->pallet_format_factor = 4;
 
 		$this->pallet_format = array (
 			'sg' => array (
-				'SRA3++'	=> 	array('width' => 1000,'height' => 	700),
-				'SRA3'		=> 	array('width' => 1000,'height' => 	700),
-				'RA3' 		=> 	array('width' => 860,'height' => 	630),
-				'RA3+' 		=> 	array('width' => 880,'height' => 	630),
-				'RA4' 		=> 	array('width' => 880,'height' => 	630),
-				'A3' 		=> 	array('width' => 880,'height' => 	630),
-				'B3' 		=> 	array('width' => 1000,'height' => 	700),
-				'B4' 		=> 	array('width' => 1000,'height' => 	700)
+				'BN6'		=> 	array('width' => 860,	'height' =>	610),
+				'BN7'		=> 	array('width' => 1000,	'height' =>	700),
+				'SRA3++'	=> 	array('width' => 1000,	'height' =>	700),
+				'SRA3'		=> 	array('width' => 1000,	'height' =>	700),
+				'RA3' 		=> 	array('width' => 860,	'height' =>	630),
+				'RA3+' 		=> 	array('width' => 880,	'height' =>	630),
+				'RA4' 		=> 	array('width' => 880,	'height' =>	630),
+				'A3' 		=> 	array('width' => 880,	'height' =>	630),
+				'B3' 		=> 	array('width' => 1000,	'height' =>	700),
+				'B4' 		=> 	array('width' => 1000,	'height' =>	700)
 			),
 			'lg' => array (
 				'SRA3++'	=> 	array('width' => 700,'height' => 1000 ),
@@ -201,6 +265,22 @@ class formats{
 				'B4' 		=> 	array('width' => 700,'height' => 1000 )
 			)
 		);	
+
+
+		$this->common_format = array (			
+
+			'A6'	=> 	array('width' => 105 ,'height' => 148, 'grain' => 'LG' ),				
+			'B6'	=> 	array('width' => 125 ,'height' => 176, 'grain' => 'LG' ),				
+			'A5'	=> 	array('width' => 148 ,'height' => 210, 'grain' => 'LG' ),				
+			'B5'	=> 	array('width' => 176 ,'height' => 250, 'grain' => 'LG' ),				
+			'A4'	=> 	array('width' => 210 ,'height' => 297, 'grain' => 'LG' ),
+			'B4'	=> 	array('width' => 250 ,'height' => 350, 'grain' => 'LG' ),				
+			'A3'	=> 	array('width' => 297 ,'height' => 420, 'grain' => 'LG' ),				
+			'B3'	=> 	array('width' => 350 ,'height' => 500, 'grain' => 'LG' ),		
+			'BN6'	=> 	array('width' => 600 ,'height' => 330, 'grain' => 'LG' ),
+			'BN7'	=> 	array('width' => 700 ,'height' => 330, 'grain' => 'LG' )
+		);
+
 
 
 		/*

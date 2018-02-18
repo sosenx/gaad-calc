@@ -58,7 +58,7 @@ class calculate extends calc_product {
 			foreach ($plist as $key => $value) {
 				$done_process = $this->get_done_process( $key );
 				$process_common_name = str_replace( 'pa_', '', $key );
-				$total_price = $key == 'pa_naklad' ? (int)$this->get_bvars()['pa_naklad'] : $done_process->total['total_price'];
+				$total_price = $key == 'pa_quantity' ? (int)$this->get_bvars()['pa_quantity'] : $done_process->total['total_price'];
 				
 				$parsed_equasion = str_replace( $process_common_name, $total_price, $parsed_equasion );						
 				$equasion_parts[ $process_common_name ] = $total_price;

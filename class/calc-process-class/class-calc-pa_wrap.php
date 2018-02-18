@@ -19,7 +19,7 @@ class pa_wrap extends \gcalc\cprocess_calculation{
 	function calc(){
 		$production_formats = new \gcalc\db\production\formats();
 		$pf = $this->parent->get_best_production_format();				
-		$sheets_quantity = (int)($this->cargs['pa_naklad'] / $pf['PPP']) + ( $this->cargs['pa_naklad'] % $pf['PPP'] > 0 ? 1 : 0 );
+		$sheets_quantity = (int)($this->cargs['pa_quantity'] / $pf['PPP']) + ( $this->cargs['pa_quantity'] % $pf['PPP'] > 0 ? 1 : 0 );
 		
 		$markup_db = new \gcalc\db\product_markup( $this->cargs, $this->product_id, $this);
 		$markup = $markup_db->get_markup();

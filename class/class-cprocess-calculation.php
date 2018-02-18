@@ -47,9 +47,14 @@ abstract class cprocess_calculation{
 	*/
 	private $cclass;
 
+	/**
+	* Process group array
+	*/
+	private $group;
 
-	function __construct( array $product_attributes, int $product_id, \gcalc\calculate $parent ){	
+	function __construct( array $product_attributes, int $product_id, \gcalc\calculate $parent, array $group ){	
 		$this->parent = $parent;
+		$this->group = $group;
 		$this->product_id = $product_id;
 		$this->cargs = $product_attributes;
 		$this->cclass = get_class( $parent );
@@ -91,9 +96,9 @@ abstract class cprocess_calculation{
 	* Is double side
 	*/
 	function get_print_sides( ){			
-		$pa_zadruk = $this->cargs['pa_zadruk'];
-		$single = preg_match("/4x0|1x0/", $pa_zadruk);
-		$double = preg_match("/4x4|1x1/", $pa_zadruk);
+		$pa_print = $this->cargs['pa_print'];
+		$single = preg_match("/4x0|1x0/", $pa_print);
+		$double = preg_match("/4x4|1x1/", $pa_print);
 		return $double ? 1 : ( $single ? 0 : 1);		
 	}
 
@@ -114,11 +119,18 @@ abstract class cprocess_calculation{
 	* Is double side
 	*/
 	function get_print_color_mode( string $process_slug = "" ){			
-		$process_slug = $process_slug == "" ? 'pa_zadruk' : $process_slug;
+		$group = $this->get_group();
+		//$process_slug = $group[0] === 'master' ? $process_slug : 'pa_' . $group[0] . '_' . str_replace('pa_', '', $group[1]);
+		$process_slug = str_replace('master_', '', str_replace('pa_', 'pa_'.$group[0].'_', $process_slug) );
+
+		if ( !array_key_exists( $process_slug , $this->cargs) ) {
+			$process_slug = str_replace( $group[0].'_', '', $process_slug );
+		} 
+
 		$process_ = $this->cargs[ $process_slug ];
 		$color = preg_match("/4x4|4x0/", $process_);
 		$bw = preg_match("/1x1|1x0/", $process_);
-		return $color ? '4x' : ( $bw ? '1x' : '4x');		
+		return $color ? '4x' : ( $bw ? '1x' : '1x');		
 	}
 
 	/**
@@ -129,6 +141,20 @@ abstract class cprocess_calculation{
 	}
 
 	
+	/**
+	* Getter for group
+	*/
+	function get_group( ){					
+		return $this->group;
+	}
+
+
+	/**
+	* Getter for cargs
+	*/
+	function get_cargs( ){					
+		return $this->cargs;
+	}
 
 }
 
