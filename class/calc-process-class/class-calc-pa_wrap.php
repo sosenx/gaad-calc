@@ -7,6 +7,7 @@ class pa_wrap extends \gcalc\cprocess_calculation{
 	function __construct( array $product_attributes, int $product_id, \gcalc\calculate $parent, array $group ){	
 		parent::__construct( $product_attributes, $product_id, $parent, $group );
 		$this->cargs = $product_attributes;
+		$this->name = "pa_wrap";	
 		$this->group = $group;
 		$this->dependencies = NULL;
 		$this->product_id = $product_id;
@@ -22,8 +23,8 @@ class pa_wrap extends \gcalc\cprocess_calculation{
 		$sheets_quantity = (int)($this->cargs['pa_quantity'] / $pf['pieces']) + ( $this->cargs['pa_quantity'] % $pf['pieces'] > 0 ? 1 : 0 );
 		
 		$markup_db = new \gcalc\db\product_markup( $this->cargs, $this->product_id, $this);
-		$markup = $markup_db->get_markup();
-		$wrap_cost = $production_formats->get_wrap_cost( $this->cargs['pa_wrap'] );
+		$markup = $markup_db->get_markup();		
+		$wrap_cost = array_key_exists( 'pa_wrap', $this->cargs ) ? $production_formats->get_wrap_cost( $this->cargs['pa_wrap'] ) : 0;
 
 		$markup_ = $markup['markup'];		
 		$production_cost = $sheets_quantity * $wrap_cost;

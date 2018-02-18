@@ -107,10 +107,12 @@ abstract class cprocess_calculation{
 	* Is double side
 	*/
 	function get_spot_uv_sides( ){			
-		$pa_attr = $this->cargs['pa_spot_uv'];
-		$single = preg_match("/jednostronnie/", $pa_attr );
-		$double = preg_match("/dwustronnie/", $pa_attr );
-		$none = preg_match("/brak/", $pa_attr );
+		$group = $this->get_group();			
+		$process_slug = $group[1];
+		$pa_attr = $this->cargs[ $process_slug ];
+		$single = preg_match("/1x0/", $pa_attr );
+		$double = preg_match("/1x1/", $pa_attr );
+		$none = preg_match("/0x0/", $pa_attr );
 		return $double ? 1 : ( $single ? 0 : -1);		
 	}
 

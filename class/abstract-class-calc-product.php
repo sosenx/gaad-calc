@@ -225,17 +225,14 @@ abstract class calc_product{
 		$todo = array();
 		$used = array();
 
-
 		//calculating formats
 		foreach ($this->todo_groups as $group_name => $value) {
 			$group_process_name = 'pa_' . $group_name . '_format';
 			$pa_class_name = '\gcalc\pa\\' . 'pa_' . $group_name . '_format'; //format process class name			
 			if ( class_exists( $pa_class_name ) ) {
 				$new_todo =
-						new $pa_class_name( $this->bvars, $this->product_id, $this, array( $group_name,  $group_process_name ) );				
-					
+						new $pa_class_name( $this->bvars, $this->product_id, $this, array( $group_name,  $group_process_name ) );			
 			} else {
-
 				$pa_class_name = '\gcalc\pa\\pa_format'; //format process class name
 				if ( class_exists( $pa_class_name ) ) {									
 					$new_todo =
