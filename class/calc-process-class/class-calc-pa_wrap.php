@@ -18,13 +18,20 @@ class pa_wrap extends \gcalc\cprocess_calculation{
 	* Calculates print cost and margin
 	*/
 	function calc(){
+		$group = $this->get_group();
 		$production_formats = new \gcalc\db\production\formats();
 		$pf = $this->parent->get_best_production_format( $this->group );				
 		$sheets_quantity = (int)($this->cargs['pa_quantity'] / $pf['pieces']) + ( $this->cargs['pa_quantity'] % $pf['pieces'] > 0 ? 1 : 0 );
 		
 		$markup_db = new \gcalc\db\product_markup( $this->cargs, $this->product_id, $this);
 		$markup = $markup_db->get_markup();		
-		$wrap_cost = array_key_exists( 'pa_wrap', $this->cargs ) ? $production_formats->get_wrap_cost( $this->cargs['pa_wrap'] ) : 0;
+
+		$wrap_cost = array_key_exists( $group[1], $this->cargs ) ? $production_formats->get_wrap_cost( $this->cargs[ $group[1] ] ) : 0;		
+		if ( !array_key_exists( $group[1], $this->cargs ) && preg_match('/_master_/', $group[1]) ) {
+			$key = str_replace('_master', '', $group[1]);
+			$wrap_cost = array_key_exists( $key, $this->cargs ) ? $production_formats->get_wrap_cost( $this->cargs[ $key ] ) : 0;		
+		}
+		$wrap_cost *= preg_match('/BN/', $pf['format']) ? 2 : 1;
 
 		$markup_ = $markup['markup'];		
 		$production_cost = $sheets_quantity * $wrap_cost;

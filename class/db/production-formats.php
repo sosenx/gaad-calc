@@ -89,9 +89,9 @@ class formats{
 	*/
 	function get_click( string $format = "", string $print_color_mode ){	
 		$format = $format === "" ? "a4" : $format;
-		$print_color_mode = $print_color_mode === "" ? "4x" : $print_color_mode;
-
-		return isset( $this->clicks[$print_color_mode][ $format ]['*'] ) ? $this->clicks[$print_color_mode][ $format ]['*'] : array( .18, .28 );
+		$print_color_mode = substr( $print_color_mode === "" ? "4x" : $print_color_mode, 0, 2);
+		$click_cost = isset( $this->clicks[$print_color_mode][ $format ]['*'] ) ? $this->clicks[$print_color_mode][ $format ]['*'] : array( .18, .28 );
+		return $click_cost;
 	}
 
 	/**
@@ -107,8 +107,7 @@ class formats{
 	/**
 	* Return wrap cost
 	*/
-	function get_wrap_cost( string $wrap = "" ){	
-		$wrap = $wrap === "" ? "a3" : $wrap;
+	function get_wrap_cost( $wrap ){			
 		return isset( $this->wrap_cost[ $wrap ] ) ? $this->wrap_cost[ $wrap ] : 'errorwrap';
 	}
 
@@ -153,15 +152,15 @@ class formats{
 	/**
 	* Return production_format
 	*/
-	function get_production_format( array $common_format, string $print_color_mode ){			
+	function get_production_format( array $common_format, string $print_color_mode, string $name ){			
 		$print_color_mode_translate = array( '4x' => 'color', '1x' => 'bw');
 		$production_format = $this->production_formats[ $print_color_mode ][ $common_format['name'] ];		
 		$format_data = $this->get_formats( $print_color_mode_translate[$print_color_mode]) [ $production_format['format'] ];
 
 		$production_format = array_merge( $production_format, $format_data);
 		//$production_format['grain'] = $common_format['grain'];
-		$production_format['common_format'] = $common_format;
-
+		$production_format['common_format'] = $common_format;		
+		
 		return isset( $production_format ) ? $production_format : '-1';
 	}
 
@@ -277,8 +276,8 @@ class formats{
 			'B4'	=> 	array('width' => 250 ,'height' => 350, 'grain' => 'LG' ),				
 			'A3'	=> 	array('width' => 297 ,'height' => 420, 'grain' => 'LG' ),				
 			'B3'	=> 	array('width' => 350 ,'height' => 500, 'grain' => 'LG' ),		
-			'BN6'	=> 	array('width' => 600 ,'height' => 330, 'grain' => 'LG' ),
-			'BN7'	=> 	array('width' => 700 ,'height' => 330, 'grain' => 'LG' )
+			'BN6'	=> 	array('width' => 600 ,'height' => 330, 'grain' => 'SG' ),
+			'BN7'	=> 	array('width' => 700 ,'height' => 330, 'grain' => 'SG' )
 		);
 
 
@@ -373,6 +372,7 @@ class formats{
 				'350x250' => array(	'*' => array( .0093, .019 )), //B4 SG
 				'350x500' => array(	'*' => array( .0155, .031 )), //B3 LG
 				'500x350' => array(	'*' => array( .0155, .031 ))  //B3 SG
+				
 			),
 
 			'4x' => array(
@@ -391,7 +391,8 @@ class formats{
 				'250x350' => array(	'*' => array( .07, .18 )), //B4 LG
 				'350x250' => array(	'*' => array( .07, .26 )), //B4 SG
 				'350x500' => array(	'*' => array( .14, .26 )), //B3 LG
-				'500x350' => array(	'*' => array( .14, .26 ))  //B3 SG
+				'500x350' => array(	'*' => array( .14, .26 )),  //B3 SG
+				'600x330' => array(	'*' => array( .39, .78 ))  //B3 SG
 			)
 		);
 
@@ -444,18 +445,21 @@ class formats{
 */
 
 		$this->wrap_cost = array(
-			'folia-brak' => 0,
-			'folia-blysk-dwustronnie' => .2,
-			'folia-blysk-jednostronnie' => .1,
-			'folia-mat-dwustronnie' => .2,
-			'folia-mat-jednostronnie' => .1,
-			'folia-soft-touch-dwustronnie' => .8,
-			'folia-soft-touch-jednostronnie' => .4,
+			'0x0' => 0,
+			'gloss-1x1' => .2,
+			'gloss-1x0' => .1,
+			'mat-1x1' => .2,
+			'mat-1x0' => .1,
+			'soft-1x1' => .8,
+			'soft-1x0' => .4,
 		);
 
 		$this->total_cost_equasion = array(
 			'wizytowki' => array(
 				'equasion' => 'podloze + zadruk + wrap + spot_uv'
+			),
+			'druk-ksiazek' => array(
+				'equasion' => 'pa_cover_paper + pa_cover_print + pa_cover_wrap + pa_cover_spot_uv + pa_bw_paper + pa_bw_print + pa_color_paper + pa_color_print'
 			),
 		);
 

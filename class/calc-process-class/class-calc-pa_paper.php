@@ -26,19 +26,35 @@ class pa_paper extends \gcalc\cprocess_calculation{
 	/**
 	* Calculates paper cost and margin
 	*/
-	function calc(){	
+	function get_pages(){
+		$group_name = $this->get_group()[0];
+		foreach ($this->cargs as $key => $value) {
+			if ( preg_match( '/_'. $group_name .'_pages/', $key ) ) {
+				return $value;
+			}
+		}
+	return 1;
+	}
+		
+	/**
+	* Calculates paper cost and margin
+	*/
+	function calc(){		
 		$c = $this->paper['price_per_kg'];
 		$weight = $this->paper['weight'];
 		$pf = $this->parent->get_best_production_format( $this->group );		
 		$sheet_cost = $pf['format_sq'] / 1000000 * $c * $weight;
 		$sheets_quantity = (int)($this->cargs['pa_quantity'] / $pf['pieces']) + ( $this->cargs['pa_quantity'] % $pf['pieces'] > 0 ? 1 : 0 );
-
+		$pages = $this->get_pages( );
 		$markup_db = new \gcalc\db\product_markup( $this->cargs, $this->product_id, $this);
 		$markup = $markup_db->get_markup();
 
 		$markup_ = $markup['markup'];		
-		$production_cost = $sheet_cost * $sheets_quantity;
+		$production_cost = $sheet_cost * $sheets_quantity * $pages;
 		$total_price = $production_cost * $markup_;
+
+		$production_format_short = $pf['format'] . ' ' . $pf['grain'];
+		$common_format_short = $pf['common_format']['name'] . ' ' . $pf['common_format']['grain'];
 
 		return $this->parse_total( 
 			array(
@@ -49,7 +65,11 @@ class pa_paper extends \gcalc\cprocess_calculation{
 			),
 			array(
 				'sheet_cost' => $sheet_cost,
-				'sheets_quantity' => $sheets_quantity
+				'sheets_quantity' => $sheets_quantity,
+				'paper' => $this->paper,
+				'production_format_short' => $production_format_short,
+				'common_format_short' => $common_format_short,
+				'pages' => $pages
 			)
 		);
 	}
@@ -58,18 +78,32 @@ class pa_paper extends \gcalc\cprocess_calculation{
 	* Aquire used paper
 	*/
 	public function get_paper(){
-		$production_paper_db = new \gcalc\db\production\paper();
-		$paper_slug = $this->cargs['pa_paper'];
-		return $this->paper = $production_paper_db->get_paper( $paper_slug );
+		$group = $this->get_group();
+		$production_paper_db = new \gcalc\db\production\paper();		
+		$paper_slug = array_key_exists( $group[1], $this->cargs ) ? $this->cargs[$group[1]] : '*';
+		if ($paper_slug === '*' && preg_match('/_master_/', $group[1])) {
+			$master_paper = str_replace('_master', '', $group[1]);
+			$paper_slug = array_key_exists( $master_paper, $this->cargs ) ? $this->cargs[$master_paper] : '*';	
+		}
+		$paper = $production_paper_db->get_paper( $paper_slug );
+		return $this->set_paper( $paper );
 	}
 
 	/**
 	*
 	*/
 	function do( ){	
-		$this->ptotal = new \gcalc\ptotal( $this->calc(), "+", NULL, $this->name );
+		$this->ptotal = new \gcalc\ptotal( $this->calc(), "+", NULL, $this->get_name() );
 		$this->done = true;
 		return $this->ptotal;
+	}
+	
+
+	/**
+	*
+	*/
+	function set_paper( $paper ){	
+		$this->paper = $paper;
 	}
 	
 

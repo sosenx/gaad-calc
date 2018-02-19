@@ -69,6 +69,12 @@ abstract class calc_product{
 	private $best_production_format = array();
 
 	/**
+	*
+	*/
+	private $return_total;
+
+
+	/**
 	* Class constructor
 	*/
 	function __construct( array $product_attributes, int $product_id = NULL ) {
@@ -99,10 +105,17 @@ abstract class calc_product{
 		$this->validate_todos_groups();
 		$this->generate_todo_list();
 		$this->process_todo_list();
+		$this->return_total();
 		return $this->done;
+		
 	}
 
+	private function return_total(){
+		$production_formats = new \gcalc\db\production\formats();
+		$total_cost_equasion = $production_formats->get_total_cost_equasion( $this->product_id );
+		$r=1;
 
+	}
 
 
 
@@ -368,7 +381,7 @@ abstract class calc_product{
 		if ( array_key_exists( $group[0], is_array($this->best_production_format) ? $this->best_production_format : array() ) ) {
 			$group_name = $group[0];			
 		}		
-		$group_name = 'master';
+		
 		$best_production_format =  $this->best_production_format[ $group_name ];
 		$best_production_format['format_sq'] = $best_production_format['width'] * $best_production_format['height'];
 

@@ -109,7 +109,13 @@ abstract class cprocess_calculation{
 	function get_spot_uv_sides( ){			
 		$group = $this->get_group();			
 		$process_slug = $group[1];
-		$pa_attr = $this->cargs[ $process_slug ];
+		if ( array_key_exists($process_slug, $this->cargs ) ) {
+			$pa_attr = $this->cargs[ $process_slug ];
+		} elseif (!array_key_exists($process_slug, $this->cargs ) && preg_match('/_master_/', $process_slug) ) {
+			$key = str_replace('master_', '', $process_slug );
+			$pa_attr = $this->cargs[ $key ];
+		}
+		
 		$single = preg_match("/1x0/", $pa_attr );
 		$double = preg_match("/1x1/", $pa_attr );
 		$none = preg_match("/0x0/", $pa_attr );
@@ -139,7 +145,7 @@ abstract class cprocess_calculation{
 	* Getter for name
 	*/
 	function get_name( ){					
-		return $this->name;
+		return $this->group[1];
 	}
 
 	

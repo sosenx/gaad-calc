@@ -89,98 +89,18 @@ class pa_format extends \gcalc\cprocess_calculation{
 	function calculate_best_production_format( ){	
 		$production_formats = new \gcalc\db\production\formats();
 		$all_formats = $production_formats->get_formats();
-		$impose_ = array();
+		
 		$print_color_mode = $this->get_print_color_mode('pa_print');
 		$std_format = $this->calc_common_format(); //a4, a5 etc 
-		$this->best_production_format = $production_formats->get_production_format( $std_format, $print_color_mode );
+		$name = $this->get_name();
+		$this->best_production_format = $production_formats->get_production_format( $std_format, $print_color_mode, $name );
 		$this->parent->set_best_production_format( $this->best_production_format, $this->group );
 	}
 
 
-	/**
-	* Calculate pallete format and quantity from production format
-	*
-	*/
-	function calc_pallet_format( array $production_format ){	
-		$production_formats = new \gcalc\db\production\formats();
-		$pallet_format = array();
-		/*
-		*Calculate pallete format and quantity
-		*/
-		$grain = $production_format['format_w'] > $production_format['format_h'] ? 'SG' : 'LG';
-		$sheets_quantity = (int)($this->cargs['pa_quantity'] / $production_format['pieces']) 
-								+ ( $this->cargs['pa_quantity'] % $production_format['pieces'] > 0 ? 1 : 0 );
-		$pallet_format = array(
-			'format' => $production_formats->get_pallet_format( $production_format['format'], $grain ),
-			'quantity' => $sheets_quantity / $production_formats->get_pallet_format_factor(),			
-		);
-
-		$pallet_format[ 'label' ] = $this->cargs['pa_paper'] .' '. $pallet_format['format']['width'] .'x'. $pallet_format['format']['height'] . ' ' . $grain;
-		return $pallet_format;
-	}
 
 
-	/**
-	* Do simple imposition and return math data
-	*
-	*/
-	function impose( array $product_dim, array $format ){	
-		$production_formats = new \gcalc\db\production\formats();
-		$print_color_mode = $this->get_print_color_mode('pa_print');
-		$split = $production_formats->get_split( implode( "x", $product_dim ), $print_color_mode );
-		
-		
-		$prod_for_margins = $production_formats->get_prod_for_margins( implode( "x", $format ), $print_color_mode );
-		$click = $production_formats->get_click( implode( "x", $format ), $print_color_mode );
-		$print_sides = $this->get_print_sides(); //0-1side, 1-2sides
-		$print_color_mode = $this->get_print_color_mode('pa_print');
-		$click_cost = $click[ $print_sides ];
-		/*
-		* Impose
-		*/
-		$w = 0;		
-		$col_split = $split[0];
-		$h = 0;		 
-		
-		$row_split = $split[1];
-		$format_width = $format['width'] - ( $prod_for_margins['left'] + $prod_for_margins['right'] );
-		$format_height = $format['height'] - ( $prod_for_margins['top'] + $prod_for_margins['bottom'] );
-		$format_str = $this->str_dim_to_format( $format['width'] .'x'. $format['height'] );
-		$cols = (int)($format_width / ( $product_dim['width'] + $col_split ));		
-		$rows = (int)($format_height / ( $product_dim['height'] + $row_split ));		 
 	
-		$cols_width = $cols * ( $col_split + $product_dim['width'] );
-		$rows_height= $rows * ( $row_split + $product_dim['height'] );
-		$impose_data = array(
-			'format' => $format_str,
-			'pieces' => $cols * $rows,
-			'cols_width' =>  $cols_width,
-			'rows_height' => $rows_height,
-			'cols' => $cols,
-			'rows' => $rows,
-			'product_sq' => ( $product_dim['width'] + $col_split ) * ( $product_dim['height'] + $row_split ),
-			'format_sq' => $format['width'] * $format['height'],
-			'format_w' => $format['width'],
-			'format_h' => $format['height']		
-		);
-
-		if ( $impose_data['pieces'] === 0 ) {
-			$impose_data['pieces'] = 1;
-		}
-
-		$impose_data[ 'lost_paper' ] = $impose_data['format_sq'] - ( $impose_data['product_sq'] * $impose_data['pieces'] );
-		$impose_data[ 'lost_paper_per_piece' ] = $impose_data['lost_paper'] / $impose_data['pieces'];
-		$impose_data[ 'piece_cost' ] = $click_cost / $impose_data['pieces'];
-		$impose_data[ 'print_cost' ] = $click_cost;
-		$impose_data[ 'factor' ] =  ($impose_data[ 'lost_paper_per_piece' ] + $impose_data[ 'piece_cost' ]) / $impose_data[ 'pieces' ];
-		$impose_data[ 'factor' ] = $impose_data[ 'factor' ] < 0 ? 10000000 :  $impose_data[ 'factor' ];
-		
-		$impose_data[ 'prod_for_margins' ] = $prod_for_margins;
-		$impose_data[ 'col_split' ] = $col_split;
-		$impose_data[ 'row_split' ] = $row_split;
-
-		return $impose_data;
-	}
 
 	/**
 	*

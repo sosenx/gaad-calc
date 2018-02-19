@@ -32,6 +32,38 @@ class pa_cover_format extends pa_format{
 		return $this;
 	}
 
+
+	/**
+	* Calculates format costs (no costs in this case)
+	*/
+	function calc(){			
+		$pf = $this->parent->get_best_production_format( $this->group );	
+		$sheets_quantity = (int)($this->cargs['pa_quantity'] / $pf['pieces']) + ( $this->cargs['pa_quantity'] % $pf['pieces'] > 0 ? 1 : 0 );
+		$markup_ = 1;		
+		$production_cost = $sheets_quantity * 0;
+		$total_price = $production_cost * $markup_;
+		$grain = $pf['grain'];
+
+		return $this->parse_total( 			
+			array(
+				
+				'production_cost' => $production_cost,
+				'total_price' => $total_price,
+				'markup_value' => $total_price - $production_cost,
+				'markup' => $markup_
+			),
+			array(				
+				'product' => array(
+					'width' => $this->get_width(),
+					'height' => $this->get_height(),
+				),
+				'sheets_quantity' => $sheets_quantity,
+				'production_format_short' => $pf['format'].' '.$grain.' ('. $pf['common_format']['width'] .'x'. $pf['common_format']['height'] . ')',
+				'production_format' => $pf
+			)
+		);
+	}
+
 	/**
 	*
 	*/
