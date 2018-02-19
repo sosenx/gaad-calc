@@ -88,6 +88,9 @@ class formats{
 	* Return click cost
 	*/
 	function get_click( string $format = "", string $print_color_mode ){	
+		if ( $print_color_mode == '0x0' ) { // no print
+			return 0;
+		}
 		$format = $format === "" ? "a4" : $format;
 		$print_color_mode = substr( $print_color_mode === "" ? "4x" : $print_color_mode, 0, 2);
 		$click_cost = isset( $this->clicks[$print_color_mode][ $format ]['*'] ) ? $this->clicks[$print_color_mode][ $format ]['*'] : array( .18, .28 );
@@ -153,7 +156,7 @@ class formats{
 	* Return production_format
 	*/
 	function get_production_format( array $common_format, string $print_color_mode, string $name ){			
-		$print_color_mode_translate = array( '4x' => 'color', '1x' => 'bw');
+		$print_color_mode_translate = array( '4x' => 'color', '1x' => 'bw', '0x' => 'noprint');
 		$production_format = $this->production_formats[ $print_color_mode ][ $common_format['name'] ];		
 		$format_data = $this->get_formats( $print_color_mode_translate[$print_color_mode]) [ $production_format['format'] ];
 
@@ -173,12 +176,116 @@ class formats{
 	}
 
 	/**
+	* Return binding_type
+	*/
+	function get_binding_type( string $binding_type ){	
+		return $this->binding_types[ $binding_type ];
+	}
+
+	/**
 	* This function needs to aquire formats data from db, fo dev version it just sets an array
 	*/
 	public function aquire( ){
 
+		$this->binding_types = array(
+			'perfect_binding' => array(
+				'cost' => array(
+					'pa_attr' => 'pa_master_quantity',
+					'compare' => 'min',
+					'scale' => array(
+						array( 'price' => .5, 'v' => 1 )
+					)
+				)
+			),
+			'saddle_stitch' => array(
+				'cost' => array(
+					'pa_attr' => 'pa_master_quantity',
+					'compare' => 'min',
+
+					'scale' => array(
+						array( 'price' => .5, 'v' => 100 ),
+						array( 'price' => 2, 'v' => 50 ),
+						array( 'price' => 3, 'v' => 0 )
+					)
+				)
+			),
+			'spiral_binding' => array(
+				'cost' => array(
+					'pa_attr' => 'pa_master_quantity',
+					'compare' => 'min',
+					'scale' => array(
+						array( 'price' => 3, 'v' => 0 )
+					)
+				)
+			),
+			'section_sewn' => array(
+				'extended' => array(
+					'signature_cost' => .07,
+					'min_signature_cost' => 150
+				),
+				'cost' => array(
+					'pa_attr' => 'pa_master_quantity',
+					'compare' => 'min',
+					'scale' => array(
+						array( 'price' => 3, 'v' => 0 )
+					)
+				)
+			),
+			'hard' => array(
+				'extended' => array(
+					'signature_cost' => .07,
+					'min_signature_cost' => 150
+				),
+				'cost' => array(
+					'pa_attr' => 'pa_master_quantity',
+					'compare' => 'min',
+					'scale' => array(
+						array( 'price' => 3.3, 'v' => 99 ),
+						array( 'price' => 3.2, 'v' => 201 ),
+						array( 'price' => 3.12, 'v' => 301 ),
+						array( 'price' => 3.04, 'v' => 401 ),
+						array( 'price' => 2.96, 'v' => 501 ),
+						array( 'price' => 2.92, 'v' => 601 ),
+						array( 'price' => 2.88, 'v' => 701 ),
+						array( 'price' => 2.84, 'v' => 801 ),
+						array( 'price' => 2.8, 'v' => 901 )						
+					)
+				),
+				'board_20mm_cost' => array(
+					'pa_attr' => 'pa_cover_format',
+					'compare' => 'exact',
+					'scale' => array(
+						array( 'price' => .28, 'exact' => 'A5' ),
+						array( 'price' => .37, 'exact' => 'B5' ),
+						array( 'price' => .51, 'exact' => 'A4' )						
+					)
+				),
+				'board_25mm_cost' => array(
+					'pa_attr' => 'pa_cover_format',
+					'compare' => 'exact',
+					'scale' => array(
+						array( 'price' => .34, 'exact' => 'A5' ),
+						array( 'price' => .42, 'exact' => 'B5' ),
+						array( 'price' => .63, 'exact' => 'A4' )						
+					)
+				)
+			)
+		);
 
 		$this->formats = array(
+			'noprint' => array (				
+				'SRA3++'	=> 	array('width' => 330,'height' => 487),
+				'SRA3'		=> 	array('width' => 320,'height' => 450),
+				'RA3' 		=> 	array('width' => 315,'height' => 430),
+				'RA3+' 		=> 	array('width' => 315,'height' => 440),
+				'RA4' 		=> 	array('width' => 215,'height' => 305),
+				'A3' 		=> 	array('width' => 297,'height' => 420),
+				'B3' 		=> 	array('width' => 350,'height' => 500), 
+				'B4' 		=> 	array('width' => 250,'height' => 350),
+				'BN6' 		=> 	array('width' => 600,'height' => 330),
+				'BN7' 		=> 	array('width' => 700,'height' => 330)
+			),
+
 			'color' => array (				
 				'SRA3++'	=> 	array('width' => 330,'height' => 487),
 				'SRA3'		=> 	array('width' => 320,'height' => 450),
@@ -206,8 +313,10 @@ class formats{
 
 
 		$this->production_formats = array(
-			'4x' => array (				
+			'0x' => array (				
 		
+				'wizA'	=> array( 'format' => 'SRA3++', 'pieces' => 24,	'grain' => 'LG'),
+				'wizB'	=> array( 'format' => 'SRA3++', 'pieces' => 24,	'grain' => 'LG'),
 				'A6'	=> array( 'format' => 'RA3', 'pieces' => 8, 	'grain' => 'SG'),
 				'B6'	=> array( 'format' => 'SRA3++', 'pieces' => 8, 	'grain' => 'SG'),
 				'A5'	=> array( 'format' => 'RA3', 'pieces' => 4, 	'grain' => 'LG'),
@@ -221,8 +330,24 @@ class formats{
 
 			),
 
-			'1x' => array (
-				
+			'4x' => array (				
+		
+				'wizA'	=> array( 'format' => 'SRA3++', 'pieces' => 24,	'grain' => 'LG'),
+				'wizB'	=> array( 'format' => 'SRA3++', 'pieces' => 24,	'grain' => 'LG'),
+				'A6'	=> array( 'format' => 'RA3', 'pieces' => 8, 	'grain' => 'SG'),
+				'B6'	=> array( 'format' => 'SRA3++', 'pieces' => 8, 	'grain' => 'SG'),
+				'A5'	=> array( 'format' => 'RA3', 'pieces' => 4, 	'grain' => 'LG'),
+				'B5'	=> array( 'format' => 'SRA3++', 'pieces' => 4, 	'grain' => 'LG'),
+				'A4'	=> array( 'format' => 'RA3', 'pieces' => 2, 	'grain' => 'SG'),
+				'B4'	=> array( 'format' => 'SRA3++', 'pieces' => 1, 	'grain' => 'SG'),
+				'A3'	=> array( 'format' => 'SRA3++', 'pieces' => 1, 	'grain' => 'LG'),
+				'B3'	=> array( 'format' => 'SRA3++', 'pieces' => 1, 	'grain' => 'LG'),
+				'BN6'	=> array( 'format' => 'BN6', 'pieces' => 1, 	'grain' => 'SG'),
+				'BN7'	=> array( 'format' => 'BN7', 'pieces' => 1, 	'grain' => 'SG')
+
+			),
+
+			'1x' => array (				
 				'A6'	=> array( 'format' => 'RA3', 'pieces' => 8, 	'grain' => 'SG'),
 				'B6'	=> array( 'format' => 'B3', 'pieces' => 8, 		'grain' => 'SG'),
 				'A5'	=> array( 'format' => 'RA3', 'pieces' => 4, 	'grain' => 'LG'),
@@ -237,6 +362,21 @@ class formats{
 			)	
 		);
 
+		$this->common_format = array (			
+
+			'wizA'	=> 	array('width' => 85 ,'height' => 55, 'grain' => 'LG' ),				
+			'wizB'	=> 	array('width' => 90 ,'height' => 50, 'grain' => 'LG' ),				
+			'A6'	=> 	array('width' => 105 ,'height' => 148, 'grain' => 'LG' ),				
+			'B6'	=> 	array('width' => 125 ,'height' => 176, 'grain' => 'LG' ),				
+			'A5'	=> 	array('width' => 148 ,'height' => 210, 'grain' => 'LG' ),				
+			'B5'	=> 	array('width' => 176 ,'height' => 250, 'grain' => 'LG' ),				
+			'A4'	=> 	array('width' => 210 ,'height' => 297, 'grain' => 'LG' ),
+			'B4'	=> 	array('width' => 250 ,'height' => 350, 'grain' => 'LG' ),				
+			'A3'	=> 	array('width' => 297 ,'height' => 420, 'grain' => 'LG' ),				
+			'B3'	=> 	array('width' => 350 ,'height' => 500, 'grain' => 'LG' ),		
+			'BN6'	=> 	array('width' => 600 ,'height' => 330, 'grain' => 'SG' ),
+			'BN7'	=> 	array('width' => 700 ,'height' => 330, 'grain' => 'SG' )
+		);
 
 		$this->pallet_format_factor = 4;
 
@@ -266,19 +406,6 @@ class formats{
 		);	
 
 
-		$this->common_format = array (			
-
-			'A6'	=> 	array('width' => 105 ,'height' => 148, 'grain' => 'LG' ),				
-			'B6'	=> 	array('width' => 125 ,'height' => 176, 'grain' => 'LG' ),				
-			'A5'	=> 	array('width' => 148 ,'height' => 210, 'grain' => 'LG' ),				
-			'B5'	=> 	array('width' => 176 ,'height' => 250, 'grain' => 'LG' ),				
-			'A4'	=> 	array('width' => 210 ,'height' => 297, 'grain' => 'LG' ),
-			'B4'	=> 	array('width' => 250 ,'height' => 350, 'grain' => 'LG' ),				
-			'A3'	=> 	array('width' => 297 ,'height' => 420, 'grain' => 'LG' ),				
-			'B3'	=> 	array('width' => 350 ,'height' => 500, 'grain' => 'LG' ),		
-			'BN6'	=> 	array('width' => 600 ,'height' => 330, 'grain' => 'SG' ),
-			'BN7'	=> 	array('width' => 700 ,'height' => 330, 'grain' => 'SG' )
-		);
 
 
 
@@ -286,6 +413,10 @@ class formats{
 		* Splits devided by formats
 		*/
 		$this->splits = array(
+			'0x' => array(
+				"*" => array( 0,0)
+			),
+
 			'1x' => array(
 				"*" => array( 2,2),
 				"90x50" => array( 7, 4),
@@ -301,9 +432,6 @@ class formats{
 				"210x297" => array( 7, 7 ),
 				"297x420" => array( 7, 7 )
 			),
-
-
-
 			
 		);
 
@@ -418,31 +546,6 @@ class formats{
 			'350x500' => 'B3',	
 			'500x350' => 'B3'			
 		);
-
-/*
-		$this->pre_impose_format = array(
-
-
-
-			'4x' => array(
-				'90x50' => 'SRA3++',
-				'85x55' => 'SRA3++',
-			),
-			'1x' => array(),
-
-
-
-			'315x430' => 'RA3',
-			'315x440' => 'RA3+',
-			'215x305' => 'RA4',
-			'420x297' => 'A3',	
-			'487x330' => 'SRA3++',
-			'430x305' => 'RA3',
-			'440x315' => 'RA3+',
-			'305x215' => 'RA4',
-			'420x297' => 'A3'	
-		);
-*/
 
 		$this->wrap_cost = array(
 			'0x0' => 0,

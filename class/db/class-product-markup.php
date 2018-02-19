@@ -74,6 +74,9 @@ class product_markup{
 				'pa_quantity' => array( 'markup' => 1),
 				'pa_print' => array( 
 					'markup' => array(
+						'0x' => array(
+							0 => 0
+						),
 						'1x' => array(
 							5 => 7,
 							10 => 6,

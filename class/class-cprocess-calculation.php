@@ -138,6 +138,10 @@ abstract class cprocess_calculation{
 		$process_ = $this->cargs[ $process_slug ];
 		$color = preg_match("/4x4|4x0/", $process_);
 		$bw = preg_match("/1x1|1x0/", $process_);
+		$noprint = preg_match("/0x0/", $process_);
+		if ($noprint) {
+			return '0x';
+		}
 		return $color ? '4x' : ( $bw ? '1x' : '1x');		
 	}
 

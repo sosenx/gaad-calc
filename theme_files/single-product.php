@@ -11,16 +11,23 @@ $pargs = array(
     "pa_format" => "90x50",
     "pa_paper" => "kreda-350g",
     "pa_print" => "4x4",         
-    "pa_quantity" => 1000,
+    "pa_quantity" => 99,
     "pa_wrap" => "soft-1x1",    
     "pa_spot_uv" => "0x0",
 
 
     "pa_cover_format" => "100x160",
+    "pa_cover_type" => "hard",
+    "pa_cover_cloth_covering_paper" => "offset-150g",
+
+
     "pa_cover_paper" => "kreda-350g",
     "pa_cover_print" => "4x0",
     "pa_cover_wrap" => "gloss-1x0",    
     "pa_cover_spot_uv" => "1x1",
+
+
+
 
     "pa_bw_pages" => 100,
     "pa_bw_format" => "100x160",

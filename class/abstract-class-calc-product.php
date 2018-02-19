@@ -208,6 +208,13 @@ abstract class calc_product{
 					$match2 = array();
 					if ( preg_match( '/pa_' . $match[1] . '_(.*)/', $key2, $match2 ) ) {						
 						$class_name = str_replace( $match[1] . '_', '', $match2[0] );
+						$pa_class_name = '\gcalc\pa\\' . $class_name;
+						if ( !class_exists( $pa_class_name ) ) {
+							if ( class_exists( '\gcalc\pa\\' . $key2 ) ) {
+								$class_name = $key2;
+							}
+						}
+
 						$groups[ $match[ 1 ] ][ $key2 ]['class_name'] = $class_name;						
 					}
 				}				
@@ -408,7 +415,7 @@ $a =1;
 		$pa_print = $this->bvars[ $print_process ];
 		$single = preg_match("/4x0|1x0/", $pa_print);
 		$double = preg_match("/4x4|1x1/", $pa_print);
-		return $double ? 1 : ( $single ? 0 : 1);		
+		return $double ? 1 : ( $single ? 0 : -1);		
 	}
 
 

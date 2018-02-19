@@ -36,7 +36,9 @@ class calc_order{
 	*/
 	public function aquire( ){
 		$this->order = array(
-			'wizytowki' => array ( 'pa_format', 'pa_paper', 'pa_print', 'pa_spot_uv', '*' ),
+			'wizytowki' => array ( 
+				'master' => array('pa_master_format', 'pa_master_paper', 'pa_master_print', 'pa_master_spot_uv', '*') 
+			),
 			'druk-ksiazek' => array ( 
 				'master' =>array('pa_master_format', '*'),
 				"cover" => array( 'pa_cover_format','pa_cover_paper', /* 'pa_cover_print', */'*' ),
