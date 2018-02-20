@@ -72,6 +72,20 @@ class product_markup{
 				'pa_wrap' => array( 'markup' => 1),
 				'pa_spot_uv' => array( 'markup' => 1.6),
 				'pa_quantity' => array( 'markup' => 1),
+				'pa_cover_type' => array( 'markup' => array(							
+
+						array( 'price' => 3.3, 	'v' => 99 ),
+						array( 'price' => 3.2, 	'v' => 201 ),
+						array( 'price' => 3.12, 'v' => 301 ),
+						array( 'price' => 3.04, 'v' => 401 ),
+						array( 'price' => 2.96, 'v' => 501 ),
+						array( 'price' => 2.92, 'v' => 601 ),
+						array( 'price' => 2.88, 'v' => 701 ),
+						array( 'price' => 2.84, 'v' => 801 ),
+						array( 'price' => 2.8, 	'v' => 901 )
+														
+					)
+				),
 				'pa_print' => array( 
 					'markup' => array(
 						'0x' => array(

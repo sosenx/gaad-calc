@@ -234,39 +234,50 @@ class formats{
 			'hard' => array(
 				'extended' => array(
 					'signature_cost' => .07,
-					'min_signature_cost' => 150
+					'min_signature_cost' => 150,
+					'ribbon_cost' => .2
+				),
+				'minimal_cost' => array(
+					'pa_attr' => 'pa_master_quantity',
+					'compare' => 'min',
+					'scale' => array(
+						array( 'price' => 180, 	'v' => 0 ),
+						array( 'price' => 250, 	'v' => 50 ),
+						array( 'price' => 350, 'v' => 98 ),						
+						array( 'price' => -1, 'v' => 99 )						
+					)
 				),
 				'cost' => array(
 					'pa_attr' => 'pa_master_quantity',
 					'compare' => 'min',
 					'scale' => array(
-						array( 'price' => 3.3, 'v' => 99 ),
-						array( 'price' => 3.2, 'v' => 201 ),
+						array( 'price' => 3.3, 	'v' => 99 ),
+						array( 'price' => 3.2, 	'v' => 201 ),
 						array( 'price' => 3.12, 'v' => 301 ),
 						array( 'price' => 3.04, 'v' => 401 ),
 						array( 'price' => 2.96, 'v' => 501 ),
 						array( 'price' => 2.92, 'v' => 601 ),
 						array( 'price' => 2.88, 'v' => 701 ),
 						array( 'price' => 2.84, 'v' => 801 ),
-						array( 'price' => 2.8, 'v' => 901 )						
+						array( 'price' => 2.8, 	'v' => 901 )						
 					)
 				),
 				'board_20mm_cost' => array(
 					'pa_attr' => 'pa_cover_format',
 					'compare' => 'exact',
 					'scale' => array(
-						array( 'price' => .28, 'exact' => 'A5' ),
-						array( 'price' => .37, 'exact' => 'B5' ),
-						array( 'price' => .51, 'exact' => 'A4' )						
+						array( 'price' => .28, 'v' => 'A5' ),
+						array( 'price' => .37, 'v' => 'B5' ),
+						array( 'price' => .51, 'v' => 'A4' )						
 					)
 				),
 				'board_25mm_cost' => array(
 					'pa_attr' => 'pa_cover_format',
 					'compare' => 'exact',
 					'scale' => array(
-						array( 'price' => .34, 'exact' => 'A5' ),
-						array( 'price' => .42, 'exact' => 'B5' ),
-						array( 'price' => .63, 'exact' => 'A4' )						
+						array( 'price' => .34, 'v' => 'A5' ),
+						array( 'price' => .42, 'v' => 'B5' ),
+						array( 'price' => .63, 'v' => 'A4' )						
 					)
 				)
 			)

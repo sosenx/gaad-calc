@@ -51,6 +51,7 @@ fo dev version it just sets an array
 				),
 			'kreda-90g' => array( 'price_per_kg' => 3.6, 'label' => 'Kreda 90g', 'weight' => .09 ),
 			'kreda-115g' => array( 'price_per_kg' => 3.6, 'label' => 'Kreda 115g', 'weight' => .115 ),
+			'kreda-130g' => array( 'price_per_kg' => 3.6, 'label' => 'Kreda 135g', 'weight' => .135 ),
 			'kreda-135g' => array( 'price_per_kg' => 3.6, 'label' => 'Kreda 135g', 'weight' => .135 ),
 			'kreda-150g' => array( 'price_per_kg' => 3.6, 'label' => 'Kreda 150g', 'weight' => .15 ),
 			'kreda-170g' => array( 'price_per_kg' => 3.6, 'label' => 'Kreda 170g', 'weight' => .17 ),

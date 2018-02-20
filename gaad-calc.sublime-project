@@ -10,8 +10,8 @@
 		"xdebug":
 		{
 			"launch_browser": false,
-			"max_depth": 10,					
-			"url": "http://127.0.0.1/gaadcalcapi/"
+			"max_depth": 6 ,					
+			"url": "http://127.0.0.1/gaadcalcapi/produkt/druk-ksiazek/"
 		}
 	}
 }
