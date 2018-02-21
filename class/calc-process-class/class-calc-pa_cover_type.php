@@ -20,15 +20,6 @@ class pa_cover_type extends pa_format{
 
 
 
-	function get_carg( string $arg_name ){
-		if ( !array_key_exists( $arg_name, $this->cargs ) ) {
-			$arg_name = str_replace( '_master', '', $arg_name);
-			if ( array_key_exists( $arg_name, $this->cargs ) ) {
-				return $this->cargs[ $arg_name ];
-			}
-		} else return $this->cargs[ $arg_name ];
-		return null;
-	}
 
 	function get_val_from( string $factor, string $compare, array $scale, string $outside_factor = NULL ){
 		$compare_sign = array(
@@ -369,6 +360,7 @@ class pa_cover_type extends pa_format{
 		$pf = $this->parent->get_best_production_format( $this->group );	
 		$cover_type = $this->cargs['pa_cover_type'];
 		$cover_cost = $production_formats->get_binding_type( $cover_type );
+		
 		
 		/*
 		* bounding cost

@@ -76,11 +76,30 @@ class pa_cover_format extends pa_format{
 		} else  {
 			$dim = explode( "x", $this->get_cargs()[ 'pa_format' ] );
 		}		
-		$this->set_width((int)$dim[0]*2);
-		$this->set_height((int)$dim[1]);		
+		$this->set_width((int)$dim[0] * 2 + $this->calc_spine() );
+		$this->set_height( (int)$dim[1] );
 	}
 
-	
+	/**
+	* Calculates spine thickness
+	*/
+	private function calc_spine(  ){		
+		$production_paper_db = new \gcalc\db\production\paper();
+		$pa_color_paper = $this->get_carg( 'pa_color_paper' );
+		$pa_bw_paper = $this->get_carg( 'pa_bw_paper' );
+		$pa_bw_pages = $this->get_carg( 'pa_bw_pages' );
+		$pa_color_pages = $this->get_carg( 'pa_color_pages' );
+
+		$pa_color_paper = $production_paper_db->get_paper( $pa_color_paper );
+		$pa_bw_paper = $production_paper_db->get_paper( $pa_bw_paper );
+
+		$bw_block = !is_null( $pa_bw_paper ) ? $pa_bw_pages / 2 * $pa_bw_paper['thickness'] : 0;
+		$color_block = !is_null( $pa_color_paper ) ? $pa_color_pages / 2 * $pa_color_paper['thickness'] : 0;
+
+		return $bw_block + $color_block;
+	}
+
+
 }
 
 

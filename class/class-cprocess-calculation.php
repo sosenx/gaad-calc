@@ -79,6 +79,19 @@ abstract class cprocess_calculation{
 	}
 
 	/**
+	*
+	*/
+	function get_carg( string $arg_name ){
+		if ( !array_key_exists( $arg_name, $this->cargs ) ) {
+			$arg_name = str_replace( '_master', '', $arg_name);
+			if ( array_key_exists( $arg_name, $this->cargs ) ) {
+				return $this->cargs[ $arg_name ];
+			}
+		} else return $this->cargs[ $arg_name ];
+		return null;
+	}
+
+	/**
 	* Getter for done
 	*/
 	function get_done( ){			
