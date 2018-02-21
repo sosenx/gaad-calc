@@ -72,8 +72,28 @@ class product_markup{
 				'pa_wrap' => array( 'markup' => 1),
 				'pa_spot_uv' => array( 'markup' => 1.6),
 				'pa_quantity' => array( 'markup' => 1),
-				'pa_cover_type' => array( 'markup' => array(							
+				'pa_cover_type' => array( 
+					'hard' => array(							
+						array( 'price' => 1, 	'v' => 0 ),
+					),
 
+					'perfect_binding' => array(							
+						array( 'price' => 1, 	'v' => 0 ),
+					),
+
+					'saddle_stitch' => array(							
+						array( 'price' => 1, 	'v' => 0 ),
+					),
+
+					'section_sewn' => array(							
+						array( 'price' => 1, 	'v' => 0 ),
+					),
+
+					'spiral_binding' => array(							
+						array( 'price' => 1, 	'v' => 0 ),
+					),
+
+					'hard-affiliate' => array(							
 						array( 'price' => 3.3, 	'v' => 99 ),
 						array( 'price' => 3.2, 	'v' => 201 ),
 						array( 'price' => 3.12, 'v' => 301 ),
@@ -82,8 +102,7 @@ class product_markup{
 						array( 'price' => 2.92, 'v' => 601 ),
 						array( 'price' => 2.88, 'v' => 701 ),
 						array( 'price' => 2.84, 'v' => 801 ),
-						array( 'price' => 2.8, 	'v' => 901 )
-														
+						array( 'price' => 2.8, 	'v' => 901 )														
 					)
 				),
 				'pa_print' => array( 

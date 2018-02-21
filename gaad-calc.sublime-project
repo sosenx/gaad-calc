@@ -2,7 +2,7 @@
 	"folders":
 	[
 		{
-			"path": "."
+			"path": "C:/xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc"
 		}
 	],
 	"settings":
@@ -10,7 +10,7 @@
 		"xdebug":
 		{
 			"launch_browser": false,
-			"max_depth": 6 ,					
+			"max_depth": 7,					
 			"url": "http://127.0.0.1/gaadcalcapi/produkt/druk-ksiazek/"
 		}
 	}

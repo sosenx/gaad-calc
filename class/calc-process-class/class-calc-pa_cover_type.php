@@ -138,6 +138,16 @@ class pa_cover_type extends pa_format{
 	}
 
 	/**
+	* Returns default dust jacket print if there is no in attributes
+	*/
+	function get_dust_jacket_wrap( string $dust_jacket_wrap = NULL){
+		if ( isset( $dust_jacket_wrap ) ) {
+			return $dust_jacket_wrap;
+		}
+		return '0x0';
+	}
+
+	/**
 	* Returns default ribbon
 	*/
 	function get_ribbon( string $ribbon = NULL){
@@ -147,6 +157,22 @@ class pa_cover_type extends pa_format{
 		return false;
 	}
 
+
+
+
+	/**
+	* Section sewn costs
+	*/
+	function section_sewn_cost( ){		
+		return array();
+	}
+
+	/**
+	* Perfect binding costs
+	*/
+	function perfect_binding_cost( ){		
+		return array();
+	}
 
 	/**
 	* Hard cover costs
@@ -164,6 +190,7 @@ class pa_cover_type extends pa_format{
 		
 		$dust_jacket_paper = $this->get_dust_jacket_paper( $this->get_carg('pa_cover_dust_jacket_paper') );
 		$dust_jacket_print = $this->get_dust_jacket_print( $this->get_carg('pa_cover_dust_jacket_print') );
+		$dust_jacket_wrap = $this->get_dust_jacket_wrap( $this->get_carg('pa_cover_dust_jacket_wrap') );
 		$dust_jacket_spot_uv = $this->get_dust_jacket_spot_uv( $this->get_carg('pa_cover_dust_jacket_spot_uv') );
 		
 		$board_thickness = $this->get_board_thickness( $this->get_carg('pa_cover_board_thickness') );
@@ -177,12 +204,14 @@ class pa_cover_type extends pa_format{
 		*/
 		$dust_jacket = 0;
 		$dust_jacket_procesess = array();
+		$dust_jacket_production_cost = 0;
 		if ( $dust_jacket_paper ) {			
 			$pargs = array(	
 			    "pa_format" => ( (2 * $this->get_width() + 120) < 700 ? 2 * $this->get_width() + 120 : 700 ) . 'x' . ( $this->get_height()  ),
 			    "pa_paper" => $dust_jacket_paper,
 			    "pa_print" => $dust_jacket_print,         
 			    "pa_quantity" => $pa_quantity,
+			    "pa_wrap" => $dust_jacket_wrap,
 			    "pa_spot_uv" => $dust_jacket_spot_uv
 			);
 			$dust_jacket_calc = new \gcalc\calculate( $pargs, 22986 );		
@@ -191,16 +220,25 @@ class pa_cover_type extends pa_format{
 				if ( $value->total['name'] == 'pa_master_paper' ) {
 					$dust_jacket += $value->total['total_price'];			
 					$dust_jacket_procesess[] = $value;
+					$dust_jacket_production_cost += $value->total['production_cost'];
 				}
 
 				if ( $value->total['name'] == 'pa_master_print' ) {
 					$dust_jacket += $value->total['total_price'];			
 					$dust_jacket_procesess[] = $value;
+					$dust_jacket_production_cost += $value->total['production_cost'];
+				}
+
+				if ( $value->total['name'] == 'pa_master_wrap' ) {
+					$dust_jacket += $value->total['total_price'];			
+					$dust_jacket_procesess[] = $value;
+					$dust_jacket_production_cost += $value->total['production_cost'];
 				}
 
 				if ( $value->total['name'] == 'pa_master_spot_uv' ) {
 					$dust_jacket += $value->total['total_price'];			
 					$dust_jacket_procesess[] = $value;
+					$dust_jacket_production_cost += $value->total['production_cost'];
 				}		
 			}
 		}
@@ -211,7 +249,7 @@ class pa_cover_type extends pa_format{
 		*/
 		$cloth_covering = 0;
 		$cloth_covering_procesess = array();
-
+		$cloth_covering_production_cost = 0;
 		$pargs = array(	
 		    "pa_format" => ( 2 * $this->get_width() + 60 ) . 'x' . ( $this->get_height() + 60 ),
 		    "pa_paper" => $cloth_covering_paper,
@@ -225,16 +263,19 @@ class pa_cover_type extends pa_format{
 			if ( $value->total['name'] == 'pa_master_paper' ) {
 				$cloth_covering += $value->total['total_price'];			
 				$cloth_covering_procesess[] = $value;
+				$cloth_covering_production_cost += $value->total['production_cost'];
 			}
 
 			if ( $value->total['name'] == 'pa_master_print' ) {
 				$cloth_covering += $value->total['total_price'];			
 				$cloth_covering_procesess[] = $value;
+				$cloth_covering_production_cost += $value->total['production_cost'];
 			}
 
 			if ( $value->total['name'] == 'pa_master_spot_uv' ) {
 				$cloth_covering += $value->total['total_price'];			
 				$cloth_covering_procesess[] = $value;
+				$cloth_covering_production_cost += $value->total['production_cost'];
 			}		
 		} 
 
@@ -251,29 +292,7 @@ class pa_cover_type extends pa_format{
 			'"'.$common_format_name.'"'
 			)['price'];
 		
-		/*
-		* bounding cost
-		*/
-		$min_bounding_cost = $this->get_val_from( 
-			$cover_cost['minimal_cost']['pa_attr'], 
-			"min", 
-			$cover_cost[ 'minimal_cost' ][ 'scale' ]
-			);
-
-		$bounding_cost = $min_bounding_cost != -1 ? $min_bounding_cost : $this->get_val_from( 
-			$cover_cost['cost']['pa_attr'], 
-			"min", 
-			$cover_cost[ 'cost' ][ 'scale' ]
-			);
-		$markup_db = new \gcalc\db\product_markup( $this->cargs, $this->product_id, $this);
-		$markup = $markup_db->get_markup();
-		$markup_val = $this->get_val_from( 
-			'',
-			"min", 
-			$markup['markup'],
-			$pa_quantity
-			);
-		$bounding_cost *= $markup_val * $pa_quantity;
+		
 
 		/*
 		* ribbon cost
@@ -284,24 +303,22 @@ class pa_cover_type extends pa_format{
 
 		return array(
 			'cloth_covering' => array(
-				'total_price' => $cloth_covering,
+				'total_price' => $cloth_covering,				
+				'production_cost' => $cloth_covering_production_cost,
 				'parts' => $cloth_covering_procesess
 			),
 			'dust_jacket' => array(
 				'total_price' => $dust_jacket,
+				'production_cost' => $dust_jacket_production_cost,
 				'parts' => $dust_jacket_procesess
 			),
 			'board_cost' => array(
-				'total_price' => $board_cost
-			),
-			'bounding_cost' => array(
-				'total_price' => $bounding_cost,
-				'parts' => array(
-					'markup' => $markup_val
-				)
+				'total_price' => $board_cost,
+				'production_cost' => $board_cost
 			),
 			'ribbon_cost' => array(
-				'total_price' => $ribbon_cost
+				'total_price' => $ribbon_cost,
+				'production_cost' => $ribbon_cost
 			),
 		);	
 	}
@@ -314,12 +331,21 @@ class pa_cover_type extends pa_format{
 			return 0;
 		}
 		$total = 0;
+		$total_production = 0;
+
 		foreach ($additional_cover_cost_array as $key => $value) {
 			if ( array_key_exists('total_price', $value)) {
 				$total += $value['total_price'];
 			}
+
+			if ( array_key_exists('production_cost', $value)) {
+				$total_production += $value['production_cost'];
+			}
 		}
-		return $total;
+		return array(
+			'total_price' => $total,
+			'production_cost' => $total_production
+		);
 	}
 
 	/**
@@ -339,27 +365,61 @@ class pa_cover_type extends pa_format{
 	*/
 	function calc(){			
 		$production_formats = new \gcalc\db\production\formats();
+		$pa_quantity = $this->get_carg( 'pa_master_quantity' );
 		$pf = $this->parent->get_best_production_format( $this->group );	
 		$cover_type = $this->cargs['pa_cover_type'];
 		$cover_cost = $production_formats->get_binding_type( $cover_type );
 		
-		$binding_cost = $this->get_val_from( $cover_cost['cost']['pa_attr'], $cover_cost['cost']['compare'], $cover_cost['cost']['scale'] );
+		/*
+		* bounding cost
+		*/
+		$min_bounding_cost = array_key_exists('minimal_cost', $cover_cost) ? $this->get_val_from( 
+			$cover_cost['minimal_cost']['pa_attr'], 
+			"min", 
+			$cover_cost[ 'minimal_cost' ][ 'scale' ]
+			) 
+		: -1;
+
+		$bounding_cost = $min_bounding_cost != -1 ? $min_bounding_cost : $this->get_val_from( 
+			$cover_cost['cost']['pa_attr'], 
+			"min", 
+			$cover_cost[ 'cost' ][ 'scale' ]
+			);
+		$markup_db = new \gcalc\db\product_markup( $this->cargs, $this->product_id, $this);
+		$markup = $markup_db->get_markup();
+		$markup_val = $this->get_val_from( 
+			'',
+			"min", 
+			$markup['hard-affiliate'],
+			$pa_quantity
+			);
+		$bounding_cost *= $markup_val * $pa_quantity;
+
+
 
 		$additional_cover_cost_array = $this->additional_cover_cost();
-		$additional_cover_cost = $this->parse_additional_cover_cost( $this->additional_cover_cost() );
+		$additional_cover_cost = $this->parse_additional_cover_cost( $additional_cover_cost_array );
 
+		$markup_db = new \gcalc\db\product_markup( $this->cargs, $this->product_id, $this);
+		$markup = $markup_db->get_markup();		
+		$markup_ = $this->get_val_from( 
+			'',
+			"min", 
+			$markup[ $cover_type ],
+			$pa_quantity
+			);
 
- 		$markup_ = 1;		
-		$production_cost = 1;
-		$total_price = $production_cost * $markup_;
-		$total_price += $additional_cover_cost;
+ 		
+		$production_cost = $bounding_cost/$markup_val + $additional_cover_cost['production_cost'];
+		$total_price = $bounding_cost * $markup_;
+		$total_price += $additional_cover_cost['total_price'];
 
 		return $this->parse_total( 			
 			array(				
 				'production_cost' 	=> 	$production_cost,				
 				'total_price' 		=> 	$total_price,
 				'markup_value' 		=> 	$total_price - $production_cost,
-				'markup' 			=> 	$markup_
+				'markup' 			=> 	$total_price / $production_cost
 			),
 			array(
 				'additional_cover_cost_array' 	=>	$additional_cover_cost_array,
