@@ -102,13 +102,19 @@ abstract class calc_product{
 	function calc(){
 
 		$this->create_todos_groups();
-		$this->validate_todos_groups();
+		$this->validate_todos_groups();		
+		$this->generate_formats_list();
+		
+
 		$this->generate_todo_list();
 		$this->process_todo_list();
-		$this->return_total();
+		//$this->return_total();
 		return $this->done;
 		
 	}
+
+
+
 
 	private function return_total(){
 		$production_formats = new \gcalc\db\production\formats();
@@ -241,7 +247,7 @@ abstract class calc_product{
 	* This list is a template classes array for further analisys and moderation. Actual calculations are managed elswhere.	 
 	*
 	*/
-	function generate_todo_list(){
+	function generate_formats_list(){
 		$todo = array();
 		$used = array();
 
@@ -260,16 +266,35 @@ abstract class calc_product{
 					} 
 			}
 			$todo[ $group_process_name ] = $new_todo;
+			//$this->best_production_format[ $group_name ] = $new_todo;
+			$r=1;			
+			array_push( $this->done, $new_todo->do() );
 			array_push( $used, $group_process_name );
+			
 		}
 
+		$this->todo->set_plist( $todo );				
+		return $todo;
+	}
+
+		/**
+	* Generates process stack based on passed product attributes
+	*
+	* This list is a template classes array for further analisys and moderation. Actual calculations are managed elswhere.	 
+	*
+	*/
+	function generate_todo_list(){
+		$todo = array();
+		$used = array();
+
+		
 		foreach ($this->todo_groups as $group_name => $group) {
 			foreach ($group as $process_name => $process) {
 				$process_name = 'pa_' . $group_name .'_' . str_replace( array( $group_name .'_', 'pa_'), array('', ''), $process_name);	
 
 				$pa_class_name = '\gcalc\pa\\' . $process['class_name'];
 
-				if ( !in_array( $process_name, $used ) && class_exists( $pa_class_name ) ) {	
+				if ( !in_array( $process_name, $used ) && class_exists( $pa_class_name ) && !preg_match('/format/', $pa_class_name)) {	
 					$new_todo = new  $pa_class_name( $this->bvars, $this->product_id, $this, array( $group_name,  $process_name ) );
 
 					$todo[ $process_name ] = $new_todo;				
@@ -378,6 +403,13 @@ abstract class calc_product{
 		$this->best_production_format[$group[0]] = $best_production_format;
 	}
 
+
+	public function check_best_production_format( array $group ){
+		if ( array_key_exists( $group[0], $this->best_production_format ) ) {
+			return $this->best_production_format[$group[0]];			
+		}
+		return false;
+	}
 
 	/**
 	* Getter best_production_format

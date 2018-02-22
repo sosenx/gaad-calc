@@ -33,6 +33,7 @@ $pargs = array(
     "pa_cover_print" => "4x0",
     "pa_cover_wrap" => "gloss-1x0",    
     "pa_cover_spot_uv" => "1x1",
+    "pa_cover_flaps" => true,
 
 
 

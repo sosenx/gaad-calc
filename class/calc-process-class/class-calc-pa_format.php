@@ -87,20 +87,23 @@ class pa_format extends \gcalc\cprocess_calculation{
 	* Calculates best production format fit
 	*/
 	function calculate_best_production_format( ){	
-		$production_formats = new \gcalc\db\production\formats();
-		$all_formats = $production_formats->get_formats();
-		
-		$print_color_mode = $this->get_print_color_mode('pa_print');
-		$std_format = $this->calc_common_format(); //a4, a5 etc 
-		$name = $this->get_name();
-		$this->best_production_format = $production_formats->get_production_format( $std_format, $print_color_mode, $name );
-		$this->parent->set_best_production_format( $this->best_production_format, $this->group );
+		$best_production_format_check = $this->parent->check_best_production_format( $this->group );
+
+		if ( $best_production_format_check ) {
+			$this->best_production_format = $best_production_format_check;
+		} else {
+			$production_formats = new \gcalc\db\production\formats();
+			$all_formats = $production_formats->get_formats();
+			var_dump('calculate_best_production_format:'.$this->group[1]);
+
+			$print_color_mode = $this->get_print_color_mode('pa_print');
+			$std_format = $this->calc_common_format(); //a4, a5 etc 
+			$name = $this->get_name();
+			$this->best_production_format = $production_formats->get_production_format( $std_format, $print_color_mode, $name );
+			$this->parent->set_best_production_format( $this->best_production_format, $this->group );
+		}
+			
 	}
-
-
-
-
-	
 
 	/**
 	*

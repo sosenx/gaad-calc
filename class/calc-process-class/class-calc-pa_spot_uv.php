@@ -23,8 +23,8 @@ class pa_spot_uv extends \gcalc\cprocess_calculation{
 		$parent = $this->get_parent();
 		$pf = $this->parent->get_best_production_format( $this->group );				
 		$sheets_quantity = (int)($this->cargs['pa_quantity'] / $pf['pieces']) + ( $this->cargs['pa_quantity'] % $pf['pieces'] > 0 ? 1 : 0 );
-		$format = $parent->get_todo_process( 'pa_format' );
-		$tmp = array( 'width' => $format->calculator->get_width(), 'height' => $format->calculator->get_height() );
+		
+		$tmp = array( 'width' => $pf['common_format']['width'] , 'height' => $pf['common_format']['height']  );
 		$format_multiplier = ( $tmp['width'] <= 210 && $tmp['height'] <= 297 ) || ( $tmp['width'] <= 297 && $tmp['height'] <= 210 ) ? 1 : 2;
 		$spot_uv_sides = $this->get_spot_uv_sides(); //0-single, 1-double, -1 - none
 		
