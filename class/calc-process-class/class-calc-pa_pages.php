@@ -29,6 +29,15 @@ class pa_pages extends \gcalc\cprocess_calculation{
 					$this->cargs['pa_sewing'] = true;
 					$parent->add_todo_process( $this->cargs, array( $group_name,  $process_name )  );
 				break;
+
+				
+			case 'section_sewn':	
+					$group_name = $this->group[0];
+					$process_name = 'pa_' . $group_name .'_sewing';
+					$parent->bvars['pa_sewing'] = true;
+					$this->cargs['pa_sewing'] = true;
+					$parent->add_todo_process( $this->cargs, array( $group_name,  $process_name )  );
+				break;
 			
 			default:
 				# code...
