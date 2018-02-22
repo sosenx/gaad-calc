@@ -18,7 +18,7 @@ class calculate extends calc_product {
 	public function __construct( array $product_attributes, int $product_id = NULL ) {
 		if ( !empty( $product_attributes ) ) {
 			parent::__construct( $product_attributes, $product_id );
-		
+			$this->product_id = $product_id;
 			$this->create_calculation_array_matrix();			
 		}
 	}
@@ -47,6 +47,20 @@ class calculate extends calc_product {
 				}
 			}
 		}
+	}
+
+
+	/**
+	* Returns named process from done array
+	*/
+	public function add_todo_process( array $bvars, array $group ){		
+		$pa_class_name = '\gcalc\pa\\' . str_replace( array($group[0], '__'), array( '', '_'), $group[1]);
+		$new_todo = new  $pa_class_name( $bvars, $this->get_product_id(), $this, $group );
+		$todo = $this->get_todo()->get_plist( );
+		$todo[] = $new_todo;
+		$this->get_todo()->set_plist( $todo );
+
+		array_push( $this->done, $new_todo->do() );
 	}
 
 	public function parse_total_cost_equasion( string $equasion ){

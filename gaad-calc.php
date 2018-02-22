@@ -140,6 +140,8 @@ if ( !defined( GAAD_PLUGIN_TEMPLATE_NAMESPACE . 'GAAD_PLUGIN_TEMPLATE_FORCE_FILE
 		require_once( 'class/calc-process-class/class-calc-pa_print.php' );
 		require_once( 'class/calc-process-class/class-calc-pa_wrap.php' );
 		require_once( 'class/calc-process-class/class-calc-pa_spot_uv.php' );
+		require_once( 'class/calc-process-class/class-calc-pa_sewing.php' );
+		require_once( 'class/calc-process-class/class-calc-pa_pages.php' );
 
 	require_once( 'class/class-cprocess.php' );
 		require_once( 'class/calc-process/pa_format.php' );
@@ -150,6 +152,8 @@ if ( !defined( GAAD_PLUGIN_TEMPLATE_NAMESPACE . 'GAAD_PLUGIN_TEMPLATE_FORCE_FILE
 		require_once( 'class/calc-process/pa_print.php' );
 		require_once( 'class/calc-process/pa_wrap.php' );
 		require_once( 'class/calc-process/pa_spot_uv.php' );
+		require_once( 'class/calc-process/pa_sewing.php' );
+		require_once( 'class/calc-process/pa_pages.php' );
 
 	require_once( 'inc/class-sql.php' );	
 	require_once( 'inc/class-register-woo-elements.php' );

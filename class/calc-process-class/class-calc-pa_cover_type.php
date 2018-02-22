@@ -14,141 +14,30 @@ class pa_cover_type extends pa_format{
 		$this->dependencies = NULL;
 		$this->parse_dimensions();
 		$this->calculate_best_production_format();
-
+		$this->add_related_procesess();
 		return $this;
 	}
 
+	function add_related_procesess( ){
 
 
-
-	function get_val_from( string $factor, string $compare, array $scale, string $outside_factor = NULL ){
-		$compare_sign = array(
-			'exact' => '==',
-			'min' => '>='
-		);
-		$attr = is_null( $outside_factor ) ? $this->get_carg( $factor ) : $outside_factor ;		
-		
-		if ( $compare_sign[ $compare ] !== '==' ) {
-			$array = array();
-			foreach ($scale as $key => $value) {
-				$array[(int)$value['v']] = $value['price']; 
-			}
-			asort($array);
-		} else {
-			$array = $scale;
-			foreach ($array as $key => $value) {	
-				if ( $value['v'] == $attr) {
-					return $value;	
-				}
-			}
-
-
-		}	
-			
-		foreach ($array as $key => $value) {
-			$comp_str = eval('$comp = ' .$attr . ' ' . $compare_sign[ $compare ] . ' '. $key .';'); 
-			//var_dump('$comp = ' .$attr . ' ' . $compare_sign[ $compare ] . ' '. $key .';');
-			if ($comp) {
-				return $value;	
-			}
-			
-		}		
-		
 	}
 
-	/**
-	* Returns default cloth covering paper if there is no in attributes
-	*/
-	function get_cloth_covering_paper( string $cloth_covering_paper = NULL){
-		if ( isset( $cloth_covering_paper ) ) {
-			return $cloth_covering_paper;
-		}
-		return 'offset-130g';
-	}
-
-	/**
-	* Returns default cloth covering print if there is no in attributes
-	*/
-	function get_cloth_covering_print( string $cloth_covering_print = NULL){
-		if ( isset( $cloth_covering_print ) ) {
-			return $cloth_covering_print;
-		}
-		return '4x0';
-	}
-
-	/** 
-	* Returns default cloth covering print if there is no in attributes
-	*/
-	function get_cloth_covering_spot_uv( string $cloth_covering_spot_uv = NULL){
-		if ( isset( $cloth_covering_spot_uv ) ) {
-			return $cloth_covering_spot_uv;
-		}
-		return '0x0';
-	}
-
-
-	/** 
-	* Returns default dust jacket print if there is no in attributes
-	*/
-	function get_dust_jacket_spot_uv( string $dust_jacket_spot_uv = NULL){
-		if ( isset( $dust_jacket_spot_uv ) ) {
-			return $dust_jacket_spot_uv;
-		}
-		return '0x0';
-	}
 
 
 	/**
-	* Returns default dust jacket paper if there is no in attributes
+	* Section sewn costs
 	*/
-	function get_dust_jacket_paper( string $dust_jacket_paper = NULL){
-		if ( isset( $dust_jacket_paper ) ) {
-			return $dust_jacket_paper;
-		}
-		return false;
+	function spiral_binding_cost( ){		
+		return array();
 	}
 
 	/**
-	* Returns default dust jacket print if there is no in attributes
+	* Perfect binding costs
 	*/
-	function get_dust_jacket_print( string $dust_jacket_print = NULL){
-		if ( isset( $dust_jacket_print ) ) {
-			return $dust_jacket_print;
-		}
-		return '4x0';
+	function saddle_stitch_cost( ){		
+		return array();
 	}
-
-	/**
-	* Returns default dust jacket print if there is no in attributes
-	*/
-	function get_board_thickness( string $board_thickness = NULL){
-		if ( isset( $board_thickness ) ) {
-			return $board_thickness;
-		}
-		return '2.0mm';
-	}
-
-	/**
-	* Returns default dust jacket print if there is no in attributes
-	*/
-	function get_dust_jacket_wrap( string $dust_jacket_wrap = NULL){
-		if ( isset( $dust_jacket_wrap ) ) {
-			return $dust_jacket_wrap;
-		}
-		return '0x0';
-	}
-
-	/**
-	* Returns default ribbon
-	*/
-	function get_ribbon( string $ribbon = NULL){
-		if ( isset( $ribbon ) ) {
-			return true;
-		}
-		return false;
-	}
-
-
 
 
 	/**
@@ -422,6 +311,97 @@ class pa_cover_type extends pa_format{
 
 
 	
+	/**
+	* Returns default cloth covering paper if there is no in attributes
+	*/
+	function get_cloth_covering_paper( string $cloth_covering_paper = NULL){
+		if ( isset( $cloth_covering_paper ) ) {
+			return $cloth_covering_paper;
+		}
+		return 'offset-130g';
+	}
+
+	/**
+	* Returns default cloth covering print if there is no in attributes
+	*/
+	function get_cloth_covering_print( string $cloth_covering_print = NULL){
+		if ( isset( $cloth_covering_print ) ) {
+			return $cloth_covering_print;
+		}
+		return '4x0';
+	}
+
+	/** 
+	* Returns default cloth covering print if there is no in attributes
+	*/
+	function get_cloth_covering_spot_uv( string $cloth_covering_spot_uv = NULL){
+		if ( isset( $cloth_covering_spot_uv ) ) {
+			return $cloth_covering_spot_uv;
+		}
+		return '0x0';
+	}
+
+
+	/** 
+	* Returns default dust jacket print if there is no in attributes
+	*/
+	function get_dust_jacket_spot_uv( string $dust_jacket_spot_uv = NULL){
+		if ( isset( $dust_jacket_spot_uv ) ) {
+			return $dust_jacket_spot_uv;
+		}
+		return '0x0';
+	}
+
+
+	/**
+	* Returns default dust jacket paper if there is no in attributes
+	*/
+	function get_dust_jacket_paper( string $dust_jacket_paper = NULL){
+		if ( isset( $dust_jacket_paper ) ) {
+			return $dust_jacket_paper;
+		}
+		return false;
+	}
+
+	/**
+	* Returns default dust jacket print if there is no in attributes
+	*/
+	function get_dust_jacket_print( string $dust_jacket_print = NULL){
+		if ( isset( $dust_jacket_print ) ) {
+			return $dust_jacket_print;
+		}
+		return '4x0';
+	}
+
+	/**
+	* Returns default dust jacket print if there is no in attributes
+	*/
+	function get_board_thickness( string $board_thickness = NULL){
+		if ( isset( $board_thickness ) ) {
+			return $board_thickness;
+		}
+		return '2.0mm';
+	}
+
+	/**
+	* Returns default dust jacket print if there is no in attributes
+	*/
+	function get_dust_jacket_wrap( string $dust_jacket_wrap = NULL){
+		if ( isset( $dust_jacket_wrap ) ) {
+			return $dust_jacket_wrap;
+		}
+		return '0x0';
+	}
+
+	/**
+	* Returns default ribbon
+	*/
+	function get_ribbon( string $ribbon = NULL){
+		if ( isset( $ribbon ) ) {
+			return true;
+		}
+		return false;
+	}
 }
 
 

@@ -73,6 +73,8 @@ abstract class calc_product{
 	*/
 	private $return_total;
 
+	
+
 
 	/**
 	* Class constructor
@@ -105,7 +107,6 @@ abstract class calc_product{
 		$this->validate_todos_groups();		
 		$this->generate_formats_list();
 		
-
 		$this->generate_todo_list();
 		$this->process_todo_list();
 		//$this->return_total();
@@ -464,6 +465,15 @@ $a =1;
 	*/
 	public function get_parent( ){		
 		return $this->parent;
+	}
+
+
+
+	/**
+	* Getter parent
+	*/
+	public function get_product_id( ){		
+		return $this->product_id;
 	}
 
 	

@@ -66,6 +66,43 @@ abstract class cprocess_calculation{
 		return $this->ptotal;
 	}
 
+
+	function get_val_from( string $factor, string $compare, array $scale, string $outside_factor = NULL ){
+		$compare_sign = array(
+			'exact' => '==',
+			'min' => '>='
+		);
+		$attr = is_null( $outside_factor ) ? $this->get_carg( $factor ) : $outside_factor ;		
+		
+		if ( $compare_sign[ $compare ] !== '==' ) {
+			$array = array();
+			foreach ($scale as $key => $value) {
+				$array[(int)$value['v']] = $value['price']; 
+			}
+			asort($array);
+		} else {
+			$array = $scale;
+			foreach ($array as $key => $value) {	
+				if ( $value['v'] == $attr) {
+					return $value;	
+				}
+			}
+
+
+		}	
+			
+		foreach ($array as $key => $value) {
+			$comp_str = eval('$comp = ' .$attr . ' ' . $compare_sign[ $compare ] . ' '. $key .';'); 
+			//var_dump('$comp = ' .$attr . ' ' . $compare_sign[ $compare ] . ' '. $key .';');
+			if ($comp) {
+				return $value;	
+			}
+			
+		}		
+		
+	}
+
+
 	/**
 	* 
 	*/
