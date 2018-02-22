@@ -94,8 +94,7 @@ class pa_format extends \gcalc\cprocess_calculation{
 		} else {
 			$production_formats = new \gcalc\db\production\formats();
 			$all_formats = $production_formats->get_formats();
-			var_dump('calculate_best_production_format:'.$this->group[1]);
-
+		
 			$print_color_mode = $this->get_print_color_mode('pa_print');
 			$std_format = $this->calc_common_format(); //a4, a5 etc 
 			$name = $this->get_name();

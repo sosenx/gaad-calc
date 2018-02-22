@@ -13,6 +13,17 @@ class pa_cover_format extends pa_format{
 	* net height
 	*/
 	private $height;
+
+
+	/**
+	* spine thickness
+	*/
+	private $spine;
+
+	/**
+	* spine thickness
+	*/
+	private $flaps;
 	
 	/**
 	* best_production_format object
@@ -45,8 +56,7 @@ class pa_cover_format extends pa_format{
 		$grain = $pf['grain'];
 
 		return $this->parse_total( 			
-			array(
-				
+			array(				
 				'production_cost' => $production_cost,
 				'total_price' => $total_price,
 				'markup_value' => $total_price - $production_cost,
@@ -58,6 +68,7 @@ class pa_cover_format extends pa_format{
 					'height' => $this->get_height(),
 				),
 				'sheets_quantity' => $sheets_quantity,
+				'spine' => $this->spine,
 				'production_format_short' => $pf['format'].' '.$grain.' ('. $pf['common_format']['width'] .'x'. $pf['common_format']['height'] . ')',
 				'production_format' => $pf
 			)
@@ -70,13 +81,32 @@ class pa_cover_format extends pa_format{
 	function parse_dimensions( ){	
 		$group = $this->get_group();
 		$array_key = str_replace('master_', '', 'pa_' . $group[0] . '_format');
+		$pa_cover_flaps = $this->get_carg( 'pa_cover_flaps' );
 
 		if ( array_key_exists( $array_key, $this->get_cargs() ) ) {
 			$dim = explode( "x", $this->get_cargs()[ $array_key ] ); 
 		} else  {
 			$dim = explode( "x", $this->get_cargs()[ 'pa_format' ] );
 		}		
-		$this->set_width((int)$dim[0] * 2 + $this->calc_spine() );
+
+		if ( !$pa_cover_flaps ) {
+			$width = (int)$dim[0] * 2 + $this->calc_spine();
+		} else {
+			$width = (int)$dim[0] * 2 + $this->calc_spine();
+			$max_width = 680;
+			$max_flaps_width = $max_width - $width >= $dim[0] * 2 * .9 ? $max_width - $width : $dim[0] * 2 * .9;
+			$pa_cover_left_flap_width = $this->get_carg( 'pa_cover_left_flap_width' );
+			$pa_cover_right_flap_width = $this->get_carg( 'pa_cover_right_flap_width' );
+			$total_declared_flaps_width = $pa_cover_right_flap_width + $pa_cover_left_flap_width;
+			if ( $total_declared_flaps_width > $max_flaps_width ) {				
+				$this->set_carg( 'pa_cover_left_flap_width', $max_flaps_width / 2 );
+				$this->set_carg( 'pa_cover_right_flap_width', $max_flaps_width / 2 );
+				$total_declared_flaps_width = $max_flaps_width;
+			} 
+			$width += $total_declared_flaps_width;
+		}
+
+		$this->set_width($width);
 		$this->set_height( (int)$dim[1] );
 	}
 
@@ -95,8 +125,8 @@ class pa_cover_format extends pa_format{
 
 		$bw_block = !is_null( $pa_bw_paper ) ? $pa_bw_pages / 2 * $pa_bw_paper['thickness'] : 0;
 		$color_block = !is_null( $pa_color_paper ) ? $pa_color_pages / 2 * $pa_color_paper['thickness'] : 0;
-
-		return $bw_block + $color_block;
+		$this->spine = $bw_block + $color_block;
+		return $this->spine;
 	}
 
 

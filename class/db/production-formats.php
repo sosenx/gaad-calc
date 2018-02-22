@@ -336,6 +336,8 @@ class formats{
 				'B4'	=> array( 'format' => 'SRA3++', 'pieces' => 1, 	'grain' => 'SG'),
 				'A3'	=> array( 'format' => 'SRA3++', 'pieces' => 1, 	'grain' => 'LG'),
 				'B3'	=> array( 'format' => 'SRA3++', 'pieces' => 1, 	'grain' => 'LG'),
+				'SRA3'	=> array( 'format' => 'SRA3++', 'pieces' => 1, 	'grain' => 'SG'),
+
 				'BN6'	=> array( 'format' => 'BN6', 'pieces' => 1, 	'grain' => 'SG'),
 				'BN7'	=> array( 'format' => 'BN7', 'pieces' => 1, 	'grain' => 'SG')
 
@@ -353,6 +355,7 @@ class formats{
 				'B4'	=> array( 'format' => 'SRA3++', 'pieces' => 1, 	'grain' => 'SG'),
 				'A3'	=> array( 'format' => 'SRA3++', 'pieces' => 1, 	'grain' => 'LG'),
 				'B3'	=> array( 'format' => 'SRA3++', 'pieces' => 1, 	'grain' => 'LG'),
+				'SRA3'	=> array( 'format' => 'SRA3++', 'pieces' => 1, 	'grain' => 'SG'),
 				'BN6'	=> array( 'format' => 'BN6', 'pieces' => 1, 	'grain' => 'SG'),
 				'BN7'	=> array( 'format' => 'BN7', 'pieces' => 1, 	'grain' => 'SG')
 
@@ -367,6 +370,7 @@ class formats{
 				'B4'	=> array( 'format' => 'B3', 'pieces' => 2, 		'grain' => 'SG'),
 				'A3'	=> array( 'format' => 'RA3', 'pieces' => 1, 	'grain' => 'LG'),
 				'B3'	=> array( 'format' => 'B3', 'pieces' => 1, 		'grain' => 'LG'),
+				'SRA3'	=> array( 'format' => 'SRA3++', 'pieces' => 1, 	'grain' => 'SG'),
 				'BN6'	=> array( 'format' => 'BN6', 'pieces' => 1, 	'grain' => 'SG'),
 				'BN7'	=> array( 'format' => 'BN7', 'pieces' => 1, 	'grain' => 'SG')
 
@@ -384,7 +388,8 @@ class formats{
 			'A4'	=> 	array('width' => 210 ,'height' => 297, 'grain' => 'LG' ),
 			'B4'	=> 	array('width' => 250 ,'height' => 350, 'grain' => 'LG' ),				
 			'A3'	=> 	array('width' => 297 ,'height' => 420, 'grain' => 'LG' ),				
-			'B3'	=> 	array('width' => 350 ,'height' => 500, 'grain' => 'LG' ),		
+			'SRA3'=> 	array('width' => 450 ,'height' => 320, 'grain' => 'SG' ),				
+			//'B3'	=> 	array('width' => 350 ,'height' => 500, 'grain' => 'LG' ),		
 			'BN6'	=> 	array('width' => 600 ,'height' => 330, 'grain' => 'SG' ),
 			'BN7'	=> 	array('width' => 700 ,'height' => 330, 'grain' => 'SG' )
 		);
