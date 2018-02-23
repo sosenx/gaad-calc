@@ -162,6 +162,9 @@ abstract class calc_product{
 		}
 		eval('$total_cost_ = ' . $total_cost_equasion . ';');
 		eval('$total_pcost_ = ' . $total_pcost_equasion . ';');
+
+		$average_markup = count($total_markup_array) > 0 ? array_sum( $total_markup_array ) / count($total_markup_array) : 1;
+
 		$this->total_ = array(
 			'equasion' => $total_cost_equasion_string,
 			//'total_cost_equasion' => $total_cost_equasion,
@@ -172,7 +175,7 @@ abstract class calc_product{
 			'total_cost_equasion' => $total_cost_array,
 			'total_pcost_equasion' => $total_pcost_array,
 			
-			'average_markup' => array_sum( $total_markup_array ) / count($total_markup_array),
+			'average_markup' => $average_markup, 
 			'total_cost_' => $total_cost_,
 			'total_pcost_' => $total_pcost_
 		);

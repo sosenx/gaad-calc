@@ -15,7 +15,7 @@ $pargs = array(
     "pa_wrap" => "soft-1x1",    
     "pa_spot_uv" => "0x0",
 
-/**/
+/*
     "pa_cover_format" => "175x235",
     "pa_cover_type" => "hard",
 
@@ -54,7 +54,7 @@ $pargs = array(
     "group_cover" => "",
     "group_bw" => "",
     "group_color" => ""
-
+*/
       
 );
 
