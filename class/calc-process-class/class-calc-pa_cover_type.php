@@ -96,7 +96,7 @@ class pa_cover_type extends pa_format{
 			);
 			$dust_jacket_calc = new \gcalc\calculate( $pargs, 22986 );		
 			$dust_jacket_calculation_array = $dust_jacket_calc->calc();
-			foreach ($dust_jacket_calculation_array as $key => $value) {
+			foreach ($dust_jacket_calculation_array['d'] as $key => $value) {
 				if ( $value->total['name'] == 'pa_master_paper' ) {
 					$dust_jacket += $value->total['total_price'];			
 					$dust_jacket_procesess[] = $value;
@@ -139,7 +139,7 @@ class pa_cover_type extends pa_format{
 		);
 		$cloth_covering_calc = new \gcalc\calculate( $pargs, 22986 );		
 		$cloth_covering_calculation_array = $cloth_covering_calc->calc();
-		foreach ($cloth_covering_calculation_array as $key => $value) {
+		foreach ($cloth_covering_calculation_array['d'] as $key => $value) {
 			if ( $value->total['name'] == 'pa_master_paper' ) {
 				$cloth_covering += $value->total['total_price'];			
 				$cloth_covering_procesess[] = $value;

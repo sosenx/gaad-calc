@@ -71,7 +71,7 @@ abstract class calc_product{
 	/**
 	*
 	*/
-	private $return_total;
+	private $total_;
 
 	
 
@@ -109,8 +109,11 @@ abstract class calc_product{
 		
 		$this->generate_todo_list();
 		$this->process_todo_list();
-		//$this->return_total();
-		return $this->done;
+		$this->return_total();
+		return array(
+			't' => $this->total_,
+			'd' => $this->done
+		);
 		
 	}
 
@@ -119,8 +122,60 @@ abstract class calc_product{
 
 	private function return_total(){
 		$production_formats = new \gcalc\db\production\formats();
-		$total_cost_equasion = $production_formats->get_total_cost_equasion( $this->product_id );
-		$r=1;
+		$total_cost_equasion = $production_formats->get_total_cost_equasion( $this->get_product_id() );
+		$total_cost_equasion_string = $total_cost_equasion['equasion'];
+
+		$total_cost_equasion = $total_cost_equasion_string;
+		$total_pcost_equasion = $total_cost_equasion_string;
+
+		$total_cost_array = array();
+		$total_pcost_array = array();
+		$total_markup_array = array();
+		$used_formats_array = array();
+
+		foreach ($this->done as $key => $value) {	
+			if ( preg_match( '/'.$value->total['name'].'/', $total_cost_equasion_string )) {
+				$total_cost_equasion = str_replace($value->total['name'], $value->total['total_price'], $total_cost_equasion);						
+				$total_pcost_equasion = str_replace($value->total['name'], $value->total['production_cost'], $total_pcost_equasion);		
+
+				$total_cost_array[ $value->total['name'] ] = $value->total['total_price'];
+				$total_pcost_array[ $value->total['name'] ] = $value->total['production_cost'];
+				$total_markup_array[ $value->total['name'] ] = $value->total['markup'];
+			}	
+
+			if ( preg_match( '/_format/', $value->total['name'] )) {
+				$production_format_pieces = $value->total['extended']['production_format']['pieces'];
+				$common_format_name = $value->total['extended']['production_format']['common_format']['name'];
+				$common_format_width = $value->total['extended']['production_format']['common_format']['width'];
+				$common_format_height = $value->total['extended']['production_format']['common_format']['height'];
+
+				$production_format_format = $value->total['extended']['production_format']['format'];
+				$production_format_width = $value->total['extended']['production_format']['width'];
+				$production_format_height = $value->total['extended']['production_format']['height'];
+
+				$format_str = $production_format_pieces .' x '. $common_format_name .'('.$common_format_width.'x'.$common_format_height.')' 
+				.' @ '. $production_format_format.'('.$production_format_width.'x'.$production_format_height.')';
+
+				$used_formats_array[ $value->total['name'] ] = $format_str;
+			}
+				
+		}
+		eval('$total_cost_ = ' . $total_cost_equasion . ';');
+		eval('$total_pcost_ = ' . $total_pcost_equasion . ';');
+		$this->total_ = array(
+			'equasion' => $total_cost_equasion_string,
+			//'total_cost_equasion' => $total_cost_equasion,
+			//'total_pcost_equasion' => $total_pcost_equasion,
+			'used_formats' => $used_formats_array,
+
+			'total_markup' => $total_markup_array,
+			'total_cost_equasion' => $total_cost_array,
+			'total_pcost_equasion' => $total_pcost_array,
+			
+			'average_markup' => array_sum( $total_markup_array ) / count($total_markup_array),
+			'total_cost_' => $total_cost_,
+			'total_pcost_' => $total_pcost_
+		);
 
 	}
 

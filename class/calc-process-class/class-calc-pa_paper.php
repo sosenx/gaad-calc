@@ -23,24 +23,14 @@ class pa_paper extends \gcalc\cprocess_calculation{
 		return $this;
 	}
 
-	/**
-	* Calculates paper cost and margin
-	*/
-	function get_pages(){
-		$group_name = $this->get_group()[0];
-		foreach ($this->cargs as $key => $value) {
-			if ( preg_match( '/_'. $group_name .'_pages/', $key ) ) {
-				return $value;
-			}
-		}
-	return 1;
-	}
+	
 		
 	/**
 	* Calculates paper cost and margin
 	*/
 	function calc(){		
 		$c = $this->paper['price_per_kg'];
+		$group_name = $this->get_group()[0];
 		$weight = $this->paper['weight'];
 		$pf = $this->parent->get_best_production_format( $this->group );		
 		$sheet_cost = $pf['format_sq'] / 1000000 * $c * $weight;
@@ -50,7 +40,7 @@ class pa_paper extends \gcalc\cprocess_calculation{
 		$markup = $markup_db->get_markup();
 
 		$markup_ = $markup['markup'];		
-		$production_cost = $sheet_cost * $sheets_quantity * $pages;
+		$production_cost = $sheet_cost * $sheets_quantity * $pages;//* (int)$this->cargs['pa_quantity'];
 		$total_price = $production_cost * $markup_;
 
 		$production_format_short = $pf['format'] . ' ' . $pf['grain'];

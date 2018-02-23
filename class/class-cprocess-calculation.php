@@ -103,6 +103,21 @@ abstract class cprocess_calculation{
 	}
 
 
+/**
+	* Calculates paper cost and margin
+	*/
+	function get_pages(){
+		$group_name = $this->get_group()[0];		
+		foreach ($this->cargs as $key => $value) {
+			//var_dump(preg_match( '/'.$group_name.'_pages/', $key ), $key, $group_name);
+			if ( preg_match( '/'.$group_name.'_pages/', $key ) ) {
+				return $value;
+				var_dump($value);
+			}
+		}
+	return 1;
+	}
+
 	/**
 	* 
 	*/

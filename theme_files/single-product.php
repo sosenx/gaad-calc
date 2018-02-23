@@ -15,8 +15,8 @@ $pargs = array(
     "pa_wrap" => "soft-1x1",    
     "pa_spot_uv" => "0x0",
 
-
-    "pa_cover_format" => "100x160",
+/**/
+    "pa_cover_format" => "175x235",
     "pa_cover_type" => "hard",
 
     "pa_cover_cloth_covering_paper" => "offset-150g",
@@ -41,18 +41,21 @@ $pargs = array(
 
 
     "pa_bw_pages" => 100,
-    "pa_bw_format" => "100x160",
+    "pa_bw_format" => "175x235",
     "pa_bw_paper" => "ekobookw-70g-2.0",
-    "pa_bw_print" => "1x1",    
+    "pa_bw_print" => "1x1", 
 
     "pa_color_pages" => 120,
+    "pa_color_format" => "175x235",
     "pa_color_paper" => "kreda-135g",
     "pa_color_print" => "4x4",
     "pa_color_stack" => "stack",
  
     "group_cover" => "",
     "group_bw" => "",
-    "group_color" => ""/**/  
+    "group_color" => ""
+
+      
 );
 
 
