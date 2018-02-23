@@ -37,7 +37,7 @@ class rest{
 	public static function rest_calculate_callback( $data = NULL ){
 		$h = \gcalc\rest::getHeaders( "/^pa_.*/", true );
 		$product_id = \gcalc\rest::getHeaders( "/product_id/" );	
-		$product_id = count( $product_id ) == 0 ? -1 : (int) $product_id[ "product_id" ];
+		$product_id = count( $product_id ) == 0 ? NULL : (int) $product_id[ "product_id" ];
 		$calc = new calculate( $h['selected'], $product_id );
 		
 		$r = array( 

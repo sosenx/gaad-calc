@@ -17,7 +17,12 @@ class calculate extends calc_product {
 
 	public function __construct( array $product_attributes, int $product_id = NULL ) {
 		if ( !empty( $product_attributes ) ) {
-			parent::__construct( $product_attributes, $product_id );
+			$calc_product = parent::__construct( $product_attributes, $product_id );
+
+			if ( $calc_product instanceof gcalc\errors ) {
+				return $calc_product;
+			}
+
 			$this->product_id = $product_id;
 			$this->create_calculation_array_matrix();			
 		}

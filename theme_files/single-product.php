@@ -8,6 +8,8 @@ global $post;
 $product_id = $post->ID;
 $pargs = array(
 	
+    "product_slug" => "wizytowki",
+
     "pa_format" => "90x50",
     "pa_paper" => "kreda-350g",
     "pa_print" => "4x4",         
@@ -59,7 +61,7 @@ $pargs = array(
 );
 
 
-$calc = new gcalc\calculate( $pargs, $product_id );
+$calc = new gcalc\calculate( $pargs );
 		
 $calculation_array = $calc->calc();
 

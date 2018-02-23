@@ -1,6 +1,7 @@
 <?php 
 namespace gcalc;
 
+error_reporting( E_ALL - E_NOTICE);
 
 /**
 *
@@ -73,6 +74,11 @@ abstract class calc_product{
 	*/
 	private $total_;
 
+	/**
+	*
+	*/
+	private $errors;
+
 	
 
 
@@ -81,27 +87,67 @@ abstract class calc_product{
 	*/
 	function __construct( array $product_attributes, int $product_id = NULL ) {
 		
-		if ( !empty( $product_attributes ) ) {		
+		if ( !empty( $product_attributes ) ) {	
+
+			$this->errors = new errors();
 			$this->bvars = $product_attributes;
-			$this->product_id = $product_id;
+			$this->set_product_id( $product_id );
+			if ( $this->errors->fcheck() ) {
+				return $this->errors->get();
+			}
 			$this->CID = uniqid();
 			$this->todo = new todo_list( array() );
 			$this->markup = array();
 			$this->tax = new product_tax( $this->bvars, $this->product_id );
 			$this->ship = new product_shipment( $this->bvars, $this->product_id );
-			$this->calc_order = new \gcalc\db\calc_order( $product_id );	
+			$this->calc_order = new \gcalc\db\calc_order( $this->get_product_id() );	
 		}
+
+		
 		return $this;
 	}
 
+	/**
+	* calc product
+	*
+	*/
+	function set_product_id( int $product_id = NULL){
+		if ( is_null( $product_id ) && isset( $this->bvars['product_slug'] )) {			
+			$args = array(
+				'post_type' => 'product',
+				'name' => $this->bvars['product_slug'],
+				'post_status' => 'publish',
+  				'numberposts' => 1
+			);
+			$product = \get_posts( $args );
+			if ( count( $product ) == 1 && array_key_exists('ID', $product[0]) ) {
+				$product_id = $product[0]->ID;
+			} else {
+				$this->errors->add( new error( 4001 ) );
+				return NULL;
+			}
+			
 
+		}
+		else {
+			
+			$this->errors->add( new error( 4001 ) );
+			return NULL;
+		}
 
+		$this->product_id = $product_id;
+		return $product_id;
+	}
 
 	/**
 	* calc product
 	*
 	*/
 	function calc(){
+
+		if ( $this->errors->fcheck() ) {
+			return $this->errors->get_data();
+		}
 
 		$this->create_todos_groups();
 		$this->validate_todos_groups();		
