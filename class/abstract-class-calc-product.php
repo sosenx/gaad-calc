@@ -191,6 +191,7 @@ abstract class calc_product{
 		$total_pcost_array = array();
 		$total_markup_array = array();
 		$used_formats_array = array();
+		$used_media_array = array();
 
 		foreach ($this->done as $key => $value) {	
 			if ( preg_match( '/'.$value->total['name'].'/', $total_cost_equasion_string )) {
@@ -202,6 +203,7 @@ abstract class calc_product{
 				$total_markup_array[ $value->total['name'] ] = $value->total['markup'];
 			}	
 
+			//used formats total
 			if ( preg_match( '/_format/', $value->total['name'] )) {
 				$production_format_pieces = $value->total['extended']['production_format']['pieces'];
 				$common_format_name = $value->total['extended']['production_format']['common_format']['name'];
@@ -212,12 +214,27 @@ abstract class calc_product{
 				$production_format_width = $value->total['extended']['production_format']['width'];
 				$production_format_height = $value->total['extended']['production_format']['height'];
 
-				$format_str = $production_format_pieces .' x '. $common_format_name .'('.$common_format_width.'x'.$common_format_height.')' 
+				$format_str = $production_format_pieces .' '. __('on', 'gcalc') .' '. $common_format_name .'('.$common_format_width.'x'.$common_format_height.')' 
 				.' @ '. $production_format_format.'('.$production_format_width.'x'.$production_format_height.')';
 
 				$used_formats_array[ $value->total['name'] ] = $format_str;
 			}
-				
+			
+			//used papers total
+			if ( preg_match( '/_paper/', $value->total['name'] )) {
+				$sheet_cost = $value->total['extended']['sheet_cost'];
+				$sheets_quantity = $value->total['extended']['sheets_quantity'];
+				$paper_price_per_kg = $value->total['extended']['paper']['price_per_kg'];
+				$paper_label = $value->total['extended']['paper']['label'];				
+				$paper_thickness = $value->total['extended']['paper']['thickness'];
+
+				$media_str = $sheets_quantity .' x ' . $paper_label . ' (' . $paper_thickness . 'mm)'
+				.' @ ' . $sheet_cost . ' PLN / '. __('sheet','gcalc') .' (' . $paper_price_per_kg . '/kg) ';
+
+				$used_media_array[ $value->total['name'] ] = $media_str;
+			}
+
+
 		}
 		eval('$total_cost_ = ' . $total_cost_equasion . ';');
 		eval('$total_pcost_ = ' . $total_pcost_equasion . ';');
@@ -229,6 +246,7 @@ abstract class calc_product{
 			//'total_cost_equasion' => $total_cost_equasion,
 			//'total_pcost_equasion' => $total_pcost_equasion,
 			'used_formats' => $used_formats_array,
+			'used_media' => $used_media_array,
 
 			'total_markup' => $total_markup_array,
 			'total_cost_equasion' => $total_cost_array,

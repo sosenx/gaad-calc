@@ -55,7 +55,7 @@ class pa_paper extends \gcalc\cprocess_calculation{
 			),
 			array(
 				'sheet_cost' => $sheet_cost,
-				'sheets_quantity' => $sheets_quantity,
+				'sheets_quantity' => $sheets_quantity * $pages,
 				'paper' => $this->paper,
 				'production_format_short' => $production_format_short,
 				'common_format_short' => $common_format_short,
