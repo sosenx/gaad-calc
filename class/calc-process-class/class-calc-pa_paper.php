@@ -9,8 +9,8 @@ class pa_paper extends \gcalc\cprocess_calculation{
 	*/
 	private $paper;
 
-	function __construct( array $product_attributes, int $product_id, \gcalc\calculate $parent, array $group ){	
-		parent::__construct( $product_attributes, $product_id, $parent, $group );
+	function __construct( array $product_attributes, int $product_id, \gcalc\calculate $parent, array $group, \gcalc\cprocess $pa_parent ){	
+		parent::__construct( $product_attributes, $product_id, $parent, $group, $pa_parent );
 		$this->name = "pa_paper";		
 		$this->group = $group;
 		$this->product_id = $product_id;

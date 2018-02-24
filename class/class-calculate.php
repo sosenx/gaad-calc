@@ -68,6 +68,11 @@ class calculate extends calc_product {
 		array_push( $this->done, $new_todo->do() );
 	}
 
+	/**
+	*Parses total equasion and returns calculation total
+	*
+	*@param string $equasion equasion to calculate total price from todo elements
+	*/
 	public function parse_total_cost_equasion( string $equasion ){
 		$plist = $this->get_todo()->get_plist();
 		$parsed_equasion = $equasion;

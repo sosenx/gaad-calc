@@ -8,17 +8,21 @@ global $post;
 $product_id = $post->ID;
 $pargs = array(
 	
-    "product_slug" => "wizytowki",
-
+    "product_slug" => "druk-ksiazek",
     "pa_format" => "90x50",
-    "pa_paper" => "kreda-350g",
-    "pa_print" => "4x4",         
     "pa_quantity" => 99,
-    "pa_wrap" => "soft-1x1",    
+    "pa_paper" => "kreda-350g",
+    "pa_print" => "4x4",
+ /*                
+    "pa_wrap" => "soft-1x1",     
     "pa_spot_uv" => "0x0",
+*/
 
-/*
     "pa_cover_format" => "175x235",
+    "pa_cover_paper" => "kreda-300g",
+    "pa_cover_print" => "4x0",
+/*
+    
     "pa_cover_type" => "hard",
 
     "pa_cover_cloth_covering_paper" => "offset-150g",
@@ -31,8 +35,7 @@ $pargs = array(
     "pa_cover_dust_jacket_wrap" => "gloss-1x0",
     "pa_cover_dust_jacket_spot_uv" => "1x0",
 
-    "pa_cover_paper" => "kreda-300g",
-    "pa_cover_print" => "4x0",
+    
     "pa_cover_wrap" => "gloss-1x0",    
     "pa_cover_spot_uv" => "1x1",
     "pa_cover_flaps" => true,
@@ -41,7 +44,7 @@ $pargs = array(
 
 
 
-
+*/
     "pa_bw_pages" => 100,
     "pa_bw_format" => "175x235",
     "pa_bw_paper" => "ekobookw-70g-2.0",
@@ -52,11 +55,12 @@ $pargs = array(
     "pa_color_paper" => "kreda-135g",
     "pa_color_print" => "4x4",
     "pa_color_stack" => "stack",
+/**/
  
     "group_cover" => "",
     "group_bw" => "",
     "group_color" => ""
-*/
+
       
 );
 

@@ -52,8 +52,14 @@ abstract class cprocess_calculation{
 	*/
 	private $group;
 
-	function __construct( array $product_attributes, int $product_id, \gcalc\calculate $parent, array $group ){	
+	/**
+	* Process group array
+	*/
+	private $pa_parent;
+
+	function __construct( array $product_attributes, int $product_id, \gcalc\calculate $parent, array $group, \gcalc\cprocess $pa_parent ){	
 		$this->parent = $parent;
+		$this->pa_parent = $pa_parent;
 		$this->group = $group;
 		$this->product_id = $product_id;
 		$this->cargs = $product_attributes;
@@ -158,6 +164,13 @@ abstract class cprocess_calculation{
 	}
 
 	/**
+	* Getter parent
+	*/
+	public function get_pa_parent( ){		
+		return $this->pa_parent;
+	}
+
+	/**
 	* Is double side
 	*/
 	function get_print_sides( ){			
@@ -200,6 +213,13 @@ abstract class cprocess_calculation{
 			$process_slug = str_replace( $group[0].'_', '', $process_slug );
 		} 
 
+		$process__ = $this->get_carg( $process_slug );
+		if ( is_null( $process__ ) ) {
+			$this->parent->get_errors()->add( new \gcalc\error( 4003 ) );
+			//$this->set_errors( true );
+			return '0x';
+		}
+
 		$process_ = $this->cargs[ $process_slug ];
 		$color = preg_match("/4x4|4x0/", $process_);
 		$bw = preg_match("/1x1|1x0/", $process_);
@@ -207,7 +227,7 @@ abstract class cprocess_calculation{
 		if ($noprint) {
 			return '0x';
 		}
-		return $color ? '4x' : ( $bw ? '1x' : '1x');		
+		return $color ? '4x' : ( $bw ? '1x' : '0x');		
 	}
 
 	/**

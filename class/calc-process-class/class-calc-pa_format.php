@@ -20,8 +20,8 @@ class pa_format extends \gcalc\cprocess_calculation{
 	private $best_production_format;
 
 
-	function __construct( array $product_attributes, int $product_id, \gcalc\calculate $parent, array $group ){	
-		parent::__construct( $product_attributes, $product_id, $parent, $group );
+	function __construct( array $product_attributes, int $product_id, \gcalc\calculate $parent, array $group, \gcalc\cprocess $pa_parent ){	
+		parent::__construct( $product_attributes, $product_id, $parent, $group, $pa_parent );
 		$this->group = $group;
 		$this->name = "pa_format";		
 		$this->cargs = $product_attributes;
@@ -100,8 +100,7 @@ class pa_format extends \gcalc\cprocess_calculation{
 			$name = $this->get_name();
 			$this->best_production_format = $production_formats->get_production_format( $std_format, $print_color_mode, $name );
 			$this->parent->set_best_production_format( $this->best_production_format, $this->group );
-		}
-			
+		}		
 	}
 
 	/**

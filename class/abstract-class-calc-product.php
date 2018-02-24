@@ -13,6 +13,12 @@ abstract class calc_product{
 	* Tax info object
 	*/
 	private $tax;
+	
+	/**
+	* Product slug name
+	*/
+	private $slug;
+
 	/**
 	* Ship info object
 	*/
@@ -122,6 +128,7 @@ abstract class calc_product{
 			$product = \get_posts( $args );
 			if ( count( $product ) == 1 && array_key_exists('ID', $product[0]) ) {
 				$product_id = $product[0]->ID;
+				$this->slug = $this->bvars['product_slug'];
 			} else {
 				$this->errors->add( new error( 4001 ) );
 				return NULL;
@@ -130,7 +137,7 @@ abstract class calc_product{
 
 		}
 		else {
-			
+
 			$this->errors->add( new error( 4001 ) );
 			return NULL;
 		}
@@ -145,20 +152,26 @@ abstract class calc_product{
 	*/
 	function calc(){
 
-		if ( $this->errors->fcheck() ) {
-			return $this->errors->get_data();
-		}
+		if ( $this->errors->fcheck() ) { return $this->errors->get_data(); }		
 
 		$this->create_todos_groups();
-		$this->validate_todos_groups();		
-		$this->generate_formats_list();
+		$this->validate_todos_groups();
+		if ( $this->errors->fcheck() ) { return $this->errors->get_data(); }				
+
+		if ( 
+			! $this->generate_formats_list()	||
+			! $this->generate_todo_list() 		||
+			! $this->process_todo_list()
+		) {
+			return $this->errors->get_data();
+		}
 		
-		$this->generate_todo_list();
-		$this->process_todo_list();
+		
 		$this->return_total();
 		return array(
 			't' => $this->total_,
-			'd' => $this->done
+			'd' => $this->done,
+			'e' => $this->errors->get_data()
 		);
 		
 	}
@@ -255,7 +268,103 @@ abstract class calc_product{
 
 		}
 
-		$this->todo_groups = $todo_groups;
+		$this->todo_groups = $todo_groups;		
+		$this->groups_check();
+		$this->conflict_check();
+	}
+
+
+	/**
+	*
+	*/
+	function set_bvar( string $arg_name, string $group_name, $value, $error ){
+		if ( !isset( $value)) {
+			return false;
+		}
+		$arg_name = str_replace( 'master_', '', 
+			( 'pa_' . $group_name . '_' . str_replace('pa_', '', $arg_name ) )
+		);
+		$todo_groups = $this->get_todo_groups();
+
+		if ( !array_key_exists( $arg_name, $this->bvars ) ) {
+			$this->bvars[ $arg_name ] = $value;
+			$todo_groups[ $group_name ][ $arg_name ] = array( 'class_name' => $arg_name );
+			$this->errors->add( $error[0] );
+		} else {
+
+
+		}
+		$this->set_todo_groups( $todo_groups );		
+		return null;
+	}
+
+	/**
+	* 
+	*/
+	private function conflict_check(){
+
+		$pa_quantity = $this->get_bvar('pa_quantity');
+		$todo_groups = $this->get_todo_groups();
+
+
+		if ( is_null( $pa_quantity ) ) {
+			$this->set_bvar('pa_quantity', 'master', 1, array( new error( 10001 ) ) );
+			$r=1;
+		}		
+		
+		if ( array_key_exists( 'cover', $todo_groups ) ) {
+			$pa_cover_type = $this->get_bvar('pa_cover_type');
+			if ( is_null($pa_cover_type)) {
+				$this->set_bvar('pa_type', 'cover', 'perfect_binding', array( new error( 10006 ) ) );
+			}
+		}
+
+		if ( array_key_exists( 'bw', $todo_groups ) ) {
+			$pa_bw_pages = $this->get_bvar('pa_bw_pages');
+			if ( is_null($pa_bw_pages)) {
+				$this->set_bvar('pa_pages', 'bw', 1, array( new error( 10002 ) ) );
+			}
+		}
+
+		if ( array_key_exists( 'color', $todo_groups ) ) {
+			$pa_color_pages = $this->get_bvar('pa_color_pages');
+			if ( is_null($pa_color_pages)) {
+				$this->set_bvar('pa_pages', 'color', 1, array( new error( 10003 ) ) );
+			}			
+
+			$pa_color_stack = $this->get_bvar('pa_color_stack');
+			if ( is_null($pa_color_stack)) {
+				$this->set_bvar('pa_stack', 'color', 'shuffled', array( new error( 10004 ) ) );
+			}			
+
+
+			$a=1;
+		}
+$r=1;
+
+		
+
+	}
+
+	/**
+	* Checks if every declared group exists in headers  
+	*
+	*/
+	private function groups_check(){
+		
+		$production_formats = new \gcalc\db\production\formats();
+		$needed_groups = $production_formats->get_product_groups( $this->slug );
+		$needed_groups_ = array_flip( $needed_groups );
+		$todo_groups = $this->get_todo_groups();
+		foreach ($todo_groups as $key => $value) {		
+			if ( array_key_exists( $key, $needed_groups_)) {
+				$index = $needed_groups_[ $key ];
+				unset($needed_groups[ $index ]);
+			}			
+		}
+		if ( count( $needed_groups) > 0) {
+			$this->get_errors()->add( new \gcalc\error( 4005, implode(', ', $needed_groups) ) );		
+		}
 	}
 
 
@@ -343,6 +452,8 @@ abstract class calc_product{
 			} 
 		}
 
+
+
 		$this->todo_groups = $groups;		
 	}
 
@@ -371,8 +482,9 @@ abstract class calc_product{
 					} 
 			}
 			$todo[ $group_process_name ] = $new_todo;
-			//$this->best_production_format[ $group_name ] = $new_todo;
-			$r=1;			
+			if ( !$new_todo->ok() ) {
+				return false;
+			}
 			array_push( $this->done, $new_todo->do() );
 			array_push( $used, $group_process_name );
 			
@@ -465,6 +577,14 @@ abstract class calc_product{
 	*/
 	function get_todo_groups(){
 		return $this->todo_groups;
+	}
+
+
+	/**
+	* setter todo_groups
+	*/
+	function set_todo_groups( array $todo_groups ){
+		$this->todo_groups = $todo_groups;
 	}
 
 
@@ -563,12 +683,26 @@ $a =1;
 		return $this->todo;
 	}
 
+	/**
+	* Setter todo
+	*/
+	public function set_todo( array $todo ){		
+		$this->todo = $todo;
+	}
+
 
 	/**
 	* Getter parent
 	*/
 	public function get_parent( ){		
 		return $this->parent;
+	}
+
+	/**
+	* Getter errors
+	*/
+	public function get_errors( ){		
+		return $this->errors;
 	}
 
 
@@ -602,6 +736,23 @@ $a =1;
 		return $calculation_array_matrix;
 	}
 
+
+
+	/**
+	*
+	*/
+	function get_bvar( string $arg_name ){
+		if ( !array_key_exists( $arg_name, $this->bvars ) ) {
+			$arg_name = str_replace( '_master', '', $arg_name);
+			if ( array_key_exists( $arg_name, $this->bvars ) ) {
+				return $this->bvars[ $arg_name ];
+			}
+		} else return $this->bvars[ $arg_name ];
+		return null;
+	}
+
+
+	
 
 }
 

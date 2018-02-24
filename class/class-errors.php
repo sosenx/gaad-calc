@@ -28,10 +28,16 @@ class errors  {
 	*/
 	private $error_reporting = 0;
 
+
+	/**
+	* errors storage
+	*/
+	private $allowed_error_level = 3;
+
 	/**
 	* types of errors to report in seniority order from unimportant to fatal
 	*/
-	private $error_reporting_array = array( 'info', 'notice', 'warning', 'attr_change', 'fatal' );
+	private $error_reporting_array = array( 'info', 'notice', 'attr_change', 'warning',  'fatal' );
 
 	/**
 	* current number of errors, warnings etc
@@ -77,7 +83,23 @@ class errors  {
 	/**
 	* returns errors var as fast check if there are any errors at all
 	*/
-	public function fcheck(){			
+	public function fcheck(){	
+		$error_reporting_array = $this->get_error_reporting_array();
+		$error_reporting = $this->get_error_reporting();		
+		$allowed_error_level = $this->get_allowed_error_level();
+		$status_count = $this->get_status_count();
+		$errors = 0;		
+
+		$max = count( $error_reporting_array );
+		for ($i=$error_reporting; $i < $max ; $i++) { 
+
+			if ( $i > $allowed_error_level) {
+				$errors += $status_count[ $error_reporting_array[ $i ] ];
+			} 
+			
+		}
+
+		$this->errors = $errors == 0 ? false : $errors;
 		return $this->errors;
 	}
 
@@ -125,6 +147,13 @@ class errors  {
 	*/
 	public function get_error_reporting(){			
 		return $this->error_reporting;
+	}
+
+	/**
+	* returns error_reporting level
+	*/
+	public function get_allowed_error_level(){			
+		return $this->allowed_error_level;
 	}
 
 

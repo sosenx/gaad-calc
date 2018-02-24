@@ -5,8 +5,8 @@ namespace gcalc\calc;
 class pa_cover_type extends pa_format{
 
 
-	function __construct( array $product_attributes, int $product_id, \gcalc\calculate $parent, array $group ){	
-		parent::__construct( $product_attributes, $product_id, $parent, $group );
+	function __construct( array $product_attributes, int $product_id, \gcalc\calculate $parent, array $group, \gcalc\cprocess $pa_parent ){	
+		parent::__construct( $product_attributes, $product_id, $parent, $group, $pa_parent );
 		$this->group = $group;
 		$this->product_id = $product_id;
 		$this->name = "pa_cover_type";		

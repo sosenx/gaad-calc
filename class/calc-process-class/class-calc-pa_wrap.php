@@ -4,8 +4,8 @@ namespace gcalc\calc;
 
 class pa_wrap extends \gcalc\cprocess_calculation{
 
-	function __construct( array $product_attributes, int $product_id, \gcalc\calculate $parent, array $group ){	
-		parent::__construct( $product_attributes, $product_id, $parent, $group );
+	function __construct( array $product_attributes, int $product_id, \gcalc\calculate $parent, array $group, \gcalc\cprocess $pa_parent ){	
+		parent::__construct( $product_attributes, $product_id, $parent, $group, $pa_parent );
 		$this->cargs = $product_attributes;
 		$this->name = "pa_wrap";	
 		$this->group = $group;

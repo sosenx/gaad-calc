@@ -30,19 +30,28 @@ class pa_cover_format extends pa_format{
 	*/
 	private $best_production_format;
 
+	/**
+	* Process errors
+	*/
+	private $errors = false;
 
-	function __construct( array $product_attributes, int $product_id, \gcalc\calculate $parent, array $group ){	
-		parent::__construct( $product_attributes, $product_id, $parent, $group );
-		$this->group = $group;
-		$this->name = "pa_cover_format";		
+	function __construct( array $product_attributes, int $product_id, \gcalc\calculate $parent, array $group, \gcalc\cprocess $pa_parent ){	
 		$this->cargs = $product_attributes;
+		$this->parent = $parent;
+		$this->group = $group;
+		
+		parent::__construct( $product_attributes, $product_id, $parent, $group, $pa_parent );		
+		$this->name = "pa_cover_format";				
 		$this->dependencies = NULL;
 		$this->parse_dimensions();
 		$this->calculate_best_production_format();
-
 		return $this;
+			
 	}
 
+
+
+	
 
 	/**
 	* Calculates format costs (no costs in this case)
@@ -118,10 +127,11 @@ class pa_cover_format extends pa_format{
 		$pa_color_paper = $this->get_carg( 'pa_color_paper' );
 		$pa_bw_paper = $this->get_carg( 'pa_bw_paper' );
 		$pa_bw_pages = $this->get_carg( 'pa_bw_pages' );
-		$pa_color_pages = $this->get_carg( 'pa_color_pages' );
+		$pa_color_pages = $this->get_carg( 'pa_color_pages' );		
 
-		$pa_color_paper = $production_paper_db->get_paper( $pa_color_paper );
-		$pa_bw_paper = $production_paper_db->get_paper( $pa_bw_paper );
+
+		$pa_color_paper = is_null( $pa_color_paper ) ? NULL : $production_paper_db->get_paper( $pa_color_paper );
+		$pa_bw_paper = is_null( $pa_bw_paper ) ? NULL : $production_paper_db->get_paper( $pa_bw_paper );
 
 		$bw_block = !is_null( $pa_bw_paper ) ? $pa_bw_pages / 2 * $pa_bw_paper['thickness'] : 0;
 		$color_block = !is_null( $pa_color_paper ) ? $pa_color_pages / 2 * $pa_color_paper['thickness'] : 0;

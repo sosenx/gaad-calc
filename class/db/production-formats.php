@@ -50,7 +50,10 @@ class formats{
 	*/
 	public $pallet_format_factor;
 
-
+	/**
+	* Groups neede for product calculations
+	*/
+	public $product_groups;
 
 	function __construct( ){	
 		$this->aquire();
@@ -123,6 +126,17 @@ class formats{
 	}
 
 
+	/**
+	* Return common_format
+	*/
+	function get_product_groups( string $product_slug ){	
+		if ( array_key_exists( $product_slug, $this->product_groups) ) {
+			return $this->product_groups[ $product_slug ];
+		}		
+		return array();		
+	}
+
+
 
 	/**
 	* Return pallet_format
@@ -186,6 +200,10 @@ class formats{
 	* This function needs to aquire formats data from db, fo dev version it just sets an array
 	*/
 	public function aquire( ){
+
+		$this->product_groups = array(
+			'druk-ksiazek' => array( 'cover', 'color', 'bw' )
+		);
 
 		$this->binding_types = array(
 			'perfect_binding' => array(
