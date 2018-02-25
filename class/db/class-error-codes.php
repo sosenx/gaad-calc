@@ -67,6 +67,51 @@ class codes{
 			'label' => 'Cover type set to perfect_binding',
 			'err' => 'No cover type stack, set to perfect_binding',
 			'solution' => 'Send pa_cover_type header with request'
+		),
+		10007 => array( 'type' => 'attr_change',
+			'label' => 'Dust jacket print mode set to 4x0',
+			'err' => 'No Dust jacket print mode, set to 4x0',
+			'solution' => 'Send pa_cover_dust_jacket_print header with request'
+		),
+		10008 => array( 'type' => 'attr_change',
+			'label' => 'Dust jacket wrap set to 0x0',
+			'err' => 'No Dust jacket wrap, setting to 0x0',
+			'solution' => 'Send pa_cover_dust_jacket_wrap header with request'
+		),
+		10009 => array( 'type' => 'attr_change',
+			'label' => 'Cloth covering paper set to default',
+			'err' => 'No Cloth covering paper , setting to ',
+			'solution' => 'Send pa_cover_cloth_covering_paper header with request'
+		),
+		10010 => array( 'type' => 'attr_change',
+			'label' => 'Cloth covering print set to default',
+			'err' => 'No Cloth covering print , setting to ',
+			'solution' => 'Send pa_cover_cloth_covering_print header with request'
+		),
+		10011 => array( 'type' => 'attr_change',
+			'label' => 'Cloth covering wrap set to default',
+			'err' => 'No Cloth covering wrap , setting to ',
+			'solution' => 'Send pa_cover_cloth_covering_wrap header with request'
+		),
+		10012 => array( 'type' => 'attr_change',
+			'label' => 'Master wrap changed by spot_uv',
+			'err' => 'Spot uv needs wrap, setting wrap to ',
+			'solution' => 'Send pa_wrap header with request'
+		),
+		10013 => array( 'type' => 'attr_change',
+			'label' => 'Wrap changed by spot_uv',
+			'err' => 'Cannot use gloss wrap and gloss spot uv, set wrap to mat',
+			'solution' => 'Use mat wrap when using spot uv'
+		),
+		10014 => array( 'type' => 'attr_change',
+			'label' => 'Cover wrap changed by cover_type',
+			'err' => 'Cover wrap changed to 0x0 because cloth covering wrap is set and cover_type is hard',
+			'solution' => 'Do not send pa_wrap with cloth_covering_wrap and hard cover type'
+		),
+		10015 => array( 'type' => 'attr_change',
+			'label' => 'Cover spot uv changed by cover_type',
+			'err' => 'Cover spot uv changed to 0x0 because cloth covering spot uv is set and cover_type is hard',
+			'solution' => 'Do not send pa_spot_uv with cloth_covering_spot_uv and hard cover type'
 		)
 	);
 

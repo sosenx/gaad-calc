@@ -85,8 +85,41 @@ abstract class calc_product{
 	*/
 	private $errors;
 
-	
+	/**
+	* Merges errors array with another object errors array
+	*/
+	public function merge_errors( array $errors, string $label ){
+		$this_errors = $this->get_errors();
+		foreach ($errors['errors'] as $key => $value) {
+			$this_errors->add( new \gcalc\error( $value->code, ' ('.$label.')') );
+		}
 
+	}
+
+	/**
+	* Merges errors array with another object errors array
+	*/
+	public function merge_bvars( \gcalc\calc_product $donor, string $recipient_group_name, string $recipient_sub_group_name  ){
+		$donor_bvars = $donor->get_bvars();	
+		$recipient_bvars = $this->get_bvars();	
+		$name_pattern = 'pa_' . $recipient_group_name .'_' . $recipient_sub_group_name;
+		foreach ( $recipient_bvars as $key => $value ) {
+			if ( preg_match('/'.$name_pattern.'/', $key ) ) {
+				foreach ($donor_bvars as $key2 => $value2) {
+					$bvar_name = preg_replace('/^pa_/', '', $key2);					
+					if ( preg_match('/'.$bvar_name.'$/', $key) ) {
+						$this->bvars[ $key ] = $value2;
+					}
+				}					
+			}
+		}		
+	}
+
+
+	public function status_ok(){
+		return $this->get_errors()->fcheck() == 0;
+
+	}
 
 	/**
 	* Class constructor
@@ -97,7 +130,7 @@ abstract class calc_product{
 
 			$this->errors = new errors();
 			$this->bvars = $product_attributes;
-			$this->set_product_id( $product_id );
+			$this->set_product_id( $product_id, $product_attributes );
 			if ( $this->errors->fcheck() ) {
 				return $this->errors->get();
 			}
@@ -114,21 +147,29 @@ abstract class calc_product{
 	}
 
 	/**
+	*
+	*/
+	function get_product_slug( int $product_id ){		
+		$product = new \WC_Product( $product_id );		
+		return $product->get_slug();
+	}
+
+	/**
 	* calc product
 	*
 	*/
-	function set_product_id( int $product_id = NULL){
-		if ( is_null( $product_id ) && isset( $this->bvars['product_slug'] )) {			
+	function set_product_id( int $product_id = NULL, array $product_attributes = NULL){
+		if ( !isset( $product_id ) && isset( $product_attributes['product_slug'] )) {			
 			$args = array(
 				'post_type' => 'product',
-				'name' => $this->bvars['product_slug'],
+				'name' => $product_attributes['product_slug'],
 				'post_status' => 'publish',
   				'numberposts' => 1
 			);
 			$product = \get_posts( $args );
 			if ( count( $product ) == 1 && array_key_exists('ID', $product[0]) ) {
 				$product_id = $product[0]->ID;
-				$this->slug = $this->bvars['product_slug'];
+				$this->slug = $product_attributes['product_slug'];
 			} else {
 				$this->errors->add( new error( 4001 ) );
 				return NULL;
@@ -136,12 +177,14 @@ abstract class calc_product{
 			
 
 		}
-		else {
-
-			$this->errors->add( new error( 4001 ) );
-			return NULL;
+		else {	
+			if( isset( $product_id ) ){
+				$this->slug = $this->get_product_slug( $product_id );
+			} else {
+				$this->errors->add( new error( 4001 ) );
+				return NULL;	
+			}			
 		}
-
 		$this->product_id = $product_id;
 		return $product_id;
 	}
@@ -166,14 +209,19 @@ abstract class calc_product{
 			return $this->errors->get_data();
 		}
 		
-		
-		$this->return_total();
-		return array(
-			't' => $this->total_,
-			'd' => $this->done,
-			'e' => $this->errors->get_data()
-		);
-		
+		//last status check
+		if ( !$this->status_ok() ) {
+			return $this->errors->get_data();
+		} else {
+			$this->return_total();
+			return array(
+				't' => $this->total_,
+				'd' => $this->done,
+				'e' => $this->errors->get_data(),
+				'a' => $this->get_bvars()
+			);
+
+		}
 	}
 
 
@@ -309,8 +357,8 @@ abstract class calc_product{
 			$todo_groups[ $group_name ][ $arg_name ] = array( 'class_name' => $arg_name );
 			$this->errors->add( $error[0] );
 		} else {
-
-
+			$this->bvars[ $arg_name ] = $value;	
+			$this->errors->add( $error[0] );
 		}
 		$this->set_todo_groups( $todo_groups );		
 		return null;

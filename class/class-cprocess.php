@@ -85,6 +85,20 @@ abstract class cprocess{
 		$this->errors = $value;
 	}
 
+	/**
+	* Setter for errors
+	*/
+	public function set_carg( string $name, $value ){
+		$this->cargs[ $name ] = $value;
+	}
+	
+	/**
+	* Setter for errors
+	*/
+	public function set_cargs( array $cargs ){
+		$this->cargs = $cargs;
+	}
+
 
 	/**
 	* Getter for errors

@@ -12,7 +12,7 @@ class pa_format extends \gcalc\cprocess{
 		if ( $this->validate_cargs() ) {
 			parent::__construct( $this->cargs, $product_id, $parent, $group );
 			$this->name = "pa_format";
-			$this->calculator = new \gcalc\calc\pa_format( $product_attributes, $product_id, $parent, $group, $this );			
+			$this->calculator = new \gcalc\calc\pa_format( $this->cargs, $product_id, $parent, $group, $this );			
 			$this->dependencies = NULL;					
 			return $this;
 		} else {
@@ -52,12 +52,6 @@ class pa_format extends \gcalc\cprocess{
 
 		return $valid;
 	}
-
-
-
-
-
-
 
 	/**
 	*

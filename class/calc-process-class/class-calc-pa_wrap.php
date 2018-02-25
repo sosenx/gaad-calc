@@ -30,6 +30,7 @@ class pa_wrap extends \gcalc\cprocess_calculation{
 		if ( !array_key_exists( $group[1], $this->cargs ) && preg_match('/_master_/', $group[1]) ) {
 			$key = str_replace('_master', '', $group[1]);
 			$wrap_cost = array_key_exists( $key, $this->cargs ) ? $production_formats->get_wrap_cost( $this->cargs[ $key ] ) : 0;		
+			$wrap = $this->cargs[ $key ];
 		}
 		$wrap_cost *= preg_match('/BN/', $pf['format']) ? 2 : 1;
 
@@ -44,7 +45,8 @@ class pa_wrap extends \gcalc\cprocess_calculation{
 				'markup_value' => $total_price - $production_cost,
 				'markup' => $markup_
 			),
-			array(
+			array(				
+				'wrap' => $wrap,
 				'wrap_cost' => $wrap_cost,
 				'sheets_quantity' => $sheets_quantity
 			)

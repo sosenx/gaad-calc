@@ -51,7 +51,17 @@ class pa_cover_type extends pa_format{
 	* Perfect binding costs
 	*/
 	function perfect_binding_cost( ){		
-		return array();
+		$_total_price = 0;
+		$_production_cost = 0;
+
+		$return = array(
+			'cloth_covering' => array(
+				'total_price' => $_total_price,				
+				'production_cost' => $_production_cost
+			)
+		);
+
+		return $return;
 	}
 
 	/**
@@ -60,12 +70,14 @@ class pa_cover_type extends pa_format{
 	function hard_cost( ){
 		$production_formats = new \gcalc\db\production\formats();
 		$pa_quantity = $this->get_carg( 'pa_master_quantity' );
+		$group_name = $this->group[0];
 
 		$cover_type = $this->cargs['pa_cover_type'];
 		$cover_cost = $production_formats->get_binding_type( $cover_type );
 
 		$cloth_covering_paper = $this->get_cloth_covering_paper( $this->get_carg('pa_cover_cloth_covering_paper') );
 		$cloth_covering_print = $this->get_cloth_covering_print( $this->get_carg('pa_cover_cloth_covering_print') );
+		$cloth_covering_wrap = $this->get_cloth_covering_wrap( $this->get_carg('pa_cover_cloth_covering_wrap') );
 		$cloth_covering_spot_uv = $this->get_cloth_covering_spot_uv( $this->get_carg('pa_cover_cloth_covering_spot_uv') );
 		
 		$dust_jacket_paper = $this->get_dust_jacket_paper( $this->get_carg('pa_cover_dust_jacket_paper') );
@@ -96,69 +108,66 @@ class pa_cover_type extends pa_format{
 			);
 			$dust_jacket_calc = new \gcalc\calculate( $pargs, 22986 );		
 			$dust_jacket_calculation_array = $dust_jacket_calc->calc();
-			foreach ($dust_jacket_calculation_array['d'] as $key => $value) {
-				if ( $value->total['name'] == 'pa_master_paper' ) {
-					$dust_jacket += $value->total['total_price'];			
-					$dust_jacket_procesess[] = $value;
-					$dust_jacket_production_cost += $value->total['production_cost'];
+			$dust_jacket_calc_stat_ok = $dust_jacket_calc->status_ok();
+			if ( $dust_jacket_calc_stat_ok ) {
+				foreach ($dust_jacket_calculation_array['d'] as $key => $value) {
+					if ( 	$value->total['name'] == 'pa_master_paper' 	||
+							$value->total['name'] == 'pa_master_print' 	|| 
+							$value->total['name'] == 'pa_master_wrap' 	|| 
+							$value->total['name'] == 'pa_master_spot_uv' ) {
+						$dust_jacket += $value->total['total_price'];			
+						$dust_jacket_procesess[] = $value;
+						$dust_jacket_production_cost += $value->total['production_cost'];
+					}		
 				}
-
-				if ( $value->total['name'] == 'pa_master_print' ) {
-					$dust_jacket += $value->total['total_price'];			
-					$dust_jacket_procesess[] = $value;
-					$dust_jacket_production_cost += $value->total['production_cost'];
-				}
-
-				if ( $value->total['name'] == 'pa_master_wrap' ) {
-					$dust_jacket += $value->total['total_price'];			
-					$dust_jacket_procesess[] = $value;
-					$dust_jacket_production_cost += $value->total['production_cost'];
-				}
-
-				if ( $value->total['name'] == 'pa_master_spot_uv' ) {
-					$dust_jacket += $value->total['total_price'];			
-					$dust_jacket_procesess[] = $value;
-					$dust_jacket_production_cost += $value->total['production_cost'];
-				}		
-			}
+				//merging errors with master calculation parent as cloth_covering errors
+				$this->parent->merge_errors( $dust_jacket_calculation_array['e'], 'dust_jacket' );
+				$this->parent->merge_bvars( $dust_jacket_calc, $group_name, 'dust_jacket' );
+			} 
+			else {
+				//merging errors with master calculation parent as dust_jacket errors
+				$this->parent->merge_errors( $dust_jacket_calculation_array, 'dust_jacket' );
+			}			
 		}
 
 		
 		/*
 		* cloth_covering
 		*/
-		$cloth_covering = 0;
+		$cloth_covering = 0; 
 		$cloth_covering_procesess = array();
 		$cloth_covering_production_cost = 0;
 		$pargs = array(	
 		    "pa_format" => ( 2 * $this->get_width() + 60 ) . 'x' . ( $this->get_height() + 60 ),
 		    "pa_paper" => $cloth_covering_paper,
 		    "pa_print" => $cloth_covering_print,         
+		    "pa_wrap" => $cloth_covering_wrap,         
 		    "pa_quantity" => $pa_quantity,
 		    "pa_spot_uv" => $cloth_covering_spot_uv
 		);
-		$cloth_covering_calc = new \gcalc\calculate( $pargs, 22986 );		
+		$cloth_covering_calc = new \gcalc\calculate( $pargs, 22986 );	
 		$cloth_covering_calculation_array = $cloth_covering_calc->calc();
-		foreach ($cloth_covering_calculation_array['d'] as $key => $value) {
-			if ( $value->total['name'] == 'pa_master_paper' ) {
-				$cloth_covering += $value->total['total_price'];			
-				$cloth_covering_procesess[] = $value;
-				$cloth_covering_production_cost += $value->total['production_cost'];
-			}
+		$cloth_covering_calc_stat_ok = $cloth_covering_calc->status_ok();	
 
-			if ( $value->total['name'] == 'pa_master_print' ) {
-				$cloth_covering += $value->total['total_price'];			
-				$cloth_covering_procesess[] = $value;
-				$cloth_covering_production_cost += $value->total['production_cost'];
-			}
-
-			if ( $value->total['name'] == 'pa_master_spot_uv' ) {
-				$cloth_covering += $value->total['total_price'];			
-				$cloth_covering_procesess[] = $value;
-				$cloth_covering_production_cost += $value->total['production_cost'];
-			}		
-		} 
-
+		if ( $cloth_covering_calc_stat_ok) {			
+			foreach ($cloth_covering_calculation_array['d'] as $key => $value) {
+				if ( 	$value->total['name'] == 'pa_master_paper' 	||
+						$value->total['name'] == 'pa_master_print' 	|| 
+						$value->total['name'] == 'pa_master_wrap' 	|| 
+						$value->total['name'] == 'pa_master_spot_uv' ) {
+					$cloth_covering += $value->total['total_price'];			
+					$cloth_covering_procesess[] = $value;
+					$cloth_covering_production_cost += $value->total['production_cost'];
+				}		
+			} 
+			//merging errors with master calculation parent as cloth_covering errors
+			$this->parent->merge_errors( $cloth_covering_calculation_array['e'], 'cloth_covering' );
+			$this->parent->merge_bvars( $cloth_covering_calc, $group_name, 'cloth_covering' );
+		} else {
+			//merging errors with master calculation parent as cloth_covering errors
+			$this->parent->merge_errors( $cloth_covering_calculation_array, 'cloth_covering' );
+		}
+		
 		/*
 		* case board
 		*/
@@ -179,9 +188,11 @@ class pa_cover_type extends pa_format{
 		*/
 		if( $ribbon ){
 			$ribbon_cost = $cover_cost['extended']['ribbon_cost'] * $pa_quantity;
+		} else {
+			$ribbon_cost = 0;
 		}		
 
-		return array(
+		$return = array(
 			'cloth_covering' => array(
 				'total_price' => $cloth_covering,				
 				'production_cost' => $cloth_covering_production_cost,
@@ -200,7 +211,9 @@ class pa_cover_type extends pa_format{
 				'total_price' => $ribbon_cost,
 				'production_cost' => $ribbon_cost
 			),
-		);	
+		);
+
+		return $return;	
 	}
 
 	/**
@@ -317,8 +330,23 @@ class pa_cover_type extends pa_format{
 	function get_cloth_covering_paper( string $cloth_covering_paper = NULL){
 		if ( isset( $cloth_covering_paper ) ) {
 			return $cloth_covering_paper;
+		} else {
+			$this->parent->get_errors()->add( new \gcalc\error( 10009,  ' -> kreda-130g') );
 		}
-		return 'offset-130g';
+		return 'kreda-130g';
+	}
+
+
+	/**
+	* Returns default cloth covering paper if there is no in attributes
+	*/
+	function get_cloth_covering_wrap( string $cloth_covering_wrap = NULL){
+		if ( isset( $cloth_covering_wrap ) ) {
+			return $cloth_covering_wrap;
+		} else {
+			$this->parent->get_errors()->add( new \gcalc\error( 10011,  ' -> 0x0') );
+		}
+		return '0x0';
 	}
 
 	/**
@@ -327,6 +355,8 @@ class pa_cover_type extends pa_format{
 	function get_cloth_covering_print( string $cloth_covering_print = NULL){
 		if ( isset( $cloth_covering_print ) ) {
 			return $cloth_covering_print;
+		} else {
+			$this->parent->get_errors()->add( new \gcalc\error( 10010,  ' -> 4x0') );
 		}
 		return '4x0';
 	}
@@ -336,6 +366,9 @@ class pa_cover_type extends pa_format{
 	*/
 	function get_cloth_covering_spot_uv( string $cloth_covering_spot_uv = NULL){
 		if ( isset( $cloth_covering_spot_uv ) ) {
+
+			$r=1;
+
 			return $cloth_covering_spot_uv;
 		}
 		return '0x0';
@@ -369,6 +402,8 @@ class pa_cover_type extends pa_format{
 	function get_dust_jacket_print( string $dust_jacket_print = NULL){
 		if ( isset( $dust_jacket_print ) ) {
 			return $dust_jacket_print;
+		} else {
+			$this->parent->get_errors()->add( new \gcalc\error( 10007 ) );
 		}
 		return '4x0';
 	}
@@ -389,6 +424,8 @@ class pa_cover_type extends pa_format{
 	function get_dust_jacket_wrap( string $dust_jacket_wrap = NULL){
 		if ( isset( $dust_jacket_wrap ) ) {
 			return $dust_jacket_wrap;
+		} else {
+			$this->parent->get_errors()->add( new \gcalc\error( 10008 ) );
 		}
 		return '0x0';
 	}

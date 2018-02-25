@@ -54,7 +54,8 @@ class pa_spot_uv extends \gcalc\cprocess_calculation{
 				'markup_value' => $total_price - $production_cost,
 				'markup' => $markup_
 			),
-			array(				
+			array(		
+				'spot_uv' => $spot_uv_sides == 0 ? '1x0' : '1x1',		
 				'sheets_quantity' => $sheets_quantity
 			)
 		);

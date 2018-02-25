@@ -12,10 +12,10 @@ class pa_cover_format extends \gcalc\cprocess{
 		$this->group = $group;
 
 		if ( $this->validate_cargs() ) {
-			parent::__construct( $product_attributes, $product_id, $parent, $group );
+			parent::__construct( $this->cargs, $product_id, $parent, $group );
 			$this->name = "pa_cover_format";
 			
-			$this->calculator = new \gcalc\calc\pa_cover_format( $product_attributes, $product_id, $parent, $group, $this );
+			$this->calculator = new \gcalc\calc\pa_cover_format( $this->cargs, $product_id, $parent, $group, $this );
 			$this->cargs = $product_attributes;
 			$this->dependencies = NULL;
 		
@@ -53,13 +53,28 @@ class pa_cover_format extends \gcalc\cprocess{
 			$valid = false;
 		}
 
+		$pa_wrap = $this->get_carg( 'pa_' . $group_name . '_wrap' );
+		$pa_spot_uv = $this->get_carg( 'pa_' . $group_name . '_spot_uv' );
+		$pa_cloth_covering_wrap = $this->get_carg( 'pa_' . $group_name . '_cloth_covering_wrap' );
+		$pa_cloth_covering_spot_uv = $this->get_carg( 'pa_' . $group_name . '_cloth_covering_spot_uv' );
 
-		
-		
+		/*
+		* Cover wrap, unsetting because cloth covering wrap is set
+		*/
+		if ( !is_null( $pa_cloth_covering_wrap ) && !is_null( $pa_wrap ) ) {
+			$this->cargs['pa_' . $group_name . '_wrap'] = '0x0';
+			$this->parent->set_bvar('pa_wrap', $group_name, '0x0', array( new \gcalc\error( 10014 ) ) );	
+		}
+
+		/*
+		* Cover spot uv, unsetting because cloth covering spot uv is set
+		*/
+		if ( !is_null( $pa_cloth_covering_spot_uv ) && !is_null( $pa_spot_uv ) ) {
+			$this->cargs['pa_' . $group_name . '_spot_uv'] = '0x0';
+			$this->parent->set_bvar('pa_spot_uv', $group_name, '0x0', array( new \gcalc\error( 10015 ) ) );			
+		}
 
 
-
-		$r=1;
 
 		return $valid;
 	}

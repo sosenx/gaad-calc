@@ -10,9 +10,9 @@ class pa_pages extends \gcalc\cprocess{
 		$this->group = $group;
 
 		if ( $this->validate_cargs() ) {
-			parent::__construct( $product_attributes, $product_id, $parent, $group );
+			parent::__construct( $this->cargs, $product_id, $parent, $group );
 			$this->name = "pa_pages";
-			$this->calculator = new \gcalc\calc\pa_pages( $product_attributes, $product_id, $parent, $group, $this );
+			$this->calculator = new \gcalc\calc\pa_pages( $this->cargs, $product_id, $parent, $group, $this );
 			$this->cargs = $product_attributes;
 			$this->dependencies = NULL;		
 			return $this;

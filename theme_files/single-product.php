@@ -13,31 +13,35 @@ $pargs = array(
     "pa_quantity" => 99,
     "pa_paper" => "kreda-350g",
     "pa_print" => "4x4",
- /*                
-    "pa_wrap" => "soft-1x1",     
-    "pa_spot_uv" => "0x0",
-*/
+                 
+    "pa_wrap" => "gloss-1x1",   
+    "pa_spot_uv" => "1x0",
+
 
     "pa_cover_format" => "175x235",
     "pa_cover_paper" => "kreda-300g",
     "pa_cover_print" => "4x0",    
-    "pa_cover_type" => "hard",
-    
-/*
-    "pa_cover_cloth_covering_paper" => "offset-150g",
-    "pa_cover_cloth_covering_print" => "4x4",
-    "pa_cover_cloth_covering_spot_uv" => "1x0",
-    "pa_cover_ribbon" => true,
+    "pa_cover_type" => "perfect_binding",
     
     "pa_cover_dust_jacket_paper" => "kreda-150g",
     "pa_cover_dust_jacket_print" => "4x4",
-    "pa_cover_dust_jacket_wrap" => "gloss-1x0",
+    "pa_cover_dust_jacket_wrap" => "0x0",
     "pa_cover_dust_jacket_spot_uv" => "1x0",
+
+    "pa_cover_cloth_covering_paper" => "offset-150g",
+    "pa_cover_cloth_covering_wrap" => "gloss-1x0",
+    "pa_cover_cloth_covering_print" => "4x4",
+    "pa_cover_cloth_covering_spot_uv" => "1x0",
+  //"pa_cover_ribbon" => true,
+    
+    
+    
+    
 
     
     "pa_cover_wrap" => "gloss-1x0",    
     "pa_cover_spot_uv" => "1x1",
-    "pa_cover_flaps" => true,
+    "pa_cover_flaps" => true,/*
     "pa_cover_left_flap_width" => 100,
     "pa_cover_right_flap_width" => 100,
 
