@@ -21,7 +21,7 @@ $pargs = array(
     "pa_cover_format" => "175x235",
     "pa_cover_paper" => "kreda-300g",
     "pa_cover_print" => "4x0",    
-    "pa_cover_type" => "perfect_binding",
+    "pa_cover_type" => "hard",
     
     "pa_cover_dust_jacket_paper" => "kreda-150g",
     "pa_cover_dust_jacket_print" => "4x4",
@@ -32,7 +32,7 @@ $pargs = array(
     "pa_cover_cloth_covering_wrap" => "gloss-1x0",
     "pa_cover_cloth_covering_print" => "4x4",
     "pa_cover_cloth_covering_spot_uv" => "1x0",
-  //"pa_cover_ribbon" => true,
+    "pa_cover_ribbon" => true,
     
     
     
@@ -62,17 +62,21 @@ $pargs = array(
  
     "group_cover" => "",
     "group_bw" => "",
-    "group_color" => ""
+    "group_color" => "",
 
+    "apikey" => "g1a2a3d",
+    "apisecret" => "k1o2o3t",
+    "Authorization" => "Basic ".base64_encode( 'gaad:koot123' )
       
 );
 
 
 $calc = new gcalc\calculate( $pargs );
-		
-$calculation_array = $calc->calc();
+$calc->calc();
+//echo "<pre>";   var_dump( $calculation_array );echo "</pre><hr>";
 
-echo "<pre>";	var_dump( $calculation_array );echo "</pre>";
+$data_permissions_f = new gcalc\data_permissions_filter( $calc );
+var_dump( $data_permissions_f->get() );
 
 /*
 foreach ($calculation_array as $key => $value) {

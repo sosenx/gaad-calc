@@ -86,6 +86,11 @@ abstract class calc_product{
 	private $errors;
 
 	/**
+	*
+	*/
+	private $children = array();
+
+	/**
 	* Merges errors array with another object errors array
 	*/
 	public function merge_errors( array $errors, string $label ){
@@ -97,12 +102,24 @@ abstract class calc_product{
 	}
 
 	/**
+	* getter gor total_
+	*/
+	public function get_total(){
+		if ( is_array( $this->total_)) {
+			return $this->total_;
+		}
+		return NULL;
+	}
+
+	/**
 	* Merges errors array with another object errors array
 	*/
 	public function merge_bvars( \gcalc\calc_product $donor, string $recipient_group_name, string $recipient_sub_group_name  ){
+		
 		$donor_bvars = $donor->get_bvars();	
 		$recipient_bvars = $this->get_bvars();	
 		$name_pattern = 'pa_' . $recipient_group_name .'_' . $recipient_sub_group_name;
+		$this->children[$name_pattern] = $donor->get_total();
 		foreach ( $recipient_bvars as $key => $value ) {
 			if ( preg_match('/'.$name_pattern.'/', $key ) ) {
 				foreach ($donor_bvars as $key2 => $value2) {
@@ -213,21 +230,51 @@ abstract class calc_product{
 		if ( !$this->status_ok() ) {
 			return $this->errors->get_data();
 		} else {
-			$this->return_total();
-			return array(
+			$this->parse_total();
+
+
+			/*
+			* Checks from where this function was called
+			*/
+			$trace = debug_backtrace( DEBUG_BACKTRACE_IGNORE_ARGS, 2);
+			$inner_origin = preg_match( '/gcalc\\\\calc/', array_pop( $trace )['class'] );
+			$return = array(
 				't' => $this->total_,
 				'd' => $this->done,
 				'e' => $this->errors->get_data(),
 				'a' => $this->get_bvars()
 			);
+			
 
+			if ( $inner_origin ) {
+				return $return;
+			} else {
+				$data_permissions_f = new data_permissions_filter( $this );
+				return $data_permissions_f->get();
+			}
 		}
+	}
+
+	/*
+	* Returns api key from request 
+	*/
+	public function get_api_key(){
+		return $this->bvars['apikey'];
+	}
+
+	/*
+	* Returns api secret from request 
+	*/
+	public function get_api_secret(){
+		return $this->bvars['apisecret'];
 	}
 
 
 
-
-	private function return_total(){
+	/**
+	* Concat data from whole object and assign it as an array to total_
+	*/
+	private function parse_total(){
 		$production_formats = new \gcalc\db\production\formats();
 		$total_cost_equasion = $production_formats->get_total_cost_equasion( $this->get_product_id() );
 		$total_cost_equasion_string = $total_cost_equasion['equasion'];
@@ -281,18 +328,14 @@ abstract class calc_product{
 
 				$used_media_array[ $value->total['name'] ] = $media_str;
 			}
-
-
 		}
 		eval('$total_cost_ = ' . $total_cost_equasion . ';');
 		eval('$total_pcost_ = ' . $total_pcost_equasion . ';');
 
 		$average_markup = count($total_markup_array) > 0 ? array_sum( $total_markup_array ) / count($total_markup_array) : 1;
 
-		$this->total_ = array(
-			'equasion' => $total_cost_equasion_string,
-			//'total_cost_equasion' => $total_cost_equasion,
-			//'total_pcost_equasion' => $total_pcost_equasion,
+		$total_ = array(
+			'equasion' => $total_cost_equasion_string,			
 			'used_formats' => $used_formats_array,
 			'used_media' => $used_media_array,
 
@@ -305,9 +348,30 @@ abstract class calc_product{
 			'total_pcost_' => $total_pcost_
 		);
 
+		$total_ = $this->merge_children_totals( $total_ );
+		$this->total_ = $total_;
+
 	}
 
+	private function merge_children_totals( array $total_ ){
+		if ( !empty( $this->children ) ) {
+			foreach ($this->children as $key => $value) {	
 
+				foreach ( $value['used_formats'] as $key2 => $value2 ) {
+					$index = $key . '_' . str_replace( array('pa_', 'master_' ), array('',''), $key2 );
+					$total_[ 'used_formats' ][ $index ] = $value2;
+				}
+
+				foreach ( $value['used_media'] as $key2 => $value2 ) {
+					$index = $key . '_' . str_replace( array('pa_', 'master_' ), array('',''), $key2 );
+					$total_[ 'used_media' ][ $index ] = $value2;
+				}
+
+			}
+		}
+
+		return $total_;
+	}
 
 	/**
 	* Check if main calculation layers are present in each group
@@ -778,6 +842,13 @@ $a =1;
 	*/
 	public function get_product_id( ){		
 		return $this->product_id;
+	}
+
+	/**
+	* Getter done
+	*/
+	public function get_done( ){		
+		return $this->done;
 	}
 
 	

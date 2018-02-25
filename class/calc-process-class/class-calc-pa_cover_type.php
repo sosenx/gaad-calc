@@ -122,7 +122,7 @@ class pa_cover_type extends pa_format{
 				}
 				//merging errors with master calculation parent as cloth_covering errors
 				$this->parent->merge_errors( $dust_jacket_calculation_array['e'], 'dust_jacket' );
-				$this->parent->merge_bvars( $dust_jacket_calc, $group_name, 'dust_jacket' );
+				$this->parent->merge_bvars( $dust_jacket_calc, $group_name, 'dust_jacket' );				
 			} 
 			else {
 				//merging errors with master calculation parent as dust_jacket errors
