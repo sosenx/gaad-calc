@@ -232,12 +232,17 @@ abstract class calc_product{
 		} else {
 			$this->parse_total();
 
-
 			/*
 			* Checks from where this function was called
 			*/
 			$trace = debug_backtrace( DEBUG_BACKTRACE_IGNORE_ARGS, 2);
-			$inner_origin = preg_match( '/gcalc\\\\calc/', array_pop( $trace )['class'] );
+			$last_trace = array_pop( $trace );
+
+			if ( array_key_exists('class', $last_trace ) ) {
+				$inner_origin = preg_match( '/gcalc\\\\calc/', array_pop( $trace )['class'] );	
+			} else $inner_origin = false;			
+			
+
 			$return = array(
 				't' => $this->total_,
 				'd' => $this->done,
