@@ -41,13 +41,13 @@ $pargs = array(
     
     "pa_cover_wrap" => "gloss-1x0",    
     "pa_cover_spot_uv" => "1x1",
-    "pa_cover_flaps" => true,/*
+    "pa_cover_flaps" => true,
     "pa_cover_left_flap_width" => 100,
     "pa_cover_right_flap_width" => 100,
 
 
 
-*/
+
     "pa_bw_pages" => 100,
     "pa_bw_format" => "175x235",
     "pa_bw_paper" => "ekobookw-70g-2.0",
@@ -58,22 +58,28 @@ $pargs = array(
     "pa_color_paper" => "kreda-135g",
     "pa_color_print" => "4x4",
     "pa_color_stack" => "stack",
-/**/
+
  
     "group_cover" => "",
     "group_bw" => "",
     "group_color" => "",
-
+/*
     "apikey" => "g1a2a3d",
     "apisecret" => "k1o2o3t",
     "Authorization" => "Basic ".base64_encode( 'gaad:koot123' )
-      
+    */  
+
+    //"apikey" => "anonymous",
+    //"apisecret" => "anonymous-secret",
+    //"Authorization" => "Basic ".base64_encode( '*:' )
 );
 
-
+//var_dump( hash('sha256', 'anonymous'), hash('sha256', 'anonymous-secret'));
 $calc = new gcalc\calculate( $pargs );
-$calc->calc();
+//$calculation_array = $calc->calc( );
 //echo "<pre>";   var_dump( $calculation_array );echo "</pre><hr>";
+
+
 
 $data_permissions_f = new gcalc\data_permissions_filter( $calc );
 var_dump( $data_permissions_f->get() );

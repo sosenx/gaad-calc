@@ -210,8 +210,8 @@ abstract class calc_product{
 	* calc product
 	*
 	*/
-	function calc(){
-
+	function calc( ){
+		
 		if ( $this->errors->fcheck() ) { return $this->errors->get_data(); }		
 
 		$this->create_todos_groups();
@@ -234,29 +234,28 @@ abstract class calc_product{
 
 			/*
 			* Checks from where this function was called
-			*/
+			
 			$trace = debug_backtrace( DEBUG_BACKTRACE_IGNORE_ARGS, 2);
 			$last_trace = array_pop( $trace );
 
 			if ( array_key_exists('class', $last_trace ) ) {
-				$inner_origin = preg_match( '/gcalc\\\\calc/', array_pop( $trace )['class'] );	
+				$inner_origin = preg_match( '/^gcalc/', array_pop( $trace )['class'] );	
 			} else $inner_origin = false;			
-			
-
+			var_dump($inner_origin);
+*/
 			$return = array(
+				
 				't' => $this->total_,
 				'd' => $this->done,
 				'e' => $this->errors->get_data(),
 				'a' => $this->get_bvars()
 			);
 			
-
-			if ( $inner_origin ) {
-				return $return;
-			} else {
-				$data_permissions_f = new data_permissions_filter( $this );
-				return $data_permissions_f->get();
-			}
+return $return;
+			
+			//	$data_permissions_f = new data_permissions_filter( $this );
+			//	return $data_permissions_f->get();
+			
 		}
 	}
 
@@ -264,14 +263,24 @@ abstract class calc_product{
 	* Returns api key from request 
 	*/
 	public function get_api_key(){
-		return $this->bvars['apikey'];
+		$apikey = array_key_exists( 'apikey', $this->bvars) ? $this->bvars['apikey'] : false;
+		if (!$apikey) {			
+			$this->get_errors()->add( new \gcalc\error( 10100 ) );
+			return 'anonymous';
+		}
+		return $apikey;
 	}
 
 	/*
 	* Returns api secret from request 
 	*/
 	public function get_api_secret(){
-		return $this->bvars['apisecret'];
+		$apisecret = array_key_exists( 'apisecret', $this->bvars) ? $this->bvars['apisecret'] : false;
+		if (!$apisecret) {
+			$this->get_errors()->add( new \gcalc\error( 10101 ) );
+			return 'anonymous-secret';
+		}
+		return $apisecret;
 	}
 
 
@@ -498,7 +507,7 @@ $r=1;
 			}			
 		}
 		if ( count( $needed_groups) > 0) {
-			$this->get_errors()->add( new \gcalc\error( 4005, implode(', ', $needed_groups) ) );		
+					
 		}
 	}
 
@@ -552,7 +561,7 @@ $r=1;
 	function create_todos_groups(){		
 		$groups = array( 'master' => array() );
 		$groups_str = array();
-
+		
 		//creating grounps or master group
 		foreach ($this->get_bvars() as $key => $value) {
 			$match = array();
@@ -601,11 +610,12 @@ $r=1;
 	function generate_formats_list(){
 		$todo = array();
 		$used = array();
-
+//var_dump($this->todo_groups);
 		//calculating formats
 		foreach ($this->todo_groups as $group_name => $value) {
 			$group_process_name = 'pa_' . $group_name . '_format';
 			$pa_class_name = '\gcalc\pa\\' . 'pa_' . $group_name . '_format'; //format process class name			
+			
 			if ( class_exists( $pa_class_name ) ) {
 				$new_todo =
 						new $pa_class_name( $this->bvars, $this->product_id, $this, array( $group_name,  $group_process_name ) );			

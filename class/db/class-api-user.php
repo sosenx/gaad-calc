@@ -84,6 +84,13 @@ class api_user {
 					"access_level" => 10,
 					"token" => "b7067a3debcf0e85a0e4f84c83ff0ae2e880"
 				)
+			),
+			'2f183a4e64493af3f377f745eda502363cd3e7ef6e4d266d444758de0a85fcc85d7aa298a260a5f7e79768bde962669d943d4f769cc0579ae816c9c73460cab4' => array(
+				"credentials" => array(	
+					"type" => "anonymous",
+					"access_level" => 0,
+					"token" => "ef6e4d266d444758de0a85fcc85d7aa2"
+				)
 			)
 		);
 
@@ -91,7 +98,9 @@ class api_user {
 		$this->users = array(
 			"b7067a3debcf0e85a0e4f84c83ff0ae2e880" => array(
 				"gaad" => array( "pwd" => "koot123" )
-				//"gaad" => arary( )
+			),
+			"ef6e4d266d444758de0a85fcc85d7aa2" => array(
+				"*" => array( "pwd" => "" )
 			)
 		);
 

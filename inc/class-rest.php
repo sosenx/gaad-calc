@@ -24,22 +24,25 @@ class rest{
 		$h = \gcalc\rest::getHeaders( "/^pa_.*/", true );
 		$product_id = \is_single('product') ? $post->ID : -1;
 		$calc = new calculate( $h['selected'], $product_id );
+		$data_permissions_f = new data_permissions_filter( $calc );
+			
 		$r = array( 
 			'plugin_name' => "gcalc",
 			'handler' => "app_model",
 			'status' => 200,
 			'headers' => $h,
-			'output' => $calc->calc()
+			'output' => array( "Dupa" )
+			//$data_permissions_f->get()
 		);
 		return json_decode(json_encode( $r ));
 	}
 
 	public static function rest_calculate_callback( $data = NULL ){
-		$h = \gcalc\rest::getHeaders( "/^pa_.*/", true );
+		$h = \gcalc\rest::getHeaders( "/^pa_.*|^product_.*|^group_.*/", true );
 		$product_id = \gcalc\rest::getHeaders( "/product_id/" );	
 		$product_id = count( $product_id ) == 0 ? NULL : (int) $product_id[ "product_id" ];
 		$calc = new calculate( $h['selected'], $product_id );
-		
+		$data_permissions_f = new data_permissions_filter( $calc );
 		$r = array( 
 			'plugin_name' => "gcalc",
 			'handler' => "app_model",
@@ -48,7 +51,7 @@ class rest{
 			'calculation_id' => $calc->get_CID(),
 
 			'headers' => $h,
-			'output' => $calc->calc()
+			'output' => $data_permissions_f->get()
 		);
 		return json_decode(json_encode( $r ));
 	}

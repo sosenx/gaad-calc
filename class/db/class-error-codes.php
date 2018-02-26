@@ -15,6 +15,18 @@ class codes{
 			'err' => 'Missing error code',
 			'solution' => ''
 		),
+
+		
+		400 => array( 'type' => 'fatal',
+			'err' => 'Missing credentials filter function: ',
+			'solution' => 'call administrator'
+		),
+
+
+		
+
+
+
 		4001 => array( 'type' => 'fatal',
 			'label' => 'No product ID or slug',
 			'err' => 'Missing product ID or/and product slug in input data',
@@ -41,6 +53,23 @@ class codes{
 			'solution' => 'Check headers sent with request'
 		),
 		
+
+
+		10100 => array( 'type' => 'attr_change',
+			'label' => 'Apikey set to anonymous',
+			'err' => 'Apikey set to anonymous',
+			'solution' => 'set apikey'
+		),
+		10101 => array( 'type' => 'attr_change',
+			'label' => 'Api secret  set to anonymous',
+			'err' => 'Apikey secret set to anonymous',
+			'solution' => 'set apikey secret'
+		),
+		10102 => array( 'type' => 'attr_change',
+			'label' => 'Auth set to anonymous',
+			'err' => 'Auth set to anonymous',
+			'solution' => 'set Authorization header'
+		),
 
 
 		10001 => array( 'type' => 'attr_change',
