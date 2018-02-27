@@ -159,6 +159,9 @@ class data_permissions_filter{
 		private function parse_bvars__access_level__1( array $data ){
 			return $data;
 		}
+		private function parse_bvars__access_level__2( array $data ){
+			return $data;
+		}
 		private function parse_bvars__access_level__5( array $data ){
 			return array();
 		}
@@ -210,8 +213,52 @@ class data_permissions_filter{
 			return new \gcalc\error( 535, '('.$fn_name.')' );						
 		}
 
+		/*
+		* Last touch before data is sent
+		*
+		*/
+		private function sort_allowed_data( array $d ){
+			$d = $this->sort_multi_quantity_data( $d );
+			return $d;
+		}
+
+		/*
+		* Last touch before data is sent
+		*
+		*/
+		private function sort_multi_quantity_data( $d ){
+			$bvars = $this->calc->get_bvars();
+			if ( array_key_exists( 'pa_multi_quantity', $bvars ) ) {
+				//$pa_multi_quantity = $bvars['pa_multi_quantity'];
+				$access_level = $this->credentials['access_level'];	
+				
+				if ( $access_level > 0 ) {
+					foreach ( $d['d'] as $key => $value ) {
+						if ( $value->total['name'] == 'pa_multi_quantity' || $value->total['name'] == 'pa_master_multi_quantity' ) {							
+							$d['tmq'] = $value;
+							unset( $d['d'][ $key ] );
+							break;
+						}
+					}	
+				}
+				
+			}
+			
+			return $d;
+		}
+
+		public function save_calculation(){
+			$credetials = $this->get_credetials();
+			$save_type = array( 10,9,2,1 );
+			if ( in_array( (int)$credetials['access_level'], $save_type) ) {
+				$user = $this->get_credetials();
+				\gcalc\sql::calculations_insert( $this->calc->get_CID(), $this->calc->get_bvars(), $user, $this->total_ );
+			}			
+		}
+
 		public function set_allowed_data(){
 			$this->ALLOWED_DATA = 
+			$this->sort_allowed_data(
 				array(					
 					't' => $this->parse_( $this->total_ ),
 					'q' => $this->calc->get_bvar( 'pa_master_quantity' ),
@@ -222,7 +269,8 @@ class data_permissions_filter{
 
 				//	'c' => $this->parse_( $this->credentials, 'credentials'),
 					//'u' => $this->apikey,
-				);
+				)
+			);	
 
 		}
 
@@ -231,7 +279,7 @@ class data_permissions_filter{
 				$this->ALLOWED_DATA = array(
 					'e' => $this->parse_( $this->calc->get_errors()->get_data(), 'errors')
 				);
-			}	
+			} 
 			return $this->ALLOWED_DATA;
 		}
 

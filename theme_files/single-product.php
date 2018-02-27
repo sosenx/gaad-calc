@@ -12,7 +12,7 @@ $pargs = array(
 
     "product_slug" => "druk-ksiazek",
     "pa_format" => "90x50",
-    "pa_quantity" => 99,
+    "pa_quantity" => 100,
     "pa_multi_quantity" => "10,50,150",
     "pa_paper" => "kreda-350g",
     "pa_print" => "4x4",
@@ -66,12 +66,12 @@ $pargs = array(
     "group_cover" => "",
     "group_bw" => "",
     "group_color" => "",
+   
     "apikey" => "g1a2a3d",
     "apisecret" => "k1o2o3t",
     "Authorization" => "Basic ".base64_encode( 'gaad:koot123' ),
-  
-     /*
-
+  /**/
+/*
    "apikey" => "7c2ecd07f155648431e0f94b89247d713c5786e1e73e953f2fe7eca39534cd6d",
    "apisecret" => "d66d261760296433de080dd8d7daebb7e4355473b35fa3091420e9907bd47ad5",
    "Authorization" => "Basic ".base64_encode( 'www:www' )
@@ -88,7 +88,10 @@ $pargs = array(
 //var_dump( hash('sha256', 'inner'), hash('sha256', 'inner-secret'), md5('inner'));
 $calc = new gcalc\calculate( $pargs );
 $data_permissions_f = new gcalc\data_permissions_filter( $calc );
-var_dump( $data_permissions_f->get() );
+$calculation = $data_permissions_f->get();
+$data_permissions_f->save_calculation();
+
+var_dump( $calculation );
 
 wp_footer();
 

@@ -29,7 +29,7 @@ class pa_multi_quantity extends \gcalc\cprocess_calculation{
 					"pa_quantity" => $pa_quantity,
 					"apikey" => '33bf6fbd7cd8379785a21e233d8e09f824e7bab459168a96312c1c882c1d7e1f',
 					"apisecret" => '1efbc603bed6958d0d88898114343645ff16c55b6aa04ce3f4070e3c83cf70fe',
-					"Authorization" => 'Basic *:'
+					"Authorization" => 'Basic Kjo='
 					)
 				);
 				unset( $pargs['pa_multi_quantity'] );

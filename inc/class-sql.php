@@ -150,18 +150,49 @@ class sql{
 		$charset_collate = $wpdb->get_charset_collate();
 
 		$sql = "CREATE TABLE $table_name (
-			`id` mediumint(9) NOT NULL AUTO_INCREMENT,			
-			`label` INT NOT NULL ,			
-			`input` TEXT NOT NULL , 
-			`output` TEXT NOT NULL , 			
+			`id` mediumint(9) NOT NULL AUTO_INCREMENT,	
+			`cid` VARCHAR(32) NOT NULL,			
+			`total_price` 	FLOAT NOT NULL,
+			`p_cost` 	FLOAT NOT NULL,
+			`quantity` 		INT NOT NULL,
+			`mquantity` 	VARCHAR(100) NULL,			
+			`av_markup` FLOAT NOT NULL,			
+			`input` TEXT NOT NULL , 	
 			`foutput` TEXT NOT NULL , 
-			`apikey` VARCHAR(50) NOT NULL,			
+			`apikey` VARCHAR(100) NULL,			
 			`user` VARCHAR(50) NOT NULL,
+			`access_level` mediumint(9) NOT NULL,
+			`label` VARCHAR(250) NULL ,								
 			`added` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,		  
 		  PRIMARY KEY  (id)
 		) $charset_collate;";
 		
 		return dbDelta( $sql );
+	}
+
+
+	public static function calculations_insert( string $cid, array $bvars, array $user, array $full_total){
+		global $wpdb; 
+
+		$table_name = basename(GAAD_PLUGIN_TEMPLATE_NAMESPACE) . '_calculations';
+		$apikey = array_key_exists( 'apikey', $bvars ) ? $bvars['apikey'] : "";
+		$insert = array( 
+				'total_price' 	=> $full_total['total_cost_'],
+				'p_cost' 	=> $full_total['total_pcost_'],
+				'quantity' 		=> $bvars['pa_quantity'],
+				'mquantity' 	=> $bvars['pa_multi_quantity'],
+				'av_markup' 	=> $full_total['average_markup'],
+		        'input' => json_encode($bvars),		        
+		        'foutput' => json_encode($full_total),
+		        'apikey' => $apikey,
+		        'user' => $user['login'],
+		        'access_level' => $user['access_level'],
+		        'label' => '',
+		        'cid' => $cid,
+		    );
+		$re = $wpdb->insert( $table_name, $insert );
+		
+		var_dump($re, $wpdb);
 	}
 
 	/** 
