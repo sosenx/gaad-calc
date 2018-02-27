@@ -84,7 +84,7 @@ $pargs = array(
     //"apisecret" => "anonymous-secret",
     //"Authorization" => "Basic ".base64_encode( '*:' )
 );
-
+//var_dump("Basic ".base64_encode( 'gaad:koot123' ));
 //var_dump( hash('sha256', 'inner'), hash('sha256', 'inner-secret'), md5('inner'));
 $calc = new gcalc\calculate( $pargs );
 $data_permissions_f = new gcalc\data_permissions_filter( $calc );

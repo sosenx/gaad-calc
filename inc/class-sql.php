@@ -154,6 +154,9 @@ class sql{
 			`label` INT NOT NULL ,			
 			`input` TEXT NOT NULL , 
 			`output` TEXT NOT NULL , 			
+			`foutput` TEXT NOT NULL , 
+			`apikey` VARCHAR(50) NOT NULL,			
+			`user` VARCHAR(50) NOT NULL,
 			`added` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,		  
 		  PRIMARY KEY  (id)
 		) $charset_collate;";
