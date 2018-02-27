@@ -141,6 +141,7 @@ if ( !defined( GAAD_PLUGIN_TEMPLATE_NAMESPACE . 'GAAD_PLUGIN_TEMPLATE_FORCE_FILE
 		require_once( 'class/calc-process-class/class-calc-pa_cover_type.php' );
 		require_once( 'class/calc-process-class/class-calc-pa_cover_format.php' );
 		require_once( 'class/calc-process-class/class-calc-pa_quantity.php' );
+		require_once( 'class/calc-process-class/class-calc-pa_multi_quantity.php' );
 		require_once( 'class/calc-process-class/class-calc-pa_paper.php' );
 		require_once( 'class/calc-process-class/class-calc-pa_print.php' );
 		require_once( 'class/calc-process-class/class-calc-pa_wrap.php' );
@@ -153,6 +154,7 @@ if ( !defined( GAAD_PLUGIN_TEMPLATE_NAMESPACE . 'GAAD_PLUGIN_TEMPLATE_FORCE_FILE
 		require_once( 'class/calc-process/pa_cover_type.php' );
 		require_once( 'class/calc-process/pa_cover_format.php' );
 		require_once( 'class/calc-process/pa_quantity.php' );
+		require_once( 'class/calc-process/pa_multi_quantity.php' );
 		require_once( 'class/calc-process/pa_paper.php' );
 		require_once( 'class/calc-process/pa_print.php' );
 		require_once( 'class/calc-process/pa_wrap.php' );

@@ -17,11 +17,17 @@ class codes{
 		),
 
 		
-		400 => array( 'type' => 'fatal',
+		
+
+		500 => array( 'type' => 'fatal',
+			'err' => 'Authentication failed',
+			'solution' => 'Check used credentials or send no credentials for anonymous service'
+		),
+		
+		535 => array( 'type' => 'fatal',
 			'err' => 'Missing credentials filter function: ',
 			'solution' => 'call administrator'
 		),
-
 
 		
 

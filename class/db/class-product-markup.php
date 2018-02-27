@@ -95,6 +95,7 @@ class product_markup{
 					),
 
 					'hard-affiliate' => array(							
+						array( 'price' => 3.5, 	'v' => 0 ),
 						array( 'price' => 3.3, 	'v' => 99 ),
 						array( 'price' => 3.2, 	'v' => 201 ),
 						array( 'price' => 3.12, 'v' => 301 ),

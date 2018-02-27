@@ -274,11 +274,12 @@ class pa_cover_type extends pa_format{
 			) 
 		: -1;
 
-		$bounding_cost = $min_bounding_cost != -1 ? $min_bounding_cost : $this->get_val_from( 
+		$bounding_cost_tmp = $min_bounding_cost != -1 ? $min_bounding_cost : $this->get_val_from( 
 			$cover_cost['cost']['pa_attr'], 
 			"min", 
 			$cover_cost[ 'cost' ][ 'scale' ]
 			);
+		
 		$markup_db = new \gcalc\db\product_markup( $this->cargs, $this->product_id, $this);
 		$markup = $markup_db->get_markup();
 		$markup_val = $this->get_val_from( 
@@ -287,10 +288,9 @@ class pa_cover_type extends pa_format{
 			$markup['hard-affiliate'],
 			$pa_quantity
 			);
-		$bounding_cost *= $markup_val * $pa_quantity;
-
-
-
+		$bounding_cost = $bounding_cost_tmp * $markup_val * ($bounding_cost_tmp === $min_bounding_cost ? 1 : $pa_quantity);
+//var_dump($bounding_cost, $markup_val * $bounding_cost_tmp);
+		//var_dump( $bounding_cost_tmp * $markup_val * ($bounding_cost_tmp === $min_bounding_cost ? 1 : $pa_quantity));
 		$additional_cover_cost_array = $this->additional_cover_cost();
 		$additional_cover_cost = $this->parse_additional_cover_cost( $additional_cover_cost_array );
 

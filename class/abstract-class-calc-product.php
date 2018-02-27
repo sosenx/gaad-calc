@@ -246,7 +246,7 @@ abstract class calc_product{
 			$return = array(
 				
 				't' => $this->total_,
-				'd' => $this->done,
+				'd' => $this->get_done( true ),
 				'e' => $this->errors->get_data(),
 				'a' => $this->get_bvars()
 			);
@@ -561,7 +561,7 @@ $r=1;
 	function create_todos_groups(){		
 		$groups = array( 'master' => array() );
 		$groups_str = array();
-		
+
 		//creating grounps or master group
 		foreach ($this->get_bvars() as $key => $value) {
 			$match = array();
@@ -590,7 +590,10 @@ $r=1;
 		*/
 		$groups_str = implode( '|', $groups_str );
 		foreach ($this->bvars as $key => $value){
-			if( ! preg_match( '/pa_['. $groups_str .')]{2,}(.*)/', $key) && ! preg_match('/group_/', $key) ){
+			if( ! preg_match( '/pa_['. $groups_str .')]{2,}(.*)/', $key) 
+				&& ! preg_match('/group_|apikey|apisecret|Authorization/', $key) 
+
+			){
 				$class_name = $key;
 				$groups[ 'master' ][$key]['class_name'] = $class_name;				
 			} 
@@ -711,9 +714,37 @@ $r=1;
 
 	/**
 	* getter bvars
+	*
+	* @param bool $filter return product related attributes only | NULL
 	*/
-	function get_bvars(){
+	function get_bvars( bool $filter = NULL ){
+		if ( $filter ) {
+			$bvars = array();
+			foreach ($this->bvars as $key => $value){
+				if( ! preg_match('/group_|apikey|apisecret|Authorization/', $key) ){				
+					$bvars[$key] = $value;				
+				} 
+			}
+			return $bvars;
+		}			
+
 		return $this->bvars;
+	}
+
+	/**
+	* getter bvars
+	*
+	* @param bool $filter return product related attributes only | NULL
+	*/
+	function get_done( bool $filter = NULL ){
+		if ( $filter ) {
+			$done = $this->done;
+			unset( $done['pa_multi_quantity'] );
+			unset( $done['pa_master_multi_quantity'] );
+			return $done;
+		}			
+
+		return $this->done;
 	}
 
 
@@ -859,13 +890,7 @@ $a =1;
 		return $this->product_id;
 	}
 
-	/**
-	* Getter done
-	*/
-	public function get_done( ){		
-		return $this->done;
-	}
-
+	
 	
 
 	/**

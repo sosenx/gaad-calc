@@ -8,9 +8,12 @@ global $post;
 $product_id = $post->ID;
 $pargs = array(
 	
+
+
     "product_slug" => "druk-ksiazek",
     "pa_format" => "90x50",
     "pa_quantity" => 99,
+    "pa_multi_quantity" => "10,50,150",
     "pa_paper" => "kreda-350g",
     "pa_print" => "4x4",
                  
@@ -63,32 +66,30 @@ $pargs = array(
     "group_cover" => "",
     "group_bw" => "",
     "group_color" => "",
-/*
     "apikey" => "g1a2a3d",
     "apisecret" => "k1o2o3t",
-    "Authorization" => "Basic ".base64_encode( 'gaad:koot123' )
-    */  
+    "Authorization" => "Basic ".base64_encode( 'gaad:koot123' ),
+  
+     /*
+
+   "apikey" => "7c2ecd07f155648431e0f94b89247d713c5786e1e73e953f2fe7eca39534cd6d",
+   "apisecret" => "d66d261760296433de080dd8d7daebb7e4355473b35fa3091420e9907bd47ad5",
+   "Authorization" => "Basic ".base64_encode( 'www:www' )
+*/
+  // "apikey" => "8a7c8b67fe8bde8bb31f62db5896a1cd8c7bfa29ff7b86554a1ad2958c166e92",
+    //"apisecret" => "62c582a63ce60ee9b5e046abcc7625261532bee74df467927586d5ea384fff27",
+    //"Authorization" => "Basic ".base64_encode( 'gaad:elevatori123' )
 
     //"apikey" => "anonymous",
     //"apisecret" => "anonymous-secret",
     //"Authorization" => "Basic ".base64_encode( '*:' )
 );
 
-//var_dump( hash('sha256', 'anonymous'), hash('sha256', 'anonymous-secret'));
+//var_dump( hash('sha256', 'inner'), hash('sha256', 'inner-secret'), md5('inner'));
 $calc = new gcalc\calculate( $pargs );
-//$calculation_array = $calc->calc( );
-//echo "<pre>";   var_dump( $calculation_array );echo "</pre><hr>";
-
-
-
 $data_permissions_f = new gcalc\data_permissions_filter( $calc );
 var_dump( $data_permissions_f->get() );
 
-/*
-foreach ($calculation_array as $key => $value) {
-    var_dump( $value->total['name'], $value->total['total_price']);
-}
-*/
 wp_footer();
 
 

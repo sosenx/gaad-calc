@@ -85,6 +85,7 @@ class data_permissions_filter{
 
 
 
+
 		private function parse_done__access_level__10( array $data ){
 			return $data;
 		}
@@ -100,6 +101,7 @@ class data_permissions_filter{
 		private function parse_done__access_level__0( array $data ){
 			return array();
 		}
+
 
 
 
@@ -121,33 +123,115 @@ class data_permissions_filter{
 		}
 
 
+
+
+		//www
+		private function parse_total__access_level__2( array $data ){
+			return $data['total_cost_'];
+		}
+
+		private function parse_done__access_level__2( array $data ){
+			return array();
+		}
+
+		private function parse_errors__access_level__2( array $data ){
+			return $data;
+		}
+
+
+		//inner
+		private function parse_total__access_level__5( array $data ){
+			return $data['total_cost_'];
+		}
+
+		private function parse_done__access_level__5( array $data ){
+			return array();
+		}
+
+		private function parse_errors__access_level__5( array $data ){
+			return array();
+		}
+
+
+		private function parse_bvars__access_level__0( array $data ){
+			return $data;
+		}
+		private function parse_bvars__access_level__1( array $data ){
+			return $data;
+		}
+		private function parse_bvars__access_level__5( array $data ){
+			return array();
+		}
+		private function parse_bvars__access_level__9( array $data ){
+			return $data;
+		}
+		private function parse_bvars__access_level__10( array $data ){
+			return $data;
+		}
+
+/*
+		private function parse_credentials__access_level__0( array $data ){
+			return $data;
+		}
+		private function parse_credentials__access_level__1( array $data ){
+			return $data;
+		}
+		private function parse_credentials__access_level__5( array $data ){
+			return array();
+		}
+		private function parse_credentials__access_level__9( array $data ){
+			return $data;
+		}
+		private function parse_credentials__access_level__10( array $data ){
+			return $data;
+		}
+
+
+
+*/
+
+
+
 		private function parse_( array $data, string $mode = NULL ){
 			$mode = is_null( $mode ) ? 'total' : $mode; 
 			$credetials = $this->get_credetials();
+
+			//no credentials, no fun, escaping
+			if ( is_null( $credetials ) ) {				
+				return new \gcalc\error( 500 );
+			}
+
 			$access_level = $credetials['access_level'];
 			$fn_name = 'parse_'. $mode .'__access_level__'.$access_level;
 			if ( method_exists( $this, $fn_name )) {
 				return $this->$fn_name( $data );	
 			}
 
-			return new \gcalc\error( 400 );			
+			return new \gcalc\error( 535, '('.$fn_name.')' );						
 		}
 
 		public function set_allowed_data(){
 			$this->ALLOWED_DATA = 
 				array(					
 					't' => $this->parse_( $this->total_ ),
+					'q' => $this->calc->get_bvar( 'pa_master_quantity' ),
+
 					'd' => $this->parse_( $this->done_, 'done' ),
 					'e' => $this->parse_( $this->calc->get_errors()->get_data(), 'errors'),
-					'a' => $this->calc->get_bvars(),
+					'a' => $this->parse_( $this->calc->get_bvars( true ), 'bvars'),
 
-					'c' => $this->credentials,
-					'u' => $this->apikey,
+				//	'c' => $this->parse_( $this->credentials, 'credentials'),
+					//'u' => $this->apikey,
 				);
 
 		}
 
-		public function get(){			
+		public function get(){		
+			if ( is_null( $this->ALLOWED_DATA ) ) {
+				$this->ALLOWED_DATA = array(
+					'e' => $this->parse_( $this->calc->get_errors()->get_data(), 'errors')
+				);
+			}	
 			return $this->ALLOWED_DATA;
 		}
 
@@ -155,7 +239,7 @@ class data_permissions_filter{
 			$authorization = array_key_exists( 'Authorization' , $this->calc->get_bvars() ) ? $this->calc->get_bvars()[ 'Authorization' ] : false;
 			if ( !$authorization ) {
 				$this->calc->get_errors()->add( new \gcalc\error( 10102 ) );
-				return "*:";
+				return "Basic Kjo=";
 			}
 			return $authorization;
 		}
@@ -176,6 +260,7 @@ class data_permissions_filter{
 				$this->set_credetials( $this->user->get_credentials() );
 				return true;
 			}
+			$this->calc->get_errors()->add( new \gcalc\error( 500 ) );
 			return false;
 		}
 
