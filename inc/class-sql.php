@@ -150,24 +150,25 @@ class sql{
 		$charset_collate = $wpdb->get_charset_collate();
 
 		$sql = "CREATE TABLE $table_name (
-			`id` mediumint(9) NOT NULL AUTO_INCREMENT,	
-			`cid` VARCHAR(32) NOT NULL,			
+			`id` 			mediumint(9) NOT NULL AUTO_INCREMENT,	
+			`cid` 			VARCHAR(32) NOT NULL,			
+			`product_slug`	VARCHAR(50) NOT NULL,			
 			`total_price` 	FLOAT NOT NULL,
-			`p_cost` 	FLOAT NOT NULL,
+			`piece_price` 	FLOAT NOT NULL,
+			`prod_cost` 	FLOAT NOT NULL,
 			`quantity` 		INT NOT NULL,
 			`mquantity` 	VARCHAR(100) NULL,			
-			`av_markup` FLOAT NOT NULL,			
-			`input` TEXT NOT NULL , 	
-			`foutput` TEXT NOT NULL , 
-			`apikey` VARCHAR(100) NULL,			
-			`user` VARCHAR(50) NOT NULL,
-			`access_level` mediumint(9) NOT NULL,
-			`label` VARCHAR(250) NULL ,								
-			`added` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,		  
+			`av_markup` 	FLOAT NOT NULL,			
+			`bvars` 		TEXT NOT NULL , 	
+			`full_total` 	TEXT NOT NULL , 			
+			`user` 			VARCHAR(50) NOT NULL,											
+			`added` 		timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,		  
 		  PRIMARY KEY  (id)
 		) $charset_collate;";
 		
-		return dbDelta( $sql );
+		$dbDelta = dbDelta( $sql );
+		
+		return $dbDelta;
 	}
 
 
@@ -177,18 +178,17 @@ class sql{
 		$table_name = basename(GAAD_PLUGIN_TEMPLATE_NAMESPACE) . '_calculations';
 		$apikey = array_key_exists( 'apikey', $bvars ) ? $bvars['apikey'] : "";
 		$insert = array( 
+				'product_slug'	=> $bvars['product_slug'],
 				'total_price' 	=> $full_total['total_cost_'],
-				'p_cost' 	=> $full_total['total_pcost_'],
+				'prod_cost' 	=> $full_total['total_pcost_'],
+				'piece_price' 	=> $full_total['total_cost_'] / $bvars['pa_quantity'],
 				'quantity' 		=> $bvars['pa_quantity'],
 				'mquantity' 	=> $bvars['pa_multi_quantity'],
 				'av_markup' 	=> $full_total['average_markup'],
-		        'input' => json_encode($bvars),		        
-		        'foutput' => json_encode($full_total),
-		        'apikey' => $apikey,
-		        'user' => $user['login'],
-		        'access_level' => $user['access_level'],
-		        'label' => '',
-		        'cid' => $cid,
+		        'bvars' 		=> json_encode($bvars),		        
+		        'full_total' 	=> json_encode($full_total),		        
+		        'user' 			=> $user['login'],
+		        'cid' 			=> $cid
 		    );
 		$re = $wpdb->insert( $table_name, $insert );
 		

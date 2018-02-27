@@ -32,12 +32,7 @@ class pa_multi_quantity extends \gcalc\cprocess_calculation{
 					"Authorization" => 'Basic Kjo='
 					)
 				);
-				unset( $pargs['pa_multi_quantity'] );
-				/*
-				unset( $pargs['apikey'] );
-				unset( $pargs['apisecret'] );
-				unset( $pargs['Authorization'] );
-				*/
+				unset( $pargs['pa_multi_quantity'] );				
 				$calc = new \gcalc\calculate( $pargs );
 				$data_permissions_f = new \gcalc\data_permissions_filter( $calc );
 				$calculations[] = $data_permissions_f->get();

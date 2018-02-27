@@ -113,6 +113,10 @@ class product_markup{
 							0 => 0
 						),
 						'1x' => array(
+							array( 'price' => 5.5,	'v' => 0 	),
+							array( 'price' => 4.5,	'v' => 25 	),
+
+							
 							array( 'price' => 4,	'v' => 50 	),
 							array( 'price' => 3,	'v' => 100  ),
 							array( 'price' => 2.5, 'v' => 200  ),
@@ -124,6 +128,10 @@ class product_markup{
 						),
 
 						'4x' => array(
+							array( 'price' => 5.5,	'v' => 0 	),
+							array( 'price' => 4.5,	'v' => 25 	),
+
+							
 							array( 'price' => 4,	'v' => 50 	),
 							array( 'price' => 3.5,	'v' => 100  ),
 							array( 'price' => 2.7, 'v' => 200  ),
