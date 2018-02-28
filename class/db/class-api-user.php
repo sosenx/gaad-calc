@@ -156,7 +156,8 @@ class api_user {
 				"gaad" => array( "pwd" => "koot123" )				
 			),
 			"b09a92837f30268c86b48c428eeab4d" => array(
-				"www" => array( "pwd" => "www" )
+				"www" => array( "pwd" => "www" ),
+				"gaad" => array( "pwd" => "koot123" )
 			)
 
 

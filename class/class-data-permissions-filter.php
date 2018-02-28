@@ -91,17 +91,16 @@ class data_permissions_filter{
 		}
 
 		private function parse_done__access_level__9( array $data ){
-			return $data;
+			return $this->get_needed_done_processes( $data );
 		}
 
 		private function parse_done__access_level__1( array $data ){
-			return $data;
+			return $this->get_needed_done_processes( $data );
 		}
 
 		private function parse_done__access_level__0( array $data ){
 			return array();
 		}
-
 
 
 
@@ -115,11 +114,11 @@ class data_permissions_filter{
 		}
 
 		private function parse_errors__access_level__1( array $data ){
-			return $data;
+			return $this->parse_errors_array($data, 'code_err');
 		}
 
 		private function parse_errors__access_level__0( array $data ){
-			return $data;
+			return $this->parse_errors_array($data, 'codes_only');
 		}
 
 
@@ -154,7 +153,7 @@ class data_permissions_filter{
 
 
 		private function parse_bvars__access_level__0( array $data ){
-			return $data;
+			return array();
 		}
 		private function parse_bvars__access_level__1( array $data ){
 			return $data;
@@ -195,7 +194,7 @@ class data_permissions_filter{
 
 
 
-		private function parse_( array $data, string $mode = NULL ){
+		private function parse_( array $data = NULL, string $mode = NULL ){
 			$mode = is_null( $mode ) ? 'total' : $mode; 
 			$credetials = $this->get_credetials();
 
@@ -228,7 +227,7 @@ class data_permissions_filter{
 		*/
 		private function sort_multi_quantity_data( $d ){
 			$bvars = $this->calc->get_bvars();
-			if ( array_key_exists( 'pa_multi_quantity', $bvars ) ) {
+			if ( array_key_exists( 'pa_multi_quantity', $bvars ) || array_key_exists( 'pa_master_multi_quantity', $bvars ) ) {
 				//$pa_multi_quantity = $bvars['pa_multi_quantity'];
 				$access_level = $this->credentials['access_level'];	
 				
@@ -263,6 +262,34 @@ class data_permissions_filter{
 			return $this->get();		
 		}
 
+		/*
+		*
+		*/
+		private function parse_errors_array( array $errors_array, string $mode ){
+			if ( empty( $errors_array )) { return array(); }
+			$e = array( 'info' => $errors_array['info'], 'errors' => array() );
+			
+			if ( $mode === 'codes_only' ) {
+				foreach ($errors_array['errors'] as $key => $value) {
+					$e['errors'][$key] = $value->code;
+				}
+				return $e;
+			}
+
+			if ( $mode === 'code_err' ) {
+				foreach ($errors_array['errors'] as $key => $value) {
+					$e['errors'][$key] = array(
+							'err' => $value->err,
+							'code' => $value->code
+						);
+				}
+				return $e;
+			}
+
+			return $errors_array;
+		}
+
+
 		public function set_allowed_data(){
 			$this->ALLOWED_DATA = 
 			$this->sort_allowed_data(
@@ -287,7 +314,25 @@ class data_permissions_filter{
 					'e' => $this->parse_( $this->calc->get_errors()->get_data(), 'errors')
 				);
 			} 
-			return $this->ALLOWED_DATA;
+			return $this->delete_empty_arrays( $this->ALLOWED_DATA );
+		}
+
+		/*
+		* Looks for empty arrays in data array and usets it
+		*/
+		public function delete_empty_arrays( array $data ){
+			if ( !empty( $data ) ) {
+				$data_clear = array();
+
+				foreach ($data as $key => $value) {
+					if (empty($value)) {
+						unset( $data[$key] );
+					} else {
+						$data_clear[ $key ] = $value;
+					}
+				}
+			}
+			return $data_clear;
 		}
 
 		public function get_authorization(){
@@ -319,6 +364,25 @@ class data_permissions_filter{
 			return false;
 		}
 
+		/*
+		* Gets procecesses from done array that are actually in calculation equasion
+		*
+		*/
+		private function get_needed_done_processes( array $data ){
+			$done = array();
+			$done_needed = $this->calc->get_total()['total_cost_equasion'];
+			foreach ($data as $key => $value) {
+				if ( 
+					array_key_exists( $value->total['name'], $done_needed )
+					|| ( $value->total['name'] == 'pa_multi_quantity' || $value->total['name'] == 'pa_master_multi_quantity' )
+
+					) {
+					$done[] = $value;
+				}
+			}
+
+			return $done;
+		}
 
 
 }

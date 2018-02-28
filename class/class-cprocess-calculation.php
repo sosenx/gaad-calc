@@ -131,7 +131,12 @@ abstract class cprocess_calculation{
 	function parse_total( array $calc_total, array $extended = array()){			
 		$return = $calc_total;
 		$return[ 'name' ] = $this->get_name();
-		if ( !empty( $extended ) ) {
+
+		//checking credentials for data filter		
+		$credetials = $this->parent->login();
+		$al = $credetials['access_level'];
+
+		if ( !empty( $extended ) && ( $al >=  1 ) ) {
 			$return['extended'] = $extended;
 		}
 		return $return;

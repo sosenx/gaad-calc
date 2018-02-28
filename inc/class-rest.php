@@ -49,7 +49,6 @@ class rest{
 			'status' => 200,
 			'product_id' => $calc->get_PID(),
 			'calculation_id' => $calc->get_CID(),
-
 			'headers' => $h,
 			'output' => $data_permissions_f->get()
 		);

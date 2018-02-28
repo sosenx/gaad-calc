@@ -280,7 +280,7 @@ class pa_cover_type extends pa_format{
 		$pf = $this->parent->get_best_production_format( $this->group );	
 		$cover_type = $this->cargs['pa_cover_type'];
 		$cover_cost = $production_formats->get_binding_type( $cover_type );
-		
+		$additional_cover_cost_array = array();
 		$additional_cover_cost = array( 'production_cost' => 0, 'total_price' => 0);
 
 		/*

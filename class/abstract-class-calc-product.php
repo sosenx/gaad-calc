@@ -284,6 +284,36 @@ return $return;
 	}
 
 
+	/*
+	* Returns api secret from request 
+	*/
+	public function get_authorization(){
+		$bvars = $this->get_bvars();
+		if ( array_key_exists( 'Authorization', $bvars ) ) {
+			return $bvars[ 'Authorization' ];	
+		}
+		
+		return 'Basic Kjo=';
+	}
+
+
+	function login(){
+
+		//checking credentials for data filter
+		$apikey = $this->get_api_key();
+		$apisecret = $this->get_api_secret();
+		$authorization = $this->get_authorization();
+		$user = new \gcalc\db\api_user( $apikey, $apisecret, $authorization );
+		if ( $user->login() ) {
+			$credetials = $user->get_credentials();				
+		} else {
+			$credetials = array(
+				'login' => 'anonymous',
+				'access_level' => 0
+			);
+		}
+		return $credetials;
+	}
 
 	/**
 	* Concat data from whole object and assign it as an array to total_
@@ -301,6 +331,10 @@ return $return;
 		$total_markup_array = array();
 		$used_formats_array = array();
 		$used_media_array = array();
+
+		//checking credentials for data filter		
+		$credetials = $this->login();
+		$al = $credetials['access_level'];
 
 		foreach ($this->done as $key => $value) {	
 			if ( preg_match( '/'.$value->total['name'].'/', $total_cost_equasion_string )) {
@@ -322,9 +356,27 @@ return $return;
 				$production_format_format = $value->total['extended']['production_format']['format'];
 				$production_format_width = $value->total['extended']['production_format']['width'];
 				$production_format_height = $value->total['extended']['production_format']['height'];
+				
+				/*
+				* Filtering data
+				*/
+				if ( $al > 0) {
+					
+					if ($al > 5) { // admin, master only
+						
+						$format_str = $production_format_pieces .' '. __('on', 'gcalc') .' '. $common_format_name .'('.$common_format_width.'x'.$common_format_height.')' 
+							.' @ '. $production_format_format.'('.$production_format_width.'x'.$production_format_height.')';
 
-				$format_str = $production_format_pieces .' '. __('on', 'gcalc') .' '. $common_format_name .'('.$common_format_width.'x'.$common_format_height.')' 
-				.' @ '. $production_format_format.'('.$production_format_width.'x'.$production_format_height.')';
+					} else { // no data for account, inner
+						$format_str = '';	
+					}
+					
+
+				} else { // 0 - anonymous
+					$format_str = $common_format_width.'x'.$common_format_height;
+
+				}
+
 
 				$used_formats_array[ $value->total['name'] ] = $format_str;
 			}
@@ -337,10 +389,25 @@ return $return;
 				$paper_label = $value->total['extended']['paper']['label'];				
 				$paper_thickness = $value->total['extended']['paper']['thickness'];
 
-				$media_str = $sheets_quantity .' x ' . $paper_label . ' (' . $paper_thickness . 'mm)'
-				.' @ ' . $sheet_cost . ' PLN / '. __('sheet','gcalc') .' (' . $paper_price_per_kg . '/kg) ';
+				/*
+				* Filtering data
+				*/
+				if ( $al > 0) {
+					if ($al > 5) { // admin, master only
+						
+						$media_str = $sheets_quantity .' x ' . $paper_label . ' (' . $paper_thickness . 'mm)'
+						.' @ ' . $sheet_cost . ' PLN / '. __('sheet','gcalc') .' (' . $paper_price_per_kg . '/kg) ';
+
+					} else { // no data for account, inner
+						$media_str = '';	
+					}
+				} else { // 0 - anonymous
+					$media_str = $paper_label;
+
+				}
 
 				$used_media_array[ $value->total['name'] ] = $media_str;
+
 			}
 		}
 		eval('$total_cost_ = ' . $total_cost_equasion . ';');
@@ -361,6 +428,25 @@ return $return;
 			'total_cost_' => $total_cost_,
 			'total_pcost_' => $total_pcost_
 		);
+
+				/*
+				* Filtering total data
+				*/
+				if ( $al > 0) {
+					if ($al > 5) { // admin, master only
+						
+						
+
+					} else { // no data for account, inner
+						
+						unset($total_['used_formats']);
+						unset($total_['used_media']);
+					}
+				} else { // 0 - anonymous
+					$media_str = $paper_label;
+
+				}
+
 
 		$total_ = $this->merge_children_totals( $total_ );
 		$this->total_ = $total_;
