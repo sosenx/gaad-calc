@@ -10,7 +10,7 @@ $pargs = array(
     "product_slug" => "druk-ksiazek",
 
     "pa_format" => "90x50",
-    "pa_quantity" => 1500,
+    //"pa_quantity" => 1500,
     //"pa_multi_quantity" => "10,50,150",
     "pa_paper" => "kreda-350g",
     "pa_print" => "4x4",                 
@@ -20,7 +20,7 @@ $pargs = array(
     "pa_cover_format" => "175x235",
     "pa_cover_paper" => "kreda-300g",
     "pa_cover_print" => "4x0",    
-    "pa_cover_type" => "hard",
+    "pa_cover_type" => "section_sewn",
     
     "pa_cover_dust_jacket_paper" => "kreda-150g",
     "pa_cover_dust_jacket_print" => "4x4",
@@ -54,11 +54,11 @@ $pargs = array(
     "group_cover" => "",
     "group_bw" => "",
     "group_color" => "",
-  /**/ 
+  
     "apikey" => "g1a2a3d",
     "apisecret" => "k1o2o3t",
     "Authorization" => "Basic ".base64_encode( 'gaad:koot123' ),
-  /**/
+  
 /*
    "apikey" => "7c2ecd07f155648431e0f94b89247d713c5786e1e73e953f2fe7eca39534cd6d",
    "apisecret" => "d66d261760296433de080dd8d7daebb7e4355473b35fa3091420e9907bd47ad5",
@@ -77,7 +77,7 @@ $pargs = array(
 
 
 $q= array( 10, 50, 100, 350, 500, 750, 1000, 1500);
-$q= array( 100 );
+$q= array( 99 );
 foreach ($q as $key => $value) {
     $pargs['pa_quantity'] = $value;
     $calc = new gcalc\calculate( $pargs );

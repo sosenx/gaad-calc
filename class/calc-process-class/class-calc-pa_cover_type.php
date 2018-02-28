@@ -29,14 +29,28 @@ class pa_cover_type extends pa_format{
 	* Section sewn costs
 	*/
 	function spiral_binding_cost( ){		
-		return array();
+		$return = array(
+			'binding_cost' => array(
+				'total_price' => 0,				
+				'production_cost' => 0
+			)
+		);
+
+		return $return;
 	}
 
 	/**
 	* Perfect binding costs
 	*/
 	function saddle_stitch_cost( ){		
-		return array();
+		$return = array(
+			'binding_cost' => array(
+				'total_price' => 0,				
+				'production_cost' => 0
+			)
+		);
+
+		return $return;
 	}
 
 
@@ -44,7 +58,14 @@ class pa_cover_type extends pa_format{
 	* Section sewn costs
 	*/
 	function section_sewn_cost( ){		
-		return array();
+		$return = array(
+			'binding_cost' => array(
+				'total_price' => 0,				
+				'production_cost' => 0
+			)
+		);
+
+		return $return;
 	}
 
 	/**
