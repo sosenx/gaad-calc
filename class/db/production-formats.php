@@ -62,8 +62,8 @@ class formats{
 	/**
 	* 
 	*/
-	function get_formats( string $label = "" ){	
-		$label = $label === "" ? "all" : $label;
+	function get_formats( string $label = NULL){	
+		$label = $label === "" || is_null( $label ) ? "all" : $label;
 		$color = $this->formats['color'];
 		$bw = $this->formats['bw'];		
 		$all = array_merge( $color, $bw );
@@ -74,7 +74,7 @@ class formats{
 	/**
 	* Return split by given format
 	*/
-	function get_split( string $format = "", string $color_mode = "" ){	
+	function get_split( string $format, string $color_mode){	
 		$format = $format === "" ? "a4" : $format;
 		return isset( $this->splits[$color_mode][ $format ] ) ? $this->splits[$color_mode][ $format ] : $this->splits[$color_mode][ '*' ];
 	}
@@ -82,7 +82,7 @@ class formats{
 	/**
 	* Return margin by given production format
 	*/
-	function get_prod_for_margins( string $format = "", string $color_mode = "" ){	
+	function get_prod_for_margins( string $format, string $color_mode ){	
 		$format = $format === "" ? "487x330" : $format;
 		return isset( $this->prod_for_margins[$color_mode][ $format ] ) ? $this->prod_for_margins[$color_mode][ $format ] : array( 'left'=>0, 'right'=>0, 'top'=>0, 'bottom'=>0 );
 	}
@@ -90,7 +90,7 @@ class formats{
 	/**
 	* Return click cost
 	*/
-	function get_click( string $format = "", string $print_color_mode ){	
+	function get_click( string $format, string $print_color_mode ){	
 		if ( $print_color_mode == '0x0' ) { // no print
 			return 0;
 		}
@@ -103,7 +103,7 @@ class formats{
 	/**
 	* Return click cost
 	*/
-	function get_str_dim_to_format( string $format = "" ){	
+	function get_str_dim_to_format( string $format ){	
 		$format = $format === "" ? "a3" : $format;
 		$str_format = isset( $this->str_dim_to_format[ $format ] ) ? $this->str_dim_to_format[ $format ] : 'errorformat';
 		return $str_format;

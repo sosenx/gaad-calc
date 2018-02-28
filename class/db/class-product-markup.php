@@ -60,7 +60,8 @@ class product_markup{
 	*
 	* Branches have irregular shape, needs to be treted individually with cprocess_calculation obj
 	*/
-	public function get_markup( bool $return_group_markup = false){		
+	public function get_markup( bool $return_group_markup = NULL ){	
+		$return_group_markup = is_null($return_group_markup) ? false : $return_group_markup;
 		$markups_group = $this->get_markups_group();
 		$process_name = $this->parent->name;
 		$product_markup = !array_key_exists( $this->slug, $this->get_markups() ) ? $this->get_markups()[ '*' ] : $this->get_markups()[ $this->slug ];

@@ -26,7 +26,7 @@ class paper{
 	/**
 	* Return click cost
 	*/
-	function get_paper( string $paper_slug = "" ){	
+	function get_paper( string $paper_slug ){	
 		$paper_slug = $paper_slug === "" ? "kreda-350g" : $paper_slug;
 		return isset( $this->papers[ $paper_slug ] ) ? $this->papers[ $paper_slug ] : 'error-paper-name';
 	}

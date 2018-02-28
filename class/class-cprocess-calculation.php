@@ -210,7 +210,7 @@ abstract class cprocess_calculation{
 	/**
 	* Is double side
 	*/
-	function get_print_color_mode( string $process_slug = "" ){			
+	function get_print_color_mode( string $process_slug ){			
 		$group = $this->get_group();
 		//$process_slug = $group[0] === 'master' ? $process_slug : 'pa_' . $group[0] . '_' . str_replace('pa_', '', $group[1]);
 		$process_slug = str_replace('master_', '', str_replace('pa_', 'pa_'.$group[0].'_', $process_slug) );

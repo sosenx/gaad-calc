@@ -6,7 +6,7 @@ class shortcodes {
 	/*
 	* This function appedns application to page from shortcode
 	*/
-	public static function gcalc( $atts, $content = "" ) {
+	public static function gcalc( $atts, $content) {
 		$defaults = array( 
 			'id' => uniqid( '' )
 		);
