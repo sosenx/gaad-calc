@@ -64,7 +64,7 @@ class register_woo_elements{
 	public static function product_calling_card(){
 		$product_title = \__( 'Calling card','gcalc' );
 		$post_content = '';
-		$user_id = get_current_user();
+		$user_id = 1;
 		$product_exists = \gcalc\register_woo_elements::product_exists( $product_title );
 
 

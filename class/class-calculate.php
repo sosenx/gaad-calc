@@ -65,7 +65,7 @@ class calculate extends calc_product {
 		$todo[] = $new_todo;
 		$this->get_todo()->set_plist( $todo );
 
-		array_push( $this->done, $new_todo->do() );
+		array_push( $this->done, $new_todo->do__() );
 	}
 
 	/**

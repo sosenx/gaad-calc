@@ -81,7 +81,7 @@ class rest{
 	*
 	* @return array 
 	*/
-	public static function getHeaders( string $regexp = NULL, bool $return_rest = NULL ) : array {
+	public static function getHeaders( $regexp = NULL, bool $return_rest = NULL ) {
 		/*
 		* Headers to return array
 		*/

@@ -116,7 +116,7 @@ class pa_format extends \gcalc\cprocess_calculation{
 	/**
 	*
 	*/
-	function do( ){	
+	function do__( ){	
 		$this->ptotal = new \gcalc\ptotal( $this->calc(), "+", NULL, $this->name );
 		$this->done = true;
 		return $this->ptotal;

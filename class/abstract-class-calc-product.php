@@ -633,7 +633,7 @@ $r=1;
 		}
 		
 		foreach ( $todo as $key => $value) {						
-			array_push( $this->done, $value->do() );
+			array_push( $this->done, $value->do__() );
 		}
 
 		return $this->done;
@@ -719,7 +719,7 @@ $r=1;
 			if ( !$new_todo->ok() ) {
 				return false;
 			}
-			array_push( $this->done, $new_todo->do() );
+			array_push( $this->done, $new_todo->do__() );
 			array_push( $used, $group_process_name );
 			
 		}
@@ -872,8 +872,8 @@ $r=1;
 	*
 	* @param array $calculation_array
 	*/
-	public function set_calculation_array_part( string $name, array $calculation_array_part, string $mode = "public" ){
-		
+	public function set_calculation_array_part( string $name, array $calculation_array_part, string $mode = NULL ){
+		$mode = is_null( $mode ) ? "public" : $mode;
 		/*
 		* Need some atention here and do some work with permission check
 		*/

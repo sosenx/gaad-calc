@@ -59,8 +59,8 @@ abstract class cprocess{
 	}
 
 
-	public function do( ){
-		$this->ptotal = $this->calculator->do();
+	public function do__( ){
+		$this->ptotal = $this->calculator->do__();
 		$this->done = $this->calculator->get_done();
 		return $this->ptotal;
 	}

@@ -49,12 +49,13 @@ class admin_actions{
     
   public function admin_scripts(){
     
-    
+    /*
     wp_enqueue_script( 'tether-js', GAAD_PLUGIN_TEMPLATE_URL . '/node_modules/tether/dist/js/tether.min.js', false, false, null );
     wp_enqueue_script( 'vue-js', 'https://unpkg.com/vue@2.4.2/dist/vue.js', false, false, null );
     wp_enqueue_script( 'vue-router-js', 'https://unpkg.com/vue-router/dist/vue-router.js', array( 'vue-js' ), false, null );
     wp_enqueue_script( 'vue-x-js', 'https://unpkg.com/vuex', array( 'vue-js' ), false, null );
     wp_enqueue_script( 'bootstrap-js', 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js', array( 'tether-js', 'jquery' ), false, null );
+    */
     return $this;
   }
   

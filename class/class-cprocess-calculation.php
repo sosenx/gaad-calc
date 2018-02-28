@@ -66,7 +66,7 @@ abstract class cprocess_calculation{
 		$this->cclass = get_class( $parent );
 	}
 
-	function do( ){	
+	function do__( ){	
 		$this->ptotal = new \gcalc\ptotal( 0, "+", NULL, $this->name );
 		$this->done = true;
 		return $this->ptotal;
