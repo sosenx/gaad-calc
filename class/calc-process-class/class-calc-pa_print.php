@@ -26,7 +26,7 @@ class pa_print extends \gcalc\cprocess_calculation{
 		$pages = $this->get_pages( );				
 
 		$markup_db = new \gcalc\db\product_markup( $this->cargs, $this->product_id, $this);
-		$markup = $markup_db->get_markup( true );	
+		$markup = $markup_db->get_markup( true );	//true = gets markup from markup product group, not product type
 		$markup_ = $this->get_val_from( 
 			'', 
 			"min", 
