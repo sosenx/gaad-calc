@@ -98,10 +98,11 @@ abstract class cprocess_calculation{
 		}	
 			
 		foreach ($array as $key => $value) {
-			$comp_str = eval('$comp = ' .$attr . ' ' . $compare_sign[ $compare ] . ' '. $key .';'); 
-			//var_dump('$comp = ' .$attr . ' ' . $compare_sign[ $compare ] . ' '. $key .';');
+			$eval_str = '$comp = ' .$attr . ' ' . $compare_sign[ $compare ] . ' '. $key .';';			
+			$comp_str = eval( $eval_str ); 			
 			if ($comp) {
-				return $value;	
+				$return = $array[$key];		
+				return $return;	
 			}
 			
 		}		

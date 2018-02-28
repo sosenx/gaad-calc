@@ -211,7 +211,7 @@ class formats{
 					'pa_attr' => 'pa_master_quantity',
 					'compare' => 'min',
 					'scale' => array(
-						array( 'price' => .5, 'v' => 1 )
+						array( 'price' => .5, 'v' => 0 )
 					)
 				)
 			),
