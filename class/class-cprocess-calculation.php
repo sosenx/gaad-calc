@@ -164,7 +164,7 @@ abstract class cprocess_calculation{
 	}
 
 	/**
-	* Getter parent
+	* Getter pa_parent
 	*/
 	public function get_pa_parent( ){		
 		return $this->pa_parent;

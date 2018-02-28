@@ -24,6 +24,12 @@ class product_markup{
 	*/
 	private $markups;
 	
+	/**
+	* markup gropus object
+	*/
+	private $markups_groups;
+
+
 
 	function __construct( array $product_attributes, int $product_id, $parent ) {
 		$this->parent = $parent;	
@@ -54,11 +60,23 @@ class product_markup{
 	*
 	* Branches have irregular shape, needs to be treted individually with cprocess_calculation obj
 	*/
-	public function get_markup(){		
+	public function get_markup( bool $return_group_markup = false){		
+		$markups_group = $this->get_markups_group();
+		$process_name = $this->parent->name;
 		$product_markup = !array_key_exists( $this->slug, $this->get_markups() ) ? $this->get_markups()[ '*' ] : $this->get_markups()[ $this->slug ];
-		$process_markup = $product_markup[ $this->parent->name ]  == NULL ? 0 : $product_markup[ $this->parent->name ];
+		$process_markup = $product_markup[ $process_name ]  == NULL ? 0 : $product_markup[ $process_name ];		
+		$markups_group = array_key_exists( $markups_group, $process_markup ) ? $markups_group : 'markup'; //re setting with check
+
+		if (!$return_group_markup) {
+			return $process_markup;
+		}
+		$return = $process_markup[$markups_group];
+		if ( isset( $return ) ) {
+			return array( 'markup' => $return );
+		} else {
+			return array( 'markup' => 1);
+		}
 		
-		return $process_markup;
 	}
 
 	/**
@@ -108,42 +126,110 @@ class product_markup{
 					)
 				),
 				'pa_print' => array( 
-					'markup' => array(
-						'0x' => array(
-							0 => 0
-						),
+					//common, general markups for printing
+					'markup' => array( // common print markup, universal
+						'0x' => array( 0 => 0 ),
 						'1x' => array(
 							array( 'price' => 5.5,	'v' => 0 	),
-							array( 'price' => 4.5,	'v' => 25 	),
-
-							
+							array( 'price' => 4.5,	'v' => 25 	),							
 							array( 'price' => 4,	'v' => 50 	),
 							array( 'price' => 3,	'v' => 100  ),
-							array( 'price' => 2.5, 'v' => 200  ),
-							array( 'price' => 2.1, 'v' => 350  ),
-							array( 'price' => 1.9, 'v' => 500  ),
-							array( 'price' => 1.8, 'v' => 750  ),
-							array( 'price' => 1.6, 'v' => 1000 ),
-							array( 'price' => 1.5, 'v' => 1500 )
+							array( 'price' => 2.5, 	'v' => 200  ),
+							array( 'price' => 2.1, 	'v' => 350  ),
+							array( 'price' => 1.9, 	'v' => 500  ),
+							array( 'price' => 1.8, 	'v' => 750  ),
+							array( 'price' => 1.6, 	'v' => 1000 ),
+							array( 'price' => 1.5, 	'v' => 1500 )
 						),
-
 						'4x' => array(
 							array( 'price' => 5.5,	'v' => 0 	),
-							array( 'price' => 4.5,	'v' => 25 	),
-
-							
+							array( 'price' => 4.5,	'v' => 25 	),							
 							array( 'price' => 4,	'v' => 50 	),
 							array( 'price' => 3.5,	'v' => 100  ),
-							array( 'price' => 2.7, 'v' => 200  ),
-							array( 'price' => 2.2, 'v' => 350  ),
-							array( 'price' => 2, 'v' => 500  ),
-							array( 'price' => 1.9, 'v' => 750  ),
-							array( 'price' => 1.8, 'v' => 1000 ),
-							array( 'price' => 1.7, 'v' => 1500 )
+							array( 'price' => 2.7, 	'v' => 200  ),
+							array( 'price' => 2.2, 	'v' => 350  ),
+							array( 'price' => 2, 	'v' => 500  ),
+							array( 'price' => 1.9, 	'v' => 750  ),
+							array( 'price' => 1.8, 	'v' => 1000 ),
+							array( 'price' => 1.7, 	'v' => 1500 )
 						)
-					)
+					), // markup
+
+					//books
+					'commercial_simple' => array(
+						'0x' => array( 0 => 0 ),
+						'1x' => array(
+							array( 'price' => 9,	'v' => 0 	),
+							array( 'price' => 8,	'v' => 10 	),							
+							array( 'price' => 7,	'v' => 20 	),
+							array( 'price' => 6.5,	'v' => 30  ),
+							array( 'price' => 5.8, 	'v' => 40  ),
+							array( 'price' => 5, 	'v' => 50  ),
+							array( 'price' => 4.5, 	'v' => 75  ),
+							array( 'price' => 4, 	'v' => 100  ),
+							array( 'price' => 3.5, 	'v' => 250 ),
+							array( 'price' => 3, 	'v' => 500 ),
+							array( 'price' => 2.7, 	'v' => 750 ),
+							array( 'price' => 2.5, 	'v' => 1000 ),
+							array( 'price' => 2, 	'v' => 1500 ),
+						),
+						'4x' => array(
+							array( 'price' => 9,	'v' => 0 	),
+							array( 'price' => 8,	'v' => 10 	),							
+							array( 'price' => 7,	'v' => 20 	),
+							array( 'price' => 6.5,	'v' => 30  ),
+							array( 'price' => 5.8, 	'v' => 40  ),
+							array( 'price' => 5, 	'v' => 50  ),
+							array( 'price' => 4.5, 	'v' => 75  ),
+							array( 'price' => 4, 	'v' => 100  ),
+							array( 'price' => 3.5, 	'v' => 250 ),
+							array( 'price' => 3, 	'v' => 500 ),
+							array( 'price' => 2.7, 	'v' => 750 ),
+							array( 'price' => 2.5, 	'v' => 1000 ),
+							array( 'price' => 2, 	'v' => 1500 )
+						)
+					), //books
+
+					//books
+					'books' => array(
+						'0x' => array( 0 => 0 ),
+						'1x' => array(
+							array( 'price' => 5.5,	'v' => 0 	),
+							array( 'price' => 4.5,	'v' => 25 	),							
+							array( 'price' => 4,	'v' => 50 	),
+							array( 'price' => 3,	'v' => 100  ),
+							array( 'price' => 2.5, 	'v' => 200  ),
+							array( 'price' => 2.1, 	'v' => 350  ),
+							array( 'price' => 1.9, 	'v' => 500  ),
+							array( 'price' => 1.8, 	'v' => 750  ),
+							array( 'price' => 1.6, 	'v' => 1000 ),
+							array( 'price' => 1.5, 	'v' => 1500 )
+						),
+						'4x' => array(
+							array( 'price' => 5.5,	'v' => 0 	),
+							array( 'price' => 4.5,	'v' => 25 	),							
+							array( 'price' => 4,	'v' => 50 	),
+							array( 'price' => 3.5,	'v' => 100  ),
+							array( 'price' => 2.7, 	'v' => 200  ),
+							array( 'price' => 2.2, 	'v' => 350  ),
+							array( 'price' => 2, 	'v' => 500  ),
+							array( 'price' => 1.9, 	'v' => 750  ),
+							array( 'price' => 1.8, 	'v' => 1000 ),
+							array( 'price' => 1.7, 	'v' => 1500 )
+						)
+					) //books
+
 				)
 			)
+		);
+
+
+
+		$this->markups_groups = array(
+			'commercial_simple' => array( 'wizytowki', 'wizytowki-skladane', 'ulotki', 'broszury' ),
+			'commercial_complex' => array( 'roll-up' ),
+			'commercial_books' => array( 'katalog' ),
+			'books' => array( 'druk-ksiazki' )
 		);
 	}
 
@@ -154,6 +240,29 @@ class product_markup{
 	*/
 	function get_markups( ){			
 		return $this->markups;		
+	}
+
+	/**
+	* Getter for markups
+	*
+	*/
+	function get_markups_groups( ){			
+		return $this->markups_groups;		
+	}
+
+
+	/**
+	* Getter for markup group by product_slug
+	*
+	*/
+	function get_markups_group( ){	
+		$markups_groups = $this->markups_groups;
+		foreach ( $markups_groups as $key => $value ) {
+			if ( in_array( $this->slug, $value ) ) {
+				return $key;
+			}
+		}
+		return 'markup'; //default key
 	}
 
 }

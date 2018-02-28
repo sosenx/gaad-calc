@@ -26,9 +26,9 @@ class pa_print extends \gcalc\cprocess_calculation{
 		$pages = $this->get_pages( );				
 
 		$markup_db = new \gcalc\db\product_markup( $this->cargs, $this->product_id, $this);
-		$markup = $markup_db->get_markup();	
+		$markup = $markup_db->get_markup( true );	
 		$markup_ = $this->get_val_from( 
-			'',
+			'', 
 			"min", 
 			$markup['markup'][$print_color_mode],
 			$pa_quantity
