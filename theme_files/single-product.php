@@ -5,7 +5,7 @@
 wp_head();
 
 global $post;
-$product_id = $post->ID;
+//$product_id = $post->ID;
 $pargs = array(	
     "product_slug" => "druk-ksiazek",
 
@@ -43,7 +43,7 @@ $pargs = array(
     "pa_bw_format" => "175x235",
     "pa_bw_paper" => "ekobookw-70g-2.0",
     "pa_bw_print" => "1x1", 
-
+/*
     "pa_color_pages" => 120,
     "pa_color_format" => "175x235",
     "pa_color_paper" => "kreda-135g",
@@ -54,7 +54,7 @@ $pargs = array(
     "group_cover" => "",
     "group_bw" => "",
     "group_color" => "",
-  /*
+  
     "apikey" => "g1a2a3d",
     "apisecret" => "k1o2o3t",
     "Authorization" => "Basic ".base64_encode( 'gaad:koot123' ),
@@ -81,9 +81,10 @@ $q= array( 99 );
 foreach ($q as $key => $value) {
     $pargs['pa_quantity'] = $value;
     $calc = new gcalc\calculate( $pargs );
-    $data_permissions_f = new gcalc\data_permissions_filter( $calc );
-    $data_permissions_f->get();
-   $calculation =  $data_permissions_f->save_calculation();
+   // $data_permissions_f = new gcalc\data_permissions_filter( $calc );
+   // $data_permissions_f->get();
+   //$calculation =  $data_permissions_f->save_calculation();
+    $calculation = $calc->calc();
 
 }
 
