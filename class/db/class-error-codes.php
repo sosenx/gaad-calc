@@ -76,6 +76,11 @@ class codes{
 			'err' => 'Auth set to anonymous',
 			'solution' => 'set Authorization header'
 		),
+		10103 => array( 'type' => 'info',
+			'label' => 'Skipping autosave',
+			'err' => 'Skipping calculation autosave due to acces_level',
+			'solution' => 'Only specific calculations are set to be saved, call administrator for frther informations'
+		),
 
 
 		10001 => array( 'type' => 'attr_change',

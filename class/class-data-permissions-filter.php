@@ -249,11 +249,18 @@ class data_permissions_filter{
 
 		public function save_calculation(){
 			$credetials = $this->get_credetials();
-			$save_type = array( 10,9,2,1 );
+			$autosave = \gcalc\GAAD_PLUGIN_TEMPLATE_AUTOSAVE_CALCULATIONS_TYPES;
+			$save_type = strlen($autosave) >= 1 ? array_filter( explode( ',', $autosave ) ) : 2;
+
 			if ( in_array( (int)$credetials['access_level'], $save_type) ) {
 				$user = $this->get_credetials();
 				\gcalc\sql::calculations_insert( $this->calc->get_CID(), $this->calc->get_bvars(), $user, $this->total_ );
-			}			
+			} else {
+				$this->calc->get_errors()->add( new error( 10103 ) );
+				$this->set_allowed_data();
+			}	
+
+			return $this->get();		
 		}
 
 		public function set_allowed_data(){

@@ -190,9 +190,7 @@ class sql{
 		        'user' 			=> $user['login'],
 		        'cid' 			=> $cid
 		    );
-		$re = $wpdb->insert( $table_name, $insert );
-		
-		var_dump($re, $wpdb);
+		$wpdb->insert( $table_name, $insert );	
 	}
 
 	/** 

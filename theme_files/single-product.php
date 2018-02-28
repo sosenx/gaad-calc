@@ -77,18 +77,19 @@ $pargs = array(
 
 
 $q= array( 10, 50, 100, 350, 500, 750, 1000, 1500);
+$q= array( 100 );
 foreach ($q as $key => $value) {
     $pargs['pa_quantity'] = $value;
     $calc = new gcalc\calculate( $pargs );
     $data_permissions_f = new gcalc\data_permissions_filter( $calc );
-    $calculation = $data_permissions_f->get();
-    $data_permissions_f->save_calculation();
+    $data_permissions_f->get();
+   $calculation =  $data_permissions_f->save_calculation();
 
 }
 
 
 
-//var_dump( $calculation );
+var_dump( $calculation );
 
 wp_footer();
 

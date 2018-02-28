@@ -120,8 +120,21 @@ if ( !defined( GAAD_PLUGIN_TEMPLATE_NAMESPACE . 'GAAD_PLUGIN_TEMPLATE_SQL_TABLE_
 
 
 if ( !defined( GAAD_PLUGIN_TEMPLATE_NAMESPACE . 'GAAD_PLUGIN_TEMPLATE_FORCE_FILES_UPDATED') )
+	/**	
+	* Forces to upload template files
+	*/
 	define( GAAD_PLUGIN_TEMPLATE_NAMESPACE . 'GAAD_PLUGIN_TEMPLATE_FORCE_FILES_UPDATED', true );
 
+
+if ( !defined( GAAD_PLUGIN_TEMPLATE_NAMESPACE . 'GAAD_PLUGIN_TEMPLATE_AUTOSAVE_CALCULATIONS_TYPES') )
+	/**	
+	* Forces to upload template files
+	*/
+	define( GAAD_PLUGIN_TEMPLATE_NAMESPACE . 'GAAD_PLUGIN_TEMPLATE_AUTOSAVE_CALCULATIONS_TYPES', '1' );
+
+
+
+	//composer autoload
 	is_file( \gcalc\GAAD_PLUGIN_TEMPLATE_AUTOLOAD ) ?  require_once( \gcalc\GAAD_PLUGIN_TEMPLATE_AUTOLOAD ) : false;
 	
 	require_once( 'class/db/class-api-user.php' );
