@@ -24,13 +24,14 @@ class rest{
 	*
 	*/
 	static public function cors() {
+		
 
 	    // Allow from any origin
 	    if (isset($_SERVER['HTTP_ORIGIN'])) {
 	        // Decide if the origin in $_SERVER['HTTP_ORIGIN'] is one
 	        // you want to allow, and if so:
 	        header("Access-Control-Allow-Origin: {$_SERVER['HTTP_ORIGIN']}");
-	        header('Access-Control-Allow-Credentials: true');
+	        header('Access-Control-Allow-Credentials: false');
 	        header('Access-Control-Max-Age: 86400');    // cache for 1 day
 	    }
 
@@ -70,7 +71,7 @@ class rest{
 	}
 
 	public static function rest_calculate_callback( $data = NULL ){
-		\gcalc\rest::cors();
+		//\gcalc\rest::cors();
 		$h = \gcalc\rest::getHeaders( "/^pa_.*|^product_.*|^group_.*|apikey|apisecret|Authorization/", true ); 
 		$product_id = \gcalc\rest::getHeaders( "/product_id/" );	
 		$product_id = count( $product_id ) == 0 ? NULL : (int) $product_id[ "product_id" ];
