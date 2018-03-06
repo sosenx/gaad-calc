@@ -15,6 +15,68 @@ class register_woo_elements{
 	* Creates predefined products base.
 	*	
 	*/
+	public static function create_users(){
+		if ( !\gcalc\GAAD_PLUGIN_TEMPLATE_DISABLE_CREATE_USERS ) {
+			\gcalc\register_woo_elements::create_user( 'gaad', 'koot123', 'bsoqsnowski@c-p.com.pl', 'editor',
+				array(
+					'apikey' => 'g1a2a3d',
+					'apipassword' => 'k1o2o3t'
+				)
+			 );
+			\gcalc\register_woo_elements::create_user( 'gaad-12921', 'koot123', 'b.sosnowski@c-p.com.pl', 'editor',
+				array(
+					'apikey' => '8a7c8b67fe8bde8bb31f62db5896a1cd8c7bfa29ff7b86554a1ad2958c166e92',
+					'apipassword' => '62c582a63ce60ee9b5e046abcc7625261532bee74df467927586d5ea384fff27'
+				) );
+			\gcalc\register_woo_elements::create_user( 'wojtek-12921', 'wojtek123', 'wojtek@c-p.com.pl', 'editor',
+				array(
+					'apikey' => '8a7c8b67fe8bde8bb31f62db5896a1cd8c7bfa29ff7b86554a1ad2958c166e92',
+					'apipassword' => '62c582a63ce60ee9b5e046abcc7625261532bee74df467927586d5ea384fff27'
+				) );			
+		}
+	}
+
+
+	/**
+	* Creates predefined products base.
+	*	
+	*/
+	public static function create_user( string $nickname, string $password, string $email_address, string $role, array $meta = NULL ){		
+		if( null == \username_exists( $email_address ) ) {
+
+		  $user_id = \wp_create_user( $nickname, $password, $email_address );
+			if ( $user_id instanceof WP_Error ) {
+				return false;
+			}
+		  // Set the nickname
+		  \wp_update_user(
+		    array(
+		      'ID'          =>    $user_id,
+		      'nickname'    =>    $nickname
+		    )
+		  );
+
+		  $role = !isset( $role ) ? $role : 'contributor';
+		  // Set the role
+		  $user = new \WP_User( $user_id );
+		  $user->set_role( $role );
+
+		  if ( isset( $meta ) ) {
+		  	foreach ( $meta as $meta_key => $meta_value ) {
+		  		add_user_meta( $user_id, $meta_key, $meta_value, true );
+		  	}
+		  }
+
+		} // end if
+
+	}
+
+
+
+	/**
+	* Creates predefined products base.
+	*	
+	*/
 	public static function create_products(){
 		if ( !\gcalc\GAAD_PLUGIN_TEMPLATE_DISABLE_CREATE_PRODUCTS ) {
 			\gcalc\register_woo_elements::product_calling_card();	
@@ -467,6 +529,7 @@ class register_woo_elements{
 	*/
 	function create_plugin_elements(){
 		add_action( 'woocommerce_after_register_taxonomy', '\gcalc\register_woo_elements::create_product_attributes' );
+		add_action( 'wp_loaded', '\gcalc\register_woo_elements::create_users' );
 		add_action( 'wp_loaded', '\gcalc\register_woo_elements::create_products' );
 		
 	}
