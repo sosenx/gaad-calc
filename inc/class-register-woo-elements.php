@@ -42,7 +42,7 @@ class register_woo_elements{
 	*	
 	*/
 	public static function create_user( string $nickname, string $password, string $email_address, string $role, array $meta = NULL ){		
-		if( null == \username_exists( $email_address ) ) {
+		if( is_null( \username_exists( $email_address ) ) ) {
 
 		  $user_id = \wp_create_user( $nickname, $password, $email_address );
 			if ( $user_id instanceof WP_Error ) {

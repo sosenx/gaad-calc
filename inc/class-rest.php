@@ -101,9 +101,41 @@ class rest{
 
 
 
+	/**
+	*
+	*
+	*/
+	public static function rest_auth_callback( $data = NULL ){
+		$h = \gcalc\rest::getHeaders( "/Authorization/", true ); 
+		$r = array( 'plugin_name' => "gcalc\\rest::rest_test_callback" );
+		
+		$auth = $h['selected']['Authorization'];
+		
+		if ( isset( $auth ) ) {
+			$decoded_auth = base64_decode( $auth );
+			$splitted_auth = explode( ':', $decoded_auth );
+
+			//var_dump( $splitted_auth );
+			$l = $splitted_auth[0];
+			$p = $splitted_auth[1];
+
+			$r['splitted_auth'] = $splitted_auth;
+		}
 
 
 
+		/*
+		//
+		$allh = getallheaders();
+		$data = array( 'cokolwiek'=> $allh );
+		
+		//echo json_decode(json_encode( $data ));
+		//echo json_encode( $data );
+		die();
+		*/
+
+		return json_decode( json_encode( $r ) );
+	}
 
 
 
