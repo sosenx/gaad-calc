@@ -116,10 +116,16 @@ class rest{
 			$splitted_auth = explode( ':', $decoded_auth );
 
 			//var_dump( $splitted_auth );
-			$l = $splitted_auth[0];
-			$p = $splitted_auth[1];
+			$login = $splitted_auth[0];
+			$password = $splitted_auth[1];
+			$apikey = base64_decode( $h['others']['Apikey'] );
+			$apisecret = base64_decode( $h['others']['Apisecret'] );
 
-			$r['splitted_auth'] = $splitted_auth;
+			$user = new \gcalc\db\api_user( $apikey, $apisecret, $auth );
+			
+			$r['login'] = $user->login();
+			$r['credentials'] = $user->get_credentials();
+
 		}
 
 

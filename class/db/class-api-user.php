@@ -32,16 +32,21 @@ class api_user {
 			unset( $access_credentials['credentials']['token'] );
 			$u = $this->get_users();
 			if ( array_key_exists( $token, $u ) ) {
+				//var_dump($u[ $token ][ $user[ 0 ] ][ 'pwd' ] == $user[ 1 ]);
 				if($u[ $token ][ $user[ 0 ] ][ 'pwd' ] == $user[ 1 ]){
 					// login succesful				
 					$this->credentials = array(
+
 						"login" => $user[ 0 ],
 						"access_level" => $access_credentials['credentials']['access_level']
 					);
+
 					return true;
-				} 
+				} else {
+
+					return false;
+				}
 			} else {
-				$r=1;
 				return false;
 			}
 		} else {
@@ -81,6 +86,9 @@ class api_user {
 	private function aquire(){
 
 		$this->access = array(
+			/*
+				Master
+			*/
 			'ce4b3733db41a7b795350b7067a3debcf0e85a0e4f84c83ff0ae2e8808f240da39724ea9b6970b47756bbf54d5f401681d042fb96867905604d790257be4d217' => array(
 				"credentials" => array(	
 					"type" => "master",
@@ -139,7 +147,8 @@ class api_user {
 		$this->users = array(
 			//master
 			"b7067a3debcf0e85a0e4f84c83ff0ae2e880" => array(
-				"gaad" => array( "pwd" => "koot123" )
+				"gaad" => array( "pwd" => "koot123" ),
+				"admin" => array( "pwd" => "fthemes" )
 			),
 			//inner
 			"ea97586b4aa0c141e4456912f3325f7f" => array(
@@ -160,15 +169,8 @@ class api_user {
 				"gaad" => array( "pwd" => "koot123" )
 			)
 
-
-
 		);
 
 	}
 
-
-
-
 }
-
-
