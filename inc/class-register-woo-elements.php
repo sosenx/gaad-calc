@@ -80,6 +80,7 @@ class register_woo_elements{
 	public static function create_products(){
 		if ( !\gcalc\GAAD_PLUGIN_TEMPLATE_DISABLE_CREATE_PRODUCTS ) {
 			\gcalc\register_woo_elements::product_calling_card();	
+			\gcalc\register_woo_elements::product_leaflet();	
 		}
 	}
 
@@ -155,7 +156,7 @@ class register_woo_elements{
 
 			\gcalc\register_woo_elements::add_product_attribute( $post_id, 'finish', 
 	  			array( 'gloss', 'matt', 'soft-touch' ), '111' );
-			
+
 			\gcalc\register_woo_elements::add_product_attribute( $post_id, 'print', 
 	  			array( '44', '40' ), '111' );
 		}
