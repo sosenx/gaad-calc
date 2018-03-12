@@ -146,12 +146,16 @@ class register_woo_elements{
 			*/
 	  		\gcalc\register_woo_elements::add_product_attribute( $post_id, 'paper', 
 	  			array( 'couted-300g', 'couted-350g' ), '111' );
+
 	  		\gcalc\register_woo_elements::add_product_attribute( $post_id, 'volume', 
 	  			array( '50-szt', '100-szt', '250-szt', '500-szt', '1000-szt', '2500-szt' ), '111' );
+
 			\gcalc\register_woo_elements::add_product_attribute( $post_id, 'sizemm', 
 	  			array( '90x50', '85x55' ), '111' );
+
 			\gcalc\register_woo_elements::add_product_attribute( $post_id, 'finish', 
 	  			array( 'gloss', 'matt', 'soft-touch' ), '111' );
+			
 			\gcalc\register_woo_elements::add_product_attribute( $post_id, 'print', 
 	  			array( '44', '40' ), '111' );
 		}
