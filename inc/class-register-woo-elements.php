@@ -80,7 +80,7 @@ class register_woo_elements{
 	public static function create_products(){
 		if ( !\gcalc\GAAD_PLUGIN_TEMPLATE_DISABLE_CREATE_PRODUCTS ) {
 			\gcalc\register_woo_elements::product_calling_card();	
-			\gcalc\register_woo_elements::product_leaflet();	
+			
 		}
 	}
 

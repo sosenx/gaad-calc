@@ -7,7 +7,7 @@ wp_head();
 global $post;
 //$product_id = $post->ID;
 $pargs = array(	
-    "product_slug" => "druk-ksiazek",
+    "product_slug" => "calling-card",
 
     "pa_format" => "90x50",
     //"pa_quantity" => 1500,
@@ -16,7 +16,7 @@ $pargs = array(
     "pa_print" => "4x4",                 
     "pa_wrap" => "gloss-1x1",   
     "pa_spot_uv" => "1x0",
-
+/*
     "pa_cover_format" => "175x235",
     "pa_cover_paper" => "kreda-300g",
     "pa_cover_print" => "4x0",    
@@ -54,7 +54,7 @@ $pargs = array(
     "group_cover" => "",
     "group_bw" => "",
     "group_color" => "",
-  
+  */
     "apikey" => "g1a2a3d",
     "apisecret" => "k1o2o3t",
     "Authorization" => "Basic ".base64_encode( 'gaad:koot123' ),

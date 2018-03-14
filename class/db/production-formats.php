@@ -161,8 +161,14 @@ class formats{
 	*/
 	function get_total_cost_equasion( int $product_id ){	
 		$product = new \WC_Product( $product_id );
-		$slug = $product->get_slug();		
-		return isset( $this->total_cost_equasion[ $slug ] ) ? $this->total_cost_equasion[ $slug ] : '-1';
+		$slug = $product->get_slug();	
+		if ( array_key_exists( $slug, $this->total_cost_equasion ) ) {
+			$equasion = $this->total_cost_equasion[ $slug ];			
+		} else {
+			$equasion = $this->total_cost_equasion[ 'plain' ];
+		}
+		
+		return $equasion;
 	}
 
 
@@ -592,9 +598,15 @@ class formats{
 		);
 
 		$this->total_cost_equasion = array(
+			//universal
+			'plain' => array(
+				'equasion' => 'pa_master_paper + pa_master_print + pa_master_wrap + pa_master_spot_uv'
+			),
+
 			'wizytowki' => array(
 				'equasion' => 'pa_master_paper + pa_master_print + pa_master_wrap + pa_master_spot_uv'
 			),
+
 			'druk-ksiazek' => array(
 				'equasion' => 'pa_cover_type + pa_cover_paper + pa_cover_print + pa_cover_wrap + pa_cover_spot_uv + pa_bw_paper + pa_bw_print + pa_color_paper + pa_color_print + pa_bw_sewing + pa_color_sewing'
 			),

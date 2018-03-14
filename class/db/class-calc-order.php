@@ -36,10 +36,14 @@ class calc_order{
 	*/
 	public function aquire( ){
 		$this->order = array(
+			'plain' => array ( 
+				'master' => array('pa_master_format', 'pa_master_paper', 'pa_master_print', 'pa_master_spot_uv', '*') 
+			),
+
 			'wizytowki' => array ( 
 				'master' => array('pa_master_format', 'pa_master_paper', 'pa_master_print', 'pa_master_spot_uv', '*') 
 			),
-			'druk-ksiazek' => array ( 
+			'book' => array ( 
 				'master' =>array('pa_master_format', '*'),
 				"cover" => array( 'pa_cover_format','pa_cover_paper', /* 'pa_cover_print', */'*' ),
 			    "bw" => array( 'pa_bw_format', /*'pa_bw_pages', 'pa_bw_paper', 'pa_bw_print' */ '*'),
@@ -54,7 +58,12 @@ class calc_order{
 	*
 	*/
 	public function get_order( ){
-		return $this->order[ $this->get_product_slug() ];
+		if ( array_key_exists( $this->get_product_slug(), $this->order )) {
+			$order = $this->order[ $this->get_product_slug() ];
+		} else {
+			$order = $this->order[ 'plain' ];
+		}
+		return $order;
 
 	}
 	

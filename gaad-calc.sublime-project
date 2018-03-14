@@ -10,9 +10,9 @@
 		"xdebug":
 		{
 			"launch_browser": false,
-			"break_on_exception": false,
+			"break_on_exception": true,
 			"max_depth": 8,					
-			"url": "http://127.0.0.1/gaadcalcapi/produkt/druk-ksiazek/"
+			"url": "http://127.0.0.1/gaadcalcapi/produkt/calling-card/"
 		}
 	}
 }
