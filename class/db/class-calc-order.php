@@ -64,7 +64,6 @@ class calc_order{
 			$order = $this->order[ 'plain' ];
 		}
 		return $order;
-
 	}
 	
 	/**

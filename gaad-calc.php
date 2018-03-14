@@ -185,6 +185,12 @@ if ( !defined( GAAD_PLUGIN_TEMPLATE_NAMESPACE . 'GAAD_PLUGIN_TEMPLATE_AUTOSAVE_C
 		require_once( 'class/calc-process/pa_pages.php' );
 
 	require_once( 'inc/class-sql.php' );	
+
+
+
+	require_once( 'class/products/class-product.php' );
+	require_once( 'class/products/class-business-card.php' );
+
 	require_once( 'inc/class-register-woo-elements.php' );
 	require_once( 'inc/class-json-data.php' );
 	require_once( 'inc/class-rest.php' );	

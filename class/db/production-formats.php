@@ -327,8 +327,7 @@ class formats{
 				'RA3' 		=> 	array('width' => 315,'height' => 430),
 				'RA3+' 		=> 	array('width' => 315,'height' => 440),
 				'RA4' 		=> 	array('width' => 215,'height' => 305),
-				'A3' 		=> 	array('width' => 297,'height' => 420),
-				//'B3' 		=> 	array('width' => 350,'height' => 500), 
+				'A3' 		=> 	array('width' => 297,'height' => 420),				
 				'B4' 		=> 	array('width' => 250,'height' => 350),
 				'BN6' 		=> 	array('width' => 600,'height' => 330),
 				'BN7' 		=> 	array('width' => 700,'height' => 330)
@@ -346,43 +345,41 @@ class formats{
 			)	
 		);
 
-
 		$this->production_formats = array(
-			'0x' => array (				
-		
+			'0x' => array (		
 				'wizA'	=> array( 'format' => 'SRA3++', 'pieces' => 24,	'grain' => 'LG'),
 				'wizB'	=> array( 'format' => 'SRA3++', 'pieces' => 24,	'grain' => 'LG'),
-				'A6'	=> array( 'format' => 'RA3', 'pieces' => 8, 	'grain' => 'SG'),
+				'wizAF'	=> array( 'format' => 'SRA3++', 'pieces' => 8,	'grain' => 'LG'),
+				'wizBF'	=> array( 'format' => 'SRA3++', 'pieces' => 8,	'grain' => 'LG'),
+				'A6'	=> array( 'format' => 'RA3', 	'pieces' => 8, 	'grain' => 'SG'),
 				'B6'	=> array( 'format' => 'SRA3++', 'pieces' => 8, 	'grain' => 'SG'),
-				'A5'	=> array( 'format' => 'RA3', 'pieces' => 4, 	'grain' => 'LG'),
+				'A5'	=> array( 'format' => 'RA3', 	'pieces' => 4, 	'grain' => 'LG'),
 				'B5'	=> array( 'format' => 'SRA3++', 'pieces' => 4, 	'grain' => 'LG'),
-				'A4'	=> array( 'format' => 'RA3', 'pieces' => 2, 	'grain' => 'SG'),
+				'A4'	=> array( 'format' => 'RA3', 	'pieces' => 2, 	'grain' => 'SG'),
 				'B4'	=> array( 'format' => 'SRA3++', 'pieces' => 1, 	'grain' => 'SG'),
 				'A3'	=> array( 'format' => 'SRA3++', 'pieces' => 1, 	'grain' => 'LG'),
 				'B3'	=> array( 'format' => 'SRA3++', 'pieces' => 1, 	'grain' => 'LG'),
 				'SRA3'	=> array( 'format' => 'SRA3++', 'pieces' => 1, 	'grain' => 'SG'),
-
-				'BN6'	=> array( 'format' => 'BN6', 'pieces' => 1, 	'grain' => 'SG'),
-				'BN7'	=> array( 'format' => 'BN7', 'pieces' => 1, 	'grain' => 'SG')
-
+				'BN6'	=> array( 'format' => 'BN6', 	'pieces' => 1, 	'grain' => 'SG'),
+				'BN7'	=> array( 'format' => 'BN7', 	'pieces' => 1, 	'grain' => 'SG')
 			),
 
-			'4x' => array (				
-		
+			'4x' => array (						
 				'wizA'	=> array( 'format' => 'SRA3++', 'pieces' => 24,	'grain' => 'LG'),
 				'wizB'	=> array( 'format' => 'SRA3++', 'pieces' => 24,	'grain' => 'LG'),
-				'A6'	=> array( 'format' => 'RA3', 'pieces' => 8, 	'grain' => 'SG'),
+				'wizAF'	=> array( 'format' => 'SRA3++', 'pieces' => 8,	'grain' => 'LG'),
+				'wizBF'	=> array( 'format' => 'SRA3++', 'pieces' => 8,	'grain' => 'LG'),
+				'A6'	=> array( 'format' => 'RA3', 	'pieces' => 8, 	'grain' => 'SG'),
 				'B6'	=> array( 'format' => 'SRA3++', 'pieces' => 8, 	'grain' => 'SG'),
-				'A5'	=> array( 'format' => 'RA3', 'pieces' => 4, 	'grain' => 'LG'),
+				'A5'	=> array( 'format' => 'RA3', 	'pieces' => 4, 	'grain' => 'LG'),
 				'B5'	=> array( 'format' => 'SRA3++', 'pieces' => 4, 	'grain' => 'LG'),
-				'A4'	=> array( 'format' => 'RA3', 'pieces' => 2, 	'grain' => 'SG'),
+				'A4'	=> array( 'format' => 'RA3', 	'pieces' => 2, 	'grain' => 'SG'),
 				'B4'	=> array( 'format' => 'SRA3++', 'pieces' => 1, 	'grain' => 'SG'),
 				'A3'	=> array( 'format' => 'SRA3++', 'pieces' => 1, 	'grain' => 'LG'),
 				'B3'	=> array( 'format' => 'SRA3++', 'pieces' => 1, 	'grain' => 'LG'),
 				'SRA3'	=> array( 'format' => 'SRA3++', 'pieces' => 1, 	'grain' => 'SG'),
-				'BN6'	=> array( 'format' => 'BN6', 'pieces' => 1, 	'grain' => 'SG'),
-				'BN7'	=> array( 'format' => 'BN7', 'pieces' => 1, 	'grain' => 'SG')
-
+				'BN6'	=> array( 'format' => 'BN6', 	'pieces' => 1, 	'grain' => 'SG'),
+				'BN7'	=> array( 'format' => 'BN7', 	'pieces' => 1, 	'grain' => 'SG')
 			),
 
 			'1x' => array (				
@@ -397,14 +394,15 @@ class formats{
 				'SRA3'	=> array( 'format' => 'SRA3++', 'pieces' => 1, 	'grain' => 'SG'),
 				'BN6'	=> array( 'format' => 'BN6', 'pieces' => 1, 	'grain' => 'SG'),
 				'BN7'	=> array( 'format' => 'BN7', 'pieces' => 1, 	'grain' => 'SG')
-
 			)	
 		);
 
 		$this->common_format = array (			
 
-			'wizA'	=> 	array('width' => 85 ,'height' => 55, 'grain' => 'LG' ),				
+			'wizA'	=> 	array('width' => 85 ,'height' => 55, 'grain' => 'LG' ),								
 			'wizB'	=> 	array('width' => 90 ,'height' => 50, 'grain' => 'LG' ),				
+			'wizAF'	=> 	array('width' => 170 ,'height' => 55, 'grain' => 'LG' ),	
+			'wizBF'	=> 	array('width' => 180 ,'height' => 50, 'grain' => 'LG' ),				
 			'A6'	=> 	array('width' => 105 ,'height' => 148, 'grain' => 'LG' ),				
 			'B6'	=> 	array('width' => 125 ,'height' => 176, 'grain' => 'LG' ),				
 			'A5'	=> 	array('width' => 148 ,'height' => 210, 'grain' => 'LG' ),				
@@ -451,7 +449,7 @@ class formats{
 
 		/*
 		* Splits devided by formats
-		*/
+		
 		$this->splits = array(
 			'0x' => array(
 				"*" => array( 0,0)
@@ -474,7 +472,7 @@ class formats{
 			),
 			
 		);
-
+*/
 		/*
 		* Margins devided by production formats
 		*/

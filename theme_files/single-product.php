@@ -9,7 +9,7 @@ global $post;
 $pargs = array(	
     "product_slug" => "calling-card",
 
-    "pa_format" => "90x50",
+    "pa_format" => "150x50",
     //"pa_quantity" => 1500,
     "pa_multi_quantity" => "10,50,150",
     "pa_paper" => "kreda-350g",
@@ -77,7 +77,7 @@ $pargs = array(
 
 
 $q= array( 10, 50, 100, 350, 500, 750, 1000, 1500);
-$q= array( 99 );
+$q= array( 9 );
 foreach ($q as $key => $value) {
     $pargs['pa_quantity'] = $value;
     $calc = new gcalc\calculate( $pargs );

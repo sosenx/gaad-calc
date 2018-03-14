@@ -79,7 +79,7 @@ class register_woo_elements{
 	*/
 	public static function create_products(){
 		if ( !\gcalc\GAAD_PLUGIN_TEMPLATE_DISABLE_CREATE_PRODUCTS ) {
-			\gcalc\register_woo_elements::product_calling_card();	
+			new \gcalc\db\product\business_card();	
 			
 		}
 	}
@@ -121,47 +121,7 @@ class register_woo_elements{
 		return $posts->posts;
 	}
 
-	/**
-	* Adds calling cards to product base
-	*/
-	public static function product_calling_card(){
-		$product_title = \__( 'Calling card','gcalc' );
-		$post_content = '';
-		$user_id = 1;
-		$product_exists = \gcalc\register_woo_elements::product_exists( $product_title );
-
-
-		if ( !$product_exists || \gcalc\GAAD_PLUGIN_TEMPLATE_FORCE_CREATE_WOO_ELEMENTS ) {	
-
-			$post_id = wp_insert_post( array(
-		        'post_author' => $user_id,
-		        'post_title' => $product_title,
-		        'post_content' => $post_content,
-		        'post_status' => 'publish',
-		        'post_type' => "product",
-		    ) );
-		    wp_set_object_terms( $post_id, 'variable', 'product_type' );
-				 
-			/*
-			* Adding specyfic for calling cards attributes and values
-			*/
-	  		\gcalc\register_woo_elements::add_product_attribute( $post_id, 'paper', 
-	  			array( 'couted-300g', 'couted-350g' ), '111' );
-
-	  		\gcalc\register_woo_elements::add_product_attribute( $post_id, 'volume', 
-	  			array( '50-szt', '100-szt', '250-szt', '500-szt', '1000-szt', '2500-szt' ), '111' );
-
-			\gcalc\register_woo_elements::add_product_attribute( $post_id, 'sizemm', 
-	  			array( '90x50', '85x55' ), '111' );
-
-			\gcalc\register_woo_elements::add_product_attribute( $post_id, 'finish', 
-	  			array( 'gloss', 'matt', 'soft-touch' ), '111' );
-
-			\gcalc\register_woo_elements::add_product_attribute( $post_id, 'print', 
-	  			array( '44', '40' ), '111' );
-		}
-
-	}
+	
 
 	/**
 	* Adds attribute to product
@@ -365,18 +325,31 @@ class register_woo_elements{
 		* Adding print sizes
 		*/
 		\wp_insert_term( '10', 	'pa_' . $name, array( 'description' => \__('10 pcs.', 'gcalc'), 'slug' => '10-szt.' ) );
+		\wp_insert_term( '20', 	'pa_' . $name, array( 'description' => \__('20 pcs.', 'gcalc'), 'slug' => '20-szt.' ) );
 		\wp_insert_term( '25', 	'pa_' . $name, array( 'description' => \__('25 pcs.', 'gcalc'), 'slug' => '25-szt.' ) );
 		\wp_insert_term( '30', 	'pa_' . $name, array( 'description' => \__('30 pcs.', 'gcalc'), 'slug' => '30-szt.' ) );
 		\wp_insert_term( '40', 	'pa_' . $name, array( 'description' => \__('40 pcs.', 'gcalc'), 'slug' => '40-szt.' ) );
 		\wp_insert_term( '50', 	'pa_' . $name, array( 'description' => \__('50 pcs.', 'gcalc'), 'slug' => '50-szt.' ) );
+		\wp_insert_term( '60', 	'pa_' . $name, array( 'description' => \__('60 pcs.', 'gcalc'), 'slug' => '60-szt.' ) );
+		\wp_insert_term( '70', 	'pa_' . $name, array( 'description' => \__('70 pcs.', 'gcalc'), 'slug' => '70-szt.' ) );
 		\wp_insert_term( '75', 	'pa_' . $name, array( 'description' => \__('75 pcs.', 'gcalc'), 'slug' => '75-szt.' ) );
+
+		\wp_insert_term( '80', 	'pa_' . $name, array( 'description' => \__('80 pcs.', 'gcalc'), 'slug' => '80-szt.' ) );
+		\wp_insert_term( '90', 	'pa_' . $name, array( 'description' => \__('90 pcs.', 'gcalc'), 'slug' => '90-szt.' ) );
+
 		\wp_insert_term( '100', 	'pa_' . $name, array( 'description' => \__('100 pcs.', 'gcalc'), 'slug' => '100-szt.' ) );
 		\wp_insert_term( '200', 	'pa_' . $name, array( 'description' => \__('200 pcs.', 'gcalc'), 'slug' => '200-szt.' ) );
 		\wp_insert_term( '250', 	'pa_' . $name, array( 'description' => \__('250 pcs.', 'gcalc'), 'slug' => '250-szt.' ) );
 		\wp_insert_term( '300', 	'pa_' . $name, array( 'description' => \__('300 pcs.', 'gcalc'), 'slug' => '300-szt.' ) );
 		\wp_insert_term( '400', 'pa_' . $name, array( 'description' => \__('400 pcs.', 'gcalc'), 'slug' => '400-szt.' ) );
 		\wp_insert_term( '500', 'pa_' . $name, array( 'description' => \__('500 pcs.', 'gcalc'), 'slug' => '500-szt.' ) );
+		\wp_insert_term( '600', 'pa_' . $name, array( 'description' => \__('600 pcs.', 'gcalc'), 'slug' => '600-szt.' ) );
+		\wp_insert_term( '700', 'pa_' . $name, array( 'description' => \__('700 pcs.', 'gcalc'), 'slug' => '700-szt.' ) );
+		\wp_insert_term( '800', 'pa_' . $name, array( 'description' => \__('800 pcs.', 'gcalc'), 'slug' => '800-szt.' ) );
+		\wp_insert_term( '900', 'pa_' . $name, array( 'description' => \__('900 pcs.', 'gcalc'), 'slug' => '900-szt.' ) );
 		\wp_insert_term( '1000', 'pa_' . $name, array( 'description' => \__('1000 pcs.', 'gcalc'), 'slug' => '1000-szt.' ) );
+		\wp_insert_term( '1500', 'pa_' . $name, array( 'description' => \__('1500 pcs.', 'gcalc'), 'slug' => '1500-szt.' ) );
+		\wp_insert_term( '2000', 'pa_' . $name, array( 'description' => \__('2000 pcs.', 'gcalc'), 'slug' => '2000-szt.' ) );
 		\wp_insert_term( '2500', 'pa_' . $name, array( 'description' => \__('2500 pcs.', 'gcalc'), 'slug' => '2500-szt.' ) );
 	}
 
