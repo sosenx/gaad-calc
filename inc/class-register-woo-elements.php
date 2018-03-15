@@ -81,6 +81,10 @@ class register_woo_elements{
 		if ( !\gcalc\GAAD_PLUGIN_TEMPLATE_DISABLE_CREATE_PRODUCTS ) {
 			new \gcalc\db\product\business_card();	
 			new \gcalc\db\product\book();	
+			new \gcalc\db\product\catalog();	
+			new \gcalc\db\product\perfect_catalog();	
+			new \gcalc\db\product\saddle_catalog();	
+			new \gcalc\db\product\spiral_catalog();	
 			
 		}
 	}
@@ -797,10 +801,10 @@ class register_woo_elements{
 		* Adding binding types
 		*/
 		\wp_insert_term( \__('Perfect binding', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('Perfect binding', 'gcalc'), 'slug' => 'perfect_binding' ) );
-		\wp_insert_term( \__('Saddle stitch', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('Saddle stitch', 'gcalc'), 'slug' => 'saddle_stitch' ) );
-		\wp_insert_term( \__('Spiral binding', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('Spiral binding', 'gcalc'), 'slug' => 'spiral_binding' ) );
-		\wp_insert_term( \__('Section sewn', 'gcalc'),	 	'pa_' . $name, array( 'description' => \__('Section sewn', 'gcalc'), 'slug' => 'section_sewn' ) );
-		\wp_insert_term( \__('Hard cover', 'gcalc'), 		'pa_' . $name, array( 'description' => \__('Hard cover', 'gcalc'), 'slug' => 'hard' ) );
+		\wp_insert_term( \__('Saddle stitch', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('Saddle stitch', 'gcalc'), 	'slug' => 'saddle_stitch' ) );
+		\wp_insert_term( \__('Spiral binding', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('Spiral binding', 'gcalc'), 	'slug' => 'spiral_binding' ) );
+		\wp_insert_term( \__('Section sewn', 'gcalc'),	 	'pa_' . $name, array( 'description' => \__('Section sewn', 'gcalc'), 	'slug' => 'section_sewn' ) );
+		\wp_insert_term( \__('Hard cover', 'gcalc'), 		'pa_' . $name, array( 'description' => \__('Hard cover', 'gcalc'), 		'slug' => 'hard' ) );
 
 	}
 

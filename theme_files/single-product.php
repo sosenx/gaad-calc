@@ -7,7 +7,7 @@ wp_head();
 global $post;
 //$product_id = $post->ID;
 $pargs = array(	
-    "product_slug" => "book",
+    "product_slug" => "catalog",
 
     "pa_format" => "150x50",
     //"pa_quantity" => 1500,
@@ -20,7 +20,7 @@ $pargs = array(
     "pa_cover_format" => "175x235",
     "pa_cover_paper" => "kreda-300g",
     "pa_cover_print" => "4x0",    
-    "pa_cover_type" => "section_sewn",
+    "pa_cover_type" => "perfect_binding",
     
     "pa_cover_dust_jacket_paper" => "kreda-150g",
     "pa_cover_dust_jacket_print" => "4x4",

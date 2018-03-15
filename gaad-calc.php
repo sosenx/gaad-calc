@@ -191,6 +191,10 @@ if ( !defined( GAAD_PLUGIN_TEMPLATE_NAMESPACE . 'GAAD_PLUGIN_TEMPLATE_AUTOSAVE_C
 	require_once( 'class/products/class-product.php' );
 	require_once( 'class/products/class-business-card.php' );
 	require_once( 'class/products/class-book.php' );
+	require_once( 'class/products/class-catalog.php' );
+	require_once( 'class/products/class-perfect-catalog.php' );
+	require_once( 'class/products/class-saddle-catalog.php' );
+	require_once( 'class/products/class-spiral-catalog.php' );
 
 
 	require_once( 'inc/class-register-woo-elements.php' );

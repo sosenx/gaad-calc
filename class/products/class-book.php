@@ -92,7 +92,7 @@ class book extends product {
 					'munken_cream_18-80g','munken_cream_18-90g','munken_cream_15-80g','munken_cream_15-90g','munken_white_18-80g','munken_white_18-90g','munken_white_15-80g','munken_white_15-90g',
 				), '111' ),
 
-				array( 'cover_type', array( 'Perfect binding', 'Saddle stitch', 'Spiral binding', 'Section sewn', 'Hard cover'	), '111' ),
+				array( 'cover_type', array( 'perfect_binding', 'saddle_stitch', 'spiral_binding', 'section_sewn', 'hard' ), '111' ),
 				
 
 				array( 'spot_uv', array( '0x0', '1x0', '1x1' ), '111' ),
