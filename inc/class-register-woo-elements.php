@@ -93,12 +93,17 @@ class register_woo_elements{
 		if ( !\gcalc\GAAD_PLUGIN_TEMPLATE_DISABLE_CREATE_ATTRIBUTES ) {
 			
 
+
+			\gcalc\register_woo_elements::pa_volume();
+			\gcalc\register_woo_elements::pa_bw_pages();
+			\gcalc\register_woo_elements::pa_color_pages();
+			\gcalc\register_woo_elements::pa_color_stack();
+			\gcalc\register_woo_elements::pa_cover_ribbon();
+
 			/*
 			 * Cover
 			 */
 			\gcalc\register_woo_elements::pa_cover_type();				
-			\gcalc\register_woo_elements::pa_cover_finish();
-			
 			\gcalc\register_woo_elements::pa_cover_flaps();
 			\gcalc\register_woo_elements::pa_cover_left_flap_width();
 			\gcalc\register_woo_elements::pa_cover_right_flap_width();
@@ -122,7 +127,6 @@ class register_woo_elements{
 				\gcalc\register_woo_elements::pa_color_format();
 				\gcalc\register_woo_elements::pa_bw_format();
 
-
 			/*
 			 * Paper: default, cover, board, cloth covering, dust jacket, color block, bw block
 			 */
@@ -131,12 +135,19 @@ class register_woo_elements{
 				\gcalc\register_woo_elements::pa_cover_cloth_covering_paper();
 				\gcalc\register_woo_elements::pa_cover_dust_jacket_paper();
 				\gcalc\register_woo_elements::pa_color_paper();
-				\gcalc\register_woo_elements::pa_bw_paper();
-			
+				\gcalc\register_woo_elements::pa_bw_paper();			
 
-			\gcalc\register_woo_elements::pa_volume();
+			/*
+			 * Finish: default, cover, cloth covering, dust jacket
+			 */
 			\gcalc\register_woo_elements::pa_finish();
+				\gcalc\register_woo_elements::pa_cover_finish();
+				\gcalc\register_woo_elements::pa_cover_cloth_covering_finish();
+				\gcalc\register_woo_elements::pa_cover_dust_jacket_finish();
 
+			/*
+			 * Spot UV: default, cover, cloth covering, dust jacket 
+			 */
 			\gcalc\register_woo_elements::pa_spot_uv();	
 				\gcalc\register_woo_elements::pa_cover_spot_uv();
 				\gcalc\register_woo_elements::pa_cover_cloth_covering_spot_uv();
@@ -210,40 +221,40 @@ class register_woo_elements{
 		/*
 		* Adding print sizes
 		*/
-		\wp_insert_term( 'couted-70g', 				'pa_' . $name, array( 'description' => \__('Coated 70g', 'gcalc'), 'slug' => 'coated-70g' ) );
-		\wp_insert_term( 'couted-80g', 				'pa_' . $name, array( 'description' => \__('Coated 80g', 'gcalc'), 'slug' => 'coated-80g' ) );
-		\wp_insert_term( 'couted-90g', 				'pa_' . $name, array( 'description' => \__('Coated 90g', 'gcalc'), 'slug' => 'coated-90g' ) );
-		\wp_insert_term( 'couted-115g', 			'pa_' . $name, array( 'description' => \__('Coated 115g', 'gcalc'), 'slug' => 'coated-115g' ) );
-		\wp_insert_term( 'couted-135g', 			'pa_' . $name, array( 'description' => \__('Coated 135g', 'gcalc'), 'slug' => 'coated-135g' ) );
-		\wp_insert_term( 'couted-170g', 			'pa_' . $name, array( 'description' => \__('Coated 170g', 'gcalc'), 'slug' => 'coated-170g' ) );
-		\wp_insert_term( 'couted-250g', 			'pa_' . $name, array( 'description' => \__('Coated 250g', 'gcalc'), 'slug' => 'coated-250g' ) );
-		\wp_insert_term( 'couted-300g', 			'pa_' . $name, array( 'description' => \__('Coated 300g', 'gcalc'), 'slug' => 'coated-300g' ) );
-		\wp_insert_term( 'couted-350g', 			'pa_' . $name, array( 'description' => \__('Coated 350g', 'gcalc'), 'slug' => 'coated-350g' ) );
-		\wp_insert_term( 'uncouted-70g', 			'pa_' . $name, array( 'description' => \__('Uncoated 70g', 'gcalc'), 'slug' => 'uncoated-70g' ) );
-		\wp_insert_term( 'uncouted-80g', 			'pa_' . $name, array( 'description' => \__('Uncoated 70g', 'gcalc'), 'slug' => 'uncoated-80g' ) );
-		\wp_insert_term( 'uncouted-90g', 			'pa_' . $name, array( 'description' => \__('Uncoated 70g', 'gcalc'), 'slug' => 'uncoated-90g' ) );
-		\wp_insert_term( 'uncouted-100g', 			'pa_' . $name, array( 'description' => \__('Uncoated 70g', 'gcalc'), 'slug' => 'uncoated-100g' ) );
-		\wp_insert_term( 'uncouted-120g', 			'pa_' . $name, array( 'description' => \__('Uncoated 70g', 'gcalc'), 'slug' => 'uncoated-120g' ) );
-		\wp_insert_term( 'uncouted-150g', 			'pa_' . $name, array( 'description' => \__('Uncoated 70g', 'gcalc'), 'slug' => 'uncoated-150g' ) );
-		\wp_insert_term( 'eccobook_cream_16-60g', 	'pa_' . $name, array( 'description' => \__('Ecco book cream 60g vol 16', 'gcalc'), 'slug' => 'eccobook16-60g' ) );
-		\wp_insert_term( 'eccobook_cream_16-70g', 	'pa_' . $name, array( 'description' => \__('Ecco book cream 70g vol 16', 'gcalc'), 'slug' => 'eccobook16-70g' ) );
-		\wp_insert_term( 'eccobook_cream_16-80g', 	'pa_' . $name, array( 'description' => \__('Ecco book cream 80g vol 16', 'gcalc'), 'slug' => 'eccobook16-80g' ) );
-		\wp_insert_term( 'eccobook_cream_20-60g', 	'pa_' . $name, array( 'description' => \__('Ecco book cream 60g vol 20', 'gcalc'), 'slug' => 'eccobook20-60g' ) );
-		\wp_insert_term( 'eccobook_cream_20-70g', 	'pa_' . $name, array( 'description' => \__('Ecco book cream 70g vol 20', 'gcalc'), 'slug' => 'eccobook20-70g' ) );
-		\wp_insert_term( 'eccobook_cream_20-80g', 	'pa_' . $name, array( 'description' => \__('Ecco book cream 80g vol 20', 'gcalc'), 'slug' => 'eccobook20-80g' ) );
-		\wp_insert_term( 'ibook_white_16-60g', 		'pa_' . $name, array( 'description' => \__('iBOOK cream 60g vol 16', 'gcalc'), 'slug' => 'ibook_white_16-60g' ) );
-		\wp_insert_term( 'ibook_white_16-70g', 		'pa_' . $name, array( 'description' => \__('iBOOK cream 70g vol 16', 'gcalc'), 'slug' => 'ibook_white_16-70g' ) );
-		\wp_insert_term( 'ibook_cream_20-60g', 		'pa_' . $name, array( 'description' => \__('iBOOK white 60g vol 20', 'gcalc'), 'slug' => 'ibook_cream_20-60g' ) );
-		\wp_insert_term( 'ibook_cream_20-70g', 		'pa_' . $name, array( 'description' => \__('iBOOK white 70g vol 20', 'gcalc'), 'slug' => 'ibook_cream_20-70g' ) );
-		\wp_insert_term( 'ibook_cream_20-80g', 		'pa_' . $name, array( 'description' => \__('iBOOK white 80g vol 20', 'gcalc'), 'slug' => 'ibook_cream_20-80g' ) );
-		\wp_insert_term( 'munken_cream_18-80g', 	'pa_' . $name, array( 'description' => \__('Munken cream 80g vol 16', 'gcalc'), 'slug' => 'munken_cream_18-80g' ) );
-		\wp_insert_term( 'munken_cream_18-90g', 	'pa_' . $name, array( 'description' => \__('Munken cream 90g vol 16', 'gcalc'), 'slug' => 'munken_cream_18-90g' ) );
-		\wp_insert_term( 'munken_cream_15-80g', 	'pa_' . $name, array( 'description' => \__('Munken cream 80g vol 16', 'gcalc'), 'slug' => 'munken_cream_15-80g' ) );
-		\wp_insert_term( 'munken_cream_15-90g', 	'pa_' . $name, array( 'description' => \__('Munken cream 90g vol 16', 'gcalc'), 'slug' => 'munken_cream_15-90g' ) );
-		\wp_insert_term( 'munken_white_18-80g', 	'pa_' . $name, array( 'description' => \__('Munken white 80g vol 16', 'gcalc'), 'slug' => 'munken_white_18-80g' ) );
-		\wp_insert_term( 'munken_white_18-90g', 	'pa_' . $name, array( 'description' => \__('Munken white 90g vol 16', 'gcalc'), 'slug' => 'munken_white_18-90g' ) );
-		\wp_insert_term( 'munken_white_15-80g', 	'pa_' . $name, array( 'description' => \__('Munken white 80g vol 16', 'gcalc'), 'slug' => 'munken_white_15-80g' ) );
-		\wp_insert_term( 'munken_white_15-90g', 	'pa_' . $name, array( 'description' => \__('Munken white 90g vol 16', 'gcalc'), 'slug' => 'munken_white_15-90g' ) );				
+		\wp_insert_term( \__('couted-70g', 'gcalc'), 				'pa_' . $name, array( 'description' => \__('Coated 70g', 'gcalc'), 						'slug' => 'coated-70g' ) );
+		\wp_insert_term( \__('couted-80g', 'gcalc'), 				'pa_' . $name, array( 'description' => \__('Coated 80g', 'gcalc'), 						'slug' => 'coated-80g' ) );
+		\wp_insert_term( \__('couted-90g', 'gcalc'), 				'pa_' . $name, array( 'description' => \__('Coated 90g', 'gcalc'), 						'slug' => 'coated-90g' ) );
+		\wp_insert_term( \__('couted-115g', 'gcalc'), 				'pa_' . $name, array( 'description' => \__('Coated 115g', 'gcalc'), 					'slug' => 'coated-115g' ) );
+		\wp_insert_term( \__('couted-135g', 'gcalc'), 				'pa_' . $name, array( 'description' => \__('Coated 135g', 'gcalc'), 					'slug' => 'coated-135g' ) );
+		\wp_insert_term( \__('couted-170g', 'gcalc'), 				'pa_' . $name, array( 'description' => \__('Coated 170g', 'gcalc'), 					'slug' => 'coated-170g' ) );
+		\wp_insert_term( \__('couted-250g', 'gcalc'), 				'pa_' . $name, array( 'description' => \__('Coated 250g', 'gcalc'), 					'slug' => 'coated-250g' ) );
+		\wp_insert_term( \__('couted-300g', 'gcalc'), 				'pa_' . $name, array( 'description' => \__('Coated 300g', 'gcalc'), 					'slug' => 'coated-300g' ) );
+		\wp_insert_term( \__('couted-350g', 'gcalc'), 				'pa_' . $name, array( 'description' => \__('Coated 350g', 'gcalc'), 					'slug' => 'coated-350g' ) );
+		\wp_insert_term( \__('uncouted-70g', 'gcalc'), 				'pa_' . $name, array( 'description' => \__('Uncoated 70g', 'gcalc'), 					'slug' => 'uncoated-70g' ) );
+		\wp_insert_term( \__('uncouted-80g', 'gcalc'), 				'pa_' . $name, array( 'description' => \__('Uncoated 70g', 'gcalc'), 					'slug' => 'uncoated-80g' ) );
+		\wp_insert_term( \__('uncouted-90g', 'gcalc'), 				'pa_' . $name, array( 'description' => \__('Uncoated 70g', 'gcalc'), 					'slug' => 'uncoated-90g' ) );
+		\wp_insert_term( \__('uncouted-100g', 'gcalc'), 			'pa_' . $name, array( 'description' => \__('Uncoated 70g', 'gcalc'), 					'slug' => 'uncoated-100g' ) );
+		\wp_insert_term( \__('uncouted-120g', 'gcalc'), 			'pa_' . $name, array( 'description' => \__('Uncoated 70g', 'gcalc'), 					'slug' => 'uncoated-120g' ) );
+		\wp_insert_term( \__('uncouted-150g', 'gcalc'), 			'pa_' . $name, array( 'description' => \__('Uncoated 70g', 'gcalc'), 					'slug' => 'uncoated-150g' ) );
+		\wp_insert_term( \__('eccobook_cream_16-60g', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('Ecco book cream 60g vol 16', 'gcalc'), 		'slug' => 'eccobook16-60g' ) );
+		\wp_insert_term( \__('eccobook_cream_16-70g', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('Ecco book cream 70g vol 16', 'gcalc'), 		'slug' => 'eccobook16-70g' ) );
+		\wp_insert_term( \__('eccobook_cream_16-80g', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('Ecco book cream 80g vol 16', 'gcalc'), 		'slug' => 'eccobook16-80g' ) );
+		\wp_insert_term( \__('eccobook_cream_20-60g', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('Ecco book cream 60g vol 20', 'gcalc'), 		'slug' => 'eccobook20-60g' ) );
+		\wp_insert_term( \__('eccobook_cream_20-70g', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('Ecco book cream 70g vol 20', 'gcalc'), 		'slug' => 'eccobook20-70g' ) );
+		\wp_insert_term( \__('eccobook_cream_20-80g', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('Ecco book cream 80g vol 20', 'gcalc'), 		'slug' => 'eccobook20-80g' ) );
+		\wp_insert_term( \__('ibook_white_16-60g', 'gcalc'), 		'pa_' . $name, array( 'description' => \__('iBOOK cream 60g vol 16', 'gcalc'), 			'slug' => 'ibook_white_16-60g' ) );
+		\wp_insert_term( \__('ibook_white_16-70g', 'gcalc'), 		'pa_' . $name, array( 'description' => \__('iBOOK cream 70g vol 16', 'gcalc'), 			'slug' => 'ibook_white_16-70g' ) );
+		\wp_insert_term( \__('ibook_cream_20-60g', 'gcalc'), 		'pa_' . $name, array( 'description' => \__('iBOOK white 60g vol 20', 'gcalc'), 			'slug' => 'ibook_cream_20-60g' ) );
+		\wp_insert_term( \__('ibook_cream_20-70g', 'gcalc'), 		'pa_' . $name, array( 'description' => \__('iBOOK white 70g vol 20', 'gcalc'), 			'slug' => 'ibook_cream_20-70g' ) );
+		\wp_insert_term( \__('ibook_cream_20-80g', 'gcalc'), 		'pa_' . $name, array( 'description' => \__('iBOOK white 80g vol 20', 'gcalc'), 			'slug' => 'ibook_cream_20-80g' ) );
+		\wp_insert_term( \__('munken_cream_18-80g', 'gcalc'), 		'pa_' . $name, array( 'description' => \__('Munken cream 80g vol 16', 'gcalc'), 		'slug' => 'munken_cream_18-80g' ) );
+		\wp_insert_term( \__('munken_cream_18-90g', 'gcalc'), 		'pa_' . $name, array( 'description' => \__('Munken cream 90g vol 16', 'gcalc'), 		'slug' => 'munken_cream_18-90g' ) );
+		\wp_insert_term( \__('munken_cream_15-80g', 'gcalc'), 		'pa_' . $name, array( 'description' => \__('Munken cream 80g vol 16', 'gcalc'), 		'slug' => 'munken_cream_15-80g' ) );
+		\wp_insert_term( \__('munken_cream_15-90g', 'gcalc'), 		'pa_' . $name, array( 'description' => \__('Munken cream 90g vol 16', 'gcalc'), 		'slug' => 'munken_cream_15-90g' ) );
+		\wp_insert_term( \__('munken_white_18-80g', 'gcalc'), 		'pa_' . $name, array( 'description' => \__('Munken white 80g vol 16', 'gcalc'), 		'slug' => 'munken_white_18-80g' ) );
+		\wp_insert_term( \__('munken_white_18-90g', 'gcalc'), 		'pa_' . $name, array( 'description' => \__('Munken white 90g vol 16', 'gcalc'), 		'slug' => 'munken_white_18-90g' ) );
+		\wp_insert_term( \__('munken_white_15-80g', 'gcalc'), 		'pa_' . $name, array( 'description' => \__('Munken white 80g vol 16', 'gcalc'), 		'slug' => 'munken_white_15-80g' ) );
+		\wp_insert_term( \__('munken_white_15-90g', 'gcalc'), 		'pa_' . $name, array( 'description' => \__('Munken white 90g vol 16', 'gcalc'), 		'slug' => 'munken_white_15-90g' ) );				
 					
 	}
 
@@ -265,12 +276,12 @@ class register_woo_elements{
 		* Adding print sizes
 		*/
 		
-		\wp_insert_term( 'couted-115g', 			'pa_' . $name, array( 'description' => \__('Coated 115g', 'gcalc'), 'slug' => 'coated-115g' ) );
-		\wp_insert_term( 'couted-135g', 			'pa_' . $name, array( 'description' => \__('Coated 135g', 'gcalc'), 'slug' => 'coated-135g' ) );
-		\wp_insert_term( 'couted-170g', 			'pa_' . $name, array( 'description' => \__('Coated 170g', 'gcalc'), 'slug' => 'coated-170g' ) );
-		\wp_insert_term( 'couted-250g', 			'pa_' . $name, array( 'description' => \__('Coated 250g', 'gcalc'), 'slug' => 'coated-250g' ) );
-		\wp_insert_term( 'couted-300g', 			'pa_' . $name, array( 'description' => \__('Coated 300g', 'gcalc'), 'slug' => 'coated-300g' ) );
-		\wp_insert_term( 'couted-350g', 			'pa_' . $name, array( 'description' => \__('Coated 350g', 'gcalc'), 'slug' => 'coated-350g' ) );
+		\wp_insert_term( \__('couted-115g', 'gcalc'), 			'pa_' . $name, array( 'description' => \__('Coated 115g', 'gcalc'), 'slug' => 'coated-115g' ) );
+		\wp_insert_term( \__('couted-135g', 'gcalc'), 			'pa_' . $name, array( 'description' => \__('Coated 135g', 'gcalc'), 'slug' => 'coated-135g' ) );
+		\wp_insert_term( \__('couted-170g', 'gcalc'), 			'pa_' . $name, array( 'description' => \__('Coated 170g', 'gcalc'), 'slug' => 'coated-170g' ) );
+		\wp_insert_term( \__('couted-250g', 'gcalc'), 			'pa_' . $name, array( 'description' => \__('Coated 250g', 'gcalc'), 'slug' => 'coated-250g' ) );
+		\wp_insert_term( \__('couted-300g', 'gcalc'), 			'pa_' . $name, array( 'description' => \__('Coated 300g', 'gcalc'), 'slug' => 'coated-300g' ) );
+		\wp_insert_term( \__('couted-350g', 'gcalc'), 			'pa_' . $name, array( 'description' => \__('Coated 350g', 'gcalc'), 'slug' => 'coated-350g' ) );
 						
 	}
 
@@ -296,7 +307,6 @@ class register_woo_elements{
 		\wp_insert_term( 'Board 2.5mm', 			'pa_' . $name, array( 'description' => \__('Board 2.5mm', 'gcalc'), 'slug' => 'board-25' ) );		
 						
 	}
-
 
 	/**
 	* Adds paper attribute
@@ -461,34 +471,96 @@ class register_woo_elements{
 		/*
 		* Adding volumes
 		*/
-		\wp_insert_term( 'custom', 	'pa_' . $name, array( 'description' => \__('Custom volume', 'gcalc'), 'slug' => 'custom-volume' ) );
-		\wp_insert_term( '10', 	'pa_' . $name, array( 'description' => \__('10 pcs.', 'gcalc'), 'slug' => '10-szt.' ) );
-		\wp_insert_term( '20', 	'pa_' . $name, array( 'description' => \__('20 pcs.', 'gcalc'), 'slug' => '20-szt.' ) );
-		\wp_insert_term( '25', 	'pa_' . $name, array( 'description' => \__('25 pcs.', 'gcalc'), 'slug' => '25-szt.' ) );
-		\wp_insert_term( '30', 	'pa_' . $name, array( 'description' => \__('30 pcs.', 'gcalc'), 'slug' => '30-szt.' ) );
-		\wp_insert_term( '40', 	'pa_' . $name, array( 'description' => \__('40 pcs.', 'gcalc'), 'slug' => '40-szt.' ) );
-		\wp_insert_term( '50', 	'pa_' . $name, array( 'description' => \__('50 pcs.', 'gcalc'), 'slug' => '50-szt.' ) );
-		\wp_insert_term( '60', 	'pa_' . $name, array( 'description' => \__('60 pcs.', 'gcalc'), 'slug' => '60-szt.' ) );
-		\wp_insert_term( '70', 	'pa_' . $name, array( 'description' => \__('70 pcs.', 'gcalc'), 'slug' => '70-szt.' ) );
-		\wp_insert_term( '75', 	'pa_' . $name, array( 'description' => \__('75 pcs.', 'gcalc'), 'slug' => '75-szt.' ) );
-
-		\wp_insert_term( '80', 	'pa_' . $name, array( 'description' => \__('80 pcs.', 'gcalc'), 'slug' => '80-szt.' ) );
-		\wp_insert_term( '90', 	'pa_' . $name, array( 'description' => \__('90 pcs.', 'gcalc'), 'slug' => '90-szt.' ) );
-
+		\wp_insert_term( 'Custom', 	'pa_' . $name, array( 'description' => \__('Custom volume', 'gcalc'), 'slug' => 'custom-volume' ) );
+		\wp_insert_term( '10', 		'pa_' . $name, array( 'description' => \__('10 pcs.', 'gcalc'), 'slug' => '10-szt.' ) );
+		\wp_insert_term( '20', 		'pa_' . $name, array( 'description' => \__('20 pcs.', 'gcalc'), 'slug' => '20-szt.' ) );
+		\wp_insert_term( '25', 		'pa_' . $name, array( 'description' => \__('25 pcs.', 'gcalc'), 'slug' => '25-szt.' ) );
+		\wp_insert_term( '30', 		'pa_' . $name, array( 'description' => \__('30 pcs.', 'gcalc'), 'slug' => '30-szt.' ) );
+		\wp_insert_term( '40', 		'pa_' . $name, array( 'description' => \__('40 pcs.', 'gcalc'), 'slug' => '40-szt.' ) );
+		\wp_insert_term( '50', 		'pa_' . $name, array( 'description' => \__('50 pcs.', 'gcalc'), 'slug' => '50-szt.' ) );
+		\wp_insert_term( '60', 		'pa_' . $name, array( 'description' => \__('60 pcs.', 'gcalc'), 'slug' => '60-szt.' ) );
+		\wp_insert_term( '70', 		'pa_' . $name, array( 'description' => \__('70 pcs.', 'gcalc'), 'slug' => '70-szt.' ) );
+		\wp_insert_term( '75', 		'pa_' . $name, array( 'description' => \__('75 pcs.', 'gcalc'), 'slug' => '75-szt.' ) );
+		\wp_insert_term( '80', 		'pa_' . $name, array( 'description' => \__('80 pcs.', 'gcalc'), 'slug' => '80-szt.' ) );
+		\wp_insert_term( '90', 		'pa_' . $name, array( 'description' => \__('90 pcs.', 'gcalc'), 'slug' => '90-szt.' ) );
 		\wp_insert_term( '100', 	'pa_' . $name, array( 'description' => \__('100 pcs.', 'gcalc'), 'slug' => '100-szt.' ) );
 		\wp_insert_term( '200', 	'pa_' . $name, array( 'description' => \__('200 pcs.', 'gcalc'), 'slug' => '200-szt.' ) );
 		\wp_insert_term( '250', 	'pa_' . $name, array( 'description' => \__('250 pcs.', 'gcalc'), 'slug' => '250-szt.' ) );
 		\wp_insert_term( '300', 	'pa_' . $name, array( 'description' => \__('300 pcs.', 'gcalc'), 'slug' => '300-szt.' ) );
-		\wp_insert_term( '400', 'pa_' . $name, array( 'description' => \__('400 pcs.', 'gcalc'), 'slug' => '400-szt.' ) );
-		\wp_insert_term( '500', 'pa_' . $name, array( 'description' => \__('500 pcs.', 'gcalc'), 'slug' => '500-szt.' ) );
-		\wp_insert_term( '600', 'pa_' . $name, array( 'description' => \__('600 pcs.', 'gcalc'), 'slug' => '600-szt.' ) );
-		\wp_insert_term( '700', 'pa_' . $name, array( 'description' => \__('700 pcs.', 'gcalc'), 'slug' => '700-szt.' ) );
-		\wp_insert_term( '800', 'pa_' . $name, array( 'description' => \__('800 pcs.', 'gcalc'), 'slug' => '800-szt.' ) );
-		\wp_insert_term( '900', 'pa_' . $name, array( 'description' => \__('900 pcs.', 'gcalc'), 'slug' => '900-szt.' ) );
-		\wp_insert_term( '1000', 'pa_' . $name, array( 'description' => \__('1000 pcs.', 'gcalc'), 'slug' => '1000-szt.' ) );
-		\wp_insert_term( '1500', 'pa_' . $name, array( 'description' => \__('1500 pcs.', 'gcalc'), 'slug' => '1500-szt.' ) );
-		\wp_insert_term( '2000', 'pa_' . $name, array( 'description' => \__('2000 pcs.', 'gcalc'), 'slug' => '2000-szt.' ) );
-		\wp_insert_term( '2500', 'pa_' . $name, array( 'description' => \__('2500 pcs.', 'gcalc'), 'slug' => '2500-szt.' ) );
+		\wp_insert_term( '400', 	'pa_' . $name, array( 'description' => \__('400 pcs.', 'gcalc'), 'slug' => '400-szt.' ) );
+		\wp_insert_term( '500', 	'pa_' . $name, array( 'description' => \__('500 pcs.', 'gcalc'), 'slug' => '500-szt.' ) );
+		\wp_insert_term( '600', 	'pa_' . $name, array( 'description' => \__('600 pcs.', 'gcalc'), 'slug' => '600-szt.' ) );
+		\wp_insert_term( '700', 	'pa_' . $name, array( 'description' => \__('700 pcs.', 'gcalc'), 'slug' => '700-szt.' ) );
+		\wp_insert_term( '800', 	'pa_' . $name, array( 'description' => \__('800 pcs.', 'gcalc'), 'slug' => '800-szt.' ) );
+		\wp_insert_term( '900', 	'pa_' . $name, array( 'description' => \__('900 pcs.', 'gcalc'), 'slug' => '900-szt.' ) );
+		\wp_insert_term( '1000', 	'pa_' . $name, array( 'description' => \__('1000 pcs.', 'gcalc'), 'slug' => '1000-szt.' ) );
+		\wp_insert_term( '1500', 	'pa_' . $name, array( 'description' => \__('1500 pcs.', 'gcalc'), 'slug' => '1500-szt.' ) );
+		\wp_insert_term( '2000', 	'pa_' . $name, array( 'description' => \__('2000 pcs.', 'gcalc'), 'slug' => '2000-szt.' ) );
+		\wp_insert_term( '2500', 	'pa_' . $name, array( 'description' => \__('2500 pcs.', 'gcalc'), 'slug' => '2500-szt.' ) );
+	}
+
+	/**
+	* Adds volume attribute
+	*/
+	public static function pa_bw_pages(){
+		$name = 'bw_pages';
+		$label = \__('BW block pages', 'gcalc');
+		\gcalc\register_woo_elements::process_add_attribute( array(
+			'attribute_name' => $name,
+			'attribute_label' => $label,
+			'attribute_type' => 'select',
+			'attribute_orderby' => 'menu_order',
+			'attribute_public' => false
+		) );
+		
+		/*
+		* Adding volumes
+		*/
+		\wp_insert_term( 'Custom', 	'pa_' . $name, array( 'description' => \__('Custom value', 'gcalc'), 'slug' => 'custom-value' ) );
+		
+	}
+
+	/**
+	* Adds volume attribute
+	*/
+	public static function pa_color_pages(){
+		$name = 'color_pages';
+		$label = \__('Color block pages', 'gcalc');
+		\gcalc\register_woo_elements::process_add_attribute( array(
+			'attribute_name' => $name,
+			'attribute_label' => $label,
+			'attribute_type' => 'select',
+			'attribute_orderby' => 'menu_order',
+			'attribute_public' => false
+		) );
+		
+		/*
+		* Adding volumes
+		*/
+		\wp_insert_term( 'Custom', 	'pa_' . $name, array( 'description' => \__('Custom value', 'gcalc'), 'slug' => 'custom-value' ) );
+		
+	}
+
+	/**
+	* Adds volume attribute
+	*/
+	public static function pa_color_stack(){
+		$name = 'color_stack';
+		$label = \__('Color stacking', 'gcalc');
+		\gcalc\register_woo_elements::process_add_attribute( array(
+			'attribute_name' => $name,
+			'attribute_label' => $label,
+			'attribute_type' => 'select',
+			'attribute_orderby' => 'menu_order',
+			'attribute_public' => false
+		) );
+		
+		/*
+		* Adding volumes
+		*/
+		\wp_insert_term( 'Stack', 		'pa_' . $name, array( 'description' => \__('Stacked in one single block', 'gcalc'), 'slug' => 'stack' ) );
+		\wp_insert_term( 'Shuffled', 	'pa_' . $name, array( 'description' => \__('Shuffled between bw block', 'gcalc'), 	'slug' => 'shuffled' ) );
+		
 	}
 
 	/**
@@ -612,6 +684,58 @@ class register_woo_elements{
 	/**
 	* Adds wrap_media attribute
 	*/
+	public static function pa_cover_cloth_covering_finish(){
+		$name = 'cover_cloth_covering_finish';
+		$label = \__('Cover cloth covering finish', 'gcalc');
+		\gcalc\register_woo_elements::process_add_attribute( array(
+			'attribute_name' => $name,
+			'attribute_label' => $label,
+			'attribute_type' => 'select',
+			'attribute_orderby' => 'menu_order',
+			'attribute_public' => false
+		) );
+		
+		/*
+		* Adding print sizes
+		*/
+		\wp_insert_term( \__('No finish', 'gcalc'), 		'pa_' . $name, array( 'description' => \__('Gloss finish 1 side', 'gcalc'), 		'slug' => 'no-finish' ) );
+		\wp_insert_term( \__('Gloss 1 side', 'gcalc'), 		'pa_' . $name, array( 'description' => \__('Gloss finish 1 side', 'gcalc'), 		'slug' => 'gloss-1x0' ) );
+		\wp_insert_term( \__('Gloss 2 sides', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('Gloss finish 2 sides  ', 'gcalc'), 		'slug' => 'gloss-1x1' ) );
+		\wp_insert_term( \__('matt 1 side', 'gcalc'), 		'pa_' . $name, array( 'description' => \__('Matt finish 1 side', 'gcalc'), 			'slug' => 'matt-1x0' ) );
+		\wp_insert_term( \__('matt 2 sides', 'gcalc'), 		'pa_' . $name, array( 'description' => \__('Matt finish 2 sides', 'gcalc'), 		'slug' => 'matt-1x1' ) );
+		\wp_insert_term( \__('Soft touch 1 side', 'gcalc'), 'pa_' . $name, array( 'description' => \__('Soft touch finish 1 side', 'gcalc'), 	'slug' => 'soft-touch-1x0' ) );
+		\wp_insert_term( \__('Soft touch 2 sides', 'gcalc'),'pa_' . $name, array( 'description' => \__('Soft touch finish 2 sides', 'gcalc'), 	'slug' => 'soft-touch-1x1' ) );
+	}
+
+	/**
+	* Adds wrap_media attribute
+	*/
+	public static function pa_cover_dust_jacket_finish(){
+		$name = 'pa_cover_dust_jacket_finish';
+		$label = \__('Cover dust jacket finish', 'gcalc');
+		\gcalc\register_woo_elements::process_add_attribute( array(
+			'attribute_name' => $name,
+			'attribute_label' => $label,
+			'attribute_type' => 'select',
+			'attribute_orderby' => 'menu_order',
+			'attribute_public' => false
+		) );
+		
+		/*
+		* Adding print sizes
+		*/
+		\wp_insert_term( \__('No finish', 'gcalc'), 		'pa_' . $name, array( 'description' => \__('Gloss finish 1 side', 'gcalc'), 		'slug' => 'no-finish' ) );
+		\wp_insert_term( \__('Gloss 1 side', 'gcalc'), 		'pa_' . $name, array( 'description' => \__('Gloss finish 1 side', 'gcalc'), 		'slug' => 'gloss-1x0' ) );
+		\wp_insert_term( \__('Gloss 2 sides', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('Gloss finish 2 sides  ', 'gcalc'), 		'slug' => 'gloss-1x1' ) );
+		\wp_insert_term( \__('matt 1 side', 'gcalc'), 		'pa_' . $name, array( 'description' => \__('Matt finish 1 side', 'gcalc'), 			'slug' => 'matt-1x0' ) );
+		\wp_insert_term( \__('matt 2 sides', 'gcalc'), 		'pa_' . $name, array( 'description' => \__('Matt finish 2 sides', 'gcalc'), 		'slug' => 'matt-1x1' ) );
+		\wp_insert_term( \__('Soft touch 1 side', 'gcalc'), 'pa_' . $name, array( 'description' => \__('Soft touch finish 1 side', 'gcalc'), 	'slug' => 'soft-touch-1x0' ) );
+		\wp_insert_term( \__('Soft touch 2 sides', 'gcalc'),'pa_' . $name, array( 'description' => \__('Soft touch finish 2 sides', 'gcalc'), 	'slug' => 'soft-touch-1x1' ) );
+	}
+
+	/**
+	* Adds wrap_media attribute
+	*/
 	public static function pa_spot_uv(){
 		$name = 'spot_uv';
 		$label = \__('Spot UV', 'gcalc');
@@ -654,7 +778,6 @@ class register_woo_elements{
 		\wp_insert_term( \__('Black 2-sided', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('Black both sides', 'gcalc'), 'slug' => '11' ) );
 		\wp_insert_term( \__('Black 1-sided', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('Black single side', 'gcalc'), 'slug' => '11' ) );
 	}
-
 
 	/**
 	* Adds cover_type attribute
@@ -731,11 +854,6 @@ class register_woo_elements{
 		
 	}
 
-	/*
-	pa_cover_cloth_covering_spot_uv
-pa_cover_dust_jacket_spot_uv
-	 */
-
 	/**
 	* Adds cover cloth covering spot uv attribute
 	*/
@@ -758,7 +876,6 @@ pa_cover_dust_jacket_spot_uv
 		\wp_insert_term( \__('Spot UV 2 sides', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('Spot UV 2 sides', 'gcalc'), 'slug' => '1x1' ) );
 		
 	}
-
 
 	/**
 	* Adds cover dust jacket spot uv attribute
@@ -783,14 +900,34 @@ pa_cover_dust_jacket_spot_uv
 		
 	}
 
-
-
 	/**
 	* Adds cover flaps attribute
 	*/
 	public static function pa_cover_flaps(){
 		$name = 'cover_flaps';
 		$label = \__('Cover flaps', 'gcalc');
+		\gcalc\register_woo_elements::process_add_attribute( array(
+			'attribute_name' => $name,
+			'attribute_label' => $label,
+			'attribute_type' => 'select',
+			'attribute_orderby' => 'menu_order',
+			'attribute_public' => false
+		) );
+		
+		/*
+		* Adding print sizes
+		*/
+		\wp_insert_term( \__('No flaps', 'gcalc'), 			'pa_' . $name, array( 'description' => \__('No flaps', 'gcalc'), 			'slug' => 'false' ) );
+		\wp_insert_term( \__('Cover with flaps', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('Cover with flaps', 'gcalc'), 	'slug' => 'true' ) );
+		
+	}
+
+	/**
+	* Adds cover flaps attribute
+	*/
+	public static function pa_cover_ribbon(){
+		$name = 'cover_ribbon';
+		$label = \__('Cover ribbon', 'gcalc');
 		\gcalc\register_woo_elements::process_add_attribute( array(
 			'attribute_name' => $name,
 			'attribute_label' => $label,
@@ -824,7 +961,7 @@ pa_cover_dust_jacket_spot_uv
 		/*
 		* Adding values
 		*/
-		\wp_insert_term( 'Custom', 	'pa_' . $name, array( 'description' => \__('Custom flap width', 'gcalc'), 'slug' => 'custom-width' ) );
+		\wp_insert_term( \__('Custom', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('Custom flap width', 'gcalc'), 'slug' => 'custom-width' ) );
 		
 	}
 
@@ -845,19 +982,9 @@ pa_cover_dust_jacket_spot_uv
 		/*
 		* Adding values
 		*/
-		\wp_insert_term( 'Custom', 	'pa_' . $name, array( 'description' => \__('Custom flap width', 'gcalc'), 'slug' => 'custom-width' ) );
+		\wp_insert_term( \__('Custom', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('Custom flap width', 'gcalc'), 'slug' => 'custom-width' ) );
 		
 	}
-
-
-
-
-
-
-
-
-
-
 
 	/**
 	* Adds cover print attribute
@@ -876,10 +1003,10 @@ pa_cover_dust_jacket_spot_uv
 		/*
 		* Adding print sizes
 		*/
-		\wp_insert_term( 'Color 2-sided', 	'pa_' . $name, array( 'description' => \__('Color both sides', 'gcalc'), 'slug' => '44' ) );
-		\wp_insert_term( 'Color 1-sided', 	'pa_' . $name, array( 'description' => \__('Color single side', 'gcalc'), 'slug' => '40' ) );
-		\wp_insert_term( 'Black 2-sided', 	'pa_' . $name, array( 'description' => \__('Black both sides', 'gcalc'), 'slug' => '11' ) );
-		\wp_insert_term( 'Black 1-sided', 	'pa_' . $name, array( 'description' => \__('Black single side', 'gcalc'), 'slug' => '11' ) );
+		\wp_insert_term( \__('Color 2-sided', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('Color both sides', 'gcalc'), 'slug' => '44' ) );
+		\wp_insert_term( \__('Color 1-sided', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('Color single side', 'gcalc'), 'slug' => '40' ) );
+		\wp_insert_term( \__('Black 2-sided', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('Black both sides', 'gcalc'), 'slug' => '11' ) );
+		\wp_insert_term( \__('Black 1-sided', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('Black single side', 'gcalc'), 'slug' => '11' ) );
 	}
 
 	/**
@@ -900,7 +1027,7 @@ pa_cover_dust_jacket_spot_uv
 		* Adding print sizes
 		*/
 		
-		\wp_insert_term( 'Color 1-sided', 	'pa_' . $name, array( 'description' => \__('Color single side', 'gcalc'), 'slug' => '40' ) );		
+		\wp_insert_term( \__('Color 1-sided', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('Color single side', 'gcalc'), 'slug' => '40' ) );		
 	}
 
 
@@ -921,8 +1048,8 @@ pa_cover_dust_jacket_spot_uv
 		/*
 		* Adding print sizes
 		*/
-		\wp_insert_term( 'Color 2-sided', 	'pa_' . $name, array( 'description' => \__('Color both sides', 'gcalc'), 'slug' => '44' ) );
-		\wp_insert_term( 'Color 1-sided', 	'pa_' . $name, array( 'description' => \__('Color single side', 'gcalc'), 'slug' => '40' ) );		
+		\wp_insert_term( \__('Color 2-sided', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('Color both sides', 'gcalc'), 'slug' => '44' ) );
+		\wp_insert_term( \__('Color 1-sided', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('Color single side', 'gcalc'), 'slug' => '40' ) );		
 	}
 
 	/**
@@ -942,8 +1069,8 @@ pa_cover_dust_jacket_spot_uv
 		/*
 		* Adding print sizes
 		*/
-		\wp_insert_term( 'Color 2-sided', 	'pa_' . $name, array( 'description' => \__('Color both sides', 'gcalc'), 'slug' => '44' ) );
-		\wp_insert_term( 'Color 1-sided', 	'pa_' . $name, array( 'description' => \__('Color single side', 'gcalc'), 'slug' => '40' ) );
+		\wp_insert_term( \__('Color 2-sided', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('Color both sides', 'gcalc'), 'slug' => '44' ) );
+		\wp_insert_term( \__('Color 1-sided', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('Color single side', 'gcalc'), 'slug' => '40' ) );
 	}
 
 	/**
@@ -963,8 +1090,8 @@ pa_cover_dust_jacket_spot_uv
 		/*
 		* Adding print sizes
 		*/
-		\wp_insert_term( 'Black 2-sided', 	'pa_' . $name, array( 'description' => \__('Black both sides', 'gcalc'), 'slug' => '11' ) );
-		\wp_insert_term( 'Black 1-sided', 	'pa_' . $name, array( 'description' => \__('Black single side', 'gcalc'), 'slug' => '11' ) );
+		\wp_insert_term( \__('Black 2-sided', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('Black both sides', 'gcalc'), 'slug' => '11' ) );
+		\wp_insert_term( \__('Black 1-sided', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('Black single side', 'gcalc'), 'slug' => '11' ) );
 	}
 
 

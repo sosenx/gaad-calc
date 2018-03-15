@@ -9,6 +9,7 @@
 	{
 		"xdebug":
 		{
+			"close_on_stop": true,	
 			"launch_browser": false,
 			"break_on_exception": true,
 			"max_depth": 8,					
