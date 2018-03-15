@@ -38,6 +38,8 @@ $pargs = array(
     "pa_cover_flaps" => true,
     "pa_cover_left_flap_width" => 100,
     "pa_cover_right_flap_width" => 100,
+    "pa_cover_board_thickness" => "2.5mm",
+
 
     "pa_bw_pages" => 100,
     "pa_bw_format" => "175x235",
