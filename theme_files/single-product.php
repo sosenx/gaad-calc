@@ -16,7 +16,7 @@ $pargs = array(
     "pa_print" => "4x4",                 
     "pa_finish" => "gloss-1x1",   
     "pa_spot_uv" => "1x0",
-
+/*
     "pa_cover_format" => "175x235",
     "pa_cover_paper" => "kreda-300g",
     "pa_cover_print" => "4x0",    
@@ -56,7 +56,7 @@ $pargs = array(
     "group_cover" => "",
     "group_bw" => "",
     "group_color" => "",
-  
+  */
     "apikey" => "g1a2a3d",
     "apisecret" => "k1o2o3t",
     "Authorization" => "Basic ".base64_encode( 'gaad:koot123' ),

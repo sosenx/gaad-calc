@@ -79,6 +79,7 @@ class register_woo_elements{
 	*/
 	public static function create_products(){
 		if ( !\gcalc\GAAD_PLUGIN_TEMPLATE_DISABLE_CREATE_PRODUCTS ) {
+			/*
 			new \gcalc\db\product\business_card();	
 			new \gcalc\db\product\flyer();	
 			new \gcalc\db\product\book();	
@@ -86,7 +87,7 @@ class register_woo_elements{
 			new \gcalc\db\product\perfect_catalog();	
 			new \gcalc\db\product\saddle_catalog();	
 			new \gcalc\db\product\spiral_catalog();	
-			
+			*/
 		}
 	}
 
@@ -591,13 +592,23 @@ class register_woo_elements{
 		\wp_insert_term( '170x55', 	'pa_' . $name, array( 'description' => \__('Business card folded to 85x55mm', 'gcalc'), 'slug' => '170x55' ) );
 		\wp_insert_term( '90x50', 	'pa_' . $name, array( 'description' => \__('Business card 90x50mm', 'gcalc'), 'slug' => '90x50' ) );
 		\wp_insert_term( '180x50', 	'pa_' . $name, array( 'description' => \__('Business card folded to 90x50mm', 'gcalc'), 'slug' => '180x50' ) );
-		\wp_insert_term( '105x148', 'pa_' . $name, array( 'description' => \__('', 'gcalc'), 'slug' => '105x148' ) );
-		\wp_insert_term( '148x210', 'pa_' . $name, array( 'description' => \__('', 'gcalc'), 'slug' => '148x210' ) );
-		\wp_insert_term( '210x297', 'pa_' . $name, array( 'description' => \__('', 'gcalc'), 'slug' => '210x297' ) );
-		\wp_insert_term( '297x420', 'pa_' . $name, array( 'description' => \__('', 'gcalc'), 'slug' => '297x420' ) );
-		\wp_insert_term( '125x176', 'pa_' . $name, array( 'description' => \__('', 'gcalc'), 'slug' => '125x176' ) );
-		\wp_insert_term( '176x250', 'pa_' . $name, array( 'description' => \__('', 'gcalc'), 'slug' => '176x250' ) );
-		\wp_insert_term( '250x350', 'pa_' . $name, array( 'description' => \__('', 'gcalc'), 'slug' => '250x350' ) );					
+		\wp_insert_term( '105x148', 'pa_' . $name, array( 'description' => \__('A6 (105x148 mm)', 'gcalc'), 'slug' => '105x148' ) );
+		\wp_insert_term( '148x210', 'pa_' . $name, array( 'description' => \__('A5 (148x210 mm)', 'gcalc'), 'slug' => '148x210' ) );
+		\wp_insert_term( '210x297', 'pa_' . $name, array( 'description' => \__('A4 (210x297 mm)', 'gcalc'), 'slug' => '210x297' ) );
+		\wp_insert_term( '297x420', 'pa_' . $name, array( 'description' => \__('A3 (297x420 mm)', 'gcalc'), 'slug' => '297x420' ) );
+		\wp_insert_term( '125x176', 'pa_' . $name, array( 'description' => \__('B6 (125x176 mm)', 'gcalc'), 'slug' => '125x176' ) );
+		\wp_insert_term( '176x250', 'pa_' . $name, array( 'description' => \__('B5 (176x250 mm)', 'gcalc'), 'slug' => '176x250' ) );
+		\wp_insert_term( '250x350', 'pa_' . $name, array( 'description' => \__('B4 (250x350 mm)', 'gcalc'), 'slug' => '250x350' ) );
+
+		\wp_insert_term( '420x594', 'pa_' . $name, array( 'description' => \__('A2 (420x594 mm)', 'gcalc'), 'slug' => '420x594' ) );
+		\wp_insert_term( '594x841', 'pa_' . $name, array( 'description' => \__('A1 (594x841 mm)', 'gcalc'), 'slug' => '594x841' ) );
+		\wp_insert_term( '841x1189','pa_' . $name, array( 'description' => \__('A0 (841x1189 mm)', 'gcalc'), 'slug' => '841x1189' ) );
+
+		\wp_insert_term( '350x500', 'pa_' . $name, array( 'description' => \__('B3 (350x500 mm)', 'gcalc'), 'slug' => '350x500' ) );
+		\wp_insert_term( '500x700', 'pa_' . $name, array( 'description' => \__('B2 (500x700 mm)', 'gcalc'), 'slug' => '500x700' ) );
+		\wp_insert_term( '700x1000','pa_' . $name, array( 'description' => \__('B1 (700x1000 mm)', 'gcalc'), 'slug' => '700x1000' ) );
+		\wp_insert_term( '1000x1400','pa_' . $name, array( 'description' => \__('B0 (1000x1400 mm)', 'gcalc'), 'slug' => '1000x1400' ) );
+
 	}
 
 

@@ -160,6 +160,7 @@ if ( !defined( GAAD_PLUGIN_TEMPLATE_NAMESPACE . 'GAAD_PLUGIN_TEMPLATE_AUTOSAVE_C
 
 	require_once( 'class/class-cprocess-calculation.php' );
 		require_once( 'class/calc-process-class/class-calc-pa_format.php' );
+		require_once( 'class/calc-process-class/class-calc-pa_folding.php' );
 		require_once( 'class/calc-process-class/class-calc-pa_cover_type.php' );
 		require_once( 'class/calc-process-class/class-calc-pa_cover_format.php' );
 		require_once( 'class/calc-process-class/class-calc-pa_quantity.php' );
