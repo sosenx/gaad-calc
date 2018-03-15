@@ -81,7 +81,7 @@ if ( !defined( GAAD_PLUGIN_TEMPLATE_NAMESPACE . 'GAAD_PLUGIN_TEMPLATE_FORCE_CREA
 	* Forces to create all WP or WOO related objects and elements (posts, products, taxonomies, terms etc.)
 	* Created mostly for developmnet reasons.
 	*/
-	define( GAAD_PLUGIN_TEMPLATE_NAMESPACE . 'GAAD_PLUGIN_TEMPLATE_FORCE_CREATE_WOO_ELEMENTS', false );
+	define( GAAD_PLUGIN_TEMPLATE_NAMESPACE . 'GAAD_PLUGIN_TEMPLATE_FORCE_CREATE_WOO_ELEMENTS', false ); //
 
 
 
@@ -107,7 +107,7 @@ if ( !defined( GAAD_PLUGIN_TEMPLATE_NAMESPACE . 'GAAD_PLUGIN_TEMPLATE_DISABLE_CR
 	* Disables predefined attributes creation
 	* Created mostly for developmnet reasons.
 	*/
-	define( GAAD_PLUGIN_TEMPLATE_NAMESPACE . 'GAAD_PLUGIN_TEMPLATE_DISABLE_CREATE_ATTRIBUTES', true );
+	define( GAAD_PLUGIN_TEMPLATE_NAMESPACE . 'GAAD_PLUGIN_TEMPLATE_DISABLE_CREATE_ATTRIBUTES', false );
 
 
 
@@ -190,6 +190,8 @@ if ( !defined( GAAD_PLUGIN_TEMPLATE_NAMESPACE . 'GAAD_PLUGIN_TEMPLATE_AUTOSAVE_C
 
 	require_once( 'class/products/class-product.php' );
 	require_once( 'class/products/class-business-card.php' );
+	require_once( 'class/products/class-book.php' );
+
 
 	require_once( 'inc/class-register-woo-elements.php' );
 	require_once( 'inc/class-json-data.php' );

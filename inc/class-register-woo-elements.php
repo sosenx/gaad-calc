@@ -80,6 +80,7 @@ class register_woo_elements{
 	public static function create_products(){
 		if ( !\gcalc\GAAD_PLUGIN_TEMPLATE_DISABLE_CREATE_PRODUCTS ) {
 			new \gcalc\db\product\business_card();	
+			new \gcalc\db\product\book();	
 			
 		}
 	}
@@ -91,9 +92,21 @@ class register_woo_elements{
 	public static function create_product_attributes(){
 		if ( !\gcalc\GAAD_PLUGIN_TEMPLATE_DISABLE_CREATE_ATTRIBUTES ) {
 			\gcalc\register_woo_elements::pa_print();
-			\gcalc\register_woo_elements::pa_sizemm();
+			\gcalc\register_woo_elements::pa_format();
+			\gcalc\register_woo_elements::pa_color_format();
+			\gcalc\register_woo_elements::pa_bw_format();
+			\gcalc\register_woo_elements::pa_cover_format();
+
 			\gcalc\register_woo_elements::pa_volume();
+
+			/*
+			 * Paper
+			 */
 			\gcalc\register_woo_elements::pa_paper();
+			\gcalc\register_woo_elements::pa_cover_paper();
+
+
+
 			\gcalc\register_woo_elements::pa_color_paper();
 			\gcalc\register_woo_elements::pa_bw_paper();
 			\gcalc\register_woo_elements::pa_finish();
@@ -155,6 +168,58 @@ class register_woo_elements{
 	*/
 	public static function pa_paper(){
 		$name = 'paper';
+		$label = \__('Paper', 'gcalc');
+		\gcalc\register_woo_elements::process_add_attribute( array(
+			'attribute_name' => $name,
+			'attribute_label' => $label,
+			'attribute_type' => 'select',
+			'attribute_orderby' => 'menu_order',
+			'attribute_public' => false
+		) );
+		
+		/*
+		* Adding print sizes
+		*/
+		\wp_insert_term( 'couted-70g', 				'pa_' . $name, array( 'description' => \__('Coated 70g', 'gcalc'), 'slug' => 'coated-70g' ) );
+		\wp_insert_term( 'couted-80g', 				'pa_' . $name, array( 'description' => \__('Coated 80g', 'gcalc'), 'slug' => 'coated-80g' ) );
+		\wp_insert_term( 'couted-90g', 				'pa_' . $name, array( 'description' => \__('Coated 90g', 'gcalc'), 'slug' => 'coated-90g' ) );
+		\wp_insert_term( 'couted-115g', 			'pa_' . $name, array( 'description' => \__('Coated 115g', 'gcalc'), 'slug' => 'coated-115g' ) );
+		\wp_insert_term( 'couted-135g', 			'pa_' . $name, array( 'description' => \__('Coated 135g', 'gcalc'), 'slug' => 'coated-135g' ) );
+		\wp_insert_term( 'couted-170g', 			'pa_' . $name, array( 'description' => \__('Coated 170g', 'gcalc'), 'slug' => 'coated-170g' ) );
+		\wp_insert_term( 'couted-250g', 			'pa_' . $name, array( 'description' => \__('Coated 250g', 'gcalc'), 'slug' => 'coated-250g' ) );
+		\wp_insert_term( 'couted-300g', 			'pa_' . $name, array( 'description' => \__('Coated 300g', 'gcalc'), 'slug' => 'coated-300g' ) );
+		\wp_insert_term( 'couted-350g', 			'pa_' . $name, array( 'description' => \__('Coated 350g', 'gcalc'), 'slug' => 'coated-350g' ) );
+		\wp_insert_term( 'uncouted-70g', 			'pa_' . $name, array( 'description' => \__('Uncoated 70g', 'gcalc'), 'slug' => 'uncoated-70g' ) );
+		\wp_insert_term( 'uncouted-80g', 			'pa_' . $name, array( 'description' => \__('Uncoated 70g', 'gcalc'), 'slug' => 'uncoated-80g' ) );
+		\wp_insert_term( 'uncouted-90g', 			'pa_' . $name, array( 'description' => \__('Uncoated 70g', 'gcalc'), 'slug' => 'uncoated-90g' ) );
+		\wp_insert_term( 'uncouted-100g', 			'pa_' . $name, array( 'description' => \__('Uncoated 70g', 'gcalc'), 'slug' => 'uncoated-100g' ) );
+		\wp_insert_term( 'uncouted-120g', 			'pa_' . $name, array( 'description' => \__('Uncoated 70g', 'gcalc'), 'slug' => 'uncoated-120g' ) );
+		\wp_insert_term( 'uncouted-150g', 			'pa_' . $name, array( 'description' => \__('Uncoated 70g', 'gcalc'), 'slug' => 'uncoated-150g' ) );
+		\wp_insert_term( 'eccobook_cream_16-60g', 	'pa_' . $name, array( 'description' => \__('Ecco book cream 60g vol 16', 'gcalc'), 'slug' => 'eccobook16-60g' ) );
+		\wp_insert_term( 'eccobook_cream_16-70g', 	'pa_' . $name, array( 'description' => \__('Ecco book cream 70g vol 16', 'gcalc'), 'slug' => 'eccobook16-70g' ) );
+		\wp_insert_term( 'eccobook_cream_16-80g', 	'pa_' . $name, array( 'description' => \__('Ecco book cream 80g vol 16', 'gcalc'), 'slug' => 'eccobook16-80g' ) );
+		\wp_insert_term( 'eccobook_cream_20-60g', 	'pa_' . $name, array( 'description' => \__('Ecco book cream 60g vol 20', 'gcalc'), 'slug' => 'eccobook20-60g' ) );
+		\wp_insert_term( 'eccobook_cream_20-70g', 	'pa_' . $name, array( 'description' => \__('Ecco book cream 70g vol 20', 'gcalc'), 'slug' => 'eccobook20-70g' ) );
+		\wp_insert_term( 'eccobook_cream_20-80g', 	'pa_' . $name, array( 'description' => \__('Ecco book cream 80g vol 20', 'gcalc'), 'slug' => 'eccobook20-80g' ) );
+		\wp_insert_term( 'ibook_white_16-60g', 		'pa_' . $name, array( 'description' => \__('iBOOK cream 60g vol 16', 'gcalc'), 'slug' => 'ibook_white_16-60g' ) );
+		\wp_insert_term( 'ibook_white_16-70g', 		'pa_' . $name, array( 'description' => \__('iBOOK cream 70g vol 16', 'gcalc'), 'slug' => 'ibook_white_16-70g' ) );
+		\wp_insert_term( 'ibook_cream_20-60g', 		'pa_' . $name, array( 'description' => \__('iBOOK white 60g vol 20', 'gcalc'), 'slug' => 'ibook_cream_20-60g' ) );
+		\wp_insert_term( 'ibook_cream_20-70g', 		'pa_' . $name, array( 'description' => \__('iBOOK white 70g vol 20', 'gcalc'), 'slug' => 'ibook_cream_20-70g' ) );
+		\wp_insert_term( 'ibook_cream_20-80g', 		'pa_' . $name, array( 'description' => \__('iBOOK white 80g vol 20', 'gcalc'), 'slug' => 'ibook_cream_20-80g' ) );
+		\wp_insert_term( 'munken_cream_18-80g', 	'pa_' . $name, array( 'description' => \__('Munken cream 80g vol 16', 'gcalc'), 'slug' => 'munken_cream_18-80g' ) );
+		\wp_insert_term( 'munken_cream_18-90g', 	'pa_' . $name, array( 'description' => \__('Munken cream 90g vol 16', 'gcalc'), 'slug' => 'munken_cream_18-90g' ) );
+		\wp_insert_term( 'munken_cream_15-80g', 	'pa_' . $name, array( 'description' => \__('Munken cream 80g vol 16', 'gcalc'), 'slug' => 'munken_cream_15-80g' ) );
+		\wp_insert_term( 'munken_cream_15-90g', 	'pa_' . $name, array( 'description' => \__('Munken cream 90g vol 16', 'gcalc'), 'slug' => 'munken_cream_15-90g' ) );
+		\wp_insert_term( 'munken_white_18-80g', 	'pa_' . $name, array( 'description' => \__('Munken white 80g vol 16', 'gcalc'), 'slug' => 'munken_white_18-80g' ) );
+		\wp_insert_term( 'munken_white_18-90g', 	'pa_' . $name, array( 'description' => \__('Munken white 90g vol 16', 'gcalc'), 'slug' => 'munken_white_18-90g' ) );
+		\wp_insert_term( 'munken_white_15-80g', 	'pa_' . $name, array( 'description' => \__('Munken white 80g vol 16', 'gcalc'), 'slug' => 'munken_white_15-80g' ) );
+		\wp_insert_term( 'munken_white_15-90g', 	'pa_' . $name, array( 'description' => \__('Munken white 90g vol 16', 'gcalc'), 'slug' => 'munken_white_15-90g' ) );				
+	}
+	/**
+	* Adds paper attribute
+	*/
+	public static function pa_cover_paper(){
+		$name = 'cover_paper';
 		$label = \__('Paper', 'gcalc');
 		\gcalc\register_woo_elements::process_add_attribute( array(
 			'attribute_name' => $name,
@@ -355,10 +420,10 @@ class register_woo_elements{
 	}
 
 	/**
-	* Adds sizemm attribute
+	* Adds format attribute
 	*/
-	public static function pa_sizemm(){
-		$name = 'sizemm';
+	public static function pa_format(){
+		$name = 'format';
 		$label = \__('Format', 'gcalc');
 		\gcalc\register_woo_elements::process_add_attribute( array(
 			'attribute_name' => $name,
@@ -383,6 +448,67 @@ class register_woo_elements{
 		\wp_insert_term( '125x176', 'pa_' . $name, array( 'description' => '', 'slug' => '125x176' ) );
 		\wp_insert_term( '176x250', 'pa_' . $name, array( 'description' => '', 'slug' => '176x250' ) );
 		\wp_insert_term( '250x353', 'pa_' . $name, array( 'description' => '', 'slug' => '250x353' ) );					
+	}
+
+
+	/**
+	* Adds cover format attribute
+	*/
+	public static function pa_cover_format(){
+		$name = 'cover_format';
+		$label = \__('Cover format', 'gcalc');
+		\gcalc\register_woo_elements::process_add_attribute( array(
+			'attribute_name' => $name,
+			'attribute_label' => $label,
+			'attribute_type' => 'select',
+			'attribute_orderby' => 'menu_order',
+			'attribute_public' => false
+		) );
+		
+		/*
+		* Adding print sizes
+		*/
+		\wp_insert_term( 'Custom', 	'pa_' . $name, array( 'description' => \__('Custom cover format', 'gcalc'), 'slug' => 'custom-cover-format' ) );					
+	}
+
+	/**
+	* Adds cover format attribute
+	*/
+	public static function pa_bw_format(){
+		$name = 'bw_format';
+		$label = \__('BW block format', 'gcalc');
+		\gcalc\register_woo_elements::process_add_attribute( array(
+			'attribute_name' => $name,
+			'attribute_label' => $label,
+			'attribute_type' => 'select',
+			'attribute_orderby' => 'menu_order',
+			'attribute_public' => false
+		) );
+		
+		/*
+		* Adding print sizes
+		*/
+		\wp_insert_term( 'Custom', 	'pa_' . $name, array( 'description' => \__('Custom BW block format', 'gcalc'), 'slug' => 'custom-bw-format' ) );					
+	}
+
+	/**
+	* Adds color block format attribute
+	*/
+	public static function pa_color_format(){
+		$name = 'color_format';
+		$label = \__('Color block format', 'gcalc');
+		\gcalc\register_woo_elements::process_add_attribute( array(
+			'attribute_name' => $name,
+			'attribute_label' => $label,
+			'attribute_type' => 'select',
+			'attribute_orderby' => 'menu_order',
+			'attribute_public' => false
+		) );
+		
+		/*
+		* Adding print sizes
+		*/
+		\wp_insert_term( 'Custom', 	'pa_' . $name, array( 'description' => \__('Custom color block format', 'gcalc'), 'slug' => 'custom-color-format' ) );					
 	}
 
 	/**

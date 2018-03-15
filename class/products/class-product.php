@@ -1,19 +1,41 @@
 <?php
 namespace gcalc\db\product;
-/**
- *
- * 
- */
 
 /**
-* 
-*/
+ * 
+ */
 class product {
 	
+	/**
+	 * base data array
+	 * -tile, author, content etc
+	 * 
+	 * @var [type]
+	 */
 	public $base;
+
+	/**
+	 * Product attributes with all posible values
+	 * @var [type]
+	 */
 	public $attr;
+
+	/**
+	 * Product title, shortcut for base['post_title']
+	 * @var [type]
+	 */
 	private $title;
+
+	/**
+	 * True if product already 
+	 * @var [type]
+	 */
 	private $exists;
+
+	/**
+	 * Product ID, aquaired from title or given by create
+	 * @var [type]
+	 */
 	private $ID;
 
 
