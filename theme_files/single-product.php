@@ -14,7 +14,7 @@ $pargs = array(
     "pa_multi_quantity" => "10,50,150",
     "pa_paper" => "kreda-350g",
     "pa_print" => "4x4",                 
-    "pa_wrap" => "gloss-1x1",   
+    "pa_finish" => "gloss-1x1",   
     "pa_spot_uv" => "1x0",
 
     "pa_cover_format" => "175x235",
@@ -24,11 +24,11 @@ $pargs = array(
     
     "pa_cover_dust_jacket_paper" => "kreda-150g",
     "pa_cover_dust_jacket_print" => "4x4",
-    "pa_cover_dust_jacket_wrap" => "0x0",
+    "pa_cover_dust_jacket_finish" => "0x0",
     "pa_cover_dust_jacket_spot_uv" => "1x0",
 
     "pa_cover_cloth_covering_paper" => "offset-150g",
-    "pa_cover_cloth_covering_wrap" => "gloss-1x0",
+    "pa_cover_cloth_covering_finish" => "gloss-1x0",
     "pa_cover_cloth_covering_print" => "4x4",
     "pa_cover_cloth_covering_spot_uv" => "1x0",
     "pa_cover_ribbon" => true,

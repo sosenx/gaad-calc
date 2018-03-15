@@ -35,16 +35,16 @@ class pa_spot_uv extends \gcalc\cprocess{
 		$valid = true;
 		$group_name = $this->group[0];
 		
-		$pa_wrap = $this->get_carg( 'pa_' . $group_name . '_wrap' );
+		$pa_wrap = $this->get_carg( 'pa_' . $group_name . '_finish' );
 		$pa_spot_uv = $this->get_carg( 'pa_' . $group_name . '_spot_uv' );
 
 		/*
 		* Adding wrap, before spot uv paper needs to be wrapped
 		*/
 		if ( is_null( $pa_wrap )) {			
-			$process_name = 'pa_' . $group_name .'_wrap';			
-			$this->parent->set_bvar('pa_wrap', $group_name, 'mat-' . $pa_spot_uv, array( new \gcalc\error( 10012, ' -> mat-' . $pa_spot_uv ) ) );						
-			$this->cargs['pa_wrap'] = 'mat-'.$pa_spot_uv;
+			$process_name = 'pa_' . $group_name .'_finish';			
+			$this->parent->set_bvar('pa_finish', $group_name, 'mat-' . $pa_spot_uv, array( new \gcalc\error( 10012, ' -> mat-' . $pa_spot_uv ) ) );						
+			$this->cargs['pa_finish'] = 'mat-'.$pa_spot_uv;
 			$this->parent->add_todo_process( $this->cargs, array( $group_name,  $process_name )  );
 		} else {
 			/*
@@ -54,15 +54,15 @@ class pa_spot_uv extends \gcalc\cprocess{
 			//change gloss to mat
 			if ( preg_match('/gloss-/', $pa_wrap) ) {
 				$pa_wrap = str_replace( 'gloss-', 'mat-', $pa_wrap );
-				$this->parent->set_bvar('pa_wrap', $group_name, 'mat-' . $pa_spot_uv, array( new \gcalc\error( 10013, ' -> mat-' . $pa_spot_uv ) ) );					
-				$this->cargs['pa_wrap'] = 'mat-'.$pa_spot_uv;
+				$this->parent->set_bvar('pa_finish', $group_name, 'mat-' . $pa_spot_uv, array( new \gcalc\error( 10013, ' -> mat-' . $pa_spot_uv ) ) );					
+				$this->cargs['pa_finish'] = 'mat-'.$pa_spot_uv;
 			}	
 
 
 			if ( preg_match('/1x0|1x1/', $pa_spot_uv) && preg_match('/0x0/', $pa_wrap) ) {
 				$pa_wrap = 'mat-' . $pa_spot_uv;
-				$this->parent->set_bvar('pa_wrap', $group_name, 'mat-' . $pa_spot_uv, array( new \gcalc\error( 10012, ' -> mat-' . $pa_spot_uv ) ) );					
-				$this->cargs['pa_wrap'] = 'mat-'.$pa_spot_uv;	
+				$this->parent->set_bvar('pa_finish', $group_name, 'mat-' . $pa_spot_uv, array( new \gcalc\error( 10012, ' -> mat-' . $pa_spot_uv ) ) );					
+				$this->cargs['pa_finish'] = 'mat-'.$pa_spot_uv;	
 							
 			}
 			

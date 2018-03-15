@@ -166,7 +166,7 @@ if ( !defined( GAAD_PLUGIN_TEMPLATE_NAMESPACE . 'GAAD_PLUGIN_TEMPLATE_AUTOSAVE_C
 		require_once( 'class/calc-process-class/class-calc-pa_multi_quantity.php' );
 		require_once( 'class/calc-process-class/class-calc-pa_paper.php' );
 		require_once( 'class/calc-process-class/class-calc-pa_print.php' );
-		require_once( 'class/calc-process-class/class-calc-pa_wrap.php' );
+		require_once( 'class/calc-process-class/class-calc-pa_finish.php' );
 		require_once( 'class/calc-process-class/class-calc-pa_spot_uv.php' );
 		require_once( 'class/calc-process-class/class-calc-pa_sewing.php' );
 		require_once( 'class/calc-process-class/class-calc-pa_pages.php' );
@@ -179,7 +179,7 @@ if ( !defined( GAAD_PLUGIN_TEMPLATE_NAMESPACE . 'GAAD_PLUGIN_TEMPLATE_AUTOSAVE_C
 		require_once( 'class/calc-process/pa_multi_quantity.php' );
 		require_once( 'class/calc-process/pa_paper.php' );
 		require_once( 'class/calc-process/pa_print.php' );
-		require_once( 'class/calc-process/pa_wrap.php' );
+		require_once( 'class/calc-process/pa_finish.php' );
 		require_once( 'class/calc-process/pa_spot_uv.php' );
 		require_once( 'class/calc-process/pa_sewing.php' );
 		require_once( 'class/calc-process/pa_pages.php' );

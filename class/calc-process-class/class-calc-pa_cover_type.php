@@ -121,7 +121,7 @@ class pa_cover_type extends pa_format{
 			    "pa_paper" => $dust_jacket_paper,
 			    "pa_print" => $dust_jacket_print,         
 			    "pa_quantity" => $pa_quantity,
-			    "pa_wrap" => $dust_jacket_wrap,
+			    "pa_finish" => $dust_jacket_wrap,
 			    "pa_spot_uv" => $dust_jacket_spot_uv
 			);
 			$dust_jacket_calc = new \gcalc\calculate( $pargs, 22986 );		
@@ -159,7 +159,7 @@ class pa_cover_type extends pa_format{
 		    "pa_format" => ( 2 * $this->get_width() + 60 ) . 'x' . ( $this->get_height() + 60 ),
 		    "pa_paper" => $cloth_covering_paper,
 		    "pa_print" => $cloth_covering_print,         
-		    "pa_wrap" => $cloth_covering_wrap,         
+		    "pa_finish" => $cloth_covering_wrap,         
 		    "pa_quantity" => $pa_quantity,
 		    "pa_spot_uv" => $cloth_covering_spot_uv
 		);

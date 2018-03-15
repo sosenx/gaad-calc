@@ -98,7 +98,7 @@ class register_woo_elements{
 			 */
 			\gcalc\register_woo_elements::pa_cover_type();				
 			\gcalc\register_woo_elements::pa_cover_finish();
-			\gcalc\register_woo_elements::pa_cover_spot_uv();
+			
 			\gcalc\register_woo_elements::pa_cover_flaps();
 			\gcalc\register_woo_elements::pa_cover_left_flap_width();
 			\gcalc\register_woo_elements::pa_cover_right_flap_width();
@@ -136,7 +136,11 @@ class register_woo_elements{
 
 			\gcalc\register_woo_elements::pa_volume();
 			\gcalc\register_woo_elements::pa_finish();
+
 			\gcalc\register_woo_elements::pa_spot_uv();	
+				\gcalc\register_woo_elements::pa_cover_spot_uv();
+				\gcalc\register_woo_elements::pa_cover_cloth_covering_spot_uv();
+				\gcalc\register_woo_elements::pa_cover_dust_jacket_spot_uv();
 		}		
 	}
 
@@ -726,6 +730,60 @@ class register_woo_elements{
 		\wp_insert_term( \__('Spot UV 2 sides', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('Spot UV 2 sides', 'gcalc'), 'slug' => '1x1' ) );
 		
 	}
+
+	/*
+	pa_cover_cloth_covering_spot_uv
+pa_cover_dust_jacket_spot_uv
+	 */
+
+	/**
+	* Adds cover cloth covering spot uv attribute
+	*/
+	public static function pa_cover_cloth_covering_spot_uv(){
+		$name = 'cover_cloth_covering_spot_uv';
+		$label = \__('Cover cloth covering spot UV', 'gcalc');
+		\gcalc\register_woo_elements::process_add_attribute( array(
+			'attribute_name' => $name,
+			'attribute_label' => $label,
+			'attribute_type' => 'select',
+			'attribute_orderby' => 'menu_order',
+			'attribute_public' => false
+		) );
+		
+		/*
+		* Adding print sizes
+		*/
+		\wp_insert_term( \__('No spot UV', 'gcalc'), 		'pa_' . $name, array( 'description' => \__('No spot UV', 'gcalc'), 		'slug' => '0x0' ) );
+		\wp_insert_term( \__('Spot UV 1 side', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('Spot UV 1 side', 'gcalc'), 	'slug' => '1x0' ) );
+		\wp_insert_term( \__('Spot UV 2 sides', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('Spot UV 2 sides', 'gcalc'), 'slug' => '1x1' ) );
+		
+	}
+
+
+	/**
+	* Adds cover dust jacket spot uv attribute
+	*/
+	public static function pa_cover_dust_jacket_spot_uv(){
+		$name = 'cover_dust_jacket_spot_uv';
+		$label = \__('Cover dust jacket spot UV', 'gcalc');
+		\gcalc\register_woo_elements::process_add_attribute( array(
+			'attribute_name' => $name,
+			'attribute_label' => $label,
+			'attribute_type' => 'select',
+			'attribute_orderby' => 'menu_order',
+			'attribute_public' => false
+		) );
+		
+		/*
+		* Adding print sizes
+		*/
+		\wp_insert_term( \__('No spot UV', 'gcalc'), 		'pa_' . $name, array( 'description' => \__('No spot UV', 'gcalc'), 		'slug' => '0x0' ) );
+		\wp_insert_term( \__('Spot UV 1 side', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('Spot UV 1 side', 'gcalc'), 	'slug' => '1x0' ) );
+		\wp_insert_term( \__('Spot UV 2 sides', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('Spot UV 2 sides', 'gcalc'), 'slug' => '1x1' ) );
+		
+	}
+
+
 
 	/**
 	* Adds cover flaps attribute
