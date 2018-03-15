@@ -8,7 +8,7 @@ namespace gcalc\db\product;
 /**
 * 
 */
-class business_card extends product {
+class flyer extends product {
 	
 	public $base;
 	public $attr;
@@ -35,7 +35,7 @@ class business_card extends product {
 		
 		if ( empty( $this->base ) || is_null( $this->base ) ) {
 			$this->base = array(
-				'post_title' => __( 'Business card', 'gcalc' ),
+				'post_title' => __( 'Flyer', 'gcalc' ),
 				'post_content' => __( '', 'gcalc' ),
 				'author' => 1
 			);	
