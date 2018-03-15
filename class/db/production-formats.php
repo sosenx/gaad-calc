@@ -207,10 +207,18 @@ class formats{
 	*/
 	public function aquire( ){
 
+		/**
+		 * [$this->product_groups description]
+		 * @var array
+		 */
 		$this->product_groups = array(
-			'druk-ksiazek' => array( 'cover', 'color', 'bw' )
+			'book' => array( 'cover', 'color', 'bw' )
 		);
 
+		/**
+		 * All binding types
+		 * @var array
+		 */
 		$this->binding_types = array(
 			'perfect_binding' => array(
 				'cost' => array(
@@ -221,6 +229,7 @@ class formats{
 					)
 				)
 			),
+
 			'saddle_stitch' => array(
 				'cost' => array(
 					'pa_attr' => 'pa_master_quantity',
@@ -233,6 +242,7 @@ class formats{
 					)
 				)
 			),
+
 			'spiral_binding' => array(
 				'cost' => array(
 					'pa_attr' => 'pa_master_quantity',
@@ -242,6 +252,7 @@ class formats{
 					)
 				)
 			),
+
 			'section_sewn' => array(
 				'extended' => array(
 					'signature_cost' => .07,
@@ -255,6 +266,7 @@ class formats{
 					)
 				)
 			),
+
 			'hard' => array(
 				'extended' => array(
 					'signature_cost' => .07,
@@ -601,11 +613,7 @@ class formats{
 				'equasion' => 'pa_master_paper + pa_master_print + pa_master_wrap + pa_master_spot_uv'
 			),
 
-			'wizytowki' => array(
-				'equasion' => 'pa_master_paper + pa_master_print + pa_master_wrap + pa_master_spot_uv'
-			),
-
-			'druk-ksiazek' => array(
+			'book' => array(
 				'equasion' => 'pa_cover_type + pa_cover_paper + pa_cover_print + pa_cover_wrap + pa_cover_spot_uv + pa_bw_paper + pa_bw_print + pa_color_paper + pa_color_print + pa_bw_sewing + pa_color_sewing'
 			),
 		);

@@ -7,7 +7,7 @@ wp_head();
 global $post;
 //$product_id = $post->ID;
 $pargs = array(	
-    "product_slug" => "calling-card",
+    "product_slug" => "business-card",
 
     "pa_format" => "150x50",
     //"pa_quantity" => 1500,

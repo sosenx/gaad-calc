@@ -88,10 +88,15 @@ class product_markup{
 		$this->markups = array(
 			'*' => array(
 				'pa_paper' => array( 'markup' => 1.1),
+
 				'pa_sewing' => array( 'markup' => 2),
+
 				'pa_wrap' => array( 'markup' => 1),
+
 				'pa_spot_uv' => array( 'markup' => 1.6),
+
 				'pa_quantity' => array( 'markup' => 1),
+				
 				'pa_cover_type' => array( 
 					'hard' => array(							
 						array( 'price' => 1, 	'v' => 0 ),
@@ -156,18 +161,18 @@ class product_markup{
 						)
 					), // markup
 
-					//books
+					//business card, folded business card, 
 					'commercial_simple' => array(
 						'0x' => array( 0 => 0 ),
 						'1x' => array(
-							array( 'price' => 9,	'v' => 0 	),
-							array( 'price' => 8,	'v' => 10 	),							
-							array( 'price' => 7,	'v' => 20 	),
+							array( 'price' => 9,	'v' => 0 ),
+							array( 'price' => 8,	'v' => 10 ),							
+							array( 'price' => 7,	'v' => 20 ),
 							array( 'price' => 6.5,	'v' => 30  ),
 							array( 'price' => 5.8, 	'v' => 40  ),
 							array( 'price' => 5, 	'v' => 50  ),
 							array( 'price' => 4.5, 	'v' => 75  ),
-							array( 'price' => 4, 	'v' => 100  ),
+							array( 'price' => 4, 	'v' => 100 ),
 							array( 'price' => 3.5, 	'v' => 250 ),
 							array( 'price' => 3, 	'v' => 500 ),
 							array( 'price' => 2.7, 	'v' => 750 ),
@@ -175,14 +180,14 @@ class product_markup{
 							array( 'price' => 2, 	'v' => 1500 ),
 						),
 						'4x' => array(
-							array( 'price' => 9,	'v' => 0 	),
-							array( 'price' => 8,	'v' => 10 	),							
-							array( 'price' => 7,	'v' => 20 	),
-							array( 'price' => 6.5,	'v' => 30  ),
-							array( 'price' => 5.8, 	'v' => 40  ),
-							array( 'price' => 5, 	'v' => 50  ),
-							array( 'price' => 4.5, 	'v' => 75  ),
-							array( 'price' => 4, 	'v' => 100  ),
+							array( 'price' => 9,	'v' => 0 ),
+							array( 'price' => 8,	'v' => 10 ),							
+							array( 'price' => 7,	'v' => 20 ),
+							array( 'price' => 6.5,	'v' => 30 ),
+							array( 'price' => 5.8, 	'v' => 40 ),
+							array( 'price' => 5, 	'v' => 50 ),
+							array( 'price' => 4.5, 	'v' => 75 ),
+							array( 'price' => 4, 	'v' => 100 ),
 							array( 'price' => 3.5, 	'v' => 250 ),
 							array( 'price' => 3, 	'v' => 500 ),
 							array( 'price' => 2.7, 	'v' => 750 ),
@@ -219,26 +224,28 @@ class product_markup{
 							array( 'price' => 1.7, 	'v' => 1500 )
 						)
 					) //books
-
 				)
 			)
 		);
 
-
-
+		/**
+		 * Markup groups are used to keep different values of markup for technically same production processes but used in comercially diffrent products.		 	 
+		 *  
+		 * @var array
+		 */
 		$this->markups_groups = array(
 			'commercial_simple' => array( 'wizytowki', 'wizytowki-skladane', 'ulotki', 'broszury' ),
 			'commercial_complex' => array( 'roll-up' ),
 			'commercial_books' => array( 'katalog' ),
-			'books' => array( 'druk-ksiazki' )
+			'books' => array( 'book' )
 		);
 	}
 
 
 	/**
-	* Getter for markups
-	*
-	*/
+	 * Getter for markups
+	 * @return array [description]
+	 */
 	function get_markups( ){			
 		return $this->markups;		
 	}
