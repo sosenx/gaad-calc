@@ -92,6 +92,18 @@ class register_woo_elements{
 	public static function create_product_attributes(){
 		if ( !\gcalc\GAAD_PLUGIN_TEMPLATE_DISABLE_CREATE_ATTRIBUTES ) {
 			
+
+			/*
+			 * Cover
+			 */
+			\gcalc\register_woo_elements::pa_cover_type();				
+			\gcalc\register_woo_elements::pa_cover_finish();
+			\gcalc\register_woo_elements::pa_cover_spot_uv();
+			\gcalc\register_woo_elements::pa_cover_flaps();
+			\gcalc\register_woo_elements::pa_cover_left_flap_width();
+			\gcalc\register_woo_elements::pa_cover_right_flap_width();
+			\gcalc\register_woo_elements::pa_cover_board_thickness();
+
 			/*
 			 * Paper: default, cover, cloth covering, dust jacket, color block, bw block
 			 */
@@ -116,7 +128,6 @@ class register_woo_elements{
 			 */
 			\gcalc\register_woo_elements::pa_paper();
 				\gcalc\register_woo_elements::pa_cover_paper();
-				\gcalc\register_woo_elements::pa_cover_board_thickness();
 				\gcalc\register_woo_elements::pa_cover_cloth_covering_paper();
 				\gcalc\register_woo_elements::pa_cover_dust_jacket_paper();
 				\gcalc\register_woo_elements::pa_color_paper();
@@ -300,7 +311,7 @@ class register_woo_elements{
 		/*
 		* Adding print sizes
 		*/		
-		\wp_insert_term( 'couted-170g', 			'pa_' . $name, array( 'description' => \__('Coated 170g', 'gcalc'), 'slug' => 'coated-170g' ) );						
+		\wp_insert_term( \__('couted-170g', 'gcalc'), 			'pa_' . $name, array( 'description' => \__('Coated 170g', 'gcalc'), 'slug' => 'coated-170g' ) );						
 	}
 
 
@@ -322,7 +333,7 @@ class register_woo_elements{
 		* Adding print sizes
 		*/
 		
-		\wp_insert_term( 'couted-170g', 			'pa_' . $name, array( 'description' => \__('Coated 170g', 'gcalc'), 'slug' => 'coated-170g' ) );						
+		\wp_insert_term( \__('couted-170g', 'gcalc'), 			'pa_' . $name, array( 'description' => \__('Coated 170g', 'gcalc'), 'slug' => 'coated-170g' ) );						
 	}
 
 	/**
@@ -585,9 +596,13 @@ class register_woo_elements{
 		/*
 		* Adding print sizes
 		*/
-		\wp_insert_term( 'gloss', 	'pa_' . $name, array( 'description' => \__('Gloss finish', 'gcalc'), 'slug' => 'gloss' ) );
-		\wp_insert_term( 'matt', 	'pa_' . $name, array( 'description' => \__('Matt finish', 'gcalc'), 'slug' => 'matt' ) );
-		\wp_insert_term( 'soft-touch', 	'pa_' . $name, array( 'description' => \__('Soft touch finish', 'gcalc'), 'slug' => 'soft-touch' ) );
+		\wp_insert_term( \__('No finish', 'gcalc'), 		'pa_' . $name, array( 'description' => \__('Gloss finish 1 side', 'gcalc'), 		'slug' => 'no-finish' ) );
+		\wp_insert_term( \__('Gloss 1 side', 'gcalc'), 		'pa_' . $name, array( 'description' => \__('Gloss finish 1 side', 'gcalc'), 		'slug' => 'gloss-1x0' ) );
+		\wp_insert_term( \__('Gloss 2 sides', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('Gloss finish 2 sides  ', 'gcalc'), 		'slug' => 'gloss-1x1' ) );
+		\wp_insert_term( \__('matt 1 side', 'gcalc'), 		'pa_' . $name, array( 'description' => \__('Matt finish 1 side', 'gcalc'), 			'slug' => 'matt-1x0' ) );
+		\wp_insert_term( \__('matt 2 sides', 'gcalc'), 		'pa_' . $name, array( 'description' => \__('Matt finish 2 sides', 'gcalc'), 		'slug' => 'matt-1x1' ) );
+		\wp_insert_term( \__('Soft touch 1 side', 'gcalc'), 'pa_' . $name, array( 'description' => \__('Soft touch finish 1 side', 'gcalc'), 	'slug' => 'soft-touch-1x0' ) );
+		\wp_insert_term( \__('Soft touch 2 sides', 'gcalc'),'pa_' . $name, array( 'description' => \__('Soft touch finish 2 sides', 'gcalc'), 	'slug' => 'soft-touch-1x1' ) );
 	}
 
 	/**
@@ -607,9 +622,10 @@ class register_woo_elements{
 		/*
 		* Adding print sizes
 		*/
-		\wp_insert_term( '00', 	'pa_' . $name, array( 'description' => \__('No spot UV', 'gcalc'), 'slug' => '00' ) );
-		\wp_insert_term( '10', 	'pa_' . $name, array( 'description' => \__('Spot UV', 'gcalc'), 'slug' => '10' ) );
-		\wp_insert_term( '11', 	'pa_' . $name, array( 'description' => \__('Soft touch finish', 'gcalc'), 'slug' => '11' ) );
+		\wp_insert_term( \__('No spot UV', 'gcalc'), 		'pa_' . $name, array( 'description' => \__('No spot UV', 'gcalc'), 		'slug' => '0x0' ) );
+		\wp_insert_term( \__('Spot UV 1 side', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('Spot UV 1 side', 'gcalc'), 	'slug' => '1x0' ) );
+		\wp_insert_term( \__('Spot UV 2 sides', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('Spot UV 2 sides', 'gcalc'), 'slug' => '1x1' ) );
+
 	}
 
 	/**
@@ -629,11 +645,161 @@ class register_woo_elements{
 		/*
 		* Adding print sizes
 		*/
-		\wp_insert_term( 'Color 2-sided', 	'pa_' . $name, array( 'description' => \__('Color both sides', 'gcalc'), 'slug' => '44' ) );
-		\wp_insert_term( 'Color 1-sided', 	'pa_' . $name, array( 'description' => \__('Color single side', 'gcalc'), 'slug' => '40' ) );
-		\wp_insert_term( 'Black 2-sided', 	'pa_' . $name, array( 'description' => \__('Black both sides', 'gcalc'), 'slug' => '11' ) );
-		\wp_insert_term( 'Black 1-sided', 	'pa_' . $name, array( 'description' => \__('Black single side', 'gcalc'), 'slug' => '11' ) );
+		\wp_insert_term( \__('Color 2-sided', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('Color both sides', 'gcalc'), 'slug' => '44' ) );
+		\wp_insert_term( \__('Color 1-sided', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('Color single side', 'gcalc'), 'slug' => '40' ) );
+		\wp_insert_term( \__('Black 2-sided', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('Black both sides', 'gcalc'), 'slug' => '11' ) );
+		\wp_insert_term( \__('Black 1-sided', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('Black single side', 'gcalc'), 'slug' => '11' ) );
 	}
+
+
+	/**
+	* Adds cover_type attribute
+	*/
+	public static function pa_cover_type(){
+		$name = 'cover_type';
+		$label = \__('Cover binding type', 'gcalc');
+		\gcalc\register_woo_elements::process_add_attribute( array(
+			'attribute_name' => $name,
+			'attribute_label' => $label,
+			'attribute_type' => 'select',
+			'attribute_orderby' => 'menu_order',
+			'attribute_public' => false
+		) );
+		
+		/*
+		* Adding binding types
+		*/
+		\wp_insert_term( \__('Perfect binding', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('Perfect binding', 'gcalc'), 'slug' => 'perfect_binding' ) );
+		\wp_insert_term( \__('Saddle stitch', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('Saddle stitch', 'gcalc'), 'slug' => 'saddle_stitch' ) );
+		\wp_insert_term( \__('Spiral binding', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('Spiral binding', 'gcalc'), 'slug' => 'spiral_binding' ) );
+		\wp_insert_term( \__('Section sewn', 'gcalc'),	 	'pa_' . $name, array( 'description' => \__('Section sewn', 'gcalc'), 'slug' => 'section_sewn' ) );
+		\wp_insert_term( \__('Hard cover', 'gcalc'), 		'pa_' . $name, array( 'description' => \__('Hard cover', 'gcalc'), 'slug' => 'hard' ) );
+
+	}
+
+	/**
+	* Adds cover finish attribute
+	*/
+	public static function pa_cover_finish(){
+		$name = 'cover_finish';
+		$label = \__('Cover finish', 'gcalc');
+		\gcalc\register_woo_elements::process_add_attribute( array(
+			'attribute_name' => $name,
+			'attribute_label' => $label,
+			'attribute_type' => 'select',
+			'attribute_orderby' => 'menu_order',
+			'attribute_public' => false
+		) );
+		
+		/*
+		* Adding print sizes
+		*/
+		\wp_insert_term( \__('No finish', 'gcalc'), 		'pa_' . $name, array( 'description' => \__('Gloss finish 1 side', 'gcalc'), 		'slug' => 'no-finish' ) );
+		\wp_insert_term( \__('Gloss 1 side', 'gcalc'), 		'pa_' . $name, array( 'description' => \__('Gloss finish 1 side', 'gcalc'), 		'slug' => 'gloss-1x0' ) );
+		\wp_insert_term( \__('Gloss 2 sides', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('Gloss finish 2 sides  ', 'gcalc'), 		'slug' => 'gloss-1x1' ) );
+		\wp_insert_term( \__('matt 1 side', 'gcalc'), 		'pa_' . $name, array( 'description' => \__('Matt finish 1 side', 'gcalc'), 			'slug' => 'matt-1x0' ) );
+		\wp_insert_term( \__('matt 2 sides', 'gcalc'), 		'pa_' . $name, array( 'description' => \__('Matt finish 2 sides', 'gcalc'), 		'slug' => 'matt-1x1' ) );
+		\wp_insert_term( \__('Soft touch 1 side', 'gcalc'), 'pa_' . $name, array( 'description' => \__('Soft touch finish 1 side', 'gcalc'), 	'slug' => 'soft-touch-1x0' ) );
+		\wp_insert_term( \__('Soft touch 2 sides', 'gcalc'),'pa_' . $name, array( 'description' => \__('Soft touch finish 2 sides', 'gcalc'), 	'slug' => 'soft-touch-1x1' ) );
+
+	}
+
+	/**
+	* Adds cover spot uv attribute
+	*/
+	public static function pa_cover_spot_uv(){
+		$name = 'cover_spot_uv';
+		$label = \__('Cover spot UV', 'gcalc');
+		\gcalc\register_woo_elements::process_add_attribute( array(
+			'attribute_name' => $name,
+			'attribute_label' => $label,
+			'attribute_type' => 'select',
+			'attribute_orderby' => 'menu_order',
+			'attribute_public' => false
+		) );
+		
+		/*
+		* Adding print sizes
+		*/
+		\wp_insert_term( \__('No spot UV', 'gcalc'), 		'pa_' . $name, array( 'description' => \__('No spot UV', 'gcalc'), 		'slug' => '0x0' ) );
+		\wp_insert_term( \__('Spot UV 1 side', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('Spot UV 1 side', 'gcalc'), 	'slug' => '1x0' ) );
+		\wp_insert_term( \__('Spot UV 2 sides', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('Spot UV 2 sides', 'gcalc'), 'slug' => '1x1' ) );
+		
+	}
+
+	/**
+	* Adds cover flaps attribute
+	*/
+	public static function pa_cover_flaps(){
+		$name = 'cover_flaps';
+		$label = \__('Cover flaps', 'gcalc');
+		\gcalc\register_woo_elements::process_add_attribute( array(
+			'attribute_name' => $name,
+			'attribute_label' => $label,
+			'attribute_type' => 'select',
+			'attribute_orderby' => 'menu_order',
+			'attribute_public' => false
+		) );
+		
+		/*
+		* Adding print sizes
+		*/
+		\wp_insert_term( \__('No flaps', 'gcalc'), 			'pa_' . $name, array( 'description' => \__('No flaps', 'gcalc'), 			'slug' => 'false' ) );
+		\wp_insert_term( \__('Cover with flaps', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('Cover with flaps', 'gcalc'), 	'slug' => 'true' ) );
+		
+	}
+
+	/**
+	* Adds format attribute
+	*/
+	public static function pa_cover_left_flap_width(){
+		$name = 'cover_left_flap_width';
+		$label = \__('Cover left flap width', 'gcalc');
+		\gcalc\register_woo_elements::process_add_attribute( array(
+			'attribute_name' => $name,
+			'attribute_label' => $label,
+			'attribute_type' => 'select',
+			'attribute_orderby' => 'menu_order',
+			'attribute_public' => false
+		) );
+		
+		/*
+		* Adding values
+		*/
+		\wp_insert_term( 'Custom', 	'pa_' . $name, array( 'description' => \__('Custom flap width', 'gcalc'), 'slug' => 'custom-width' ) );
+		
+	}
+
+	/**
+	* Adds format attribute
+	*/
+	public static function pa_cover_right_flap_width(){
+		$name = 'cover_right_flap_width';
+		$label = \__('Cover right flap width', 'gcalc');
+		\gcalc\register_woo_elements::process_add_attribute( array(
+			'attribute_name' => $name,
+			'attribute_label' => $label,
+			'attribute_type' => 'select',
+			'attribute_orderby' => 'menu_order',
+			'attribute_public' => false
+		) );
+		
+		/*
+		* Adding values
+		*/
+		\wp_insert_term( 'Custom', 	'pa_' . $name, array( 'description' => \__('Custom flap width', 'gcalc'), 'slug' => 'custom-width' ) );
+		
+	}
+
+
+
+
+
+
+
+
+
+
 
 	/**
 	* Adds cover print attribute

@@ -33,7 +33,7 @@ $pargs = array(
     "pa_cover_cloth_covering_spot_uv" => "1x0",
     "pa_cover_ribbon" => true,
     
-    "pa_cover_wrap" => "gloss-1x0",    
+    "pa_cover_finish" => "gloss-1x0",    
     "pa_cover_spot_uv" => "1x1",
     "pa_cover_flaps" => true,
     "pa_cover_left_flap_width" => 100,

@@ -614,7 +614,7 @@ class formats{
 			),
 
 			'book' => array(
-				'equasion' => 'pa_cover_type + pa_cover_paper + pa_cover_print + pa_cover_wrap + pa_cover_spot_uv + pa_bw_paper + pa_bw_print + pa_color_paper + pa_color_print + pa_bw_sewing + pa_color_sewing'
+				'equasion' => 'pa_cover_type + pa_cover_paper + pa_cover_print + pa_cover_finish + pa_cover_spot_uv + pa_bw_paper + pa_bw_print + pa_color_paper + pa_color_print + pa_bw_sewing + pa_color_sewing'
 			),
 		);
 
