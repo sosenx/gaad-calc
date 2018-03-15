@@ -939,8 +939,8 @@ class register_woo_elements{
 		/*
 		* Adding print sizes
 		*/
-		\wp_insert_term( \__('No ribbon', 'gcalc'), 'pa_' . $name, array( 'description' => \__('No flaps', 'gcalc'), 			'slug' => 'false' ) );
-		\wp_insert_term( \__('Ribbon', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('Cover with flaps', 'gcalc'), 	'slug' => 'true' ) );
+		\wp_insert_term( \__('No ribbon', 'gcalc'), 'pa_' . $name, array( 'description' => \__('No ribbon', 'gcalc'), 		'slug' => 'false' ) );
+		\wp_insert_term( \__('Ribbon', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('Cover ribbon', 'gcalc'), 	'slug' => 'true' ) );
 		
 	}
 
