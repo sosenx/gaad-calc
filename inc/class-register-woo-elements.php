@@ -471,7 +471,7 @@ class register_woo_elements{
 		/*
 		* Adding volumes
 		*/
-		\wp_insert_term( 'Custom', 	'pa_' . $name, array( 'description' => \__('Custom volume', 'gcalc'), 'slug' => 'custom-volume' ) );
+		\wp_insert_term( 'Custom', 	'pa_' . $name, array( 'description' => \__('Custom volume', 'gcalc'), 'slug' => 'custom-value' ) );
 		\wp_insert_term( '10', 		'pa_' . $name, array( 'description' => \__('10 pcs.', 'gcalc'), 'slug' => '10-szt.' ) );
 		\wp_insert_term( '20', 		'pa_' . $name, array( 'description' => \__('20 pcs.', 'gcalc'), 'slug' => '20-szt.' ) );
 		\wp_insert_term( '25', 		'pa_' . $name, array( 'description' => \__('25 pcs.', 'gcalc'), 'slug' => '25-szt.' ) );
@@ -580,18 +580,18 @@ class register_woo_elements{
 		/*
 		* Adding print sizes
 		*/
-		\wp_insert_term( 'Custom', 	'pa_' . $name, array( 'description' => \__('Custom format', 'gcalc'), 'slug' => 'custom-format' ) );
+		\wp_insert_term( 'Custom', 	'pa_' . $name, array( 'description' => \__('Custom format', 'gcalc'), 'slug' => 'custom-value' ) );
 		\wp_insert_term( '85x55', 	'pa_' . $name, array( 'description' => \__('Business card 85x55mm', 'gcalc'), 'slug' => '85x55' ) );
 		\wp_insert_term( '170x55', 	'pa_' . $name, array( 'description' => \__('Business card folded to 85x55mm', 'gcalc'), 'slug' => '170x55' ) );
 		\wp_insert_term( '90x50', 	'pa_' . $name, array( 'description' => \__('Business card 90x50mm', 'gcalc'), 'slug' => '90x50' ) );
 		\wp_insert_term( '180x50', 	'pa_' . $name, array( 'description' => \__('Business card folded to 90x50mm', 'gcalc'), 'slug' => '180x50' ) );
-		\wp_insert_term( '105x148', 'pa_' . $name, array( 'description' => '', 'slug' => '105x148' ) );
-		\wp_insert_term( '148x210', 'pa_' . $name, array( 'description' => '', 'slug' => '148x210' ) );
-		\wp_insert_term( '210x297', 'pa_' . $name, array( 'description' => '', 'slug' => '210x297' ) );
-		\wp_insert_term( '297x420', 'pa_' . $name, array( 'description' => '', 'slug' => '297x420' ) );
-		\wp_insert_term( '125x176', 'pa_' . $name, array( 'description' => '', 'slug' => '125x176' ) );
-		\wp_insert_term( '176x250', 'pa_' . $name, array( 'description' => '', 'slug' => '176x250' ) );
-		\wp_insert_term( '250x353', 'pa_' . $name, array( 'description' => '', 'slug' => '250x353' ) );					
+		\wp_insert_term( '105x148', 'pa_' . $name, array( 'description' => \__('', 'gcalc'), 'slug' => '105x148' ) );
+		\wp_insert_term( '148x210', 'pa_' . $name, array( 'description' => \__('', 'gcalc'), 'slug' => '148x210' ) );
+		\wp_insert_term( '210x297', 'pa_' . $name, array( 'description' => \__('', 'gcalc'), 'slug' => '210x297' ) );
+		\wp_insert_term( '297x420', 'pa_' . $name, array( 'description' => \__('', 'gcalc'), 'slug' => '297x420' ) );
+		\wp_insert_term( '125x176', 'pa_' . $name, array( 'description' => \__('', 'gcalc'), 'slug' => '125x176' ) );
+		\wp_insert_term( '176x250', 'pa_' . $name, array( 'description' => \__('', 'gcalc'), 'slug' => '176x250' ) );
+		\wp_insert_term( '250x350', 'pa_' . $name, array( 'description' => \__('', 'gcalc'), 'slug' => '250x350' ) );					
 	}
 
 
@@ -612,7 +612,7 @@ class register_woo_elements{
 		/*
 		* Adding print sizes
 		*/
-		\wp_insert_term( 'Custom', 	'pa_' . $name, array( 'description' => \__('Custom cover format', 'gcalc'), 'slug' => 'custom-cover-format' ) );					
+		\wp_insert_term( 'Custom', 	'pa_' . $name, array( 'description' => \__('Custom cover format', 'gcalc'), 'slug' => 'custom-value' ) );					
 	}
 
 	/**
@@ -632,7 +632,7 @@ class register_woo_elements{
 		/*
 		* Adding print sizes
 		*/
-		\wp_insert_term( 'Custom', 	'pa_' . $name, array( 'description' => \__('Custom BW block format', 'gcalc'), 'slug' => 'custom-bw-format' ) );					
+		\wp_insert_term( 'Custom', 	'pa_' . $name, array( 'description' => \__('Custom BW block format', 'gcalc'), 'slug' => 'custom-value' ) );					
 	}
 
 	/**
@@ -652,7 +652,7 @@ class register_woo_elements{
 		/*
 		* Adding print sizes
 		*/
-		\wp_insert_term( 'Custom', 	'pa_' . $name, array( 'description' => \__('Custom color block format', 'gcalc'), 'slug' => 'custom-color-format' ) );					
+		\wp_insert_term( 'Custom', 	'pa_' . $name, array( 'description' => \__('Custom color block format', 'gcalc'), 'slug' => 'custom-value' ) );					
 	}
 
 	/**
@@ -773,10 +773,10 @@ class register_woo_elements{
 		/*
 		* Adding print sizes
 		*/
-		\wp_insert_term( \__('Color 2-sided', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('Color both sides', 'gcalc'), 'slug' => '44' ) );
-		\wp_insert_term( \__('Color 1-sided', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('Color single side', 'gcalc'), 'slug' => '40' ) );
-		\wp_insert_term( \__('Black 2-sided', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('Black both sides', 'gcalc'), 'slug' => '11' ) );
-		\wp_insert_term( \__('Black 1-sided', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('Black single side', 'gcalc'), 'slug' => '11' ) );
+		\wp_insert_term( \__('Color 2-sided', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('Color both sides', 'gcalc'), 	'slug' => '4x4' ) );
+		\wp_insert_term( \__('Color 1-sided', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('Color single side', 'gcalc'), 	'slug' => '4x0' ) );
+		\wp_insert_term( \__('Black 2-sided', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('Black both sides', 'gcalc'), 	'slug' => '1x1' ) );
+		\wp_insert_term( \__('Black 1-sided', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('Black single side', 'gcalc'), 	'slug' => '1x1' ) );
 	}
 
 	/**
@@ -939,8 +939,8 @@ class register_woo_elements{
 		/*
 		* Adding print sizes
 		*/
-		\wp_insert_term( \__('No flaps', 'gcalc'), 			'pa_' . $name, array( 'description' => \__('No flaps', 'gcalc'), 			'slug' => 'false' ) );
-		\wp_insert_term( \__('Cover with flaps', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('Cover with flaps', 'gcalc'), 	'slug' => 'true' ) );
+		\wp_insert_term( \__('No ribbon', 'gcalc'), 'pa_' . $name, array( 'description' => \__('No flaps', 'gcalc'), 			'slug' => 'false' ) );
+		\wp_insert_term( \__('Ribbon', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('Cover with flaps', 'gcalc'), 	'slug' => 'true' ) );
 		
 	}
 
@@ -961,7 +961,7 @@ class register_woo_elements{
 		/*
 		* Adding values
 		*/
-		\wp_insert_term( \__('Custom', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('Custom flap width', 'gcalc'), 'slug' => 'custom-width' ) );
+		\wp_insert_term( \__('Custom', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('Custom flap width', 'gcalc'), 'slug' => 'custom-value' ) );
 		
 	}
 
@@ -982,7 +982,7 @@ class register_woo_elements{
 		/*
 		* Adding values
 		*/
-		\wp_insert_term( \__('Custom', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('Custom flap width', 'gcalc'), 'slug' => 'custom-width' ) );
+		\wp_insert_term( \__('Custom', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('Custom flap width', 'gcalc'), 'slug' => 'custom-value' ) );
 		
 	}
 
@@ -1035,7 +1035,7 @@ class register_woo_elements{
 	* Adds cover dust jacket print attribute
 	*/
 	public static function pa_cover_dust_jacket_print(){
-		$name = 'cover_print';
+		$name = 'cover_dust_jacket_print';
 		$label = \__('Dust jacket print', 'gcalc');
 		\gcalc\register_woo_elements::process_add_attribute( array(
 			'attribute_name' => $name,

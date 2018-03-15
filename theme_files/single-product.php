@@ -11,7 +11,7 @@ $pargs = array(
 
     "pa_format" => "150x50",
     //"pa_quantity" => 1500,
-    "pa_multi_quantity" => "10,50,150",
+    "multi_quantity" => "10,50,150",
     "pa_paper" => "kreda-350g",
     "pa_print" => "4x4",                 
     "pa_finish" => "gloss-1x1",   
