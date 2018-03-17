@@ -212,7 +212,8 @@ class formats{
 		 * @var array
 		 */
 		$this->product_groups = array(
-			'book' => array( 'cover', 'color', 'bw' )
+			'book' => array( 'cover', 'color', 'bw' ),
+			'business-card' => array( 'master' )
 		);
 
 		/**
@@ -359,73 +360,83 @@ class formats{
 
 		$this->production_formats = array(
 			'0x' => array (		
-				'wizA'	=> array( 'format' => 'SRA3++', 'pieces' => 24,	'grain' => 'LG'),
-				'wizB'	=> array( 'format' => 'SRA3++', 'pieces' => 24,	'grain' => 'LG'),
-				'wizAF'	=> array( 'format' => 'SRA3++', 'pieces' => 8,	'grain' => 'LG'),
-				'wizBF'	=> array( 'format' => 'SRA3++', 'pieces' => 8,	'grain' => 'LG'),
-				'A6'	=> array( 'format' => 'RA3', 	'pieces' => 8, 	'grain' => 'SG'),
-				'B6'	=> array( 'format' => 'SRA3++', 'pieces' => 8, 	'grain' => 'SG'),
-				'A5'	=> array( 'format' => 'RA3', 	'pieces' => 4, 	'grain' => 'LG'),
-				'B5'	=> array( 'format' => 'SRA3++', 'pieces' => 4, 	'grain' => 'LG'),
-				'A4'	=> array( 'format' => 'RA3', 	'pieces' => 2, 	'grain' => 'SG'),
-				'B4'	=> array( 'format' => 'SRA3++', 'pieces' => 1, 	'grain' => 'SG'),
-				'A3'	=> array( 'format' => 'SRA3++', 'pieces' => 1, 	'grain' => 'LG'),
-				'B3'	=> array( 'format' => 'SRA3++', 'pieces' => 1, 	'grain' => 'LG'),
-				'SRA3'	=> array( 'format' => 'SRA3++', 'pieces' => 1, 	'grain' => 'SG'),
-				'BN6'	=> array( 'format' => 'BN6', 	'pieces' => 1, 	'grain' => 'SG'),
-				'BN7'	=> array( 'format' => 'BN7', 	'pieces' => 1, 	'grain' => 'SG')
+				'wizA'		=> array( 'format' => 'SRA3++', 'pieces' => 24,	'grain' => 'LG'),
+				'wizB'		=> array( 'format' => 'SRA3++', 'pieces' => 24,	'grain' => 'LG'),
+				'wizAFH'	=> array( 'format' => 'SRA3++', 'pieces' => 12,	'grain' => 'LG'),
+				'wizBFH'	=> array( 'format' => 'SRA3++', 'pieces' => 12,	'grain' => 'LG'),
+				'wizAFV'	=> array( 'format' => 'SRA3++', 'pieces' => 8,	'grain' => 'LG'),
+				'wizBFV'	=> array( 'format' => 'SRA3++', 'pieces' => 8,	'grain' => 'LG'),
+				'A6'		=> array( 'format' => 'RA3', 	'pieces' => 8, 	'grain' => 'SG'),
+				'B6'		=> array( 'format' => 'SRA3++', 'pieces' => 8, 	'grain' => 'SG'),
+				'A5'		=> array( 'format' => 'RA3', 	'pieces' => 4, 	'grain' => 'LG'),
+				'B5'		=> array( 'format' => 'SRA3++', 'pieces' => 4, 	'grain' => 'LG'),
+				'A4'		=> array( 'format' => 'RA3', 	'pieces' => 2, 	'grain' => 'SG'),
+				'B4'		=> array( 'format' => 'SRA3++', 'pieces' => 1, 	'grain' => 'SG'),
+				'A3'		=> array( 'format' => 'SRA3++', 'pieces' => 1, 	'grain' => 'LG'),
+				'B3'		=> array( 'format' => 'SRA3++', 'pieces' => 1, 	'grain' => 'LG'),
+				'SRA3'		=> array( 'format' => 'SRA3++', 'pieces' => 1, 	'grain' => 'SG'),
+				'BN6'		=> array( 'format' => 'BN6', 	'pieces' => 1, 	'grain' => 'SG'),
+				'BN7'		=> array( 'format' => 'BN7', 	'pieces' => 1, 	'grain' => 'SG')
 			),
 
 			'4x' => array (						
-				'wizA'	=> array( 'format' => 'SRA3++', 'pieces' => 24,	'grain' => 'LG'),
-				'wizB'	=> array( 'format' => 'SRA3++', 'pieces' => 24,	'grain' => 'LG'),
-				'wizAF'	=> array( 'format' => 'SRA3++', 'pieces' => 8,	'grain' => 'LG'),
-				'wizBF'	=> array( 'format' => 'SRA3++', 'pieces' => 8,	'grain' => 'LG'),
-				'A6'	=> array( 'format' => 'RA3', 	'pieces' => 8, 	'grain' => 'SG'),
-				'B6'	=> array( 'format' => 'SRA3++', 'pieces' => 8, 	'grain' => 'SG'),
-				'A5'	=> array( 'format' => 'RA3', 	'pieces' => 4, 	'grain' => 'LG'),
-				'B5'	=> array( 'format' => 'SRA3++', 'pieces' => 4, 	'grain' => 'LG'),
-				'A4'	=> array( 'format' => 'RA3', 	'pieces' => 2, 	'grain' => 'SG'),
-				'B4'	=> array( 'format' => 'SRA3++', 'pieces' => 1, 	'grain' => 'SG'),
-				'A3'	=> array( 'format' => 'SRA3++', 'pieces' => 1, 	'grain' => 'LG'),
-				'B3'	=> array( 'format' => 'SRA3++', 'pieces' => 1, 	'grain' => 'LG'),
-				'SRA3'	=> array( 'format' => 'SRA3++', 'pieces' => 1, 	'grain' => 'SG'),
-				'BN6'	=> array( 'format' => 'BN6', 	'pieces' => 1, 	'grain' => 'SG'),
-				'BN7'	=> array( 'format' => 'BN7', 	'pieces' => 1, 	'grain' => 'SG')
+				'wizA'		=> array( 'format' => 'SRA3++', 'pieces' => 24,	'grain' => 'LG'),
+				'wizB'		=> array( 'format' => 'SRA3++', 'pieces' => 24,	'grain' => 'LG'),
+				'wizAFH'	=> array( 'format' => 'SRA3++', 'pieces' => 12,	'grain' => 'LG'),
+				'wizBFH'	=> array( 'format' => 'SRA3++', 'pieces' => 12,	'grain' => 'LG'),
+				'wizAFV'	=> array( 'format' => 'SRA3++', 'pieces' => 8,	'grain' => 'LG'),
+				'wizBFV'	=> array( 'format' => 'SRA3++', 'pieces' => 8,	'grain' => 'LG'),
+				'A6'		=> array( 'format' => 'RA3', 	'pieces' => 8, 	'grain' => 'SG'),
+				'B6'		=> array( 'format' => 'SRA3++', 'pieces' => 8, 	'grain' => 'SG'),
+				'A5'		=> array( 'format' => 'RA3', 	'pieces' => 4, 	'grain' => 'LG'),
+				'B5'		=> array( 'format' => 'SRA3++', 'pieces' => 4, 	'grain' => 'LG'),
+				'A4'		=> array( 'format' => 'RA3', 	'pieces' => 2, 	'grain' => 'SG'),
+				'B4'		=> array( 'format' => 'SRA3++', 'pieces' => 1, 	'grain' => 'SG'),
+				'A3'		=> array( 'format' => 'SRA3++', 'pieces' => 1, 	'grain' => 'LG'),
+				'B3'		=> array( 'format' => 'SRA3++', 'pieces' => 1, 	'grain' => 'LG'),
+				'SRA3'		=> array( 'format' => 'SRA3++', 'pieces' => 1, 	'grain' => 'SG'),
+				'BN6'		=> array( 'format' => 'BN6', 	'pieces' => 1, 	'grain' => 'SG'),
+				'BN7'		=> array( 'format' => 'BN7', 	'pieces' => 1, 	'grain' => 'SG')
 			),
 
 			'1x' => array (				
-				'A6'	=> array( 'format' => 'RA3', 'pieces' => 8, 	'grain' => 'SG'),
-				'B6'	=> array( 'format' => 'B3', 'pieces' => 8, 		'grain' => 'SG'),
-				'A5'	=> array( 'format' => 'RA3', 'pieces' => 4, 	'grain' => 'LG'),
-				'B5'	=> array( 'format' => 'B3', 'pieces' => 4, 		'grain' => 'LG'),
-				'A4'	=> array( 'format' => 'RA3', 'pieces' => 2, 	'grain' => 'SG'),
-				'B4'	=> array( 'format' => 'B3', 'pieces' => 2, 		'grain' => 'SG'),
-				'A3'	=> array( 'format' => 'RA3', 'pieces' => 1, 	'grain' => 'LG'),
-				'B3'	=> array( 'format' => 'B3', 'pieces' => 1, 		'grain' => 'LG'),
+				'A6'	=> array( 'format' => 'RA3',	'pieces' => 8, 	'grain' => 'SG'),
+				'B6'	=> array( 'format' => 'B3', 	'pieces' => 8, 	'grain' => 'SG'),
+				'A5'	=> array( 'format' => 'RA3', 	'pieces' => 4, 	'grain' => 'LG'),
+				'B5'	=> array( 'format' => 'B3', 	'pieces' => 4, 	'grain' => 'LG'),
+				'A4'	=> array( 'format' => 'RA3', 	'pieces' => 2, 	'grain' => 'SG'),
+				'B4'	=> array( 'format' => 'B3', 	'pieces' => 2, 	'grain' => 'SG'),
+				'A3'	=> array( 'format' => 'RA3', 	'pieces' => 1, 	'grain' => 'LG'),
+				'B3'	=> array( 'format' => 'B3', 	'pieces' => 1, 	'grain' => 'LG'),
 				'SRA3'	=> array( 'format' => 'SRA3++', 'pieces' => 1, 	'grain' => 'SG'),
-				'BN6'	=> array( 'format' => 'BN6', 'pieces' => 1, 	'grain' => 'SG'),
-				'BN7'	=> array( 'format' => 'BN7', 'pieces' => 1, 	'grain' => 'SG')
+				'BN6'	=> array( 'format' => 'BN6', 	'pieces' => 1, 	'grain' => 'SG'),
+				'BN7'	=> array( 'format' => 'BN7', 	'pieces' => 1, 	'grain' => 'SG')
 			)	
 		);
 
+		/**
+		 * Common used formats (no production formats)
+		 * @var array
+		 */
 		$this->common_format = array (			
 
-			'wizA'	=> 	array('width' => 85 ,'height' => 55, 'grain' => 'LG' ),								
-			'wizB'	=> 	array('width' => 90 ,'height' => 50, 'grain' => 'LG' ),				
-			'wizAF'	=> 	array('width' => 170 ,'height' => 55, 'grain' => 'LG' ),	
-			'wizBF'	=> 	array('width' => 180 ,'height' => 50, 'grain' => 'LG' ),				
-			'A6'	=> 	array('width' => 105 ,'height' => 148, 'grain' => 'LG' ),				
-			'B6'	=> 	array('width' => 125 ,'height' => 176, 'grain' => 'LG' ),				
-			'A5'	=> 	array('width' => 148 ,'height' => 210, 'grain' => 'LG' ),				
-			'B5'	=> 	array('width' => 176 ,'height' => 250, 'grain' => 'LG' ),				
-			'A4'	=> 	array('width' => 210 ,'height' => 297, 'grain' => 'LG' ),
-			'B4'	=> 	array('width' => 250 ,'height' => 350, 'grain' => 'LG' ),				
-			'A3'	=> 	array('width' => 297 ,'height' => 420, 'grain' => 'LG' ),				
-			'SRA3'=> 	array('width' => 450 ,'height' => 320, 'grain' => 'SG' ),				
-			//'B3'	=> 	array('width' => 350 ,'height' => 500, 'grain' => 'LG' ),		
-			'BN6'	=> 	array('width' => 600 ,'height' => 330, 'grain' => 'SG' ),
-			'BN7'	=> 	array('width' => 700 ,'height' => 330, 'grain' => 'SG' )
+			'wizA'	=> 	array('width' => 85,	'height' => 55, 	'grain' => 'LG' ),								
+			'wizB'	=> 	array('width' => 90,	'height' => 50, 	'grain' => 'LG' ),				
+			'wizAFV'=> 	array('width' => 170,	'height' => 55, 	'grain' => 'LG' ),	
+			'wizBFV'=> 	array('width' => 180,	'height' => 50, 	'grain' => 'LG' ),
+			'wizAFH'=> 	array('width' => 85,	'height' => 170, 	'grain' => 'LG' ),	
+			'wizBFH'=> 	array('width' => 90,	'height' => 180, 	'grain' => 'LG' ),
+			'A6'	=> 	array('width' => 105,	'height' => 148, 	'grain' => 'LG' ),				
+			'B6'	=> 	array('width' => 125,	'height' => 176, 	'grain' => 'LG' ),				
+			'A5'	=> 	array('width' => 148,	'height' => 210, 	'grain' => 'LG' ),				
+			'B5'	=> 	array('width' => 176,	'height' => 250, 	'grain' => 'LG' ),				
+			'A4'	=> 	array('width' => 210,	'height' => 297, 	'grain' => 'LG' ),
+			'B4'	=> 	array('width' => 250,	'height' => 350, 	'grain' => 'LG' ),				
+			'A3'	=> 	array('width' => 297,	'height' => 420, 	'grain' => 'LG' ),				
+			'SRA3'=> 	array('width' => 450,	'height' => 320, 	'grain' => 'SG' ),				
+			//'B3'	=> 	array('width' => 350,	'height' => 500, 	'grain' => 'LG' ),		
+			'BN6'	=> 	array('width' => 600,	'height' => 330, 	'grain' => 'SG' ),
+			'BN7'	=> 	array('width' => 700,	'height' => 330, 	'grain' => 'SG' )
 		);
 
 		$this->pallet_format_factor = 4;
@@ -610,7 +621,23 @@ class formats{
 		$this->total_cost_equasion = array(
 			//universal
 			'plain' => array(
-				'equasion' => 'pa_master_paper + pa_master_print + pa_master_wrap + pa_master_spot_uv'
+				'equasion' => 'pa_master_paper + pa_master_print + pa_master_wrap + pa_master_folding + pa_master_spot_uv'
+			),
+
+			'plano' => array(
+				'equasion' => 'pa_bw_paper + pa_bw_print + pa_color_paper + pa_color_print'
+			),
+
+			'plano_color' => array(
+				'equasion' => 'pa_color_paper + pa_color_print'
+			),
+
+			'plano_bw' => array(
+				'equasion' => 'pa_bw_paper + pa_bw_print'
+			),
+
+			'letterhead' => array(
+				'equasion' => 'pa_color_paper + pa_color_print'
 			),
 
 			'book' => array(

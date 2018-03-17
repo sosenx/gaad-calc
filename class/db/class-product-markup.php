@@ -65,7 +65,10 @@ class product_markup{
 		$markups_group = $this->get_markups_group();
 		$process_name = $this->parent->name;
 		$product_markup = !array_key_exists( $this->slug, $this->get_markups() ) ? $this->get_markups()[ '*' ] : $this->get_markups()[ $this->slug ];
-		$process_markup = $product_markup[ $process_name ]  == NULL ? 0 : $product_markup[ $process_name ];		
+
+		$process_markup = $product_markup[ $process_name ]  == NULL ? array() : $product_markup[ $process_name ];		
+		$process_markup = empty($process_markup) ? $product_markup[ str_replace('_' . $this->parent->group[0], '', $process_name) ] : $process_markup;
+		
 		$markups_group = array_key_exists( $markups_group, $process_markup ) ? $markups_group : 'markup'; //re setting with check
 
 		if (!$return_group_markup) {
@@ -93,7 +96,7 @@ class product_markup{
 
 				'pa_finish' => array( 'markup' => 1),
 				
-				'pa_folding' => array( 'markup' => 1),
+				'pa_folding' => array( 'markup' => 1.5),
 
 				'pa_spot_uv' => array( 'markup' => 1.6),
 

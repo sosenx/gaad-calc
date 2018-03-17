@@ -641,6 +641,7 @@ $r=1;
 
 
 	/**
+	 * function needs to be fully documented! every line
 	* Sorts todos into nested categorized lists
 	*
 	*/
@@ -656,15 +657,29 @@ $r=1;
 				$groups_str[] = $match[1];
 				foreach ($this->bvars as $key2 => $value2) {
 					$match2 = array();
-					if ( preg_match( '/pa_' . $match[1] . '_(.*)/', $key2, $match2 ) ) {						
-						$class_name = str_replace( $match[1] . '_', '', $match2[0] );
-						$pa_class_name = '\gcalc\pa\\' . $class_name;
-						if ( !class_exists( $pa_class_name ) ) {
-							if ( class_exists( '\gcalc\pa\\' . $key2 ) ) {
-								$class_name = $key2;
+					if ( preg_match( '/pa_' . $match[1] . '_(.*)/', $key2, $match2 ) ) {
+
+						/*
+						* 1st level 
+						* Checking if exact attr name class exists
+						 */						
+						
+						if ( class_exists( '\gcalc\pa\\' . $match2[0] ) ) {
+							$class_name = $match2[0];
+						} else {
+							/*
+							* 2nd level
+							* master process class
+							 */
+							$class_name = str_replace( $match[1] . '_', '', $match2[0] );
+							$pa_class_name = '\gcalc\pa\\' . $class_name;
+							if ( !class_exists( $pa_class_name ) ) {
+								if ( class_exists( '\gcalc\pa\\' . $key2 ) ) {
+									$class_name = $key2;
+								}
 							}
 						}
-
+						
 						$groups[ $match[ 1 ] ][ $key2 ]['class_name'] = $class_name;						
 					}
 				}				
@@ -744,9 +759,10 @@ $r=1;
 				$process_name = 'pa_' . $group_name .'_' . str_replace( array( $group_name .'_', 'pa_'), array('', ''), $process_name);	
 
 				$pa_class_name = '\gcalc\pa\\' . $process['class_name'];
-
+//var_dump($process_name.'::'.$pa_class_name, class_exists( $pa_class_name ));
 				if ( !in_array( $process_name, $used ) && class_exists( $pa_class_name ) && !preg_match('/format/', $pa_class_name)) {	
 					$new_todo = new  $pa_class_name( $this->bvars, $this->product_id, $this, array( $group_name,  $process_name ) );
+
 
 					$todo[ $process_name ] = $new_todo;				
 					array_push( $used, $process_name );
@@ -977,7 +993,13 @@ $a =1;
 	}
 
 	
-	
+	/**
+	 * Getter for slug
+	 * @return string product slug
+	 */
+	function get_slug( ){
+		return $this->slug;
+	}
 
 	/**
 	* Sets all parts of current calculation.

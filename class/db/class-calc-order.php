@@ -43,6 +43,26 @@ class calc_order{
 			'wizytowki' => array ( 
 				'master' => array('pa_master_format', 'pa_master_paper', 'pa_master_print', 'pa_master_spot_uv', '*') 
 			),
+
+
+			'plano' => array ( 
+				'master' =>array('pa_master_format', '*'),				
+			    "bw" => array( 'pa_bw_format', 'pa_bw_pages', 'pa_bw_paper', 'pa_bw_print', '*'),
+			    "color" => array( 'pa_color_format', 'pa_color_pages', 'pa_color_paper', 'pa_color_print', '*' ),
+			),
+			'plano_bw' => array ( 
+				'master' =>array('pa_master_format', '*'),				
+			    "bw" => array( 'pa_bw_format', 'pa_bw_pages', 'pa_bw_paper', 'pa_bw_print', '*')			    
+			),
+			'plano_color' => array ( 
+				'master' =>array('pa_master_format', '*'),							    
+			    "color" => array( 'pa_color_format', 'pa_color_pages', 'pa_color_paper', 'pa_color_print', '*' )
+			),
+			'letterhead' => array ( 				
+			    "color" => array( 'pa_color_format', 'pa_color_pages', 'pa_color_paper', 'pa_color_print', '*' )
+			),
+
+
 			'book' => array ( 
 				'master' =>array('pa_master_format', '*'),
 				"cover" => array( 'pa_cover_format','pa_cover_paper', /* 'pa_cover_print', */'*' ),

@@ -108,6 +108,16 @@ abstract class cprocess{
 	}
 	
 
+
+	/**
+	 * Getter for parent
+	 * @return [type] [description]
+	 */
+	function get_parent( ){
+		return $this->parent;
+	}
+
+	
 }
 
 

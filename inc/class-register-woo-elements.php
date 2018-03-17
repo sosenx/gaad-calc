@@ -88,6 +88,12 @@ class register_woo_elements{
 			new \gcalc\db\product\saddle_catalog();	
 			new \gcalc\db\product\spiral_catalog();	
 			*/
+			new \gcalc\db\product\folded_business_card();	
+			new \gcalc\db\product\plano();	
+			new \gcalc\db\product\plano_color();	
+			new \gcalc\db\product\plano_bw();	
+			new \gcalc\db\product\letterhead();	
+			new \gcalc\db\product\brochure();	
 		}
 	}
 
@@ -158,6 +164,12 @@ class register_woo_elements{
 				\gcalc\register_woo_elements::pa_cover_spot_uv();
 				\gcalc\register_woo_elements::pa_cover_cloth_covering_spot_uv();
 				\gcalc\register_woo_elements::pa_cover_dust_jacket_spot_uv();
+
+			
+			\gcalc\register_woo_elements::pa_folding();	
+			\gcalc\register_woo_elements::pa_folding_dir();	
+
+				
 		}		
 	}
 
@@ -315,6 +327,52 @@ class register_woo_elements{
 	}
 
 	/**
+	* Adds paper attribute
+	*/
+	public static function pa_folding(){
+		$name = 'folding';
+		$label = \__('Folding', 'gcalc');
+		\gcalc\register_woo_elements::process_add_attribute( array(
+			'attribute_name' => $name,
+			'attribute_label' => $label,
+			'attribute_type' => 'select',
+			'attribute_orderby' => 'menu_order',
+			'attribute_public' => false
+		) );
+		
+		/*
+		* Adding print sizes
+		*/		
+		\wp_insert_term( \__('Half fold', 'gcalc'), 		'pa_' . $name, array( 'description' => \__('Half fold', 'gcalc'), 	'slug' => 'half-fold' ) );
+		\wp_insert_term( \__('Tri fold', 'gcalc'), 			'pa_' . $name, array( 'description' => \__('Tri fold', 'gcalc'), 	'slug' => 'tri-fold' ) );						
+		\wp_insert_term( \__('Z fold', 'gcalc'), 			'pa_' . $name, array( 'description' => \__('Z fold', 'gcalc'), 		'slug' => 'z-fold' ) );						
+	}
+
+
+/**
+	* Adds paper attribute
+	*/
+	public static function pa_folding_dir(){
+		$name = 'folding_dir';
+		$label = \__('Folding direction', 'gcalc');
+		\gcalc\register_woo_elements::process_add_attribute( array(
+			'attribute_name' => $name,
+			'attribute_label' => $label,
+			'attribute_type' => 'select',
+			'attribute_orderby' => 'menu_order',
+			'attribute_public' => false
+		) );
+		
+		/*
+		* Adding print sizes
+		*/		
+		\wp_insert_term( \__('Horizontal', 'gcalc'), 		'pa_' . $name, array( 'description' => \__('Horizontal', 'gcalc'), 	'slug' => 'folding-dir-h' ) );
+		\wp_insert_term( \__('Vertical', 'gcalc'), 			'pa_' . $name, array( 'description' => \__('Vertical', 'gcalc'), 	'slug' => 'folding-dir-v' ) );						
+		
+	}
+
+
+		/**
 	* Adds paper attribute
 	*/
 	public static function pa_cover_cloth_covering_paper(){
@@ -477,32 +535,41 @@ class register_woo_elements{
 		/*
 		* Adding volumes
 		*/
-		\wp_insert_term( \__('Custom', 'gcalc'),	'pa_' . $name, array( 'description' => \__('Custom volume', 'gcalc'), 'slug' => 'custom-value' ) );
-		\wp_insert_term( \__('10 pcs', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('10 pcs', 'gcalc'), 'slug' => '10-szt.' ) );
-		\wp_insert_term( \__('20 pcs', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('20 pcs', 'gcalc'), 'slug' => '20-szt.' ) );
-		\wp_insert_term( \__('25 pcs', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('25 pcs', 'gcalc'), 'slug' => '25-szt.' ) );
-		\wp_insert_term( \__('30 pcs', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('30 pcs', 'gcalc'), 'slug' => '30-szt.' ) );
-		\wp_insert_term( \__('40 pcs', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('40 pcs', 'gcalc'), 'slug' => '40-szt.' ) );
-		\wp_insert_term( \__('50 pcs', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('50 pcs', 'gcalc'), 'slug' => '50-szt.' ) );
-		\wp_insert_term( \__('60 pcs', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('60 pcs', 'gcalc'), 'slug' => '60-szt.' ) );
-		\wp_insert_term( \__('70 pcs', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('70 pcs', 'gcalc'), 'slug' => '70-szt.' ) );
-		\wp_insert_term( \__('75 pcs', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('75 pcs', 'gcalc'), 'slug' => '75-szt.' ) );
-		\wp_insert_term( \__('80 pcs', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('80 pcs', 'gcalc'), 'slug' => '80-szt.' ) );
-		\wp_insert_term( \__('90 pcs', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('90 pcs', 'gcalc'), 'slug' => '90-szt.' ) );
-		\wp_insert_term( \__('100 pcs', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('100 pcs', 'gcalc'), 'slug' => '100-szt.' ) );
-		\wp_insert_term( \__('200 pcs', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('200 pcs', 'gcalc'), 'slug' => '200-szt.' ) );
-		\wp_insert_term( \__('250 pcs', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('250 pcs', 'gcalc'), 'slug' => '250-szt.' ) );
-		\wp_insert_term( \__('300 pcs', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('300 pcs', 'gcalc'), 'slug' => '300-szt.' ) );
-		\wp_insert_term( \__('400 pcs', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('400 pcs', 'gcalc'), 'slug' => '400-szt.' ) );
-		\wp_insert_term( \__('500 pcs', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('500 pcs', 'gcalc'), 'slug' => '500-szt.' ) );
-		\wp_insert_term( \__('600 pcs', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('600 pcs', 'gcalc'), 'slug' => '600-szt.' ) );
-		\wp_insert_term( \__('700 pcs', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('700 pcs', 'gcalc'), 'slug' => '700-szt.' ) );
-		\wp_insert_term( \__('800 pcs', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('800 pcs', 'gcalc'), 'slug' => '800-szt.' ) );
-		\wp_insert_term( \__('900 pcs', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('900 pcs', 'gcalc'), 'slug' => '900-szt.' ) );
-		\wp_insert_term( \__('1000 pcs', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('1000 pcs', 'gcalc'), 'slug' => '1000-szt.' ) );
-		\wp_insert_term( \__('1500 pcs', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('1500 pcs', 'gcalc'), 'slug' => '1500-szt.' ) );
-		\wp_insert_term( \__('2000 pcs', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('2000 pcs', 'gcalc'), 'slug' => '2000-szt.' ) );
-		\wp_insert_term( \__('2500 pcs', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('2500 pcs', 'gcalc'), 'slug' => '2500-szt.' ) );
+		\wp_insert_term( \__('Custom', 'gcalc'),	'pa_' . $name, array( 'description' => \__('Custom volume', 'gcalc'), 	'slug' => 'custom-value' ) );
+		\wp_insert_term( \__('1 pcs', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('1 pcs', 'gcalc'), 			'slug' => '1' ) );
+		\wp_insert_term( \__('2 pcs', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('2 pcs', 'gcalc'), 			'slug' => '2' ) );
+		\wp_insert_term( \__('3 pcs', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('3 pcs', 'gcalc'), 			'slug' => '3' ) );
+		\wp_insert_term( \__('4 pcs', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('4 pcs', 'gcalc'), 			'slug' => '4' ) );
+		\wp_insert_term( \__('5 pcs', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('5 pcs', 'gcalc'), 			'slug' => '5' ) );
+		\wp_insert_term( \__('6 pcs', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('6 pcs', 'gcalc'), 			'slug' => '6' ) );
+		\wp_insert_term( \__('7 pcs', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('7 pcs', 'gcalc'), 			'slug' => '7' ) );
+		\wp_insert_term( \__('8 pcs', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('8 pcs', 'gcalc'), 			'slug' => '8' ) );
+		\wp_insert_term( \__('9 pcs', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('9 pcs', 'gcalc'), 			'slug' => '9' ) );
+		\wp_insert_term( \__('10 pcs', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('10 pcs', 'gcalc'), 			'slug' => '10' ) );
+		\wp_insert_term( \__('20 pcs', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('20 pcs', 'gcalc'), 			'slug' => '20' ) );
+		\wp_insert_term( \__('25 pcs', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('25 pcs', 'gcalc'), 			'slug' => '25' ) );
+		\wp_insert_term( \__('30 pcs', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('30 pcs', 'gcalc'), 			'slug' => '30' ) );
+		\wp_insert_term( \__('40 pcs', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('40 pcs', 'gcalc'), 			'slug' => '40' ) );
+		\wp_insert_term( \__('50 pcs', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('50 pcs', 'gcalc'), 			'slug' => '50' ) );
+		\wp_insert_term( \__('60 pcs', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('60 pcs', 'gcalc'), 			'slug' => '60' ) );
+		\wp_insert_term( \__('70 pcs', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('70 pcs', 'gcalc'), 			'slug' => '70' ) );
+		\wp_insert_term( \__('75 pcs', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('75 pcs', 'gcalc'), 			'slug' => '75' ) );
+		\wp_insert_term( \__('80 pcs', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('80 pcs', 'gcalc'), 			'slug' => '80' ) );
+		\wp_insert_term( \__('90 pcs', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('90 pcs', 'gcalc'), 			'slug' => '90' ) );
+		\wp_insert_term( \__('100 pcs', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('100 pcs', 'gcalc'), 		'slug' => '100' ) );
+		\wp_insert_term( \__('200 pcs', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('200 pcs', 'gcalc'), 		'slug' => '200' ) );
+		\wp_insert_term( \__('250 pcs', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('250 pcs', 'gcalc'), 		'slug' => '250' ) );
+		\wp_insert_term( \__('300 pcs', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('300 pcs', 'gcalc'), 		'slug' => '300' ) );
+		\wp_insert_term( \__('400 pcs', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('400 pcs', 'gcalc'), 		'slug' => '400' ) );
+		\wp_insert_term( \__('500 pcs', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('500 pcs', 'gcalc'), 		'slug' => '500' ) );
+		\wp_insert_term( \__('600 pcs', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('600 pcs', 'gcalc'), 		'slug' => '600' ) );
+		\wp_insert_term( \__('700 pcs', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('700 pcs', 'gcalc'), 		'slug' => '700' ) );
+		\wp_insert_term( \__('800 pcs', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('800 pcs', 'gcalc'), 		'slug' => '800' ) );
+		\wp_insert_term( \__('900 pcs', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('900 pcs', 'gcalc'), 		'slug' => '900' ) );
+		\wp_insert_term( \__('1000 pcs', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('1000 pcs', 'gcalc'), 		'slug' => '1000' ) );
+		\wp_insert_term( \__('1500 pcs', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('1500 pcs', 'gcalc'), 		'slug' => '1500' ) );
+		\wp_insert_term( \__('2000 pcs', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('2000 pcs', 'gcalc'), 		'slug' => '2000' ) );
+		\wp_insert_term( \__('2500 pcs', 'gcalc'), 	'pa_' . $name, array( 'description' => \__('2500 pcs', 'gcalc'), 		'slug' => '2500' ) );
 
 	}
 

@@ -116,7 +116,7 @@ if ( !defined( GAAD_PLUGIN_TEMPLATE_NAMESPACE . 'GAAD_PLUGIN_TEMPLATE_CREATE_VAR
 	* Disables predefined attributes creation
 	* Created mostly for developmnet reasons.
 	*/
-	define( GAAD_PLUGIN_TEMPLATE_NAMESPACE . 'GAAD_PLUGIN_TEMPLATE_CREATE_VARIATIONS', true );
+	define( GAAD_PLUGIN_TEMPLATE_NAMESPACE . 'GAAD_PLUGIN_TEMPLATE_CREATE_VARIATIONS', false );
 
 
 
@@ -166,6 +166,8 @@ if ( !defined( GAAD_PLUGIN_TEMPLATE_NAMESPACE . 'GAAD_PLUGIN_TEMPLATE_AUTOSAVE_C
 		require_once( 'class/calc-process-class/class-calc-pa_quantity.php' );
 		require_once( 'class/calc-process-class/class-calc-pa_multi_quantity.php' );
 		require_once( 'class/calc-process-class/class-calc-pa_paper.php' );
+		require_once( 'class/calc-process-class/class-calc-pa_color_paper.php' );
+		require_once( 'class/calc-process-class/class-calc-pa_bw_paper.php' );
 		require_once( 'class/calc-process-class/class-calc-pa_print.php' );
 		require_once( 'class/calc-process-class/class-calc-pa_finish.php' );
 		require_once( 'class/calc-process-class/class-calc-pa_spot_uv.php' );
@@ -174,11 +176,14 @@ if ( !defined( GAAD_PLUGIN_TEMPLATE_NAMESPACE . 'GAAD_PLUGIN_TEMPLATE_AUTOSAVE_C
 
 	require_once( 'class/class-cprocess.php' );
 		require_once( 'class/calc-process/pa_format.php' );
+		require_once( 'class/calc-process/pa_folding.php' );
 		require_once( 'class/calc-process/pa_cover_type.php' );
 		require_once( 'class/calc-process/pa_cover_format.php' );
 		require_once( 'class/calc-process/pa_quantity.php' );
 		require_once( 'class/calc-process/pa_multi_quantity.php' );
 		require_once( 'class/calc-process/pa_paper.php' );
+		require_once( 'class/calc-process/pa_color_paper.php' );
+		require_once( 'class/calc-process/pa_bw_paper.php' );
 		require_once( 'class/calc-process/pa_print.php' );
 		require_once( 'class/calc-process/pa_finish.php' );
 		require_once( 'class/calc-process/pa_spot_uv.php' );
@@ -190,8 +195,25 @@ if ( !defined( GAAD_PLUGIN_TEMPLATE_NAMESPACE . 'GAAD_PLUGIN_TEMPLATE_AUTOSAVE_C
 
 
 	require_once( 'class/products/class-product.php' );
+	require_once( 'class/products/class-plano.php' );
+		require_once( 'class/products/class-plano-color.php' );
+		require_once( 'class/products/class-plano-bw.php' );
+		require_once( 'class/products/class-letterhead.php' );
+
 	require_once( 'class/products/class-business-card.php' );
+	require_once( 'class/products/class-folded-business-card.php' );
 	require_once( 'class/products/class-flyer.php' );
+	
+	require_once( 'class/products/class-brochure.php' );
+	//require_once( 'class/products/class-ticket.php' );
+	//require_once( 'class/products/class-poster.php' );
+	//require_once( 'class/products/class-poster-xxl.php' );
+	
+	
+	
+	
+
+
 	require_once( 'class/products/class-book.php' );
 	require_once( 'class/products/class-catalog.php' );
 	require_once( 'class/products/class-perfect-catalog.php' );

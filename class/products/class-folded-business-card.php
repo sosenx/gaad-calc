@@ -8,7 +8,7 @@ namespace gcalc\db\product;
 /**
 * 
 */
-class flyer extends product {
+class folded_business_card extends product {
 	
 	public $base;
 	public $attr;
@@ -35,7 +35,7 @@ class flyer extends product {
 		
 		if ( empty( $this->base ) || is_null( $this->base ) ) {
 			$this->base = array(
-				'post_title' => __( 'Flyer', 'gcalc' ),
+				'post_title' => __( 'Folded business card', 'gcalc' ),
 				'post_content' => __( '', 'gcalc' ),
 				'author' => 1
 			);	
@@ -52,7 +52,9 @@ class flyer extends product {
 			$this->attr = array( 
 				array( 'paper', array( 'couted-300g', 'couted-350g' ), '111' ),
 				array( 'volume', array( '50', '100', '200', '300', '400', '500', '1000', '1500', '2500' ), '111' ),
-				array( 'format', array( '105x148','148x210','210x297','297x420','125x176','176x250','custom-value' ), '111' ),
+				array( 'format', array( '170x55', '180x50', '85x170', '90x180', 'custom-value' ), '111' ),
+				array( 'folding', array( 'half-fold' ), '111' ),
+				array( 'folding_dir', array( 'folding-dir-h', 'folding-dir-v' ), '111' ),
 				array( 'finish', array( 'gloss-1x0', 'gloss-1x1', 'matt-1x0','matt-1x1', 'soft-touch-1x0', 'soft-touch-1x1' ), '111' ),
 				array( 'print', array( '4x4', '4x0' ), '111' ),
 				array( 'spot_uv', array( '0x0', '1x0', '1x1' ), '111' )
@@ -63,4 +65,7 @@ class flyer extends product {
 	
 
 }
+
+
+
 

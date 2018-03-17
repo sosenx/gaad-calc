@@ -56,7 +56,7 @@ class spiral_catalog extends catalog {
 				array( 'pa_cover_format', 	array( 'custom-format' ), '111' ),				
 				array( 'pa_color_format', 	array( 'custom-format' ), '111' ),
 
-				array( 'volume', array( '10-szt','20-szt','30-szt','40-szt','50-szt','100-szt','200-szt','300-szt','400-szt','500-szt','custom-volume' ), '111' ),
+				array( 'volume', array( '10','20','30','40','50','100','200','300','400','500','custom-volume' ), '111' ),
 				
 				array( 'paper', array( 
 					'couted-70g', 'couted-80g', 'couted-90g', 'couted-115g', 'couted-135g','couted-170g', 'couted-250g', 'couted-300g', 'couted-350g',

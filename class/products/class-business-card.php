@@ -51,7 +51,7 @@ class business_card extends product {
 		if ( empty( $this->attr ) || is_null( $this->attr ) ) {
 			$this->attr = array( 
 				array( 'paper', array( 'couted-300g', 'couted-350g' ), '111' ),
-				array( 'volume', array( '50-szt', '100-szt', '200-szt', '300-szt', '400-szt', '500-szt', '1000-szt', '1500-szt', '2500-szt' ), '111' ),
+				array( 'volume', array( '50', '100', '200', '300', '400', '500', '1000', '1500', '2500' ), '111' ),
 				array( 'format', array( '90x50', '85x55', 'custom-value' ), '111' ),
 				array( 'finish', array( 'gloss-1x0', 'gloss-1x1', 'matt-1x0','matt-1x1', 'soft-touch-1x0', 'soft-touch-1x1' ), '111' ),
 				array( 'print', array( '4x4', '4x0' ), '111' ),

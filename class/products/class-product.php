@@ -51,6 +51,23 @@ class product {
 	}
 
 	/**
+	 * Validates and changes attributes values before calculation
+	 * @param  string           $process_name [description]
+	 * @param  array            $cargs        [description]
+	 * @param  \gcalc\calculate $parent       [description]
+	 * @return [type]                         [description]
+	 */
+	public static function validate_cargs( string $process_name, array $cargs, \gcalc\calculate $parent, string $product_constructor ){
+		$valid = true;
+	
+		if ( method_exists( $product_constructor, 'validate__' . $process_name ) ) {
+			$valid = call_user_func( $product_constructor . '::validate__' . $process_name, $cargs, $parent );
+		}
+
+		return $valid;
+	}
+
+	/**
 	 * Adds attributes and values to product
 	 */
 	public function add_product_attributes( ) {
