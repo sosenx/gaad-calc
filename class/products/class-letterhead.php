@@ -33,12 +33,55 @@ class letterhead extends product {
 	 * @param  \gcalc\calculate $parent Parent object to add errors and info
 	 * @return [type]                   [description]
 	 */
-	public static function validate__pa_cover_format( array $cargs, \gcalc\calculate $parent ){
+	public static function validate__pa_color_format( array $cargs, \gcalc\calculate $parent, $process ){
 		$valid = true;
-		$parent->set_bvar('pa_finish','cover', '8x8', array( new \gcalc\error( 10014 ) ) );	
-		var_dump('validate__pa_cover_format');
-		return $valid;
+		$value = $parent->get_bvar( str_replace('validate__', '', explode( '::' , __METHOD__)[1] ) );
+
+		if ( $value !== '210x297' ) {
+			$parent->set_bvar('pa_format', 'color', '210x297', array( new \gcalc\error( 10000, ' Letterheads are in 210x297 (A4) format only.' ) ) );		
+		}
+		
+		return $parent->get_bvars();
 	}
+
+
+	/**
+	 * Additional validation of attribute specific to product type.
+	 * 
+	 * @param  array            $cargs  Calculation argumetns (product attributes) array
+	 * @param  \gcalc\calculate $parent Parent object to add errors and info
+	 * @return [type]                   [description]
+	 */
+	public static function validate__pa_bw_pages( array $cargs, \gcalc\calculate $parent, $process ){
+		$valid = true;
+		$value = $parent->get_bvar( str_replace('validate__', '', explode( '::' , __METHOD__)[1] ) );
+
+		if ( (int)$value !== 500 ) {
+			$parent->set_bvar('pa_pages', 'bw', 500, array( new \gcalc\error( 10000, ' Ream = 500 sheets' ) ) );		
+		}
+		
+		return $parent->get_bvars();
+	}
+
+	/**
+	 * Additional validation of attribute specific to product type.
+	 * 
+	 * @param  array            $cargs  Calculation argumetns (product attributes) array
+	 * @param  \gcalc\calculate $parent Parent object to add errors and info
+	 * @return [type]                   [description]
+	 */
+	public static function validate__pa_color_pages( array $cargs, \gcalc\calculate $parent, $process ){
+		$valid = true;
+		$value = $parent->get_bvar( str_replace('validate__', '', explode( '::' , __METHOD__)[1] ) );
+
+		if ( (int)$value !== 500 ) {
+			$parent->set_bvar('pa_pages', 'color', 500, array( new \gcalc\error( 10000, ' Ream = 500 sheets' ) ) );		
+		}
+		
+		return $parent->get_bvars();
+	}
+
+
 
 	/**
 	 * setter for base
@@ -64,11 +107,20 @@ class letterhead extends product {
 		if ( empty( $this->attr ) || is_null( $this->attr ) ) {
 			$this->attr = array( 
 				array( 'format', 			array( '210x297', 'custom-value' ), '111' ),												
+				array( 'pa_bw_format', 	array( '210x297', 'custom-value' ), '111' ),
 				array( 'pa_color_format', 	array( '210x297', 'custom-value' ), '111' ),
 
 				array( 'volume', array( '1','2','3','4','5','6','7','8','9','10','custom-volume' ), '111' ),
 				
 				array( 'paper', array( 
+					'couted-70g', 'couted-80g', 'couted-90g', 'couted-115g', 'couted-135g','couted-170g', 'couted-250g', 'couted-300g', 'couted-350g',
+					'uncouted-70g', 'uncouted-80g', 'uncouted-90g', 'uncouted-100g', 'uncouted-120g', 'uncouted-150g',
+					'eccobook_cream_16-60g', 'eccobook_cream_16-70g','eccobook_cream_16-80g', 'eccobook_cream_20-60g','eccobook_cream_20-70g', 'eccobook_cream_20-80g', 	
+					'ibook_white_16-60g','ibook_white_16-70g', 'ibook_cream_20-60g', 'ibook_cream_20-70g', 'ibook_cream_20-80g', 		
+					'munken_cream_18-80g','munken_cream_18-90g','munken_cream_15-80g','munken_cream_15-90g','munken_white_18-80g','munken_white_18-90g','munken_white_15-80g','munken_white_15-90g',
+				), '111' ),				
+				
+				array( 'bw_paper', array( 
 					'couted-70g', 'couted-80g', 'couted-90g', 'couted-115g', 'couted-135g','couted-170g', 'couted-250g', 'couted-300g', 'couted-350g',
 					'uncouted-70g', 'uncouted-80g', 'uncouted-90g', 'uncouted-100g', 'uncouted-120g', 'uncouted-150g',
 					'eccobook_cream_16-60g', 'eccobook_cream_16-70g','eccobook_cream_16-80g', 'eccobook_cream_20-60g','eccobook_cream_20-70g', 'eccobook_cream_20-80g', 	
@@ -84,8 +136,9 @@ class letterhead extends product {
 					'munken_cream_18-80g','munken_cream_18-90g','munken_cream_15-80g','munken_cream_15-90g','munken_white_18-80g','munken_white_18-90g','munken_white_15-80g','munken_white_15-90g',
 				), '111' ),
 				
-				array( 'print', 		array( '4x0','4x4' ), '111' ),				
-				array( 'color_pages', array( 500 ), '111' )				
+				array( 'print', 		array( '1x0','1x1','4x0','4x4' ), '111' ),				
+				array( 'color_pages', array( '500' ), '111' ),				
+				array( 'bw_pages', array( '500' ), '111' )				
 			);
 		}
 	}

@@ -199,12 +199,17 @@ if ( !defined( GAAD_PLUGIN_TEMPLATE_NAMESPACE . 'GAAD_PLUGIN_TEMPLATE_AUTOSAVE_C
 		require_once( 'class/products/class-plano-color.php' );
 		require_once( 'class/products/class-plano-bw.php' );
 		require_once( 'class/products/class-letterhead.php' );
+		require_once( 'class/products/class-letterhead-color.php' );
+		require_once( 'class/products/class-letterhead-bw.php' );
 
 	require_once( 'class/products/class-business-card.php' );
 	require_once( 'class/products/class-folded-business-card.php' );
 	require_once( 'class/products/class-flyer.php' );
 	
 	require_once( 'class/products/class-brochure.php' );
+	
+	require_once( 'class/products/class-writing-pad.php' );
+	
 	//require_once( 'class/products/class-ticket.php' );
 	//require_once( 'class/products/class-poster.php' );
 	//require_once( 'class/products/class-poster-xxl.php' );

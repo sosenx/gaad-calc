@@ -5,19 +5,24 @@ namespace gcalc\pa;
 class pa_format extends \gcalc\cprocess{
 
 	function __construct( array $product_attributes, int $product_id, \gcalc\calculate $parent, array $group ){	
+		
 		$this->cargs = $product_attributes;
 		$this->parent = $parent;
 		$this->group = $group;
+		$this->name = "pa_format";
+		$valid = false;
+		$valid = $this->validate_cargs();
 
-		if ( $this->validate_cargs() ) {
-			parent::__construct( $this->cargs, $product_id, $parent, $group );
-			$this->name = "pa_format";
-			$this->calculator = new \gcalc\calc\pa_format( $this->cargs, $product_id, $parent, $group, $this );			
-			$this->dependencies = NULL;					
-			return $this;
-		} else {
-			return false;
+		if ( is_array( $valid ) ) {
+			$this->cargs = $valid;
+			$valid = true;
 		}
+
+		if ( $valid ) {
+			parent::__construct( $this->cargs, $product_id, $this->parent, $this->group );		
+			$this->calculator = new \gcalc\calc\pa_format( $this->cargs, $product_id, $parent, $group, $this );
+			return $this;
+		} else { return false; }
 		
 	}
 
@@ -48,8 +53,24 @@ class pa_format extends \gcalc\cprocess{
 			$valid = false;
 		}
 
-		$r=1;
+		//$this->parent->set_bvar('pa_format', 'color', '210x297', array( new \gcalc\error( 10012, ' -> msadaasdsddddddddddddddddddddddddddddddddddddddddddddddat-' . $pa_spot_uv ) ) );	
 
+		$valid = $this->validate_cargs_product( $valid );
+
+		return $valid; 
+	}
+
+	/**
+	 * Checks if product object have validation function and uses it
+	 * @param  boolean $valid [description]
+	 * @return [type]         [description]
+	 */
+	private function validate_cargs_product( $valid ){
+		$product_class = 'gcalc\db\product\\' . $this->parent->get_slug();
+		if ( $valid && class_exists( $product_class ) && method_exists( $product_class, 'validate_cargs') ) {
+			$valid = $product_class::validate_cargs( $this, $this->cargs, $this->parent, $product_class );
+			 //$valid = call_user_func( $product_class . '::validate_cargs', $this, $this->cargs, $this->parent, $product_class );
+		}
 		return $valid;
 	}
 

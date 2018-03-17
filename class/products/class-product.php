@@ -57,11 +57,27 @@ class product {
 	 * @param  \gcalc\calculate $parent       [description]
 	 * @return [type]                         [description]
 	 */
-	public static function validate_cargs( string $process_name, array $cargs, \gcalc\calculate $parent, string $product_constructor ){
+	public static function validate_cargs( $process, array $cargs, \gcalc\calculate $parent, string $product_constructor ){
+		$process_name = $process->name;
+		$group = $process->group[0];
+		$full_process_name = $process->group[1];
+		$tmp  = str_replace( '_' . $group, '', $full_process_name );
+		$tmp2 = $tmp === $process_name;
 		$valid = true;
-	
-		if ( method_exists( $product_constructor, 'validate__' . $process_name ) ) {
-			$valid = call_user_func( $product_constructor . '::validate__' . $process_name, $cargs, $parent );
+		
+		
+		if ( method_exists( $product_constructor, 'validate__' . $full_process_name ) ) {
+			$validate_method_name = 'validate__' . $full_process_name;
+			$valid = $product_constructor::$validate_method_name( $cargs, $parent, $process );
+			
+			$r=1; 
+			//$valid = call_user_func( $product_constructor . '::validate__' . $full_process_name, $cargs, $parent, $process );
+					
+		} elseif ( method_exists( $product_constructor, 'validate__' . $process_name ) ) {
+			$validate_method_name = 'validate__' . $process_name;
+			$valid = $product_constructor::$validate_method_name( $cargs, $parent, $process );
+			//$valid = call_user_func( $product_constructor . '::validate__' . $process_name, $cargs, $parent, $process );
+			$r=1; 
 		}
 
 		return $valid;

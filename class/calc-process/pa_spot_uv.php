@@ -4,29 +4,28 @@ namespace gcalc\pa;
 
 class pa_spot_uv extends \gcalc\cprocess{
 
-	/**
-	* Product full set of arguments
-	*/
-	private $cargs = array();
-
-
+	
 	function __construct( array $product_attributes, int $product_id, \gcalc\calculate $parent, array $group ){	
 		$this->cargs = $product_attributes;
 		$this->parent = $parent;
 		$this->group = $group;
+		$this->name = "pa_spot_uv";
 
-		if ( $this->validate_cargs() ) {
-			parent::__construct( $this->cargs, $product_id, $parent, $group );
-			$this->name = "pa_spot_uv";
-			$this->cclass = "";
+		$valid = false;
+		$valid = $this->validate_cargs();
+
+		if ( is_array( $valid ) ) {
+			$this->cargs = $valid;
+			$valid = true;
+		}
+
+		if ( $valid ) {
+			parent::__construct( $this->cargs, $product_id, $parent, $group );		
 			$this->calculator = new \gcalc\calc\pa_spot_uv( $this->cargs, $product_id, $parent, $group, $this );
-			$this->dependencies = NULL;
-		
 			return $this;
-		} else {
-			return false;
-		}	
+		} else { return false; }
 	}
+
 
 	/*
 	* 
@@ -65,13 +64,21 @@ class pa_spot_uv extends \gcalc\cprocess{
 				$this->cargs['pa_finish'] = 'mat-'.$pa_spot_uv;	
 							
 			}
-			
-			$R=1;
-				
+		return $this->validate_cargs_product( $valid );
 		}
 
-		
+	}
 
+	/**
+	 * Checks if product object have validation function and uses it
+	 * @param  boolean $valid [description]
+	 * @return [type]         [description]
+	 */
+	private function validate_cargs_product( $valid ){
+		$product_class = 'gcalc\db\product\\' . $this->parent->get_slug();
+		if ( $valid && class_exists( $product_class ) && method_exists( $product_class, 'validate_cargs') ) {
+			 $valid = call_user_func( $product_class . '::validate_cargs', $this, $this->cargs, $this->parent, $product_class );
+		}
 		return $valid;
 	}
 
@@ -88,6 +95,9 @@ class pa_spot_uv extends \gcalc\cprocess{
 		return null;
 	}
 
+
+
+	
 }
 
 

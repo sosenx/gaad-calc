@@ -637,7 +637,15 @@ class formats{
 			),
 
 			'letterhead' => array(
+				'equasion' => 'pa_color_paper + pa_color_print + pa_bw_paper + pa_bw_print'
+			),
+
+			'letterhead_color' => array(
 				'equasion' => 'pa_color_paper + pa_color_print'
+			),
+
+			'letterhead_bw' => array(
+				'equasion' => 'pa_bw_paper + pa_bw_print'
 			),
 
 			'book' => array(

@@ -83,6 +83,12 @@ class codes{
 		),
 
 
+		10000 => array( 'type' => 'attr_change',
+			'label' => 'Attribute changed by product constructor',
+			'err' => 'Attribute changed by product constructor',
+			'solution' => ''
+		),
+
 		10001 => array( 'type' => 'attr_change',
 			'label' => 'Quantity set to 1',
 			'err' => 'No quantity, set to 1',

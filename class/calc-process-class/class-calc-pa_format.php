@@ -69,6 +69,7 @@ class pa_format extends \gcalc\cprocess_calculation{
 	function calc_common_format(  ){	
 		$width = $this->get_width();
 		$height = $this->get_height();
+		
 		$production_formats = new \gcalc\db\production\formats();
 		$common_format = $production_formats->get_common_format();
 
