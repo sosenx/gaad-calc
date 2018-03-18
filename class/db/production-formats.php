@@ -624,6 +624,8 @@ class formats{
 				'equasion' => 'pa_master_paper + pa_master_print + pa_master_wrap + pa_master_folding + pa_master_spot_uv'
 			),
 
+
+
 			'plano' => array(
 				'equasion' => 'pa_bw_paper + pa_bw_print + pa_color_paper + pa_color_print'
 			),
@@ -647,6 +649,13 @@ class formats{
 			'letterhead_bw' => array(
 				'equasion' => 'pa_bw_paper + pa_bw_print'
 			),
+
+
+			'writing-pad' => array(
+				'equasion' => 'pa_cover_type + pa_cover_paper + pa_cover_print + pa_cover_finish + pa_cover_spot_uv + pa_color_paper + pa_color_print + pa_bw_paper + pa_bw_print'
+			),
+
+
 
 			'book' => array(
 				'equasion' => 'pa_cover_type + pa_cover_paper + pa_cover_print + pa_cover_finish + pa_cover_spot_uv + pa_bw_paper + pa_bw_print + pa_color_paper + pa_color_print + pa_bw_sewing + pa_color_sewing'

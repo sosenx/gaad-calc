@@ -7,7 +7,7 @@ wp_head();
 global $post;
 //$product_id = $post->ID;
 $pargs = array( 
-    "product_slug" => "letterhead",
+    "product_slug" => "writing-pad",
     "pa_format" => "150x50",
     //"pa_quantity" => 1500,
     "multi_quantity" => "10,50,150",
@@ -42,7 +42,7 @@ $pargs = array(
     "pa_bw_paper" => "ekobookw-70g-2.0",
     "pa_bw_print" => "1x1", 
     "pa_color_pages" => 500,
-    "pa_color_format" => "211x297",
+    "pa_color_format" => "210x297",
     "pa_color_paper" => "kreda-135g",
     "pa_color_print" => "4x4",
     "pa_color_stack" => "stack",

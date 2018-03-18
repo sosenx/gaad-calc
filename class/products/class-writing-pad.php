@@ -82,7 +82,17 @@ class writing_pad extends product {
 				
 				array( 'print', 		array( '1x0','4x0'), '111' ),				
 				array( 'color_pages', array( '25', '50', '100' ), '111' ),				
-				array( 'bw_pages', array( '25', '50', '100' ), '111' )				
+				array( 'bw_pages', array( '25', '50', '100' ), '111' ),
+
+
+
+				array( 'cover_paper', array( 
+					'couted-170g', 'couted-250g', 'couted-300g'
+				), '111' ),
+				array( 'cover_type', array( 'Perfect binding', 'Spiral binding' ), '111' ),
+				array( 'cover_spot_uv', array( '0x0', '1x0' ), '111' ),
+				array( 'cover_finish', array( 'gloss-1x0', 'matt-1x0','soft-touch-1x0' ), '111' ),
+				array( 'cover_print', array( '4x4', '4x0' ), '111' ),				
 			);
 		}
 	}
