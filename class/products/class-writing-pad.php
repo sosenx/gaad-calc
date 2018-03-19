@@ -27,6 +27,61 @@ class writing_pad extends product {
 	}
 
 	/**
+	 * Method overrides cprocess pa_cover_format.
+	 *
+	 * Method should be clone of original function with nessesary modifcations or there can be calculations issues
+	 * 
+	 * @param  [type] $cprocess [description]
+	 * @return [type]           [description]
+	 */
+	public static function parse_dimensions__pa_cover_format( $cprocess )	{
+		$group = $cprocess->get_group();
+		$array_key = str_replace('master_', '', 'pa_' . $group[0] . '_format');
+		$pa_cover_flaps = $cprocess->get_carg( 'pa_cover_flaps' );
+
+		if ( array_key_exists( $array_key, $cprocess->get_cargs() ) ) {
+			$dim = explode( "x", $cprocess->get_cargs()[ $array_key ] ); 
+		} else  {
+			$dim = explode( "x", $cprocess->get_cargs()[ 'pa_format' ] );
+		}		
+
+		$width = (int)$dim[0];
+		$max_width = 680;
+		
+		$cprocess->set_width($width);
+		$cprocess->set_height( (int)$dim[1] );
+	}
+
+/* oveeride cprocess
+public static function calc__pa_cover_format( $cprocess ){
+		$pf = $cprocess->parent->get_best_production_format( $cprocess->group );
+		$sheets_quantity = (int)($cprocess->cargs['pa_quantity'] / $pf['pieces']) + ( $cprocess->cargs['pa_quantity'] % $pf['pieces'] > 0 ? 1 : 0 );
+		$markup_ = 1;		
+		$production_cost = $sheets_quantity * 0;
+		$total_price = $production_cost * $markup_;
+		$grain = $pf['grain'];
+
+		return $cprocess->parse_total( 			
+			array(				
+				'production_cost' => $production_cost,
+				'total_price' => $total_price,
+				'markup_value' => $total_price - $production_cost,
+				'markup' => $markup_
+			),
+			array(				
+				'product' => array(
+					'width' => $cprocess->get_width(),
+					'height' => $cprocess->get_height(),
+				),
+				'sheets_quantity' => $sheets_quantity,
+				'spine' => $cprocess->get_spine(),
+				'production_format_short' => $pf['format'].' '.$grain.' ('. $pf['common_format']['width'] .'x'. $pf['common_format']['height'] . ')',
+				'production_format' => $pf
+			)
+		);
+}
+*/
+	/**
 	 * Returns product calculation data
 	 * @return [type] [description]
 	 */

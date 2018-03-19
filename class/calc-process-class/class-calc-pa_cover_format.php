@@ -57,6 +57,22 @@ class pa_cover_format extends pa_format{
 	* Calculates format costs (no costs in this case)
 	*/
 	function calc(){			
+
+		/**
+		 * Function override by product contructor method
+		 *
+		 * method name should be calc__[cprocess class name]
+		 */
+		$product_constructor_method = $this->parent->get_product_constructor_method( 'calc__' . substr( __CLASS__, strrpos( __CLASS__, '\\') + 1 ) );
+		if ( $product_constructor_method['exists'] ) {
+			$calculation_override = $product_constructor_method['product_constructor_name'].'::'.$product_constructor_method['method_name'];	
+			return $calculation_override( $this );	
+		}
+
+		/**
+		 * Normal algorithm
+		 */
+
 		$pf = $this->parent->get_best_production_format( $this->group );	
 		$sheets_quantity = (int)($this->cargs['pa_quantity'] / $pf['pieces']) + ( $this->cargs['pa_quantity'] % $pf['pieces'] > 0 ? 1 : 0 );
 		$markup_ = 1;		
@@ -88,6 +104,19 @@ class pa_cover_format extends pa_format{
 	*
 	*/
 	function parse_dimensions( ){	
+
+		/**
+		 * Function override by product contructor method
+		 *
+		 * method name should be parse_dimensions__[cprocess class name]
+		 */
+		$product_constructor_method = $this->parent->get_product_constructor_method( 'parse_dimensions__' . substr( __CLASS__, strrpos( __CLASS__, '\\') + 1 ) );
+		if ( $product_constructor_method['exists'] ) {
+			$calculation_override = $product_constructor_method['product_constructor_name'].'::'.$product_constructor_method['method_name'];	
+			return $calculation_override( $this );	
+		}
+
+
 		$group = $this->get_group();
 		$array_key = str_replace('master_', '', 'pa_' . $group[0] . '_format');
 		$pa_cover_flaps = $this->get_carg( 'pa_cover_flaps' );
@@ -122,7 +151,7 @@ class pa_cover_format extends pa_format{
 	/**
 	* Calculates spine thickness
 	*/
-	private function calc_spine(  ){		
+	public function calc_spine(  ){		
 		$production_paper_db = new \gcalc\db\production\paper();
 		$pa_color_paper = $this->get_carg( 'pa_color_paper' );
 		$pa_bw_paper = $this->get_carg( 'pa_bw_paper' );
@@ -139,6 +168,14 @@ class pa_cover_format extends pa_format{
 		return $this->spine;
 	}
 
+
+	/**
+	 * Getter for spine
+	 * @return [type] [description]
+	 */
+	function get_spine( ){
+		return $this->spine;
+	}
 
 }
 

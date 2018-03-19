@@ -319,6 +319,20 @@ return $return;
 		return $credetials;
 	}
 
+/**/
+public function get_product_constructor_method( string $method_name ) {
+	$product_constructor_name = '\gcalc\db\product\\' . str_replace( '-', '_', $this->get_slug() );
+	$product_constructor_exists = class_exists( $product_constructor_name );
+	$product_constructor_cost_equasion_exists = $product_constructor_exists ? method_exists( $product_constructor_name, $method_name ) : false;
+	$r = array(
+		'exists' => $product_constructor_cost_equasion_exists,
+		'product_constructor_name' => $product_constructor_name,
+		'method_name' => $method_name
+	);
+
+	return $r;
+}
+
 	/**
 	* Concat data from whole object and assign it as an array to total_
 	*/
