@@ -22,6 +22,31 @@ class book extends product {
 		$this->add_product_attributes( );
 	}
 
+
+	/**
+	 * Method overrides cprocess pa_cover_format.
+	 *
+	 * Method should be clone of original function with nessesary modifcations or there can be calculations issues
+	 * 
+	 * @param  [type] $cprocess [description]
+	 * @return [type]           [description]
+	 */
+	public static function parse_dimensions__pa_format( $cprocess )	{
+		
+		//var_dump($cprocess->get_cargs()['pa_cover_format']);
+		$group = $cprocess->get_group();
+		$array_key = str_replace('master_', '', 'pa_format');
+
+		if ( array_key_exists( $array_key, $cprocess->get_cargs() ) ) {
+			$dim = explode( "x", $cprocess->get_cargs()[ $array_key ] ); 
+		} else  {
+			$dim = explode( "x", $cprocess->get_cargs()[ 'pa_format' ] );
+		}		
+		$cprocess->set_width((int)$dim[0]);
+		$cprocess->set_height((int)$dim[1]);
+	}
+
+
 	/**
 	 * Returns product calculation data
 	 * @return [type] [description]

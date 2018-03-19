@@ -417,7 +417,7 @@ public function get_product_constructor_method( string $method_name ) {
 					
 					if ($al > 5) { // admin, master only
 						
-						$format_str = $production_format_pieces .' '. __('on', 'gcalc') .' '. $common_format_name .'('.$common_format_width.'x'.$common_format_height.')' 
+						$format_str = $production_format_pieces .' '. __('slots', 'gcalc') .' '. $common_format_name .'('.$common_format_width.'x'.$common_format_height.')' 
 							.' @ '. $production_format_format.'('.$production_format_width.'x'.$production_format_height.')';
 
 					} else { // no data for account, inner

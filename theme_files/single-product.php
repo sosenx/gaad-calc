@@ -7,10 +7,10 @@ wp_head();
 global $post;
 //$product_id = $post->ID;
 $pargs = array( 
-    "product_slug" => "writing-pad",
+    "product_slug" => "book",
     "multi_quantity" => "10,50,150",
 
-    "pa_format" => "99x420",
+    "pa_format" => "170x235",
     "pa_quantity" => 1500,    
     "pa_paper" => "kreda-350g",
     "pa_print" => "4x4",                 
