@@ -146,11 +146,15 @@ abstract class calc_product{
 		if ( !empty( $product_attributes ) ) {	
 
 			$this->errors = new errors();
-			$this->bvars = $product_attributes;
+			
 			$this->set_product_id( $product_id, $product_attributes );
 			if ( $this->errors->fcheck() ) {
 				return $this->errors->get();
 			}
+			
+			$product_attributes = \gcalc\db\product\product::filter_attributes( $product_attributes, $this->get_product_slug( $this->get_product_id() ) );
+
+			$this->bvars = $product_attributes;
 			$this->CID = uniqid();
 			$this->todo = new todo_list( array() );
 			$this->markup = array();
@@ -320,16 +324,51 @@ return $return;
 	*/
 	private function parse_total(){
 		$production_formats = new \gcalc\db\production\formats();
-		$total_cost_equasion = $production_formats->get_total_cost_equasion( $this->get_product_id() );
+		$product_constructor_name = '\gcalc\db\product\\' . str_replace( '-', '_', $this->get_slug() );
+		$product_constructor_exists = class_exists( $product_constructor_name );
+		$product_constructor_cost_equasion_exists = $product_constructor_exists ? method_exists( $product_constructor_name, 'get_calc_data' ) : false;
+
+
+
+		/*
+		Equasion can be stored in product constructor or formats array.
+		Formats array is a temporary means to keep data so product constructor is a preferred way
+		 */
+		$total_cost_equasion = 
+			$product_constructor_cost_equasion_exists ? 
+				$product_constructor_name::get_calc_data( )
+				: $production_formats->get_total_cost_equasion( $this->get_product_id() );
+
 		$total_cost_equasion_string = $total_cost_equasion['equasion'];
 
 		$total_cost_equasion = $total_cost_equasion_string;
 		$total_pcost_equasion = $total_cost_equasion_string;
 
+		
+		/**
+		 * Keeps selling prices of used processes
+		 * @var array
+		 */
 		$total_cost_array = array();
+		/**
+		 * Keeps production costs of used processes
+		 * @var array
+		 */
 		$total_pcost_array = array();
+		/**
+		 * Keeps markups of used proceses
+		 * @var array
+		 */
 		$total_markup_array = array();
+		/**
+		 * All used in calculation formats
+		 * @var array
+		 */
 		$used_formats_array = array();
+		/**
+		 * All used in calculation media		 
+		 * @var array
+		 */
 		$used_media_array = array();
 
 		//checking credentials for data filter		

@@ -27,6 +27,20 @@ class letterhead_color extends letterhead {
 	}
 
 	/**
+	 * Returns product calculation data
+	 * @return [type] [description]
+	 */
+	public static function get_calc_data( string $key = NULL ){
+		$calc_data = array(
+			'equasion' => 'pa_color_paper + pa_color_print', 
+			'order' => array ( 				
+			    "color" => array( 'pa_color_format', 'pa_color_pages', 'pa_color_paper', 'pa_color_print' )
+			)
+		);
+		return is_null( $key ) ? $calc_data : ( array_key_exists( $key, $calc_data ) ? $calc_data[ $key ] : $calc_data );
+	}
+
+	/**
 	 * setter for base
 	 * @param array $base Array of primary product parameters
 	 */

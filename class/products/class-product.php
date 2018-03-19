@@ -39,7 +39,6 @@ class product {
 	private $ID;
 
 
-
 	/**
 	 * 
 	 * @param array|null $base array of primary product parameters
@@ -48,6 +47,58 @@ class product {
 	function __construct( array $base = NULL, array $attr = NULL )	{
 		$this->set_base( $base );
 		$this->set_attr( $attr );
+	}
+
+
+	/**
+	 * Filters attributes to nessesary set only
+	 * Needed set of attributes origin should be a method of product constructor class in namespace \gcalc\db\product
+	 * 
+	 * @return array filtered set of nessesary product attributes
+	 */
+	public static function filter_attributes( array $input, string $product_slug ) {
+		/*
+		 * Checking if product have filtering matrix array
+		 */
+		if ( 
+			class_exists( $product_constructor = '\\' . __NAMESPACE__ .'\\' . str_replace( '-', '_', $product_slug ) )
+			&& method_exists( $product_constructor, 'get_attr_filter' )
+		) {
+			$matrix = $product_constructor::get_attr_filter()['matrix'];
+			$groups = $product_constructor::get_attr_filter()['groups'];
+			$tmp = $input;
+			foreach ($tmp as $key => $value) {
+				
+				/*
+					checking attributes pa_
+				*/
+				if ( preg_match('/^pa_/', $key) ) {
+
+					if ( !array_key_exists( $key, $matrix ) ) {
+						unset( $tmp[ $key ] );
+					} else {
+						/*
+						u can do something more with value of a attribute
+						work on that is not even in progress but some day ....
+						*/
+					}
+				}
+
+				/*
+					filtering groups
+				*/
+				if ( preg_match('/^group_/', $key) && !in_array( str_replace( 'group_', '', $key), $groups ) ) {
+					unset( $tmp[ $key ] );
+				}
+
+			}
+			
+			//tmp is a filtered input array
+			return $tmp;	
+		}
+
+		//nothing changed
+		return $input;
 	}
 
 	/**
@@ -212,6 +263,13 @@ class product {
 		$this->ID = $ID;
 	}
 	
+	/**
+	 * Setter for attr filter
+	 * @param array $attr_filter [description]
+	 */
+	function set_attr_filter( array $attr_filter ){	
+		$this->attr_filter = $attr_filter;
+	}
 
 	
 
@@ -239,7 +297,6 @@ class product {
 		return $this->base;
 	}
 
-
 	/**
 	 * Getter for attr
 	 * @return array Set of product attributes and its values
@@ -248,7 +305,6 @@ class product {
 		return $this->attr;
 	}
 
-
 	/**
 	 * Getter for title
 	 * @return string Product title
@@ -256,5 +312,6 @@ class product {
 	function get_title( ){
 		return $this->title;
 	}
+
 
 }

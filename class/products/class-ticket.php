@@ -1,10 +1,14 @@
 <?php
 namespace gcalc\db\product;
+/**
+ *
+ *  
+ */
 
 /**
 * 
 */
-class folded_business_card extends product {
+class ticket extends product {
 	
 	public $base;
 	public $attr;
@@ -22,7 +26,7 @@ class folded_business_card extends product {
 		$this->add_product_attributes( );
 	}
 
-	/**
+/**
 	 * Returns product calculation data
 	 * @return [type] [description]
 	 */
@@ -35,8 +39,7 @@ class folded_business_card extends product {
 		);
 		return is_null( $key ) ? $calc_data : ( array_key_exists( $key, $calc_data ) ? $calc_data[ $key ] : $calc_data );
 	}
-
-
+	
 	/**
 	 * Return array with essential attributes list and some attributes base parameters (the last one is work in progress)
 	 * 
@@ -50,10 +53,10 @@ class folded_business_card extends product {
 					'default' => 5
 				),
 				'pa_format' => array(
-					'default' => '180x50'
+					'default' => '210x297'
 				),
 				'pa_paper' => array(
-					'default' => 'couted-300g'
+					'default' => 'couted-115g'
 				),
 				'pa_print' => array(
 					'default' => '4x4'
@@ -63,16 +66,12 @@ class folded_business_card extends product {
 				),
 				'pa_spot_uv' => array(
 					'default' => '0x0'
-				),
-				'pa_folding' => array(
-					'default' => 'half-fold'
-				),
+				)
 			)
 
 		);
 		return $attr_filter;
 	}
-	
 
 	/**
 	 * setter for base
@@ -82,7 +81,7 @@ class folded_business_card extends product {
 		
 		if ( empty( $this->base ) || is_null( $this->base ) ) {
 			$this->base = array(
-				'post_title' => __( 'Folded business card', 'gcalc' ),
+				'post_title' => __( 'Ticket', 'gcalc' ),
 				'post_content' => __( '', 'gcalc' ),
 				'author' => 1
 			);	
@@ -97,11 +96,9 @@ class folded_business_card extends product {
 		
 		if ( empty( $this->attr ) || is_null( $this->attr ) ) {
 			$this->attr = array( 
-				array( 'paper', array( 'couted-300g', 'couted-350g' ), '111' ),
+				array( 'paper', array( 'couted-250g', 'couted-300g', 'couted-350g' ), '111' ),
 				array( 'volume', array( '50', '100', '200', '300', '400', '500', '1000', '1500', '2500' ), '111' ),
-				array( 'format', array( '170x55', '180x50', '85x170', '90x180', 'custom-value' ), '111' ),
-				array( 'folding', array( 'half-fold' ), '111' ),
-				array( 'folding_dir', array( 'folding-dir-h', 'folding-dir-v' ), '111' ),
+				array( 'format', array( '105x148','148x210','210x297','297x420','125x176','176x250','custom-value' ), '111' ),
 				array( 'finish', array( 'gloss-1x0', 'gloss-1x1', 'matt-1x0','matt-1x1', 'soft-touch-1x0', 'soft-touch-1x1' ), '111' ),
 				array( 'print', array( '4x4', '4x0' ), '111' ),
 				array( 'spot_uv', array( '0x0', '1x0', '1x1' ), '111' )
@@ -112,7 +109,4 @@ class folded_business_card extends product {
 	
 
 }
-
-
-
 

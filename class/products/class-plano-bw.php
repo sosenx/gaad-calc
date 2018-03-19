@@ -26,6 +26,48 @@ class plano_bw extends product {
 		$this->add_product_attributes( );
 	}
 
+	/**
+	 * Returns product calculation data
+	 * @return [type] [description]
+	 */
+	public static function get_calc_data( string $key = NULL ){
+		$calc_data = array(
+			'equasion' => 'pa_bw_paper + pa_bw_print', 
+			'order' => array ( 
+				"bw" => array( 'pa_bw_format', 'pa_bw_pages', 'pa_bw_paper', 'pa_bw_print', '*')			    
+			)
+		);
+		return is_null( $key ) ? $calc_data : ( array_key_exists( $key, $calc_data ) ? $calc_data[ $key ] : $calc_data );
+	}
+
+
+	/**
+	 * Return array with essential attributes list and some attributes base parameters (the last one is work in progress)
+	 * 
+	 * @return [type] [description]
+	 */
+	public static function get_attr_filter( ) {
+		
+		$attr_filter = array(
+			'groups'=> array( 'cover', 'bw', 'color' ),		
+			'matrix' => array(		
+				'pa_format' => array( 'default' => ''),
+				'pa_quantity' => array( 'default' => ''),
+				'pa_paper' => array( 'default' => ''),
+				'pa_print' => array( 'default' => ''),
+				
+				'pa_bw_pages' => array( 'default' => ''),
+				'pa_bw_format' => array( 'default' => ''),
+				'pa_bw_paper' => array( 'default' => ''),
+				'pa_bw_print' => array( 'default' => ''),
+				
+				
+			)
+
+		);
+		return $attr_filter;
+	}
+
 
 	/**
 	 * setter for base

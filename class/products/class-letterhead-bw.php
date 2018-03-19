@@ -26,6 +26,21 @@ class letterhead_bw extends letterhead {
 		$this->add_product_attributes( );
 	}
 
+
+	/**
+	 * Returns product calculation data
+	 * @return [type] [description]
+	 */
+	public static function get_calc_data( string $key = NULL ){
+		$calc_data = array(
+			'equasion' => 'pa_bw_paper + pa_bw_print', 
+			'order' => array ( 
+				"bw" => array( 'pa_bw_format', 'pa_bw_pages', 'pa_bw_paper', 'pa_bw_print', '*' )			
+			)	    
+		);
+		return is_null( $key ) ? $calc_data : ( array_key_exists( $key, $calc_data ) ? $calc_data[ $key ] : $calc_data );
+	}
+
 	/**
 	 * setter for base
 	 * @param array $base Array of primary product parameters

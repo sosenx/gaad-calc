@@ -27,6 +27,21 @@ class letterhead extends product {
 	}
 
 	/**
+	 * Returns product calculation data
+	 * @return [type] [description]
+	 */
+	public static function get_calc_data( string $key = NULL ){
+		$calc_data = array(
+			'equasion' => 'pa_color_paper + pa_color_print + pa_bw_paper + pa_bw_print', 
+			'order' => array ( 
+				"bw" => array( 'pa_bw_format', 'pa_bw_pages', 'pa_bw_paper', 'pa_bw_print', '*' ),
+			    "color" => array( 'pa_color_format', 'pa_color_pages', 'pa_color_paper', 'pa_color_print' )
+			)
+		);
+		return is_null( $key ) ? $calc_data : ( array_key_exists( $key, $calc_data ) ? $calc_data[ $key ] : $calc_data );
+	}
+
+	/**
 	 * Additional validation of attribute specific to product type.
 	 * 
 	 * @param  array            $cargs  Calculation argumetns (product attributes) array

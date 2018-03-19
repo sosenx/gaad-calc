@@ -26,6 +26,52 @@ class business_card extends product {
 		$this->add_product_attributes( );
 	}
 
+	/**
+	 * Returns product calculation data
+	 * @return [type] [description]
+	 */
+	public static function get_calc_data( string $key = NULL ){
+		$calc_data = array(
+			'equasion' => 'pa_master_paper + pa_master_print + pa_master_wrap + pa_master_folding + pa_master_spot_uv', 
+			'order' => array ( 
+				'master' =>array('pa_master_format', '*')
+			)
+		);
+		return is_null( $key ) ? $calc_data : ( array_key_exists( $key, $calc_data ) ? $calc_data[ $key ] : $calc_data );
+	}
+
+	/**
+	 * Return array with essential attributes list and some attributes base parameters (the last one is work in progress)
+	 * 
+	 * @return [type] [description]
+	 */
+	public static function get_attr_filter( ) {
+		$attr_filter = array(
+			'groups'=> array( 'master' ),		
+			'matrix' => array(				
+				'pa_quantity' => array(
+					'default' => 5
+				),
+				'pa_format' => array(
+					'default' => '210x297'
+				),
+				'pa_paper' => array(
+					'default' => 'couted-115g'
+				),
+				'pa_print' => array(
+					'default' => '4x4'
+				),
+				'pa_finish' => array(
+					'default' => '0x0'
+				),
+				'pa_spot_uv' => array(
+					'default' => '0x0'
+				)
+			)
+
+		);
+		return $attr_filter;
+	}
 
 	/**
 	 * setter for base

@@ -59,7 +59,8 @@ class calc_order{
 			    "color" => array( 'pa_color_format', 'pa_color_pages', 'pa_color_paper', 'pa_color_print', '*' )
 			),
 			'letterhead' => array ( 				
-			    "color" => array( 'pa_color_format', 'pa_color_pages', 'pa_color_paper', 'pa_color_print', 'pa_bw_format', 'pa_bw_pages', 'pa_bw_paper', 'pa_bw_print', '*' )
+			    "bw" => array( 'pa_bw_format', 'pa_bw_pages', 'pa_bw_paper', 'pa_bw_print', '*' ),
+			    "color" => array( 'pa_color_format', 'pa_color_pages', 'pa_color_paper', 'pa_color_print' )
 			),
 			'letterhead_color' => array ( 				
 			    "color" => array( 'pa_color_format', 'pa_color_pages', 'pa_color_paper', 'pa_color_print', '*' )
@@ -94,10 +95,20 @@ class calc_order{
 
 
 	/**
-	*
+	 *	Return array with calculation order
 	*/
 	public function get_order( ){
-		if ( array_key_exists( $this->get_product_slug(), $this->order )) {
+		$slug = $this->get_product_slug();
+		$product_constructor_name = '\gcalc\db\product\\' . str_replace( '-', '_', $slug );
+		$product_constructor_exists = class_exists( $product_constructor_name );
+		$product_constructor_cost_equasion_exists = $product_constructor_exists ? method_exists( $product_constructor_name, 'get_calc_data' ) : false;
+		$order = $product_constructor_name::get_calc_data( 'order' );
+
+		if ( $order ) {
+			return $order;
+		}
+
+		if ( array_key_exists( $slug, $this->order )) {
 			$order = $this->order[ $this->get_product_slug() ];
 		} else {
 			$order = $this->order[ 'plain' ];
