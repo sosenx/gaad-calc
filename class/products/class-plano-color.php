@@ -82,13 +82,11 @@ class plano_color extends product {
 	}
 
 	/**
-	 * setter for product attributes array
-	 * @param array $attr peoduct attributes array
+	 * Getter for attributes default values
+	 * @return [type] [description]
 	 */
-	function set_attr_defaults(  ){
-		
-		if ( empty( $this->attr ) || is_null( $this->attr ) ) {
-			$this->attr = array( 
+	public static function get_attr_defaults(  ){
+		$r = array( 
 				array( 'format', 			array( '105x148','148x210','210x297','297x420','125x176','176x250','custom-value' ), '111' ),												
 				array( 'pa_color_format', 	array( '105x148','148x210','210x297','297x420','125x176','176x250','custom-value' ), '111' ),
 
@@ -112,6 +110,17 @@ class plano_color extends product {
 				array( 'print', 		array( '4x0','4x4' ), '111' ),								
 				array( 'color_pages', array( 'custom-value' ), '111' )				
 			);
+		return $r;
+	}
+
+	/**
+	 * setter for product attributes array
+	 * @param array $attr peoduct attributes array
+	 */
+	public function set_attr_defaults(  ){
+		
+		if ( empty( $this->attr ) || is_null( $this->attr ) ) {
+			$this->attr = \gcalc\db\product\plano_color::get_attr_defaults();
 		}
 	}
 	

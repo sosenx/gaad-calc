@@ -20,7 +20,7 @@ class pa_format extends \gcalc\cprocess{
 
 		if ( $valid ) {
 			parent::__construct( $this->cargs, $product_id, $this->parent, $this->group );		
-			$this->calculator = new \gcalc\calc\pa_format( $this->cargs, $product_id, $parent, $group, $this );
+			$this->calculator = new \gcalc\calc\pa_format( $this->cargs, $product_id, $this->parent, $this->group, $this );
 			return $this;
 		} else { return false; }
 		

@@ -16,6 +16,7 @@ class register_woo_elements{
 	*	
 	*/
 	public static function create_users(){
+
 		if ( !\gcalc\GAAD_PLUGIN_TEMPLATE_DISABLE_CREATE_USERS ) {
 			\gcalc\register_woo_elements::create_user( 'gaad', 'koot123', 'bsoqsnowski@c-p.com.pl', 'editor',
 				array(
@@ -42,7 +43,9 @@ class register_woo_elements{
 	*	
 	*/
 	public static function create_user( string $nickname, string $password, string $email_address, string $role, array $meta = NULL ){		
-		if( is_null( \username_exists( $email_address ) ) ) {
+		
+		$username_exists = \username_exists( $email_address );
+		if( is_null( $username_exists) || !$username_exists ) {
 
 		  $user_id = \wp_create_user( $nickname, $password, $email_address );
 			if ( $user_id instanceof WP_Error ) {

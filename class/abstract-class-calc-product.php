@@ -148,6 +148,7 @@ abstract class calc_product{
 			$this->errors = new errors();
 			
 			$this->set_product_id( $product_id, $product_attributes );
+
 			if ( $this->errors->fcheck() ) {
 				return $this->errors->get();
 			}
@@ -180,6 +181,7 @@ abstract class calc_product{
 	*
 	*/
 	function set_product_id( int $product_id = NULL, array $product_attributes = NULL){
+
 		if ( !isset( $product_id ) && isset( $product_attributes['product_slug'] )) {			
 			$args = array(
 				'post_type' => 'product',
@@ -319,19 +321,21 @@ return $return;
 		return $credetials;
 	}
 
-/**/
-public function get_product_constructor_method( string $method_name ) {
-	$product_constructor_name = '\gcalc\db\product\\' . str_replace( '-', '_', $this->get_slug() );
-	$product_constructor_exists = class_exists( $product_constructor_name );
-	$product_constructor_cost_equasion_exists = $product_constructor_exists ? method_exists( $product_constructor_name, $method_name ) : false;
-	$r = array(
-		'exists' => $product_constructor_cost_equasion_exists,
-		'product_constructor_name' => $product_constructor_name,
-		'method_name' => $method_name
-	);
+	/**/
+	public static function get_product_constructor_method( string $method_name, string $slug ) {
+
+		//$slug = is_null( $slug ) ? $this->get_slug() : $slug;
+		$product_constructor_name = '\gcalc\db\product\\' . str_replace( '-', '_', $slug );
+		$product_constructor_exists = class_exists( $product_constructor_name );
+		$product_constructor_cost_equasion_exists = $product_constructor_exists ? method_exists( $product_constructor_name, $method_name ) : false;
+		$r = array(
+			'exists' => $product_constructor_cost_equasion_exists,
+			'product_constructor_name' => $product_constructor_name,
+			'method_name' => $method_name
+		);
 
 	return $r;
-}
+	}
 
 	/**
 	* Concat data from whole object and assign it as an array to total_

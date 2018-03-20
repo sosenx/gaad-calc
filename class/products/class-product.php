@@ -49,6 +49,63 @@ class product {
 		$this->set_attr( $attr );
 	}
 
+	/**
+	 * Gets product constructor attributes filter array using product slug
+	 * @param  string $product_slug Product slug
+	 * @return array               products attributes returned by get_attr_filter method
+	 */
+		public static function product_constructor_method( string $product_slug, string $method_name ){
+			$get_attr_filter_method = \gcalc\calc_product::get_product_constructor_method( $method_name, $product_slug );
+			$get_attr_filter_data = $get_attr_filter_method['exists'] 
+			? $get_attr_filter_method['product_constructor_name'].'::'.$get_attr_filter_method['method_name']
+			: false;
+			
+		$product_attr_filter_data = $get_attr_filter_data ? $get_attr_filter_data() : false;
+			return $get_attr_filter_data ? $get_attr_filter_data() : false;
+		}
+
+	/**
+	 * Array that will be returned with rest data under model object	
+	 * 
+	 * @param  [type] $product_slug [description]
+	 * @return [type]               [description]
+	 */
+	public static function rest_data( $product_slug ) {
+		$r = array( );
+		$get_rest_data_method = \gcalc\calc_product::get_product_constructor_method( 'get_rest_data', $product_slug );		
+		$get_rest_data = $get_rest_data_method['exists'] 
+			? $get_rest_data_method['product_constructor_name'].'::'.$get_rest_data_method['method_name']
+			: false;		
+		$product_rest_data = $get_rest_data ? $get_rest_data() : false;
+
+		$r['rest_data'] = array(
+			'attr_filter' => \gcalc\db\product\product::product_constructor_method( $product_slug, 'get_attr_filter' ),
+			'attr_values' => \gcalc\db\product\product::parse_product_attr_defaults(	\gcalc\db\product\product::product_constructor_method( $product_slug, 'get_attr_defaults' ) )
+		);
+
+		$r['product_rest_data'] = $product_rest_data;
+
+		return $r;
+	}
+
+	/**
+	 * Parses rare attributes defaults from product constructor to more frontend frendly form
+	 * @param  array  $attributes [description]
+	 * @return [type]             [description]
+	 */
+		public static function parse_product_attr_defaults( $attributes ){
+			if (!$attributes) {
+				return array();
+			}
+			$r = array();
+			$max = count( $attributes );
+			for ( $i=0; $i < $max ; $i++ ) { 
+				$attribute = $attributes[ $i ];
+				$r[ $attribute[0] ] = $attribute[ 1 ];
+			}
+			
+			return $r;
+		}
 
 	/**
 	 * Filters attributes to nessesary set only

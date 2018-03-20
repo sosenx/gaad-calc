@@ -24,6 +24,16 @@ class book extends product {
 
 
 	/**
+	 * Return product specific data for frontend rest endpoint
+	 * @return array Product costruction data
+	 */
+		public static function get_rest_data(  ){
+			$r = array();
+			$r['KOOT'] = 'JEST KTAKI KOCHANY';
+			return $r;
+		}
+
+	/**
 	 * Method overrides cprocess pa_cover_format.
 	 *
 	 * Method should be clone of original function with nessesary modifcations or there can be calculations issues
@@ -132,13 +142,11 @@ class book extends product {
 	}
 
 	/**
-	 * setter for product attributes array
-	 * @param array $attr peoduct attributes array
+	 * Gettr for default attributes values
+	 * @return array Default attributes values
 	 */
-	function set_attr_defaults(  ){
-		
-		if ( empty( $this->attr ) || is_null( $this->attr ) ) {
-			$this->attr = array( 
+		public static function get_attr_defaults( ){
+			$r = array( 
 
 				array( 'format', 		array( 'custom-format' ), '111' ),				
 				array( 'cover_format', 	array( 'custom-format' ), '111' ),
@@ -207,16 +215,22 @@ class book extends product {
 				array( 'color_pages', array( 'custom-value' ), '111' ),
 
 				array( 'color_stack', array( 'stack', 'shuffled' ), '111' ),
-
-
-
-
-
-
-
-				
-
 			);
+			
+
+
+			return $r;
+		}
+
+
+	/**
+	 * setter for product attributes array
+	 * @param array $attr peoduct attributes array
+	 */
+	function set_attr_defaults(  ){
+		
+		if ( empty( $this->attr ) || is_null( $this->attr ) ) {
+			$this->attr = \gcalc\db\product\product::get_attr_defaults();
 		}
 	}
 	

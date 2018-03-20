@@ -42,14 +42,50 @@ class catalog extends product {
 		}	
 	}
 
-	/**
-	 * setter for product attributes array
-	 * @param array $attr peoduct attributes array
+
+
+/**
+	 * Return array with essential attributes list and some attributes base parameters (the last one is work in progress)
+	 * 
+	 * @return [type] [description]
 	 */
-	function set_attr_defaults(  ){
+	public static function get_attr_filter( ) {
 		
-		if ( empty( $this->attr ) || is_null( $this->attr ) ) {
-			$this->attr = array( 
+		$attr_filter = array(
+			'groups'=> array( 'cover', 'bw', 'color' ),		
+			'matrix' => array(		
+				'format' => array( 'default' => ''),
+				'cover_format' => array( 'default' => ''),
+				'pa_cover_format' => array( 'default' => ''),
+				'pa_color_format' => array( 'default' => ''),
+				'volume' => array( 'default' => ''),
+				'paper' => array( 'default' => ''),
+				'cover_paper' => array( 'default' => ''),
+				'color_paper' => array( 'default' => ''),
+				'cover_type' => array( 'default' => ''),
+				'spot_uv' => array( 'default' => ''),
+				'cover_spot_uv' => array( 'default' => ''),
+				'finish' => array( 'default' => ''),
+				'cover_finish' => array( 'default' => ''),
+				'print' => array( 'default' => ''),
+				'cover_print' => array( 'default' => ''),
+				'cover_flaps' => array( 'default' => ''),
+				'cover_left_flap_width' => array( 'default' => ''),
+				'cover_right_flap_width' => array( 'default' => ''),
+				'color_pages' => array( 'default' => '')
+				
+			)
+
+		);
+		return $attr_filter;
+	}
+
+/**
+	 * Getter for attributes default values
+	 * @return [type] [description]
+	 */
+	public static function get_attr_defaults(  ){
+		$r = array( 
 				array( 'format', 		array( 'custom-format' ), '111' ),				
 
 				array( 'cover_format', 	array( 'custom-format' ), '111' ),
@@ -91,6 +127,17 @@ class catalog extends product {
 
 				array( 'color_pages', array( 'custom-value' ), '111' ),
 			);
+		return $r;
+	}
+
+	/**
+	 * setter for product attributes array
+	 * @param array $attr peoduct attributes array
+	 */
+	public function set_attr_defaults(  ){
+		
+		if ( empty( $this->attr ) || is_null( $this->attr ) ) {
+			$this->attr = \gcalc\db\product\catalog::get_attr_defaults();
 		}
 	}
 	

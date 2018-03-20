@@ -175,7 +175,8 @@ class formats{
 	/**
 	* Return production_format
 	*/
-	function get_production_format( array $common_format, string $print_color_mode, string $name ){			
+	function get_production_format( array $common_format, string $print_color_mode, string $name ){		
+	
 		$print_color_mode_translate = array( '4x' => 'color', '1x' => 'bw', '0x' => 'noprint');
 		$production_format = $this->production_formats[ $print_color_mode ][ $common_format['name'] ];		
 		$format_data = $this->get_formats( $print_color_mode_translate[$print_color_mode]) [ $production_format['format'] ];

@@ -108,15 +108,12 @@ class perfect_bound_catalog extends catalog {
 		return $attr_filter;
 	}
 	
-
 	/**
-	 * setter for product attributes array
-	 * @param array $attr peoduct attributes array
+	 * Getter for attributes default values
+	 * @return [type] [description]
 	 */
-	function set_attr_defaults(  ){
-		
-		if ( empty( $this->attr ) || is_null( $this->attr ) ) {
-			$this->attr = array( 
+	public static function get_attr_defaults(  ){
+		$r = array( 
 				array( 'format', 		array( 'custom-format' ), '111' ),				
 
 				array( 'cover_format', 	array( 'custom-format' ), '111' ),
@@ -158,6 +155,17 @@ class perfect_bound_catalog extends catalog {
 
 				array( 'color_pages', array( 'custom-value' ), '111' ),
 			);
+		return $r;
+	}
+
+	/**
+	 * setter for product attributes array
+	 * @param array $attr peoduct attributes array
+	 */
+	public function set_attr_defaults(  ){
+		
+		if ( empty( $this->attr ) || is_null( $this->attr ) ) {
+			$this->attr = \gcalc\db\product\perfect_bound_catalog::get_attr_defaults();
 		}
 	}
 	

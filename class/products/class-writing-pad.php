@@ -176,14 +176,13 @@ public static function calc__pa_cover_format( $cprocess ){
 		}	
 	}
 
+
 	/**
-	 * setter for product attributes array
-	 * @param array $attr peoduct attributes array
+	 * Getter for attributes default values
+	 * @return [type] [description]
 	 */
-	function set_attr_defaults(  ){
-		
-		if ( empty( $this->attr ) || is_null( $this->attr ) ) {
-			$this->attr = array( 
+	public static function get_attr_defaults(  ){
+		$r = array( 
 				array( 'format', 			array(  '105x148','148x210','210x297','125x176','176x250','custom-value' ), '111' ),												
 				array( 'pa_bw_format', 	array(  '105x148','148x210','210x297','125x176','176x250','custom-value' ), '111' ),
 				array( 'pa_color_format', 	array(  '105x148','148x210','210x297','125x176','176x250','custom-value' ), '111' ),
@@ -225,6 +224,18 @@ public static function calc__pa_cover_format( $cprocess ){
 				array( 'cover_finish', array( 'gloss-1x0', 'matt-1x0','soft-touch-1x0' ), '111' ),
 				array( 'cover_print', array( '4x4', '4x0' ), '111' ),				
 			);
+		
+		return $r;
+	}
+
+	/**
+	 * setter for product attributes array
+	 * @param array $attr peoduct attributes array
+	 */
+	public function set_attr_defaults(  ){
+		
+		if ( empty( $this->attr ) || is_null( $this->attr ) ) {
+			$this->attr = \gcalc\db\product\writing_pad::get_attr_defaults();
 		}
 	}
 	

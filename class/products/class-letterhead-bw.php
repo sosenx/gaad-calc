@@ -57,13 +57,11 @@ class letterhead_bw extends letterhead {
 	}
 	
 	/**
-	 * setter for product attributes array
-	 * @param array $attr peoduct attributes array
+	 * Getter for attributes default values
+	 * @return [type] [description]
 	 */
-	function set_attr_defaults(  ){
-		
-		if ( empty( $this->attr ) || is_null( $this->attr ) ) {
-			$this->attr = array( 
+	public static function get_attr_defaults(  ){
+		$r = array( 
 				array( 'format', 			array( '210x297', 'custom-value' ), '111' ),												
 				array( 'pa_bw_format', 	array( '210x297', 'custom-value' ), '111' ),				
 
@@ -91,6 +89,17 @@ class letterhead_bw extends letterhead {
 				
 				array( 'bw_pages', array( '500' ), '111' )				
 			);
+		return $r;
+	}
+
+	/**
+	 * setter for product attributes array
+	 * @param array $attr peoduct attributes array
+	 */
+	public function set_attr_defaults(  ){
+		
+		if ( empty( $this->attr ) || is_null( $this->attr ) ) {
+			$this->attr = \gcalc\db\product\letterhead_bw::get_attr_defaults();
 		}
 	}
 }

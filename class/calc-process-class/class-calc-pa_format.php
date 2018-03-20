@@ -127,14 +127,14 @@ class pa_format extends \gcalc\cprocess_calculation{
 	/**
 	*
 	*/
-	function parse_dimensions( ){	
+	function parse_dimensions( ){			
 
 		/**
 		 * Function override by product contructor method
 		 *
 		 * method name should be parse_dimensions__[cprocess class name]
 		 */
-		$product_constructor_method = $this->parent->get_product_constructor_method( 'parse_dimensions__' . substr( __CLASS__, strrpos( __CLASS__, '\\') + 1 ) );
+		$product_constructor_method = $this->parent->get_product_constructor_method( 'parse_dimensions__' . substr( __CLASS__, strrpos( __CLASS__, '\\') + 1 ), $this->parent->get_bvar('product_slug') );
 		if ( $product_constructor_method['exists'] ) {
 			$calculation_override = $product_constructor_method['product_constructor_name'].'::'.$product_constructor_method['method_name'];	
 			return $calculation_override( $this );	

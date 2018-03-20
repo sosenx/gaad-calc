@@ -7,10 +7,10 @@ wp_head();
 global $post;
 //$product_id = $post->ID;
 $pargs = array( 
-    "product_slug" => "book",
+    "product_slug" => "business-card",
     "multi_quantity" => "10,50,150",
 
-    "pa_format" => "170x235",
+    "pa_format" => "260x357",
     "pa_quantity" => 1500,    
     "pa_paper" => "kreda-350g",
     "pa_print" => "4x4",                 

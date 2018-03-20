@@ -89,13 +89,11 @@ class business_card extends product {
 	}
 
 	/**
-	 * setter for product attributes array
-	 * @param array $attr peoduct attributes array
+	 * Getter for attributes default values
+	 * @return [type] [description]
 	 */
-	function set_attr_defaults(  ){
-		
-		if ( empty( $this->attr ) || is_null( $this->attr ) ) {
-			$this->attr = array( 
+	public static function get_attr_defaults(  ){
+		$r = array( 
 				array( 'paper', array( 'couted-300g', 'couted-350g' ), '111' ),
 				array( 'volume', array( '50', '100', '200', '300', '400', '500', '1000', '1500', '2500' ), '111' ),
 				array( 'format', array( '90x50', '85x55', 'custom-value' ), '111' ),
@@ -103,6 +101,17 @@ class business_card extends product {
 				array( 'print', array( '4x4', '4x0' ), '111' ),
 				array( 'spot_uv', array( '0x0', '1x0', '1x1' ), '111' )
 			);
+		return $r;
+	}
+
+	/**
+	 * setter for product attributes array
+	 * @param array $attr peoduct attributes array
+	 */
+	public function set_attr_defaults(  ){
+		
+		if ( empty( $this->attr ) || is_null( $this->attr ) ) {
+			$this->attr = \gcalc\db\product\business_card::get_attr_defaults();
 		}
 	}
 	

@@ -12,40 +12,7 @@ class rest{
 	public static function api_client_auth(){
 		return true;
 	}	
-/**
-	*  An example CORS-compliant method.  It will allow any GET, POST, or OPTIONS requests from any
-	*  origin.
-	*
-	*  In a production environment, you probably want to be more restrictive, but this gives you
-	*  the general idea of what is involved.  For the nitty-gritty low-down, read:
-	*
-	*  - https://developer.mozilla.org/en/HTTP_access_control
-	*  - http://www.w3.org/TR/cors/
-	*
-	*/
-	static public function cors() {
-		
 
-	    // Allow from any origin
-	    if (isset($_SERVER['HTTP_ORIGIN'])) {
-	        // Decide if the origin in $_SERVER['HTTP_ORIGIN'] is one
-	        // you want to allow, and if so:
-	        header("Access-Control-Allow-Origin: {$_SERVER['HTTP_ORIGIN']}");
-	        header('Access-Control-Allow-Credentials: false');
-	        header('Access-Control-Max-Age: 86400');    // cache for 1 day
-	    }
-
-	    // Access-Control headers are received during OPTIONS requests
-	    if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
-
-	        if (isset($_SERVER['HTTP_ACCESS_CONTROL_REQUEST_METHOD']))
-	            // may also be using PUT, PATCH, HEAD etc
-	            header("Access-Control-Allow-Methods: GET, POST, OPTIONS");         
-
-	        if (isset($_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']))
-	            header("Access-Control-Allow-Headers: {$_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']}");	        
-	    }	    
-	}
 
 	/**
 	* Zwraca gówny model aplikacji.
@@ -71,11 +38,31 @@ class rest{
 	}
 
 	public static function rest_calculate_callback( $data = NULL ){
-		//\gcalc\rest::cors();
+		
+/**
+	 * Use * for origin
+	 */
+	\add_action( 'rest_api_init', function() {
+	    
+	  \remove_filter( 'rest_pre_serve_request', 'rest_send_cors_headers' );
+	  \add_filter( 'rest_pre_serve_request', function( $value ) {
+	    \header( 'Access-Control-Allow-Origin: *' );
+	    \header('Access-Control-Allow-Credentials: true');
+	    \header( 'Access-Control-Allow-Methods: GET' );
+	    \header( 'Access-Control-Allow-Headers: apikey,apisecret,authorization,group_bw,group_color,group_cover,pa_bw_format,pa_bw_pages,pa_bw_paper,pa_bw_print,pa_color_format,pa_color_pages,pa_color_paper,pa_color_print,pa_color_stack,pa_cover_cloth_covering_paper,pa_cover_cloth_covering_print,pa_cover_cloth_covering_spot_uv,pa_cover_cloth_covering_finish,pa_cover_dust_jacket_paper,pa_cover_dust_jacket_print,pa_cover_dust_jacket_spot_uv,pa_cover_dust_jacket_finish,pa_cover_flaps,pa_cover_format,pa_cover_left_flap_width,pa_cover_paper,pa_cover_print,pa_cover_ribbon,pa_cover_right_flap_width,pa_cover_spot_uv,pa_cover_type,pa_cover_finish,pa_format,pa_multi_quantity,multi_quantity,pa_paper,pa_print,pa_quantity,pa_spot_uv,pa_finish,product_slug, pa_cover_board_thickness, pa_folding ' );
+
+	   // \gcalc\rest::cors();
+	    return $value;
+	    
+	  });
+	}, 15 );
+
+
 		$h = \gcalc\rest::getHeaders( "/^pa_.*|^product_.*|^group_.*|apikey|apisecret|Authorization/", true ); 
 		$product_id = \gcalc\rest::getHeaders( "/product_id/" );	
 		$product_id = count( $product_id ) == 0 ? NULL : (int) $product_id[ "product_id" ];
 		$calc = new calculate( $h['selected'], $product_id );
+		
 		$data_permissions_f = new data_permissions_filter( $calc );
 		$r = array( 
 			'plugin_name' => "gcalc",
