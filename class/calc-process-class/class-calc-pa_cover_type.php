@@ -122,9 +122,10 @@ class pa_cover_type extends pa_format{
 			    "pa_print" => $dust_jacket_print,         
 			    "pa_quantity" => $pa_quantity,
 			    "pa_finish" => $dust_jacket_wrap,
-			    "pa_spot_uv" => $dust_jacket_spot_uv
+			    "pa_spot_uv" => $dust_jacket_spot_uv,
+			    "product_slug" => "plano",
 			);
-			$dust_jacket_calc = new \gcalc\calculate( $pargs, 22986 );		
+			$dust_jacket_calc = new \gcalc\calculate( $pargs );		
 			$dust_jacket_calculation_array = $dust_jacket_calc->calc();
 			$dust_jacket_calc_stat_ok = $dust_jacket_calc->status_ok();
 			if ( $dust_jacket_calc_stat_ok ) {
@@ -161,9 +162,10 @@ class pa_cover_type extends pa_format{
 		    "pa_print" => $cloth_covering_print,         
 		    "pa_finish" => $cloth_covering_wrap,         
 		    "pa_quantity" => $pa_quantity,
-		    "pa_spot_uv" => $cloth_covering_spot_uv
+		    "pa_spot_uv" => $cloth_covering_spot_uv,
+		    "product_slug" => "plano",
 		);
-		$cloth_covering_calc = new \gcalc\calculate( $pargs, 22986 );	
+		$cloth_covering_calc = new \gcalc\calculate( $pargs );	
 		$cloth_covering_calculation_array = $cloth_covering_calc->calc();
 		$cloth_covering_calc_stat_ok = $cloth_covering_calc->status_ok();	
 

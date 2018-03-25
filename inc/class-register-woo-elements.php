@@ -87,9 +87,9 @@ class register_woo_elements{
 			new \gcalc\db\product\flyer();	
 			new \gcalc\db\product\book();	
 			new \gcalc\db\product\catalog();	
-			new \gcalc\db\product\perfect_catalog();	
-			new \gcalc\db\product\saddle_catalog();	
-			new \gcalc\db\product\spiral_catalog();	
+			new \gcalc\db\product\perfect_bound_catalog();	
+			new \gcalc\db\product\saddle_stitched_catalog();	
+			new \gcalc\db\product\spiral_bound_catalog();	
 			
 			new \gcalc\db\product\folded_business_card();	
 			new \gcalc\db\product\plano();	
@@ -99,9 +99,9 @@ class register_woo_elements{
 			new \gcalc\db\product\letterhead();	
 			new \gcalc\db\product\letterhead_color();	
 			new \gcalc\db\product\letterhead_bw();	
-			*/
+			
 		
-			new \gcalc\db\product\writing_pad();	
+			new \gcalc\db\product\writing_pad();	*/
 		}
 	}
 

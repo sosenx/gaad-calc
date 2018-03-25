@@ -90,7 +90,7 @@ if ( !defined( GAAD_PLUGIN_TEMPLATE_NAMESPACE . 'GAAD_PLUGIN_TEMPLATE_DISABLE_CR
 	* Disables predefined product creation
 	* Created mostly for developmnet reasons.
 	*/
-	define( GAAD_PLUGIN_TEMPLATE_NAMESPACE . 'GAAD_PLUGIN_TEMPLATE_DISABLE_CREATE_PRODUCTS', true );
+	define( GAAD_PLUGIN_TEMPLATE_NAMESPACE . 'GAAD_PLUGIN_TEMPLATE_DISABLE_CREATE_PRODUCTS', false );
 
 
 

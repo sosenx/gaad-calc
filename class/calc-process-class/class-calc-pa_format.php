@@ -81,6 +81,7 @@ class pa_format extends \gcalc\cprocess_calculation{
 				return $cformat;				
 			}
 		}
+		var_dump($width, $height);
 		return false;
 	}	
 
@@ -97,7 +98,8 @@ class pa_format extends \gcalc\cprocess_calculation{
 			$all_formats = $production_formats->get_formats();
 		
 			$print_color_mode = $this->get_print_color_mode('pa_print');
-			$std_format = $this->calc_common_format(); //a4, a5 etc 
+			$std_format = $this->calc_common_format(); //a4, a5 etc
+
 			$name = $this->get_name();
 			$this->best_production_format = $production_formats->get_production_format( $std_format, $print_color_mode, $name );
 			$this->parent->set_best_production_format( $this->best_production_format, $this->group );

@@ -7,7 +7,7 @@ wp_head();
 global $post;
 //$product_id = $post->ID;
 $pargs = array( 
-    "product_slug" => "business-card",
+    "product_slug" => "book",
     "multi_quantity" => "10,50,150",
 
     "pa_format" => "260x357",
@@ -20,7 +20,7 @@ $pargs = array(
     "pa_cover_format" => "175x235",
     "pa_cover_paper" => "kreda-300g",
     "pa_cover_print" => "4x0",    
-    "pa_cover_type" => "perfect_binding",    
+    "pa_cover_type" => "hard",    
     "pa_cover_dust_jacket_paper" => "kreda-150g",
     "pa_cover_dust_jacket_print" => "4x4",
     "pa_cover_dust_jacket_finish" => "0x0",

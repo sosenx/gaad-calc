@@ -39,19 +39,43 @@ class book extends product {
 	 */
 	public static function get_attr_bw_lists( ){
 		$r = array(
-			'pa_cover_spot_uv' => array( 
-				'pa_cover_finish' => array(
-					//dla danego ustanwienia pa_cover_spot_uv pokaz mozliwe opcje dla pa_cover_finish
-					'1x0' => array( 
-						'values' => array( 'matt-1x0', 'soft-touch-1x0' ),
-						'default' => 'matt-1x0'
-					),
-					'1x1' => array( 
-						'values' => array( 'matt-1x1', 'soft-touch-1x1' ),
-						'default' => 'matt-1x1'
-					),
-				)
+
+array(
+	'name' => 'pa_cover_print',
+	'data' => array(
+		'4x0' => array(
+			'pa_cover_finish' => array(
+				'values' => array( 'gloss-1x0', 'matt-1x0', 'soft-touch-1x0'),
+				'default' => 'matt-1x0'
 			)
+		),
+		'4x4' => array(
+			'pa_cover_finish' => array(
+				'values' => array( 'gloss-1x0', 'matt-1x0', 'soft-touch-1x0' ),
+				'default' => 'matt-1x0'
+			)
+		)
+	)
+),
+array(
+	'name' => 'pa_cover_finish',
+	'data' => array(
+		'1x0' => array(
+			'pa_cover_spot_uv' => array(
+				'values' => array( '0x0', '1x0' ),
+				'default' => '0x0'
+			)
+		)
+	)
+)
+
+
+
+
+
+
+
+			
 		);
 			
 		return $r;
