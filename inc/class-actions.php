@@ -197,7 +197,10 @@ class actions {
 
   public static function app_data_src(){
     $json_data = new json_data();
-    ?><script id="<?php echo basename(constant( 'gcalc\GAAD_PLUGIN_TEMPLATE_NAMESPACE' )); ?>-json-data" type="application/javascript"><?php $json_data->draw(); ?></script><?php    
+    ?><script id="<?php echo basename(constant( 'gcalc\GAAD_PLUGIN_TEMPLATE_NAMESPACE' )); ?>-json-data" type="application/javascript"><?php $json_data->draw(); ?></script>
+
+
+    <?php    
   }
   
   public static function common_styles(){
