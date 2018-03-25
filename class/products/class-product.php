@@ -80,6 +80,7 @@ class product {
 
 		$r['rest_data'] = array(
 			'attr_filter' => \gcalc\db\product\product::product_constructor_method( $product_slug, 'get_attr_filter' ),
+			'form_validation' => \gcalc\db\product\product::product_constructor_method( $product_slug, 'get_form_validations' ),
 			'attr_values' => \gcalc\db\product\product::parse_product_attr_defaults(	\gcalc\db\product\product::product_constructor_method( $product_slug, 'get_attr_defaults' ) )
 		);
 

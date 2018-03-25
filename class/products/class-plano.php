@@ -97,7 +97,7 @@ class plano extends product {
 				array( 'pa_bw_format', 		array( '105x148','148x210','210x297','297x420','125x176','176x250','custom-value' ), '111' ),
 				array( 'pa_color_format', 	array( '105x148','148x210','210x297','297x420','125x176','176x250','custom-value' ), '111' ),
 
-				array( 'volume', array( 'custom-volume' ), '111' ),
+				array( 'volume', array( 'custom-value' ), '111' ),
 				
 				array( 'paper', array( 
 					'couted-70g', 'couted-80g', 'couted-90g', 'couted-115g', 'couted-135g','couted-170g', 'couted-250g', 'couted-300g', 'couted-350g',

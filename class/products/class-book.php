@@ -33,6 +33,54 @@ class book extends product {
 			return $r;
 		}
 
+	
+	/**
+	 * Returns validations object for vuelidate
+	 * @return [type] [description]
+	 */
+		public static function get_form_validations(  ){
+			$r = array(
+				'matrix' => array(		
+					'pa_format' => 							array( 'required' => false ),
+					'pa_quantity' => 						array( 'required' => false ),
+					'pa_paper' => 							array( 'required' => false ),
+					'pa_print' => 							array( 'required' => false ),
+					'pa_finish' => 							array( 'required' => false ),
+					'pa_spot_uv' => 						array( 'required' => false ),
+					'pa_folding' => 						array( 'required' => false ),
+					'pa_cover_format' => 					array( 'required' => false ),
+					'pa_cover_paper' => 					array( 'required' => false ),
+					'pa_cover_print' => 					array( 'required' => false ),
+					'pa_cover_type' => 						array( 'required' => false ),
+					'pa_cover_dust_jacket_paper' => 		array( 'required' => false ),
+					'pa_cover_dust_jacket_print' => 		array( 'required' => false ),
+					'pa_cover_dust_jacket_finish' => 		array( 'required' => false ),
+					'pa_cover_dust_jacket_spot_uv' => 		array( 'required' => false ),
+					'pa_cover_cloth_covering_paper' => 		array( 'required' => false ),
+					'pa_cover_cloth_covering_finish' => 	array( 'required' => false ),
+					'pa_cover_cloth_covering_print' => 		array( 'required' => false ),
+					'pa_cover_cloth_covering_spot_uv' => 	array( 'required' => false ),
+					'pa_cover_ribbon' => 					array( 'required' => false ),
+					'pa_cover_finish' => 					array( 'required' => false ),
+					'pa_cover_spot_uv' => 					array( 'required' => false ),
+					'pa_cover_flaps' => 					array( 'required' => false ),
+					'pa_cover_left_flap_width' => 			array( 'required' => false ),
+					'pa_cover_right_flap_width' => 			array( 'required' => false ),
+					'pa_cover_board_thickness' => 			array( 'required' => false ),
+					'pa_bw_pages' => 						array( 'required' => false ),
+					'pa_bw_format' => 						array( 'required' => false ),
+					'pa_bw_paper' => 						array( 'required' => false ),
+					'pa_bw_print' => 						array( 'required' => false ),
+					'pa_color_pages' => 					array( 'required' => false ),
+					'pa_color_format' =>					array( 'required' => false ),
+					'pa_color_paper' => 					array( 'required' => false ),
+					'pa_color_print' => 					array( 'required' => false ),
+					'pa_color_stack' => 					array( 'required' => false )				
+				)
+			);			
+			return $r;
+		}
+
 	/**
 	 * Method overrides cprocess pa_cover_format.
 	 *
@@ -41,7 +89,7 @@ class book extends product {
 	 * @param  [type] $cprocess [description]
 	 * @return [type]           [description]
 	 */
-	public static function parse_dimensions__pa_format( $cprocess )	{
+ 	public static function parse_dimensions__pa_format( $cprocess )	{
 		
 		//var_dump($cprocess->get_cargs()['pa_cover_format']);
 		$group = $cprocess->get_group();
@@ -84,43 +132,43 @@ class book extends product {
 		$attr_filter = array(
 			'groups'=> array( 'cover', 'bw', 'color' ),		
 			'matrix' => array(		
-				'pa_format' => array( 'default' => ''),
-				'pa_quantity' => array( 'default' => ''),
-				'pa_paper' => array( 'default' => ''),
-				'pa_print' => array( 'default' => ''),
-				'pa_finish' => array( 'default' => ''),
-				'pa_spot_uv' => array( 'default' => ''),
-				'pa_folding' => array( 'default' => ''),
-				'pa_cover_format' => array( 'default' => ''),
-				'pa_cover_paper' => array( 'default' => ''),
-				'pa_cover_print' => array( 'default' => ''),
-				'pa_cover_type' => array( 'default' => ''),
-				'pa_cover_dust_jacket_paper' => array( 'default' => ''),
-				'pa_cover_dust_jacket_print' => array( 'default' => ''),
-				'pa_cover_dust_jacket_finish' => array( 'default' => ''),
-				'pa_cover_dust_jacket_spot_uv' => array( 'default' => ''),
-				'pa_cover_cloth_covering_paper' => array( 'default' => ''),
-				'pa_cover_cloth_covering_finish' => array( 'default' => ''),
-				'pa_cover_cloth_covering_print' => array( 'default' => ''),
-				'pa_cover_cloth_covering_spot_uv' => array( 'default' => ''),
-				'pa_cover_ribbon' => array( 'default' => ''),
-				'pa_cover_finish' => array( 'default' => ''),
-				'pa_cover_spot_uv' => array( 'default' => ''),
-				'pa_cover_flaps' => array( 'default' => ''),
-				'pa_cover_left_flap_width' => array( 'default' => ''),
-				'pa_cover_right_flap_width' => array( 'default' => ''),
-				'pa_cover_board_thickness' => array( 'default' => ''),
-				'pa_bw_pages' => array( 'default' => ''),
-				'pa_bw_format' => array( 'default' => ''),
-				'pa_bw_paper' => array( 'default' => ''),
-				'pa_bw_print' => array( 'default' => ''),
-				'pa_color_pages' => array( 'default' => ''),
-				'pa_color_format' => array( 'default' => ''),
-				'pa_color_paper' => array( 'default' => ''),
-				'pa_color_print' => array( 'default' => ''),
-				'pa_color_stack' => array( 'default' => '')				
-			)
-
+				'pa_format' => 							array( 'default' => '148x210',			'type' => 'select'),
+				'pa_quantity' => 						array( 'default' => 50, 				'type' => 'number'),
+				'pa_paper' => 							array( 'default' => 'uncouted-80g', 	'type' => 'select'),
+				'pa_print' => 							array( 'default' => '1x1', 				'type' => 'select'),
+				'pa_finish' => 							array( 'default' => '0x0', 				'type' => 'select'),
+				'pa_spot_uv' => 						array( 'default' => '0x0', 				'type' => 'select'),
+				'pa_folding' => 						array( 'default' => 'no-fold', 			'type' => 'select'),
+				'pa_cover_format' =>					array( 'default' => '148x210', 			'type' => 'select'),
+				'pa_cover_paper' => 					array( 'default' => 'couted-300g', 		'type' => 'select'),
+				'pa_cover_print' => 					array( 'default' => '4x4', 				'type' => 'select'),
+				'pa_cover_type' => 						array( 'default' => 'perfect_binding', 	'type' => 'select'),
+				'pa_cover_dust_jacket_paper' => 		array( 'default' => '', 				'type' => 'select'),
+				'pa_cover_dust_jacket_print' => 		array( 'default' => '', 				'type' => 'select'),
+				'pa_cover_dust_jacket_finish' => 		array( 'default' => '', 				'type' => 'select'),
+				'pa_cover_dust_jacket_spot_uv' => 		array( 'default' => '', 				'type' => 'select'),
+				'pa_cover_cloth_covering_paper' => 		array( 'default' => '', 				'type' => 'select'),
+				'pa_cover_cloth_covering_finish' => 	array( 'default' => '', 				'type' => 'select'),
+				'pa_cover_cloth_covering_print' => 		array( 'default' => '', 				'type' => 'select'),
+				'pa_cover_cloth_covering_spot_uv' => 	array( 'default' => '', 				'type' => 'select'),
+				'pa_cover_ribbon' => 					array( 'default' => '', 				'type' => 'select'),
+				'pa_cover_finish' => 					array( 'default' => 'matt-1x0', 		'type' => 'select'),
+				'pa_cover_spot_uv' => 					array( 'default' => '0x0', 				'type' => 'select'),
+				'pa_cover_flaps' => 					array( 'default' => 'false', 			'type' => 'select'),
+				'pa_cover_left_flap_width' => 			array( 'default' => '', 				'type' => 'select'),
+				'pa_cover_right_flap_width' => 			array( 'default' => '', 				'type' => 'select'),
+				'pa_cover_board_thickness' => 			array( 'default' => '', 				'type' => 'select'),
+				'pa_bw_pages' => 						array( 'default' => 100, 				'type' => 'number'),
+				'pa_bw_format' => 						array( 'default' => '148x210', 			'type' => 'select'),
+				'pa_bw_paper' => 						array( 'default' => 'uncouted-80g',		'type' => 'select'),
+				'pa_bw_print' => 						array( 'default' => '1x1', 				'type' => 'select'),
+				'pa_color_pages' => 					array( 'default' => 20, 				'type' => 'number'),
+				'pa_color_format' => 					array( 'default' => '148x210', 			'type' => 'select'),
+				'pa_color_paper' => 					array( 'default' => 'uncouted-80g',		'type' => 'select'),
+				'pa_color_print' => 					array( 'default' => '4x4', 				'type' => 'select'),
+				'pa_color_stack' => 					array( 'default' => 'true', 			'type' => 'select')				
+			)				
+				
 		);
 		return $attr_filter;
 	}
@@ -148,12 +196,12 @@ class book extends product {
 		public static function get_attr_defaults( ){
 			$r = array( 
 
-				array( 'format', 		array( 'custom-format' ), '111' ),				
-				array( 'cover_format', 	array( 'custom-format' ), '111' ),
-				array( 'pa_cover_format', 	array( 'custom-format' ), '111' ),
-				array( 'pa_bw_format', 	array( 'custom-format' ), '111' ),
-				array( 'pa_color_format', 	array( 'custom-format' ), '111' ),
-				array( 'volume', array( 'custom-volume' ), '111' ),				
+				array( 'format', 		array( 'custom-value' ), '111' ),				
+				array( 'cover_format', 	array( 'custom-value' ), '111' ),
+				array( 'cover_format', 	array( 'custom-value' ), '111' ),
+				array( 'bw_format', 	array( 'custom-value' ), '111' ),
+				array( 'color_format', 	array( 'custom-value' ), '111' ),
+				array( 'volume', array( 'custom-value' ), '111' ),				
 				array( 'paper', array( 
 					'couted-70g', 'couted-80g', 'couted-90g', 'couted-115g', 'couted-135g','couted-170g', 'couted-250g', 'couted-300g', 'couted-350g',
 					'uncouted-70g', 'uncouted-80g', 'uncouted-90g', 'uncouted-100g', 'uncouted-120g', 'uncouted-150g',
@@ -230,7 +278,7 @@ class book extends product {
 	function set_attr_defaults(  ){
 		
 		if ( empty( $this->attr ) || is_null( $this->attr ) ) {
-			$this->attr = \gcalc\db\product\product::get_attr_defaults();
+			$this->attr = \gcalc\db\product\book::get_attr_defaults();
 		}
 	}
 	

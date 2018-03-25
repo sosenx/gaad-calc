@@ -187,7 +187,7 @@ public static function calc__pa_cover_format( $cprocess ){
 				array( 'pa_bw_format', 	array(  '105x148','148x210','210x297','125x176','176x250','custom-value' ), '111' ),
 				array( 'pa_color_format', 	array(  '105x148','148x210','210x297','125x176','176x250','custom-value' ), '111' ),
 
-				array( 'volume', array( '10','20','30','50','100','200','300','400','500','custom-volume' ), '111' ),
+				array( 'volume', array( '10','20','30','50','100','200','300','400','500','custom-value' ), '111' ),
 				
 				array( 'paper', array( 					
 					'uncouted-70g', 'uncouted-80g', 'uncouted-90g', 'uncouted-100g', 'uncouted-120g', 'uncouted-150g',

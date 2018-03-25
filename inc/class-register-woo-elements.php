@@ -351,6 +351,7 @@ class register_woo_elements{
 		/*
 		* Adding print sizes
 		*/		
+		\wp_insert_term( \__('No fold', 'gcalc'), 			'pa_' . $name, array( 'description' => \__('No folding', 'gcalc'), 	'slug' => 'no-fold' ) );
 		\wp_insert_term( \__('Half fold', 'gcalc'), 		'pa_' . $name, array( 'description' => \__('Half fold', 'gcalc'), 	'slug' => 'half-fold' ) );
 		\wp_insert_term( \__('Tri fold', 'gcalc'), 			'pa_' . $name, array( 'description' => \__('Tri fold', 'gcalc'), 	'slug' => 'tri-fold' ) );						
 		\wp_insert_term( \__('Z fold', 'gcalc'), 			'pa_' . $name, array( 'description' => \__('Z fold', 'gcalc'), 		'slug' => 'z-fold' ) );						

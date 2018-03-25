@@ -65,7 +65,7 @@ class letterhead_color extends letterhead {
 				
 				array( 'pa_color_format', 	array( '210x297', 'custom-value' ), '111' ),
 
-				array( 'volume', array( '1','2','3','4','5','6','7','8','9','10','custom-volume' ), '111' ),
+				array( 'volume', array( '1','2','3','4','5','6','7','8','9','10','custom-value' ), '111' ),
 				
 				array( 'paper', array( 
 					'couted-70g', 'couted-80g', 'couted-90g', 'couted-115g', 'couted-135g','couted-170g', 'couted-250g', 'couted-300g', 'couted-350g',
