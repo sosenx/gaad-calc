@@ -296,7 +296,7 @@ class actions {
       /*
       * Force load core scripts from own serwer
       */
-      if ( !GAAD_PLUGIN_TEMPLATE_CORE_SCRIPTS_CDN_USE ) {
+      if ( GAAD_PLUGIN_TEMPLATE_CORE_SCRIPTS_CDN_USE ) {
         $core[ 'vue-js' ][0] = GAAD_PLUGIN_TEMPLATE_URL . '/node_modules/vue/dist/vue.min.js';
         $core[ 'vue-router-js' ][0] = GAAD_PLUGIN_TEMPLATE_URL . '/node_modules/vue-router/dist/vue-router.min.js';
         $core[ 'vue-x-js' ][0] = GAAD_PLUGIN_TEMPLATE_URL . '/node_modules/vuex/dist/vuex.min.js';

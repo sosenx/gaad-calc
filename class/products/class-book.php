@@ -67,6 +67,23 @@ array(
 			)
 		)
 	)
+),
+array(
+	'name' => 'pa_cover_spot_uv',
+	'data' => array(
+		'0x0' => array(
+			'pa_cover_finish' => array(
+				'values' => array( 'gloss-1x0', 'matt-1x0', 'soft-touch-1x0' ),
+				'default' => 'matt-1x0'
+			)
+		),
+		'1x0' => array(
+			'pa_cover_finish' => array(
+				'values' => array( 'matt-1x0', 'soft-touch-1x0' ),
+				'default' => 'matt-1x0'
+			)
+		)
+	)
 )
 
 
@@ -179,7 +196,7 @@ array(
 		$attr_filter = array(
 			'groups'=> array( 'cover', 'bw', 'color' ),		
 			'matrix' => array(		
-				'pa_format' => 							array( 'default' => '148x210',			'type' 			=> 'select', 
+				'pa_format' => 							array( 'default' => 'custom-value',			'type' 			=> 'select', 
 																								'placeholder' 	=> __('Selcet format', 'gcalc') 
 				),
 
@@ -355,7 +372,7 @@ array(
 		public static function get_attr_defaults( ){
 			$r = array( 
 
-				array( 'format', 		array( 'custom-value' ), '111' ),				
+				array( 'format', 		array( '148x210','210x297','297x420','125x176','176x250','custom-value' ), '111' ),				
 				array( 'cover_format', 	array( 'custom-value' ), '111' ),
 				array( 'cover_format', 	array( 'custom-value' ), '111' ),
 				array( 'bw_format', 	array( 'custom-value' ), '111' ),
