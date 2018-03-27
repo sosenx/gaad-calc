@@ -93,6 +93,9 @@ class pa_cover_type extends pa_format{
 		$cover_type = $this->cargs['pa_cover_type'];
 		$cover_cost = $production_formats->get_binding_type( $cover_type );
 
+		$endpaper_paper = $this->get_endpaper_paper( $this->get_carg('pa_cover_endpaper_paper') );
+		$endpaper_print = $this->get_endpaper_print( $this->get_carg('pa_cover_endpaper_print') );
+
 		$cloth_covering_paper = $this->get_cloth_covering_paper( $this->get_carg('pa_cover_cloth_covering_paper') );
 		$cloth_covering_print = $this->get_cloth_covering_print( $this->get_carg('pa_cover_cloth_covering_print') );
 		$cloth_covering_wrap = $this->get_cloth_covering_wrap( $this->get_carg('pa_cover_cloth_covering_wrap') );
@@ -118,15 +121,20 @@ class pa_cover_type extends pa_format{
 		if ( $dust_jacket_paper ) {			
 			$pargs = array(	
 			    "pa_format" => ( (2 * $this->get_width() + 120) < 700 ? 2 * $this->get_width() + 120 : 700 ) . 'x' . ( $this->get_height()  ),
+			   
 			    "pa_paper" => $dust_jacket_paper,
 			    "pa_print" => $dust_jacket_print,         
 			    "pa_quantity" => $pa_quantity,
 			    "pa_finish" => $dust_jacket_wrap,
 			    "pa_spot_uv" => $dust_jacket_spot_uv,
-			    "product_slug" => "plano",
+			    "product_slug" => "business-card",
 			);
+
 			$dust_jacket_calc = new \gcalc\calculate( $pargs );		
 			$dust_jacket_calculation_array = $dust_jacket_calc->calc();
+
+//var_dump($dust_jacket_calculation_array);
+
 			$dust_jacket_calc_stat_ok = $dust_jacket_calc->status_ok();
 			if ( $dust_jacket_calc_stat_ok ) {
 				foreach ($dust_jacket_calculation_array['d'] as $key => $value) {
@@ -163,7 +171,7 @@ class pa_cover_type extends pa_format{
 		    "pa_finish" => $cloth_covering_wrap,         
 		    "pa_quantity" => $pa_quantity,
 		    "pa_spot_uv" => $cloth_covering_spot_uv,
-		    "product_slug" => "plano",
+		    "product_slug" => "business-card",
 		);
 		$cloth_covering_calc = new \gcalc\calculate( $pargs );	
 		$cloth_covering_calculation_array = $cloth_covering_calc->calc();
@@ -187,6 +195,66 @@ class pa_cover_type extends pa_format{
 			//merging errors with master calculation parent as cloth_covering errors
 			$this->parent->merge_errors( $cloth_covering_calculation_array, 'cloth_covering' );
 		}
+
+
+
+
+
+		/*
+		* endpaper
+		*/
+		$endpaper = 0; 
+		$endpaper_procesess = array();
+		$endpaper_production_cost = 0;
+		$pargs = array(	
+		    "pa_format" => ( 2 * $this->get_width()) . 'x' . ( $this->get_height() ),
+		    "pa_paper" => $endpaper_paper,
+		    "pa_print" => $endpaper_print,         
+		    "pa_finish" => '0x0',         
+		    "pa_quantity" => $pa_quantity * 2,
+		    "pa_spot_uv" => '0x0',
+		    "product_slug" => "business-card",
+		);
+		$endpaper_calc = new \gcalc\calculate( $pargs );	
+		$endpaper_calculation_array = $endpaper_calc->calc();
+		$endpaper_calc_stat_ok = $endpaper_calc->status_ok();	
+
+		if ( $endpaper_calc_stat_ok) {			
+			foreach ($endpaper_calculation_array['d'] as $key => $value) {
+				if ( 	$value->total['name'] == 'pa_master_paper' 	||
+						$value->total['name'] == 'pa_master_print' 	|| 
+						$value->total['name'] == 'pa_master_wrap' 	|| 
+						$value->total['name'] == 'pa_master_spot_uv' ) {
+					$endpaper += $value->total['total_price'];			
+					$endpaper_procesess[] = $value;
+					$endpaper_production_cost += $value->total['production_cost'];
+				}		
+			} 
+			//merging errors with master calculation parent as endpaper errors
+			$this->parent->merge_errors( $endpaper_calculation_array['e'], 'endpaper' );
+			$this->parent->merge_bvars( $endpaper_calc, $group_name, 'endpaper' );
+		} else {
+			//merging errors with master calculation parent as endpaper errors
+			$this->parent->merge_errors( $endpaper_calculation_array, 'endpaper' );
+		}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 		
 		/*
 		* case board
@@ -206,13 +274,18 @@ class pa_cover_type extends pa_format{
 		/*
 		* ribbon cost
 		*/
-		if( $ribbon ){
+		if( $ribbon && $ribbon !== 'ribbon-0'){
 			$ribbon_cost = $cover_cost['extended']['ribbon_cost'] * $pa_quantity;
 		} else {
 			$ribbon_cost = 0;
 		}		
 
 		$return = array(
+			'endpaper' => array(
+				'total_price' => $endpaper,				
+				'production_cost' => $endpaper_production_cost,
+				'parts' => $endpaper_procesess
+			),
 			'cloth_covering' => array(
 				'total_price' => $cloth_covering,				
 				'production_cost' => $cloth_covering_production_cost,
@@ -357,9 +430,21 @@ class pa_cover_type extends pa_format{
 		if ( isset( $cloth_covering_paper ) ) {
 			return $cloth_covering_paper;
 		} else {
-			$this->parent->get_errors()->add( new \gcalc\error( 10009,  ' -> kreda-130g') );
+			$this->parent->get_errors()->add( new \gcalc\error( 10009,  ' -> couted-130g') );
 		}
-		return 'kreda-130g';
+		return 'couted-130g';
+	}
+
+	/**
+	* Returns default cloth covering paper if there is no in attributes
+	*/
+	function get_endpaper_paper( string $endpaper_paper = NULL){
+		if ( isset( $endpaper_paper ) ) {
+			return $endpaper_paper;
+		} else {
+			$this->parent->get_errors()->add( new \gcalc\error( 10009,  ' -> couted-130g') );
+		}
+		return 'couted-130g';
 	}
 
 
@@ -375,6 +460,7 @@ class pa_cover_type extends pa_format{
 		return '0x0';
 	}
 
+	
 	/**
 	* Returns default cloth covering print if there is no in attributes
 	*/
@@ -385,6 +471,20 @@ class pa_cover_type extends pa_format{
 			$this->parent->get_errors()->add( new \gcalc\error( 10010,  ' -> 4x0') );
 		}
 		return '4x0';
+	}
+
+
+
+	/**
+	* Returns default cloth covering print if there is no in attributes
+	*/
+	function get_endpaper_print( string $endpaper_print = NULL){
+		if ( isset( $endpaper_print ) ) {
+			return $endpaper_print;
+		} else {
+			$this->parent->get_errors()->add( new \gcalc\error( 10010,  ' -> 4x0') );
+		}
+		return '0x0';
 	}
 
 	/** 

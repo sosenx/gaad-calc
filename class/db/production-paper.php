@@ -27,7 +27,7 @@ class paper{
 	* Return click cost
 	*/
 	function get_paper( string $paper_slug ){	
-		$paper_slug = $paper_slug === "" ? "kreda-350g" : $paper_slug;
+		$paper_slug = $paper_slug === "" ? "couted-350g" : $paper_slug;
 		return isset( $this->papers[ $paper_slug ] ) ? $this->papers[ $paper_slug ] : 'error-paper-name';
 	}
 
@@ -49,40 +49,58 @@ fo dev version it just sets an array
 					'label' => 'Papier do druku cyfrowego 80g',
 					'weight' => .08
 				),
-			'kreda-90g' 		=> array( 
-				'price_per_kg' 	=> 3.6, 'label' => 'Kreda 90g', 	'weight' => .09, 	'thickness' => .074 ),
-			'kreda-115g' 		=> array( 
-				'price_per_kg' 	=> 3.6, 'label' => 'Kreda 115g', 	'weight' => .115, 	'thickness' => .09 ),
-			'kreda-130g' 		=> array( 
-				'price_per_kg' 	=> 3.6, 'label' => 'Kreda 135g', 	'weight' => .135, 	'thickness' => .1 ),
-			'kreda-135g' 		=> array( 
-				'price_per_kg' 	=> 3.6, 'label' => 'Kreda 135g', 	'weight' => .135, 	'thickness' => .1 ),
-			'kreda-150g' 		=> array( 
-				'price_per_kg' 	=> 3.6, 'label' => 'Kreda 150g', 	'weight' => .15, 	'thickness' => .105 ),
-			'kreda-170g' 		=> array( 
-				'price_per_kg' 	=> 3.6, 'label' => 'Kreda 170g', 	'weight' => .17, 	'thickness' => .13 ),
-			'kreda-200g' 		=> array( 
-				'price_per_kg' 	=> 3.6, 'label' => 'Kreda 200g', 	'weight' => .2, 	'thickness' => .15 ),
-			'kreda-250g' 		=> array( 
-				'price_per_kg' 	=> 3.6, 'label' => 'Kreda 250g', 	'weight' => .25, 	'thickness' => .19 ),
-			'kreda-300g' 		=> array( 
-				'price_per_kg' 	=> 3.6, 'label' => 'Kreda 300g', 	'weight' => .3, 	'thickness' => .235 ),			
-			'kreda-350g' 		=> array( 
-				'price_per_kg' 	=> 3.6, 'label' => 'Kreda 350g', 	'weight' => .35, 	'thickness' => .274 ),
+
+			'gc1-230g' 		=> array( 
+				'price_per_kg' 	=> 4.6, 'label' => 'couted 90g', 	'weight' => .23, 	'thickness' => .336 ),
+			'gc1-250g' 		=> array( 
+				'price_per_kg' 	=> 4.6, 'label' => 'couted 90g', 	'weight' => .25, 	'thickness' => .378 ),
+			'gc2-230g' 		=> array( 
+				'price_per_kg' 	=> 4.6, 'label' => 'couted 90g', 	'weight' => .23, 	'thickness' => .336 ),
+			'gc2-250g' 		=> array( 
+				'price_per_kg' 	=> 4.6, 'label' => 'couted 90g', 	'weight' => .25, 	'thickness' => .378 ),
+
+
+
+
+
+			'couted-90g' 		=> array( 
+				'price_per_kg' 	=> 3.6, 'label' => 'couted 90g', 	'weight' => .09, 	'thickness' => .074 ),
+			'couted-115g' 		=> array( 
+				'price_per_kg' 	=> 3.6, 'label' => 'couted 115g', 	'weight' => .115, 	'thickness' => .09 ),
+			'couted-130g' 		=> array( 
+				'price_per_kg' 	=> 3.6, 'label' => 'couted 135g', 	'weight' => .135, 	'thickness' => .1 ),
+			'couted-135g' 		=> array( 
+				'price_per_kg' 	=> 3.6, 'label' => 'couted 135g', 	'weight' => .135, 	'thickness' => .1 ),
+			'couted-150g' 		=> array( 
+				'price_per_kg' 	=> 3.6, 'label' => 'couted 150g', 	'weight' => .15, 	'thickness' => .105 ),
+			'couted-170g' 		=> array( 
+				'price_per_kg' 	=> 3.6, 'label' => 'couted 170g', 	'weight' => .17, 	'thickness' => .13 ),
+			'couted-200g' 		=> array( 
+				'price_per_kg' 	=> 3.6, 'label' => 'couted 200g', 	'weight' => .2, 	'thickness' => .15 ),
+			'couted-250g' 		=> array( 
+				'price_per_kg' 	=> 3.6, 'label' => 'couted 250g', 	'weight' => .25, 	'thickness' => .19 ),
+			'couted-300g' 		=> array( 
+				'price_per_kg' 	=> 3.6, 'label' => 'couted 300g', 	'weight' => .3, 	'thickness' => .235 ),			
+			'couted-350g' 		=> array( 
+				'price_per_kg' 	=> 3.6, 'label' => 'couted 350g', 	'weight' => .35, 	'thickness' => .274 ),
 			
-			'offset-70g' 		=> array( 
+			'uncouted-70g' 		=> array( 
 				'price_per_kg' 	=> 3.6, 'label' => 'Offset 70g', 	'weight' => .07, 	'thickness' => .09 ),
-			'offset-80g' 		=> array( 
+			'uncouted-80g' 		=> array( 
 				'price_per_kg' 	=> 3.6, 'label' => 'Offset 80g', 	'weight' => .08, 	'thickness' => .1 ),
-			'offset-90g' 		=> array( 
+			'uncouted-90g' 		=> array( 
 				'price_per_kg' 	=> 3.6, 'label' => 'Offset 90g', 	'weight' => .09, 	'thickness' => .11 ),
-			'offset-100g' 		=> array( 
+			'uncouted-100g' 		=> array( 
 				'price_per_kg' 	=> 3.6, 'label' => 'Offset 100g', 	'weight' => .1, 	'thickness' => .12 ),
-			'offset-120g' 		=> array( 
+			'uncouted-120g' 		=> array( 
 				'price_per_kg' 	=> 3.6, 'label' => 'Offset 120g', 	'weight' => .12, 	'thickness' => .14 ),
-			'offset-150g' 		=> array( 
+			'uncouted-150g' 		=> array( 
 				'price_per_kg' 	=> 3.6, 'label' => 'Offset 150g', 	'weight' => .15, 	'thickness' => .17 ),
-			'offset-250g' 		=> array( 
+			'uncouted-170g' 		=> array( 
+				'price_per_kg' 	=> 3.6, 'label' => 'Offset 170g', 	'weight' => .15, 	'thickness' => .195 ),
+			'uncouted-200g' 		=> array( 
+				'price_per_kg' 	=> 3.6, 'label' => 'Offset 200g', 	'weight' => .15, 	'thickness' => .23 ),
+			'uncouted-250g' 		=> array( 
 				'price_per_kg' 	=> 3.6, 'label' => 'Offset 250g', 	'weight' => .25, 	'thickness' => .27 ),
 			
 			'ekobookc-60g-2.0' 	=> array( 

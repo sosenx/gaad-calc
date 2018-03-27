@@ -76,6 +76,9 @@ class pa_paper extends \gcalc\cprocess_calculation{
 			$paper_slug = array_key_exists( $master_paper, $this->cargs ) ? $this->cargs[$master_paper] : '*';	
 		}
 		$paper = $production_paper_db->get_paper( $paper_slug );
+		
+
+
 		return $this->set_paper( $paper );
 	}
 
