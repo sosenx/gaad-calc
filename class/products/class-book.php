@@ -165,14 +165,11 @@ array(
 					'pa_cover_endpaper_print' =>			array( 'required' => false ),
 					'pa_orientation' =>						array( 'required' => false ),
 					'pa_groupwrap' =>						array( 'required' => false ),
-					'pa_color_pages_numbers' =>				array( 'required' => false ),
-					
+					'pa_color_pages_numbers' =>				array( 'required' => false ),					
 					'pa_drilling_holes' =>					array( 'required' => false ),
 					'pa_holes_dia' =>						array( 'required' => false ),
 					'pa_holes_pos' =>						array( 'required' => false ),
-					'pa_pieces_per_carton' =>				array( 'required' => false ),
-					
-
+					'pa_pieces_per_carton' =>				array( 'required' => false ),				
 					'pa_title' =>							array( 'required' => false ),
 					'pa_book_number' =>						array( 'required' => false ),
 					'pa_comments' =>						array( 'required' => false ),
