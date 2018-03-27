@@ -53,7 +53,7 @@ class folded_business_card extends product {
 					'default' => '180x50'
 				),
 				'pa_paper' => array(
-					'default' => 'couted-300g'
+					'default' => 'coated-300g'
 				),
 				'pa_print' => array(
 					'default' => '4x4'
@@ -96,7 +96,7 @@ class folded_business_card extends product {
 	 */
 	public static function get_attr_defaults(  ){
 		$r = array( 
-				array( 'paper', array( 'couted-300g', 'couted-350g' ), '111' ),
+				array( 'paper', array( 'coated-300g', 'coated-350g' ), '111' ),
 				array( 'volume', array( '50', '100', '200', '300', '400', '500', '1000', '1500', '2500' ), '111' ),
 				array( 'format', array( '170x55', '180x50', '85x170', '90x180', 'custom-value' ), '111' ),
 				array( 'folding', array( 'half-fold' ), '111' ),

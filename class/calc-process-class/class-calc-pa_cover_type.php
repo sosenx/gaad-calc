@@ -430,9 +430,9 @@ class pa_cover_type extends pa_format{
 		if ( isset( $cloth_covering_paper ) ) {
 			return $cloth_covering_paper;
 		} else {
-			$this->parent->get_errors()->add( new \gcalc\error( 10009,  ' -> couted-130g') );
+			$this->parent->get_errors()->add( new \gcalc\error( 10009,  ' -> coated-130g') );
 		}
-		return 'couted-130g';
+		return 'coated-130g';
 	}
 
 	/**
@@ -442,9 +442,9 @@ class pa_cover_type extends pa_format{
 		if ( isset( $endpaper_paper ) ) {
 			return $endpaper_paper;
 		} else {
-			$this->parent->get_errors()->add( new \gcalc\error( 10009,  ' -> couted-130g') );
+			$this->parent->get_errors()->add( new \gcalc\error( 10009,  ' -> coated-130g') );
 		}
-		return 'couted-130g';
+		return 'coated-130g';
 	}
 
 

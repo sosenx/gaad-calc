@@ -82,13 +82,40 @@ class product {
 			'attr_bw_lists' => \gcalc\db\product\product::product_constructor_method( $product_slug, 'get_attr_bw_lists' ),
 			'attr_filter' => \gcalc\db\product\product::product_constructor_method( $product_slug, 'get_attr_filter' ),
 			'form_validation' => \gcalc\db\product\product::product_constructor_method( $product_slug, 'get_form_validations' ),
-			'attr_values' => \gcalc\db\product\product::parse_product_attr_defaults(	\gcalc\db\product\product::product_constructor_method( $product_slug, 'get_attr_defaults' ) )
+			'attr_values' => \gcalc\db\product\product::parse_product_attr_defaults(	\gcalc\db\product\product::product_constructor_method( $product_slug, 'get_attr_defaults' ) ),
+			//'attr_values_names' =>	\gcalc\db\product\product::product_constructor_method( $product_slug, 'get_attr_values_names' )
 		);
 
+		$r['rest_data']['attr_values_names'] = \gcalc\db\product\product::get_product_attr_values_names( $r['rest_data']['attr_values'] );
 		$r['product_rest_data'] = $product_rest_data;
 
 		return $r;
 	}
+
+
+	/**
+	 * [get_product_attr_values_names description]
+	 * @param  [type] $data [description]
+	 * @return [type]       [description]
+	 */
+		public static function get_product_attr_values_names( array $data ){
+			$r = array();
+			//var_dump($data);
+			foreach ($data as $pa_name => $values ) {
+
+				if ( method_exists( '\gcalc\register_woo_elements', 'pa_' . $pa_name) ) {
+					$attr_constructor_method = '\gcalc\register_woo_elements::pa_' . $pa_name;
+					$labels = $attr_constructor_method( true );
+					if( $labels ){
+						'pa_' . $r[ $pa_name ] = $labels;
+					}
+				}
+
+				
+			}
+
+			return $r;
+		}
 
 	/**
 	 * Parses rare attributes defaults from product constructor to more frontend frendly form

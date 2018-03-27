@@ -57,7 +57,7 @@ class flyer extends product {
 					'default' => '210x297'
 				),
 				'pa_paper' => array(
-					'default' => 'couted-115g'
+					'default' => 'coated-115g'
 				),
 				'pa_print' => array(
 					'default' => '4x4'
@@ -96,7 +96,7 @@ class flyer extends product {
 	 */
 	public static function get_attr_defaults(  ){
 		$r = array( 
-				array( 'paper', array( 'couted-300g', 'couted-350g' ), '111' ),
+				array( 'paper', array( 'coated-300g', 'coated-350g' ), '111' ),
 				array( 'volume', array( '50', '100', '200', '300', '400', '500', '1000', '1500', '2500' ), '111' ),
 				array( 'format', array( '99x210', '105x148','148x210','210x297','297x420','125x176','176x250','custom-value' ), '111' ),
 				array( 'finish', array( 'gloss-1x0', 'gloss-1x1', 'matt-1x0','matt-1x1', 'soft-touch-1x0', 'soft-touch-1x1' ), '111' ),

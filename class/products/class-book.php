@@ -148,11 +148,11 @@ array(
 					'pa_cover_left_flap_width' => 			array( 'required' => false ),
 					'pa_cover_right_flap_width' => 			array( 'required' => false ),
 					'pa_cover_board_thickness' => 			array( 'required' => false ),
-					'pa_bw_pages' => 						array( 'required' => true, 	'minValue' => 2, 	'maxValue' => 500 ),
+					'pa_bw_pages' => 						array( 'required' => false, 	'minValue' => 0, 	'maxValue' => 500 ),
 					'pa_bw_format' => 						array( 'required' => false ),
 					'pa_bw_paper' => 						array( 'required' => false ),
 					'pa_bw_print' => 						array( 'required' => false ),
-					'pa_color_pages' => 					array( 'required' => false ),
+					'pa_color_pages' => 					array( 'required' => false, 	'minValue' => 0, 	'maxValue' => 500  ),
 					'pa_color_format' =>					array( 'required' => false ),
 					'pa_color_paper' => 					array( 'required' => false ),
 					'pa_color_print' => 					array( 'required' => false ),
@@ -245,7 +245,7 @@ array(
 																								'placeholder' 	=> __('', 'gcalc') 
 				),
 
-				'pa_paper' => 							array( 'default' => 'uncouted-80g', 	'type' 			=> 'select', 
+				'pa_paper' => 							array( 'default' => 'uncoated-80g', 	'type' 			=> 'select', 
 																								'placeholder' 	=> __('', 'gcalc') 
 				),
 
@@ -269,7 +269,7 @@ array(
 																								'placeholder' 	=> __('', 'gcalc') 
 				),
 
-				'pa_cover_paper' => 					array( 'default' => 'couted-300g', 		'type' 			=> 'select', 
+				'pa_cover_paper' => 					array( 'default' => 'coated-300g', 		'type' 			=> 'select', 
 																								'placeholder' 	=> __('', 'gcalc') 
 				),
 
@@ -281,7 +281,7 @@ array(
 																								'placeholder' 	=> __('', 'gcalc') 
 				),
 
-				'pa_cover_dust_jacket_paper' => 		array( 'default' => 'couted-170g', 		'type' 			=> 'select', 
+				'pa_cover_dust_jacket_paper' => 		array( 'default' => 'coated-170g', 		'type' 			=> 'select', 
 																								'placeholder' 	=> __('', 'gcalc') 
 				),
 
@@ -297,7 +297,7 @@ array(
 																								'placeholder' 	=> __('', 'gcalc') 
 				),
 
-				'pa_cover_cloth_covering_paper' => 		array( 'default' => 'couted-170g', 		'type' 			=> 'select', 
+				'pa_cover_cloth_covering_paper' => 		array( 'default' => 'coated-170g', 		'type' 			=> 'select', 
 																								'placeholder' 	=> __('', 'gcalc') 
 				),
 
@@ -325,15 +325,15 @@ array(
 																								'placeholder' 	=> __('', 'gcalc') 
 				),
 
-				'pa_cover_flaps' => 					array( 'default' => 'false', 			'type' 			=> 'select', 
+				'pa_cover_flaps' => 					array( 'default' => 'no-flaps', 		'type' 			=> 'select', 
 																								'placeholder' 	=> __('', 'gcalc') 
 				),
 
-				'pa_cover_left_flap_width' => 			array( 'default' => 0, 					'type' 			=> 'select', 
+				'pa_cover_left_flap_width' => 			array( 'default' => 0, 					'type' 			=> 'number', 
 																								'placeholder' 	=> __('', 'gcalc') 
 				),
 
-				'pa_cover_right_flap_width' => 			array( 'default' => 0, 					'type' 			=> 'select', 
+				'pa_cover_right_flap_width' => 			array( 'default' => 0, 					'type' 			=> 'number', 
 																								'placeholder' 	=> __('', 'gcalc') 
 				),
 
@@ -352,7 +352,7 @@ array(
 																								'placeholder' 	=> __('', 'gcalc') 
 				),
 
-				'pa_bw_paper' => 						array( 'default' => 'uncouted-80g',		'type' 			=> 'select', 
+				'pa_bw_paper' => 						array( 'default' => 'uncoated-80g',		'type' 			=> 'select', 
 																								'placeholder' 	=> __('', 'gcalc') 
 				),
 
@@ -372,7 +372,7 @@ array(
 																								'placeholder' 	=> __('', 'gcalc') 
 				),
 
-				'pa_color_paper' => 					array( 'default' => 'uncouted-80g',		'type' 			=> 'select', 
+				'pa_color_paper' => 					array( 'default' => 'uncoated-80g',		'type' 			=> 'select', 
 																								'placeholder' 	=> __('', 'gcalc') 
 				),
 
@@ -399,7 +399,7 @@ array(
 																								'placeholder' 	=> __('', 'gcalc') 
 				),
 
-				'pa_cover_endpaper_paper' => 			array( 'default' => 'uncouted-80g', 	'type' 			=> 'select', 
+				'pa_cover_endpaper_paper' => 			array( 'default' => 'uncoated-80g', 	'type' 			=> 'select', 
 																								'placeholder' 	=> __('Select endpaper material', 'gcalc') 
 				),
 
@@ -481,6 +481,19 @@ array(
 		}	
 	}
 
+
+
+/**
+ * [get_attr_values_names description]
+ * @return [type] [description]
+ */
+	public static function get_attr_values_names(  ){
+		$r = array();
+		$r['test'] = 'ok';
+		return $r;
+	}
+
+	
 	/**
 	 * Gettr for default attributes values
 	 * @return array Default attributes values
@@ -495,39 +508,39 @@ array(
 				array( 'color_format', 	array( 'custom-value' ), '111' ),
 				array( 'volume', array( 'custom-value' ), '111' ),				
 				array( 'paper', array( 
-					'couted-70g', 'couted-80g', 'couted-90g', 'couted-115g', 'couted-135g','couted-170g', 'couted-250g', 'couted-300g', 'couted-350g',
-					'uncouted-70g', 'uncouted-80g', 'uncouted-90g', 'uncouted-100g', 'uncouted-120g', 'uncouted-150g',
+					'coated-70g', 'coated-80g', 'coated-90g', 'coated-115g', 'coated-135g','coated-170g', 'coated-250g', 'coated-300g', 'coated-350g',
+					'uncoated-70g', 'uncoated-80g', 'uncoated-90g', 'uncoated-100g', 'uncoated-120g', 'uncoated-150g',
 					'eccobook_cream_16-60g', 'eccobook_cream_16-70g','eccobook_cream_16-80g', 'eccobook_cream_20-60g','eccobook_cream_20-70g', 'eccobook_cream_20-80g', 	
 					'ibook_white_16-60g','ibook_white_16-70g', 'ibook_cream_20-60g', 'ibook_cream_20-70g', 'ibook_cream_20-80g', 		
 					'munken_cream_18-80g','munken_cream_18-90g','munken_cream_15-80g','munken_cream_15-90g','munken_white_18-80g','munken_white_18-90g','munken_white_15-80g','munken_white_15-90g',
 				), '111' ),
 				array( 'cover_paper', array( 
-					'couted-300g', 'couted-350g', 'gc1-230g', 'gc1-250g', 'gc2-230g', 'gc2-250g' 
+					'coated-300g', 'coated-350g', 'gc1-230g', 'gc1-250g', 'gc2-230g', 'gc2-250g' 
 				), '111' ),
 				array( 'cover_dust_jacket_paper', array( 
-					'couted-170g', 'couted-250g'
+					'coated-170g', 'coated-250g'
 				), '111' ),
 				array( 'cover_cloth_covering_paper', array( 
-					'couted-170g'
+					'coated-170g'
 				), '111' ),
 				array( 'bw_paper', array( 
-					'couted-70g', 'couted-80g', 'couted-90g', 'couted-115g', 'couted-135g','couted-170g', 'couted-250g', 'couted-300g', 'couted-350g',
-					'uncouted-70g', 'uncouted-80g', 'uncouted-90g', 'uncouted-100g', 'uncouted-120g', 'uncouted-150g',
+					'coated-70g', 'coated-80g', 'coated-90g', 'coated-115g', 'coated-135g','coated-170g', 'coated-250g', 'coated-300g', 'coated-350g',
+					'uncoated-70g', 'uncoated-80g', 'uncoated-90g', 'uncoated-100g', 'uncoated-120g', 'uncoated-150g',
 					'eccobook_cream_16-60g', 'eccobook_cream_16-70g','eccobook_cream_16-80g', 'eccobook_cream_20-60g','eccobook_cream_20-70g', 'eccobook_cream_20-80g', 	
 					'ibook_white_16-60g','ibook_white_16-70g', 'ibook_cream_20-60g', 'ibook_cream_20-70g', 'ibook_cream_20-80g', 		
 					'munken_cream_18-80g','munken_cream_18-90g','munken_cream_15-80g','munken_cream_15-90g','munken_white_18-80g','munken_white_18-90g','munken_white_15-80g','munken_white_15-90g',
 				), '111' ),
 				array( 'color_paper', array( 
-					'couted-70g', 'couted-80g', 'couted-90g', 'couted-115g', 'couted-135g','couted-170g', 'couted-250g', 'couted-300g', 'couted-350g',
-					'uncouted-70g', 'uncouted-80g', 'uncouted-90g', 'uncouted-100g', 'uncouted-120g', 'uncouted-150g',
+					'coated-70g', 'coated-80g', 'coated-90g', 'coated-115g', 'coated-135g','coated-170g', 'coated-250g', 'coated-300g', 'coated-350g',
+					'uncoated-70g', 'uncoated-80g', 'uncoated-90g', 'uncoated-100g', 'uncoated-120g', 'uncoated-150g',
 					'eccobook_cream_16-60g', 'eccobook_cream_16-70g','eccobook_cream_16-80g', 'eccobook_cream_20-60g','eccobook_cream_20-70g', 'eccobook_cream_20-80g', 	
 					'ibook_white_16-60g','ibook_white_16-70g', 'ibook_cream_20-60g', 'ibook_cream_20-70g', 'ibook_cream_20-80g', 		
 					'munken_cream_18-80g','munken_cream_18-90g','munken_cream_15-80g','munken_cream_15-90g','munken_white_18-80g','munken_white_18-90g','munken_white_15-80g','munken_white_15-90g',
 				), '111' ),
 
 				array( 'cover_endpaper_paper', array( 
-					'couted-70g', 'couted-80g', 'couted-90g', 'couted-115g', 'couted-135g','couted-170g', 'couted-250g', 'couted-300g', 'couted-350g',
-					'uncouted-70g', 'uncouted-80g', 'uncouted-90g', 'uncouted-100g', 'uncouted-120g', 'uncouted-150g',
+					'coated-70g', 'coated-80g', 'coated-90g', 'coated-115g', 'coated-135g','coated-170g', 'coated-250g', 'coated-300g', 'coated-350g',
+					'uncoated-70g', 'uncoated-80g', 'uncoated-90g', 'uncoated-100g', 'uncoated-120g', 'uncoated-150g',
 					'eccobook_cream_16-60g', 'eccobook_cream_16-70g','eccobook_cream_16-80g', 'eccobook_cream_20-60g','eccobook_cream_20-70g', 'eccobook_cream_20-80g', 	
 					'ibook_white_16-60g','ibook_white_16-70g', 'ibook_cream_20-60g', 'ibook_cream_20-70g', 'ibook_cream_20-80g', 		
 					'munken_cream_18-80g','munken_cream_18-90g','munken_cream_15-80g','munken_cream_15-90g','munken_white_18-80g','munken_white_18-90g','munken_white_15-80g','munken_white_15-90g',
@@ -557,7 +570,7 @@ array(
 
 				array( 'cover_ribbon', array( 'ribbon-0', 'ribbon-red', 'ribbon-orange', 'ribbon-green', 'ribbon-yellow' ), '111' ),
 				array( 'cover_ribbon_width', array( 'ribbon-0', 'ribbon-3', 'ribbon-6' ), '111' ),
-				array( 'cover_flaps', array( 'true', 'false' ), '111' ),
+				array( 'cover_flaps', array( 'no-flaps', 'flap-left', 'flap-right', 'flap-both' ), '111' ),
 				array( 'cover_left_flap_width', array( 'custom-value' ), '111' ),
 				array( 'cover_right_flap_width', array( 'custom-value' ), '111' ),
 				array( 'cover_board_thickness', array( 'custom-value' ), '111' ),

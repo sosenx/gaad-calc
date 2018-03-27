@@ -27,7 +27,7 @@ class paper{
 	* Return click cost
 	*/
 	function get_paper( string $paper_slug ){	
-		$paper_slug = $paper_slug === "" ? "couted-350g" : $paper_slug;
+		$paper_slug = $paper_slug === "" ? "coated-350g" : $paper_slug;
 		return isset( $this->papers[ $paper_slug ] ) ? $this->papers[ $paper_slug ] : 'error-paper-name';
 	}
 
@@ -51,56 +51,56 @@ fo dev version it just sets an array
 				),
 
 			'gc1-230g' 		=> array( 
-				'price_per_kg' 	=> 4.6, 'label' => 'couted 90g', 	'weight' => .23, 	'thickness' => .336 ),
+				'price_per_kg' 	=> 4.6, 'label' => 'coated 90g', 	'weight' => .23, 	'thickness' => .336 ),
 			'gc1-250g' 		=> array( 
-				'price_per_kg' 	=> 4.6, 'label' => 'couted 90g', 	'weight' => .25, 	'thickness' => .378 ),
+				'price_per_kg' 	=> 4.6, 'label' => 'coated 90g', 	'weight' => .25, 	'thickness' => .378 ),
 			'gc2-230g' 		=> array( 
-				'price_per_kg' 	=> 4.6, 'label' => 'couted 90g', 	'weight' => .23, 	'thickness' => .336 ),
+				'price_per_kg' 	=> 4.6, 'label' => 'coated 90g', 	'weight' => .23, 	'thickness' => .336 ),
 			'gc2-250g' 		=> array( 
-				'price_per_kg' 	=> 4.6, 'label' => 'couted 90g', 	'weight' => .25, 	'thickness' => .378 ),
+				'price_per_kg' 	=> 4.6, 'label' => 'coated 90g', 	'weight' => .25, 	'thickness' => .378 ),
 
 
 
 
 
-			'couted-90g' 		=> array( 
-				'price_per_kg' 	=> 3.6, 'label' => 'couted 90g', 	'weight' => .09, 	'thickness' => .074 ),
-			'couted-115g' 		=> array( 
-				'price_per_kg' 	=> 3.6, 'label' => 'couted 115g', 	'weight' => .115, 	'thickness' => .09 ),
-			'couted-130g' 		=> array( 
-				'price_per_kg' 	=> 3.6, 'label' => 'couted 135g', 	'weight' => .135, 	'thickness' => .1 ),
-			'couted-135g' 		=> array( 
-				'price_per_kg' 	=> 3.6, 'label' => 'couted 135g', 	'weight' => .135, 	'thickness' => .1 ),
-			'couted-150g' 		=> array( 
-				'price_per_kg' 	=> 3.6, 'label' => 'couted 150g', 	'weight' => .15, 	'thickness' => .105 ),
-			'couted-170g' 		=> array( 
-				'price_per_kg' 	=> 3.6, 'label' => 'couted 170g', 	'weight' => .17, 	'thickness' => .13 ),
-			'couted-200g' 		=> array( 
-				'price_per_kg' 	=> 3.6, 'label' => 'couted 200g', 	'weight' => .2, 	'thickness' => .15 ),
-			'couted-250g' 		=> array( 
-				'price_per_kg' 	=> 3.6, 'label' => 'couted 250g', 	'weight' => .25, 	'thickness' => .19 ),
-			'couted-300g' 		=> array( 
-				'price_per_kg' 	=> 3.6, 'label' => 'couted 300g', 	'weight' => .3, 	'thickness' => .235 ),			
-			'couted-350g' 		=> array( 
-				'price_per_kg' 	=> 3.6, 'label' => 'couted 350g', 	'weight' => .35, 	'thickness' => .274 ),
+			'coated-90g' 		=> array( 
+				'price_per_kg' 	=> 3.6, 'label' => 'coated 90g', 	'weight' => .09, 	'thickness' => .074 ),
+			'coated-115g' 		=> array( 
+				'price_per_kg' 	=> 3.6, 'label' => 'coated 115g', 	'weight' => .115, 	'thickness' => .09 ),
+			'coated-130g' 		=> array( 
+				'price_per_kg' 	=> 3.6, 'label' => 'coated 135g', 	'weight' => .135, 	'thickness' => .1 ),
+			'coated-135g' 		=> array( 
+				'price_per_kg' 	=> 3.6, 'label' => 'coated 135g', 	'weight' => .135, 	'thickness' => .1 ),
+			'coated-150g' 		=> array( 
+				'price_per_kg' 	=> 3.6, 'label' => 'coated 150g', 	'weight' => .15, 	'thickness' => .105 ),
+			'coated-170g' 		=> array( 
+				'price_per_kg' 	=> 3.6, 'label' => 'coated 170g', 	'weight' => .17, 	'thickness' => .13 ),
+			'coated-200g' 		=> array( 
+				'price_per_kg' 	=> 3.6, 'label' => 'coated 200g', 	'weight' => .2, 	'thickness' => .15 ),
+			'coated-250g' 		=> array( 
+				'price_per_kg' 	=> 3.6, 'label' => 'coated 250g', 	'weight' => .25, 	'thickness' => .19 ),
+			'coated-300g' 		=> array( 
+				'price_per_kg' 	=> 3.6, 'label' => 'coated 300g', 	'weight' => .3, 	'thickness' => .235 ),			
+			'coated-350g' 		=> array( 
+				'price_per_kg' 	=> 3.6, 'label' => 'coated 350g', 	'weight' => .35, 	'thickness' => .274 ),
 			
-			'uncouted-70g' 		=> array( 
+			'uncoated-70g' 		=> array( 
 				'price_per_kg' 	=> 3.6, 'label' => 'Offset 70g', 	'weight' => .07, 	'thickness' => .09 ),
-			'uncouted-80g' 		=> array( 
+			'uncoated-80g' 		=> array( 
 				'price_per_kg' 	=> 3.6, 'label' => 'Offset 80g', 	'weight' => .08, 	'thickness' => .1 ),
-			'uncouted-90g' 		=> array( 
+			'uncoated-90g' 		=> array( 
 				'price_per_kg' 	=> 3.6, 'label' => 'Offset 90g', 	'weight' => .09, 	'thickness' => .11 ),
-			'uncouted-100g' 		=> array( 
+			'uncoated-100g' 		=> array( 
 				'price_per_kg' 	=> 3.6, 'label' => 'Offset 100g', 	'weight' => .1, 	'thickness' => .12 ),
-			'uncouted-120g' 		=> array( 
+			'uncoated-120g' 		=> array( 
 				'price_per_kg' 	=> 3.6, 'label' => 'Offset 120g', 	'weight' => .12, 	'thickness' => .14 ),
-			'uncouted-150g' 		=> array( 
+			'uncoated-150g' 		=> array( 
 				'price_per_kg' 	=> 3.6, 'label' => 'Offset 150g', 	'weight' => .15, 	'thickness' => .17 ),
-			'uncouted-170g' 		=> array( 
+			'uncoated-170g' 		=> array( 
 				'price_per_kg' 	=> 3.6, 'label' => 'Offset 170g', 	'weight' => .15, 	'thickness' => .195 ),
-			'uncouted-200g' 		=> array( 
+			'uncoated-200g' 		=> array( 
 				'price_per_kg' 	=> 3.6, 'label' => 'Offset 200g', 	'weight' => .15, 	'thickness' => .23 ),
-			'uncouted-250g' 		=> array( 
+			'uncoated-250g' 		=> array( 
 				'price_per_kg' 	=> 3.6, 'label' => 'Offset 250g', 	'weight' => .25, 	'thickness' => .27 ),
 			
 			'ekobookc-60g-2.0' 	=> array( 

@@ -59,7 +59,7 @@ class brochure extends product {
 					'default' => '210x297'
 				),
 				'pa_paper' => array(
-					'default' => 'couted-115g'
+					'default' => 'coated-115g'
 				),
 				'pa_print' => array(
 					'default' => '4x4'
@@ -100,7 +100,7 @@ class brochure extends product {
 	 */
 	public static function get_attr_defaults(  ){
 		$r = array( 
-				array( 'paper', array( 'couted-300g', 'couted-350g' ), '111' ),
+				array( 'paper', array( 'coated-300g', 'coated-350g' ), '111' ),
 				array( 'volume', array( '50', '100', '200', '300', '400', '500', '1000', '1500', '2500' ), '111' ),
 				array( 'format', array( '99x420', '198x210', '148x210','210x297','297x420','125x176','176x250','custom-value' ), '111' ),
 				array( 'folding', array( 'half-fold', 'tri-fold', 'z-fold' ), '111' ),
