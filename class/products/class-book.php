@@ -46,6 +46,16 @@ class book extends product {
 					function( attributes, input_form ){
 						var max_quantity = 10;
 						var valid = attributes.quantity <= max_quantity;
+
+						if( attributes.quantity < 0 ){ 
+							input_form.unvalid( {
+								attr_name 	: "quantity",								
+								type 		: "value_change",									
+								set_value 	: 0
+							} );
+							return true;
+						}
+
 						if( valid ){
 							input_form.valid( "c23c21" );
 						} else {
@@ -107,23 +117,28 @@ class book extends product {
 					}
 				'
 			),
+
+// ODD PAGES SUM
 			array(
 				'attr_name' => 'color_pages',
 				'validator' =>  'var validator =
 					function( attributes, input_form ){						
 						var sum = parseInt(attributes.bw_pages) + parseInt(attributes.color_pages);
-  		
+  						
 						var valid = sum % 2 == 0;
 						if( valid ){
 							input_form.valid( "32df43" );
 						} else {
-							input_form.unvalid( {
-								attr_name 	: "color_pages",
-								msg 		: "Pages sum musn\'t be odd.",
-								type 		: "error",
-								infobox 	: "book_blocks",
-								code 		: "32df43"
-							} );
+							if( !( parseInt( attributes.bw_pages ) < 0 || parseInt( attributes.color_pages ) < 0 ) ){
+								input_form.unvalid( {
+									attr_name 	: "color_pages",
+									msg 		: "Pages sum musn\'t be odd.",
+									type 		: "error",
+									infobox 	: "book_blocks",
+									code 		: "32df43"
+								} );
+							}
+								
 						}
 						
 					}
@@ -134,7 +149,9 @@ class book extends product {
 				'validator' =>  'var validator =
 					function( attributes, input_form ){						
 						if( attributes.cover_flaps === "no-flaps" ){
-							input_form.disable_attr( [ "cover_left_flap_width", "cover_right_flap_width" ] )
+							input_form.disable_attr( [ "cover_left_flap_width", "cover_right_flap_width" ] );
+						} else {
+							input_form.enable_attr( [ "cover_left_flap_width", "cover_right_flap_width" ] );	
 						}
 						console.log( attributes );
 						var valid = true;
@@ -153,6 +170,65 @@ class book extends product {
 					}
 				'
 			),
+			array(
+				'attr_name' => 'cover_left_flap_width',
+				'validator' =>  'var validator =
+					function( attributes, input_form ){						
+						if( attributes.cover_left_flap_width < 0 ){
+							input_form.unvalid( {
+								attr_name 	: "cover_right_flap_width",								
+								type 		: "value_change",									
+								set_value 	: 0
+							} );
+						} else {
+							input_form.valid( "342fgds" );
+						}						
+					}
+				'
+			),
+			array(
+				'attr_name' => 'cover_right_flap_width',
+				'validator' =>  'var validator =
+					function( attributes, input_form ){						
+						if( attributes.cover_right_flap_width < 0 ){
+							input_form.unvalid( {
+								attr_name 	: "cover_right_flap_width",								
+								type 		: "value_change",									
+								set_value 	: 0
+							} );
+						} 						
+					}
+				'
+			),
+			array(
+				'attr_name' => 'bw_pages',
+				'validator' =>  'var validator =
+					function( attributes, input_form ){						
+						if( attributes.bw_pages < 0 ){
+							input_form.unvalid( {
+								attr_name 	: "bw_pages",								
+								type 		: "value_change",									
+								set_value 	: 0
+							} );
+						} 					
+					}
+				'
+			),
+			array(
+				'attr_name' => 'color_pages',
+				'validator' =>  'var validator =
+					function( attributes, input_form ){						
+						if( attributes.color_pages < 0 ){
+							input_form.unvalid( {
+								attr_name 	: "color_pages",								
+								type 		: "value_change",									
+								set_value 	: 0
+							} );
+						} 					
+					}
+				'
+			)
+
 
 
 

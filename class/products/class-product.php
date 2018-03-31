@@ -99,25 +99,20 @@ class product {
 	 * @param  [type] $data [description]
 	 * @return [type]       [description]
 	 */
-		public static function get_product_attr_values_names( array $data ){
-			$r = array();
-			
-			foreach ($data as $pa_name => $values ) {
+	public static function get_product_attr_values_names( array $data ){
+		$r = array();	
+		foreach ($data as $pa_name => $values ) {
+			if ( method_exists( '\gcalc\register_woo_elements', 'pa_' . $pa_name) ) {
+				$attr_constructor_method = '\gcalc\register_woo_elements::pa_' . $pa_name;
+				$labels = $attr_constructor_method( true );
 
-				if ( method_exists( '\gcalc\register_woo_elements', 'pa_' . $pa_name) ) {
-					$attr_constructor_method = '\gcalc\register_woo_elements::pa_' . $pa_name;
-					$labels = $attr_constructor_method( true );
-
-					if( $labels ){
-						'pa_' . $r[ $pa_name ] = $labels;
-					}
+				if( $labels ){
+					'pa_' . $r[ $pa_name ] = $labels;
 				}
-
-				
 			}
-
-			return $r;
 		}
+		return $r;
+	}
 
 	/**
 	 * Parses rare attributes defaults from product constructor to more frontend frendly form
