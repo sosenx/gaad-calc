@@ -260,7 +260,7 @@ class register_woo_elements{
 	/**
 	* Adds paper attribute
 	*/
-	public static function pa_paper(){
+	public static function pa_paper( $return = NULL ){
 		$name = 'paper';
 		$label = \__('Paper', 'gcalc');
 		\gcalc\register_woo_elements::process_add_attribute( array(
@@ -295,11 +295,11 @@ class register_woo_elements{
 		\wp_insert_term( $r['eccobook_20-60g']=		'Eccobook cream vol. 2.0 60g',		'pa_' . $name, array( 'description' => \__('Ecco book cream 60g vol 20', 'gcalc'), 	'slug' => 'eccobook_20-60g' ) );
 		\wp_insert_term( $r['eccobook_20-70g']=		'Eccobook cream vol. 2.0 70g',		'pa_' . $name, array( 'description' => \__('Ecco book cream 70g vol 20', 'gcalc'), 	'slug' => 'eccobook_20-70g' ) );
 		\wp_insert_term( $r['eccobook_20-80g']=		'Eccobook cream vol. 2.0 80g',		'pa_' . $name, array( 'description' => \__('Ecco book cream 80g vol 20', 'gcalc'), 	'slug' => 'eccobook_20-80g' ) );
-		\wp_insert_term( $r['ibook_white_16-60g']=	'iBook white vaol. 1,6 60g',		'pa_' . $name, array( 'description' => \__('iBOOK cream 60g vol 16', 'gcalc'), 		'slug' => 'ibook_white_16-60g' ) );
-		\wp_insert_term( $r['ibook_white_16-70g']=	'iBook white vaol. 1,6 70g',		'pa_' . $name, array( 'description' => \__('iBOOK cream 70g vol 16', 'gcalc'), 		'slug' => 'ibook_white_16-70g' ) );
-		\wp_insert_term( $r['ibook_cream_20-60g']=	'iBook cream vaol. 2,0 60g',		'pa_' . $name, array( 'description' => \__('iBOOK white 60g vol 20', 'gcalc'), 		'slug' => 'ibook_cream_20-60g' ) );
-		\wp_insert_term( $r['ibook_cream_20-70g']=	'iBook cream vaol. 2,0 70g',		'pa_' . $name, array( 'description' => \__('iBOOK white 70g vol 20', 'gcalc'), 		'slug' => 'ibook_cream_20-70g' ) );
-		\wp_insert_term( $r['ibook_cream_20-80g']=	'iBook cream vaol. 2,0 80g',		'pa_' . $name, array( 'description' => \__('iBOOK white 80g vol 20', 'gcalc'), 		'slug' => 'ibook_cream_20-80g' ) );
+		\wp_insert_term( $r['ibook_white_16-60g']=	'iBook white vol 1.6 60g',			'pa_' . $name, array( 'description' => \__('iBOOK cream 60g vol 16', 'gcalc'), 		'slug' => 'ibook_white_16-60g' ) );
+		\wp_insert_term( $r['ibook_white_16-70g']=	'iBook white vol 1.6 70g',			'pa_' . $name, array( 'description' => \__('iBOOK cream 70g vol 16', 'gcalc'), 		'slug' => 'ibook_white_16-70g' ) );
+		\wp_insert_term( $r['ibook_cream_20-60g']=	'iBook cream vol 2.0 60g',			'pa_' . $name, array( 'description' => \__('iBOOK white 60g vol 20', 'gcalc'), 		'slug' => 'ibook_cream_20-60g' ) );
+		\wp_insert_term( $r['ibook_cream_20-70g']=	'iBook cream vol 2.0 70g',			'pa_' . $name, array( 'description' => \__('iBOOK white 70g vol 20', 'gcalc'), 		'slug' => 'ibook_cream_20-70g' ) );
+		\wp_insert_term( $r['ibook_cream_20-80g']=	'iBook cream vol 2.0 80g',			'pa_' . $name, array( 'description' => \__('iBOOK white 80g vol 20', 'gcalc'), 		'slug' => 'ibook_cream_20-80g' ) );
 		\wp_insert_term( $r['munken_cream_18-80g']=	'Munken cream vol. 1.8 80g',		'pa_' . $name, array( 'description' => \__('Munken cream 80g vol 16', 'gcalc'), 	'slug' => 'munken_cream_18-80g' ) );
 		\wp_insert_term( $r['munken_cream_18-90g']=	'Munken cream vol. 1.8 90g',		'pa_' . $name, array( 'description' => \__('Munken cream 90g vol 16', 'gcalc'), 	'slug' => 'munken_cream_18-90g' ) );
 		\wp_insert_term( $r['munken_cream_15-80g']=	'Munken cream vol. 1.5 80g',		'pa_' . $name, array( 'description' => \__('Munken cream 80g vol 16', 'gcalc'), 	'slug' => 'munken_cream_15-80g' ) );
@@ -316,7 +316,7 @@ class register_woo_elements{
 	/**
 	* Adds paper attribute
 	*/
-	public static function pa_cover_endpaper_paper(){
+	public static function pa_cover_endpaper_paper( $return = NULL ){
 		$name = 'cover_endpaper';
 		$label = \__('Endpaper', 'gcalc');
 		\gcalc\register_woo_elements::process_add_attribute( array(
@@ -351,11 +351,11 @@ class register_woo_elements{
 		\wp_insert_term( $r['eccobook_20-60g']=		'Eccobook cream vol. 2.0 60g',		'pa_' . $name, array( 'description' => \__('Ecco book cream 60g vol 20', 'gcalc'), 	'slug' => 'eccobook_20-60g' ) );
 		\wp_insert_term( $r['eccobook_20-70g']=		'Eccobook cream vol. 2.0 70g',		'pa_' . $name, array( 'description' => \__('Ecco book cream 70g vol 20', 'gcalc'), 	'slug' => 'eccobook_20-70g' ) );
 		\wp_insert_term( $r['eccobook_20-80g']=		'Eccobook cream vol. 2.0 80g',		'pa_' . $name, array( 'description' => \__('Ecco book cream 80g vol 20', 'gcalc'), 	'slug' => 'eccobook_20-80g' ) );
-		\wp_insert_term( $r['ibook_white_16-60g']=	'iBook white vaol. 1,6 60g',		'pa_' . $name, array( 'description' => \__('iBOOK cream 60g vol 16', 'gcalc'), 		'slug' => 'ibook_white_16-60g' ) );
-		\wp_insert_term( $r['ibook_white_16-70g']=	'iBook white vaol. 1,6 70g',		'pa_' . $name, array( 'description' => \__('iBOOK cream 70g vol 16', 'gcalc'), 		'slug' => 'ibook_white_16-70g' ) );
-		\wp_insert_term( $r['ibook_cream_20-60g']=	'iBook cream vaol. 2,0 60g',		'pa_' . $name, array( 'description' => \__('iBOOK white 60g vol 20', 'gcalc'), 		'slug' => 'ibook_cream_20-60g' ) );
-		\wp_insert_term( $r['ibook_cream_20-70g']=	'iBook cream vaol. 2,0 70g',		'pa_' . $name, array( 'description' => \__('iBOOK white 70g vol 20', 'gcalc'), 		'slug' => 'ibook_cream_20-70g' ) );
-		\wp_insert_term( $r['ibook_cream_20-80g']=	'iBook cream vaol. 2,0 80g',		'pa_' . $name, array( 'description' => \__('iBOOK white 80g vol 20', 'gcalc'), 		'slug' => 'ibook_cream_20-80g' ) );
+		\wp_insert_term( $r['ibook_white_16-60g']=	'iBook white vol 1.6 60g',		'pa_' . $name, array( 'description' => \__('iBOOK cream 60g vol 16', 'gcalc'), 		'slug' => 'ibook_white_16-60g' ) );
+		\wp_insert_term( $r['ibook_white_16-70g']=	'iBook white vol 1.6 70g',		'pa_' . $name, array( 'description' => \__('iBOOK cream 70g vol 16', 'gcalc'), 		'slug' => 'ibook_white_16-70g' ) );
+		\wp_insert_term( $r['ibook_cream_20-60g']=	'iBook cream vol 2.0 60g',		'pa_' . $name, array( 'description' => \__('iBOOK white 60g vol 20', 'gcalc'), 		'slug' => 'ibook_cream_20-60g' ) );
+		\wp_insert_term( $r['ibook_cream_20-70g']=	'iBook cream vol 2.0 70g',		'pa_' . $name, array( 'description' => \__('iBOOK white 70g vol 20', 'gcalc'), 		'slug' => 'ibook_cream_20-70g' ) );
+		\wp_insert_term( $r['ibook_cream_20-80g']=	'iBook cream vol 2.0 80g',		'pa_' . $name, array( 'description' => \__('iBOOK white 80g vol 20', 'gcalc'), 		'slug' => 'ibook_cream_20-80g' ) );
 		\wp_insert_term( $r['munken_cream_18-80g']=	'Munken cream vol. 1.8 80g',		'pa_' . $name, array( 'description' => \__('Munken cream 80g vol 16', 'gcalc'), 	'slug' => 'munken_cream_18-80g' ) );
 		\wp_insert_term( $r['munken_cream_18-90g']=	'Munken cream vol. 1.8 90g',		'pa_' . $name, array( 'description' => \__('Munken cream 90g vol 16', 'gcalc'), 	'slug' => 'munken_cream_18-90g' ) );
 		\wp_insert_term( $r['munken_cream_15-80g']=	'Munken cream vol. 1.5 80g',		'pa_' . $name, array( 'description' => \__('Munken cream 80g vol 16', 'gcalc'), 	'slug' => 'munken_cream_15-80g' ) );
@@ -549,7 +549,9 @@ class register_woo_elements{
 		/*
 		* Adding print sizes
 		*/		
-		\wp_insert_term( $r['coated-170g'] = 'coated-170g', 			'pa_' . $name, array( 'description' => \__('Coated 170g', 'gcalc'), 'slug' => 'coated-170g' ) );						
+		\wp_insert_term( $r['coated-150g'] = 'Coated paper 150g', 			'pa_' . $name, array( 'description' => \__('Coated 150g', 'gcalc'), 'slug' => 'coated-150g' ) );						
+		\wp_insert_term( $r['coated-170g'] = 'Coated paper 170g', 			'pa_' . $name, array( 'description' => \__('Coated 170g', 'gcalc'), 'slug' => 'coated-170g' ) );						
+		\wp_insert_term( $r['coated-200g'] = 'Coated paper 200g', 			'pa_' . $name, array( 'description' => \__('Coated 200g', 'gcalc'), 'slug' => 'coated-200g' ) );						
 	
 		return $return ? $r : null;
 	}
@@ -574,7 +576,9 @@ class register_woo_elements{
 		* Adding print sizes
 		*/
 		
-		\wp_insert_term( $r['coated-170g'] = 'coated-170g', 			'pa_' . $name, array( 'description' => \__('Coated 170g', 'gcalc'), 'slug' => 'coated-170g' ) );						
+		\wp_insert_term( $r['coated-150g'] = 'Coated paper 150g', 			'pa_' . $name, array( 'description' => \__('Coated 150g', 'gcalc'), 'slug' => 'coated-150g' ) );						
+		\wp_insert_term( $r['coated-170g'] = 'Coated paper 170g', 			'pa_' . $name, array( 'description' => \__('Coated 170g', 'gcalc'), 'slug' => 'coated-170g' ) );						
+		\wp_insert_term( $r['coated-200g'] = 'Coated paper 200g', 			'pa_' . $name, array( 'description' => \__('Coated 200g', 'gcalc'), 'slug' => 'coated-200g' ) );						
 	
 		return $return ? $r : null;
 	}
@@ -618,11 +622,11 @@ class register_woo_elements{
 		\wp_insert_term( $r['eccobook_20-60g']=		'Eccobook cream vol. 2.0 60g',		'pa_' . $name, array( 'description' => \__('Ecco book cream 60g vol 20', 'gcalc'), 	'slug' => 'eccobook_20-60g' ) );
 		\wp_insert_term( $r['eccobook_20-70g']=		'Eccobook cream vol. 2.0 70g',		'pa_' . $name, array( 'description' => \__('Ecco book cream 70g vol 20', 'gcalc'), 	'slug' => 'eccobook_20-70g' ) );
 		\wp_insert_term( $r['eccobook_20-80g']=		'Eccobook cream vol. 2.0 80g',		'pa_' . $name, array( 'description' => \__('Ecco book cream 80g vol 20', 'gcalc'), 	'slug' => 'eccobook_20-80g' ) );
-		\wp_insert_term( $r['ibook_white_16-60g']=	'iBook white vaol. 1,6 60g',		'pa_' . $name, array( 'description' => \__('iBOOK cream 60g vol 16', 'gcalc'), 		'slug' => 'ibook_white_16-60g' ) );
-		\wp_insert_term( $r['ibook_white_16-70g']=	'iBook white vaol. 1,6 70g',		'pa_' . $name, array( 'description' => \__('iBOOK cream 70g vol 16', 'gcalc'), 		'slug' => 'ibook_white_16-70g' ) );
-		\wp_insert_term( $r['ibook_cream_20-60g']=	'iBook cream vaol. 2,0 60g',		'pa_' . $name, array( 'description' => \__('iBOOK white 60g vol 20', 'gcalc'), 		'slug' => 'ibook_cream_20-60g' ) );
-		\wp_insert_term( $r['ibook_cream_20-70g']=	'iBook cream vaol. 2,0 70g',		'pa_' . $name, array( 'description' => \__('iBOOK white 70g vol 20', 'gcalc'), 		'slug' => 'ibook_cream_20-70g' ) );
-		\wp_insert_term( $r['ibook_cream_20-80g']=	'iBook cream vaol. 2,0 80g',		'pa_' . $name, array( 'description' => \__('iBOOK white 80g vol 20', 'gcalc'), 		'slug' => 'ibook_cream_20-80g' ) );
+		\wp_insert_term( $r['ibook_white_16-60g']=	'iBook white vol 1.6 60g',		'pa_' . $name, array( 'description' => \__('iBOOK cream 60g vol 16', 'gcalc'), 		'slug' => 'ibook_white_16-60g' ) );
+		\wp_insert_term( $r['ibook_white_16-70g']=	'iBook white vol 1.6 70g',		'pa_' . $name, array( 'description' => \__('iBOOK cream 70g vol 16', 'gcalc'), 		'slug' => 'ibook_white_16-70g' ) );
+		\wp_insert_term( $r['ibook_cream_20-60g']=	'iBook cream vol 2.0 60g',		'pa_' . $name, array( 'description' => \__('iBOOK white 60g vol 20', 'gcalc'), 		'slug' => 'ibook_cream_20-60g' ) );
+		\wp_insert_term( $r['ibook_cream_20-70g']=	'iBook cream vol 2.0 70g',		'pa_' . $name, array( 'description' => \__('iBOOK white 70g vol 20', 'gcalc'), 		'slug' => 'ibook_cream_20-70g' ) );
+		\wp_insert_term( $r['ibook_cream_20-80g']=	'iBook cream vol 2.0 80g',		'pa_' . $name, array( 'description' => \__('iBOOK white 80g vol 20', 'gcalc'), 		'slug' => 'ibook_cream_20-80g' ) );
 		\wp_insert_term( $r['munken_cream_18-80g']=	'Munken cream vol. 1.8 80g',		'pa_' . $name, array( 'description' => \__('Munken cream 80g vol 16', 'gcalc'), 	'slug' => 'munken_cream_18-80g' ) );
 		\wp_insert_term( $r['munken_cream_18-90g']=	'Munken cream vol. 1.8 90g',		'pa_' . $name, array( 'description' => \__('Munken cream 90g vol 16', 'gcalc'), 	'slug' => 'munken_cream_18-90g' ) );
 		\wp_insert_term( $r['munken_cream_15-80g']=	'Munken cream vol. 1.5 80g',		'pa_' . $name, array( 'description' => \__('Munken cream 80g vol 16', 'gcalc'), 	'slug' => 'munken_cream_15-80g' ) );
@@ -662,23 +666,25 @@ class register_woo_elements{
 		\wp_insert_term( $r['coated-250g'] = 			'Coated paper 250g', 			'pa_' . $name, array( 'description' => \__('Coated 250g', 'gcalc'), 				'slug' => 'coated-250g' ) );
 		\wp_insert_term( $r['coated-300g']=				'Coated paper 300g', 			'pa_' . $name, array( 'description' => \__('Coated 250g', 'gcalc'), 				'slug' => 'coated-250g' ) );	
 		\wp_insert_term( $r['coated-350g'] = 			'Coated paper 350g', 			'pa_' . $name, array( 'description' => \__('Coated 350g', 'gcalc'), 				'slug' => 'coated-350g' ) );
-		\wp_insert_term( $r['uncoated-80g'] = 			'Uncoated paper 70g', 			'pa_' . $name, array( 'description' => \__('Uncoated 70g', 'gcalc'), 				'slug' => 'uncoated-80g' ) );
-		\wp_insert_term( $r['uncoated-90g'] = 			'Uncoated paper 80g', 			'pa_' . $name, array( 'description' => \__('Uncoated 70g', 'gcalc'), 				'slug' => 'uncoated-90g' ) );
 		\wp_insert_term( $r['uncoated-70g'] = 			'Uncoated paper 90g', 			'pa_' . $name, array( 'description' => \__('Uncoated 70g', 'gcalc'), 				'slug' => 'uncoated-70g' ) );
-		\wp_insert_term( $r['uncoated-100g'] = 			'Uncoated paper 100g', 			'pa_' . $name, array( 'description' => \__('Uncoated 70g', 'gcalc'), 				'slug' => 'uncoated-100g' ) );
-		\wp_insert_term( $r['uncoated-120g'] = 			'Uncoated paper 120g', 			'pa_' . $name, array( 'description' => \__('Uncoated 70g', 'gcalc'), 				'slug' => 'uncoated-120g' ) );
-		\wp_insert_term( $r['uncoated-150g'] = 			'Uncoated paper 150g',			'pa_' . $name, array( 'description' => \__('Uncoated 70g', 'gcalc'), 				'slug' => 'uncoated-150g' ) );
+		\wp_insert_term( $r['uncoated-80g'] = 			'Uncoated paper 70g', 			'pa_' . $name, array( 'description' => \__('Uncoated 80g', 'gcalc'), 				'slug' => 'uncoated-80g' ) );
+		\wp_insert_term( $r['uncoated-90g'] = 			'Uncoated paper 80g', 			'pa_' . $name, array( 'description' => \__('Uncoated 90g', 'gcalc'), 				'slug' => 'uncoated-90g' ) );
+		\wp_insert_term( $r['uncoated-100g'] = 			'Uncoated paper 100g', 			'pa_' . $name, array( 'description' => \__('Uncoated 100g', 'gcalc'), 				'slug' => 'uncoated-100g' ) );
+		\wp_insert_term( $r['uncoated-120g'] = 			'Uncoated paper 120g', 			'pa_' . $name, array( 'description' => \__('Uncoated 120g', 'gcalc'), 				'slug' => 'uncoated-120g' ) );
+		\wp_insert_term( $r['uncoated-150g'] = 			'Uncoated paper 150g',			'pa_' . $name, array( 'description' => \__('Uncoated 150g', 'gcalc'), 				'slug' => 'uncoated-150g' ) );
+		\wp_insert_term( $r['uncoated-200g'] = 			'Uncoated paper 200g',			'pa_' . $name, array( 'description' => \__('Uncoated 200g', 'gcalc'), 				'slug' => 'uncoated-150g' ) );
+		\wp_insert_term( $r['uncoated-250g'] = 			'Uncoated paper 250g',			'pa_' . $name, array( 'description' => \__('Uncoated 250g', 'gcalc'), 				'slug' => 'uncoated-150g' ) );
 		\wp_insert_term( $r['eccobook_16-60g'] = 		'Eccobook cream vol. 1.6 60g',	'pa_' . $name, array( 'description' => \__('Ecco book cream 60g vol 16', 'gcalc'), 	'slug' => 'eccobook_16-60g' ) );
 		\wp_insert_term( $r['eccobook_16-70g'] = 		'Eccobook cream vol. 1.6 70g',	'pa_' . $name, array( 'description' => \__('Ecco book cream 70g vol 16', 'gcalc'), 	'slug' => 'eccobook_16-70g' ) );
 		\wp_insert_term( $r['eccobook_16-80g'] = 		'Eccobook cream vol. 1.6 80g',	'pa_' . $name, array( 'description' => \__('Ecco book cream 80g vol 16', 'gcalc'), 	'slug' => 'eccobook_16-80g' ) );
 		\wp_insert_term( $r['eccobook_20-60g'] = 		'Eccobook cream vol. 2.0 60g',	'pa_' . $name, array( 'description' => \__('Ecco book cream 60g vol 20', 'gcalc'), 	'slug' => 'eccobook_20-60g' ) );
 		\wp_insert_term( $r['eccobook_20-70g'] = 		'Eccobook cream vol. 2.0 70g',	'pa_' . $name, array( 'description' => \__('Ecco book cream 70g vol 20', 'gcalc'), 	'slug' => 'eccobook_20-70g' ) );
 		\wp_insert_term( $r['eccobook_20-80g'] = 		'Eccobook cream vol. 2.0 80g',	'pa_' . $name, array( 'description' => \__('Ecco book cream 80g vol 20', 'gcalc'), 	'slug' => 'eccobook_20-80g' ) );
-		\wp_insert_term( $r['ibook_white_16-60g'] = 	'iBook white vaol. 1,6 60g',	'pa_' . $name, array( 'description' => \__('iBOOK cream 60g vol 16', 'gcalc'), 		'slug' => 'ibook_white_16-60g' ) );
-		\wp_insert_term( $r['ibook_white_16-70g'] = 	'iBook white vaol. 1,6 70g',	'pa_' . $name, array( 'description' => \__('iBOOK cream 70g vol 16', 'gcalc'), 		'slug' => 'ibook_white_16-70g' ) );
-		\wp_insert_term( $r['ibook_cream_20-60g'] = 	'iBook cream vaol. 2,0 60g',	'pa_' . $name, array( 'description' => \__('iBOOK white 60g vol 20', 'gcalc'), 		'slug' => 'ibook_cream_20-60g' ) );
-		\wp_insert_term( $r['ibook_cream_20-70g'] = 	'iBook cream vaol. 2,0 70g',	'pa_' . $name, array( 'description' => \__('iBOOK white 70g vol 20', 'gcalc'), 		'slug' => 'ibook_cream_20-70g' ) );
-		\wp_insert_term( $r['ibook_cream_20-80g'] = 	'iBook cream vaol. 2,0 80g',	'pa_' . $name, array( 'description' => \__('iBOOK white 80g vol 20', 'gcalc'), 		'slug' => 'ibook_cream_20-80g' ) );
+		\wp_insert_term( $r['ibook_white_16-60g'] = 	'iBook white vol 1.6 60g',	'pa_' . $name, array( 'description' => \__('iBOOK cream 60g vol 16', 'gcalc'), 		'slug' => 'ibook_white_16-60g' ) );
+		\wp_insert_term( $r['ibook_white_16-70g'] = 	'iBook white vol 1.6 70g',	'pa_' . $name, array( 'description' => \__('iBOOK cream 70g vol 16', 'gcalc'), 		'slug' => 'ibook_white_16-70g' ) );
+		\wp_insert_term( $r['ibook_cream_20-60g'] = 	'iBook cream vol 2.0 60g',	'pa_' . $name, array( 'description' => \__('iBOOK white 60g vol 20', 'gcalc'), 		'slug' => 'ibook_cream_20-60g' ) );
+		\wp_insert_term( $r['ibook_cream_20-70g'] = 	'iBook cream vol 2.0 70g',	'pa_' . $name, array( 'description' => \__('iBOOK white 70g vol 20', 'gcalc'), 		'slug' => 'ibook_cream_20-70g' ) );
+		\wp_insert_term( $r['ibook_cream_20-80g'] = 	'iBook cream vol 2.0 80g',	'pa_' . $name, array( 'description' => \__('iBOOK white 80g vol 20', 'gcalc'), 		'slug' => 'ibook_cream_20-80g' ) );
 		\wp_insert_term( $r['munken_cream_18-80g'] = 	'Munken cream vol. 1.8 80g',	'pa_' . $name, array( 'description' => \__('Munken cream 80g vol 16', 'gcalc'), 	'slug' => 'munken_cream_18-80g' ) );
 		\wp_insert_term( $r['munken_cream_18-90g'] = 	'Munken cream vol. 1.8 90g',	'pa_' . $name, array( 'description' => \__('Munken cream 90g vol 16', 'gcalc'), 	'slug' => 'munken_cream_18-90g' ) );
 		\wp_insert_term( $r['munken_cream_15-80g'] = 	'Munken cream vol. 1.5 80g',	'pa_' . $name, array( 'description' => \__('Munken cream 80g vol 16', 'gcalc'), 	'slug' => 'munken_cream_15-80g' ) );
@@ -1091,7 +1097,8 @@ class register_woo_elements{
 	/**
 	* Adds cover format attribute
 	*/
-	public static function pa_cover_format(){
+	public static function pa_cover_format( $return = NULL ){
+		$r = array();
 		$name = 'cover_format';
 		$label = \__('Cover format', 'gcalc');
 		\gcalc\register_woo_elements::process_add_attribute( array(
@@ -1105,13 +1112,16 @@ class register_woo_elements{
 		/*
 		* Adding print sizes
 		*/
-		\wp_insert_term( 'Custom', 	'pa_' . $name, array( 'description' => \__('Custom cover format', 'gcalc'), 'slug' => 'custom-value' ) );					
+		\wp_insert_term( $r['custom-value']='Custom', 	'pa_' . $name, array( 'description' => \__('Custom cover format', 'gcalc'), 'slug' => 'custom-value' ) );					
+	
+	return $return ? $r : null;
 	}
 
 	/**
 	* Adds cover format attribute
 	*/
-	public static function pa_bw_format(){
+	public static function pa_bw_format( $return = NULL ){
+		$r = array();
 		$name = 'bw_format';
 		$label = \__('BW block format', 'gcalc');
 		\gcalc\register_woo_elements::process_add_attribute( array(
@@ -1125,13 +1135,16 @@ class register_woo_elements{
 		/*
 		* Adding print sizes
 		*/
-		\wp_insert_term( 'Custom', 	'pa_' . $name, array( 'description' => \__('Custom BW block format', 'gcalc'), 'slug' => 'custom-value' ) );					
+		\wp_insert_term( $r['custom-value']='Custom', 	'pa_' . $name, array( 'description' => \__('Custom BW block format', 'gcalc'), 'slug' => 'custom-value' ) );					
+	
+	return $return ? $r : null;
 	}
 
 	/**
 	* Adds color block format attribute
 	*/
-	public static function pa_color_format(){
+	public static function pa_color_format( $return = NULL ){
+		$r = array();
 		$name = 'color_format';
 		$label = \__('Color block format', 'gcalc');
 		\gcalc\register_woo_elements::process_add_attribute( array(
@@ -1145,7 +1158,9 @@ class register_woo_elements{
 		/*
 		* Adding print sizes
 		*/
-		\wp_insert_term( 'Custom', 	'pa_' . $name, array( 'description' => \__('Custom color block format', 'gcalc'), 'slug' => 'custom-value' ) );					
+		\wp_insert_term( $r['custom-value']='Custom', 	'pa_' . $name, array( 'description' => \__('Custom color block format', 'gcalc'), 'slug' => 'custom-value' ) );					
+	
+	return $return ? $r : null;
 	}
 
 	/**
@@ -1492,6 +1507,7 @@ class register_woo_elements{
 		\wp_insert_term( $r['ribbon-3']='3mm', 					'pa_' . $name, array( 'description' => \__('3mm', 'gcalc'), 		'slug' => 'ribbon-3' ) );
 		\wp_insert_term( $r['ribbon-6']='6mm', 					'pa_' . $name, array( 'description' => \__('6mm', 'gcalc'), 		'slug' => 'ribbon-6' ) );
 		
+		return $return ? $r : null;
 	}
 
 
@@ -1517,6 +1533,7 @@ class register_woo_elements{
 		*/
 		\wp_insert_term( $r['custom-value']='Custom', 	'pa_' . $name, array( 'description' => \__('Custom flap width', 'gcalc'), 'slug' => 'custom-value' ) );
 		
+		return $return ? $r : null;
 	}
 
 	/**

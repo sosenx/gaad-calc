@@ -34,82 +34,211 @@ class book extends product {
 		}
 
 	/**
-	 * rETURNS ATTRIBUTES BLACK AND WHITE LIST OF VALUES
+	 * returns composer validation data whitch is the last stage of attributes validation before request API for calculation
+	 * @return [type] [description]
+	 */
+	public static function get_composer_validation_data(  ){
+		$r = array(
+
+			array(
+				'attr_name' => 'quantity',
+				'validator' =>  'var validator =
+					function( attributes, input_form ){
+						var max_quantity = 10;
+						var valid = attributes.quantity <= max_quantity;
+						if( valid ){
+							input_form.valid( "c23c21" );
+						} else {
+							input_form.unvalid( {
+								attr_name 	: "quantity",
+								msg 		: "Quantity maximum is " + max_quantity + ".",
+								type 		: "error",
+								infobox 	: "basics",
+								code 		: "c23c21"
+							} );
+						}
+						
+					}
+				'
+			),
+			array(
+				'attr_name' => 'bw_pages',
+				'validator' =>  'var validator =
+					function( attributes, input_form ){
+						var max_pages = 10;
+						var sum = parseInt(attributes.bw_pages) + parseInt(attributes.color_pages);
+  		
+						var valid = sum <= max_pages;
+						if( valid ){
+							input_form.valid( "nb65r2" );
+						} else {
+							input_form.unvalid( {
+								attr_name 	: "bw_pages",
+								msg 		: "Pages maximum is " + max_pages + ".",
+								type 		: "error",
+								infobox 	: "book_blocks",
+								code 		: "nb65r2"
+							} );
+						}
+						
+					}
+				' 
+			),
+			array(
+				'attr_name' => 'color_pages',
+				'validator' =>  'var validator =
+					function( attributes, input_form ){
+						var max_pages = 10;
+						var sum = parseInt(attributes.bw_pages) + parseInt(attributes.color_pages);
+  		
+						var valid = sum <= max_pages;
+						if( valid ){
+							input_form.valid( "nb65r2" );
+						} else {
+							input_form.unvalid( {
+								attr_name 	: "color_pages",
+								msg 		: "Pages maximum is " + max_pages + ".",
+								type 		: "error",
+								infobox 	: "book_blocks",
+								code 		: "nb65r2"
+							} );
+						}
+						
+					}
+				'
+			),
+			array(
+				'attr_name' => 'color_pages',
+				'validator' =>  'var validator =
+					function( attributes, input_form ){						
+						var sum = parseInt(attributes.bw_pages) + parseInt(attributes.color_pages);
+  		
+						var valid = sum % 2 == 0;
+						if( valid ){
+							input_form.valid( "32df43" );
+						} else {
+							input_form.unvalid( {
+								attr_name 	: "color_pages",
+								msg 		: "Pages sum musn\'t be odd.",
+								type 		: "error",
+								infobox 	: "book_blocks",
+								code 		: "32df43"
+							} );
+						}
+						
+					}
+				'
+			),
+			array(
+				'attr_name' => 'cover_flaps',
+				'validator' =>  'var validator =
+					function( attributes, input_form ){						
+						if( attributes.cover_flaps === "no-flaps" ){
+							input_form.disable_attr( [ "cover_left_flap_width", "cover_right_flap_width" ] )
+						}
+						console.log( attributes );
+						var valid = true;
+						if( valid ){
+							input_form.valid( "21ewqd" );
+						} else {
+							input_form.unvalid( {
+								attr_name 	: "cover_flaps",
+								msg 		: "sadsad sa da sdasd",
+								type 		: "error",
+								infobox 	: "cover",
+								code 		: "21ewqd"
+							} );
+						}
+						
+					}
+				'
+			),
+
+
+
+			
+
+
+
+
+
+		);
+		
+		return $r;
+	}
+
+	/**
+	 * rETURNS ATTRIBUTES BLACK AND WHITE LIST OF VALUES, sub validation process data, only for selrcted values
 	 * @return [type] [description]
 	 */
 	public static function get_attr_bw_lists( ){
 		$r = array(
 
-array(
-	'name' => 'pa_cover_print',
-	'data' => array(
-		'4x0' => array(
-			'pa_cover_finish' => array(
-				'values' => array( 'gloss-1x0', 'matt-1x0', 'soft-touch-1x0'),
-				'default' => 'matt-1x0'
+			array(
+				'name' => 'pa_cover_print',
+				'data' => array(
+					'4x0' => array(
+						'pa_cover_finish' => array(
+							'values' => array( 'gloss-1x0', 'matt-1x0', 'soft-touch-1x0'),
+							'default' => 'matt-1x0'
+						)
+					),
+					'4x4' => array(
+						'pa_cover_finish' => array(
+							'values' => array( 'gloss-1x0', 'matt-1x0', 'soft-touch-1x0' ),
+							'default' => 'matt-1x0'
+						)
+					)
+				)
+			),
+			array(
+				'name' => 'pa_cover_finish',
+				'data' => array(
+					'1x0' => array(
+						'pa_cover_spot_uv' => array(
+							'values' => array( '0x0', '1x0' ),
+							'default' => '0x0'
+						)
+					)
+				)
+			),
+			array(
+				'name' => 'pa_cover_spot_uv',
+				'data' => array(
+					'0x0' => array(
+						'pa_cover_finish' => array(
+							'values' => array( 'gloss-1x0', 'matt-1x0', 'soft-touch-1x0' ),
+							'default' => 'matt-1x0'
+						)
+					),
+					'1x0' => array(
+						'pa_cover_finish' => array(
+							'values' => array( 'matt-1x0', 'soft-touch-1x0' ),
+							'default' => 'matt-1x0'
+						)
+					)
+				)
+			),
+			array(
+				'name' => 'pa_cover_ribbon',
+				'data' => array(
+					'ribbon-0' => array(
+						'pa_cover_ribbon_width' => array(
+							'values' => array( 'ribbon-0' ),
+							'default' => 'ribbon-0'
+						)
+					),
+					'ribbon-.*' => array(
+						'pa_cover_ribbon_width' => array(
+							'values' => array( 'ribbon-3', 'ribbon-6' ),
+							'default' => 'ribbon-3'
+						)
+					),
+				)
 			)
-		),
-		'4x4' => array(
-			'pa_cover_finish' => array(
-				'values' => array( 'gloss-1x0', 'matt-1x0', 'soft-touch-1x0' ),
-				'default' => 'matt-1x0'
-			)
-		)
-	)
-),
-array(
-	'name' => 'pa_cover_finish',
-	'data' => array(
-		'1x0' => array(
-			'pa_cover_spot_uv' => array(
-				'values' => array( '0x0', '1x0' ),
-				'default' => '0x0'
-			)
-		)
-	)
-),
-array(
-	'name' => 'pa_cover_spot_uv',
-	'data' => array(
-		'0x0' => array(
-			'pa_cover_finish' => array(
-				'values' => array( 'gloss-1x0', 'matt-1x0', 'soft-touch-1x0' ),
-				'default' => 'matt-1x0'
-			)
-		),
-		'1x0' => array(
-			'pa_cover_finish' => array(
-				'values' => array( 'matt-1x0', 'soft-touch-1x0' ),
-				'default' => 'matt-1x0'
-			)
-		)
-	)
-),
-array(
-	'name' => 'pa_cover_ribbon',
-	'data' => array(
-		'ribbon-0' => array(
-			'pa_cover_ribbon_width' => array(
-				'values' => array( 'ribbon-0' ),
-				'default' => 'ribbon-0'
-			)
-		),
-		'ribbon-.*' => array(
-			'pa_cover_ribbon_width' => array(
-				'values' => array( 'ribbon-3', 'ribbon-6' ),
-				'default' => 'ribbon-3'
-			)
-		),
-	)
-)
 
 
 
-
-
-
-
-			
 		);
 			
 		return $r;
@@ -493,7 +622,7 @@ array(
 		return $r;
 	}
 
-	
+
 	/**
 	 * Gettr for default attributes values
 	 * @return array Default attributes values
@@ -518,10 +647,10 @@ array(
 					'coated-300g', 'coated-350g', 'gc1-230g', 'gc1-250g', 'gc2-230g', 'gc2-250g' 
 				), '111' ),
 				array( 'cover_dust_jacket_paper', array( 
-					'coated-170g', 'coated-250g'
+					'coated-150g', 'coated-170g', 'coated-200g'
 				), '111' ),
 				array( 'cover_cloth_covering_paper', array( 
-					'coated-170g'
+					'coated-150g', 'coated-170g', 'coated-200g'
 				), '111' ),
 				array( 'bw_paper', array( 
 					'coated-70g', 'coated-80g', 'coated-90g', 'coated-115g', 'coated-135g','coated-170g', 'coated-250g', 'coated-300g', 'coated-350g',

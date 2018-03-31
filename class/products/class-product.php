@@ -79,6 +79,7 @@ class product {
 		$product_rest_data = $get_rest_data ? $get_rest_data() : false;
 
 		$r['rest_data'] = array(
+			'composer_validation_data' => \gcalc\db\product\product::product_constructor_method( $product_slug, 'get_composer_validation_data' ),
 			'attr_bw_lists' => \gcalc\db\product\product::product_constructor_method( $product_slug, 'get_attr_bw_lists' ),
 			'attr_filter' => \gcalc\db\product\product::product_constructor_method( $product_slug, 'get_attr_filter' ),
 			'form_validation' => \gcalc\db\product\product::product_constructor_method( $product_slug, 'get_form_validations' ),
@@ -100,12 +101,13 @@ class product {
 	 */
 		public static function get_product_attr_values_names( array $data ){
 			$r = array();
-			//var_dump($data);
+			
 			foreach ($data as $pa_name => $values ) {
 
 				if ( method_exists( '\gcalc\register_woo_elements', 'pa_' . $pa_name) ) {
 					$attr_constructor_method = '\gcalc\register_woo_elements::pa_' . $pa_name;
 					$labels = $attr_constructor_method( true );
+
 					if( $labels ){
 						'pa_' . $r[ $pa_name ] = $labels;
 					}
