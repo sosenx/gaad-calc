@@ -448,7 +448,7 @@ class register_woo_elements{
 		/*
 		* Adding print sizes
 		*/
-		\wp_insert_term( $r['album']='Album',  			'pa_' . $name, array( 'description' => \__('Album', 'gcalc'), 				'slug' => 'album' ) );
+		\wp_insert_term( $r['album']='Album',  					'pa_' . $name, array( 'description' => \__('Album', 'gcalc'), 				'slug' => 'album' ) );
 		\wp_insert_term( $r['portrait']='Portrait',  			'pa_' . $name, array( 'description' => \__('Portrait', 'gcalc'), 	'slug' => 'portrait' ) );
 		
 		return $return ? $r : null;				
@@ -1075,12 +1075,26 @@ class register_woo_elements{
 		\wp_insert_term( $r['170x55'] = '170x55 (folded bcard)', 	'pa_' . $name, array( 'description' => \__('Business card folded to 85x55mm', 'gcalc'), 'slug' => '170x55' ) );
 		\wp_insert_term( $r['90x50'] = '90x50 (bcard)', 			'pa_' . $name, array( 'description' => \__('Business card 90x50mm', 'gcalc'), 			'slug' => '90x50' ) );
 		\wp_insert_term( $r['180x50'] = '180x50 (folded bcard)', 	'pa_' . $name, array( 'description' => \__('Business card folded to 90x50mm', 'gcalc'), 'slug' => '180x50' ) );
+		
 		\wp_insert_term( $r['105x148'] = '105x148 (A6)', 			'pa_' . $name, array( 'description' => \__('A6 (105x148 mm)', 'gcalc'), 				'slug' => '105x148' ) );
 		\wp_insert_term( $r['148x210'] = '148x210 (A5)', 			'pa_' . $name, array( 'description' => \__('A5 (148x210 mm)', 'gcalc'), 				'slug' => '148x210' ) );
 		\wp_insert_term( $r['210x297'] = '210x297 (A4)', 			'pa_' . $name, array( 'description' => \__('A4 (210x297 mm)', 'gcalc'), 				'slug' => '210x297' ) );
 		\wp_insert_term( $r['297x420'] = '297x420 (A3)', 			'pa_' . $name, array( 'description' => \__('A3 (297x420 mm)', 'gcalc'), 				'slug' => '297x420' ) );
 		\wp_insert_term( $r['125x176'] = '125x176 (B6)', 			'pa_' . $name, array( 'description' => \__('B6 (125x176 mm)', 'gcalc'), 				'slug' => '125x176' ) );
-		\wp_insert_term( $r['176x250'] = '176x250 (B5)', 			'pa_' . $name, array( 'description' => \__('B5 (176x250 mm)', 'gcalc'), 				'slug' => '176x250' ) );
+		\wp_insert_term( $r['176x250'] = '176x250 (B5)',			'pa_' . $name, array( 'description' => \__('B5 (176x250 mm)', 'gcalc'), 				'slug' => '176x250' ) );
+		
+		\wp_insert_term( $r['148x105'] = '148x105 (A6)', 			'pa_' . $name, array( 'description' => \__('A6 (148x105 mm)', 'gcalc'), 				'slug' => '148x105' ) );
+		\wp_insert_term( $r['210x148'] = '210x148 (A5)', 			'pa_' . $name, array( 'description' => \__('A5 (210x148 mm)', 'gcalc'), 				'slug' => '210x148' ) );
+		\wp_insert_term( $r['297x210'] = '297x210 (A4)', 			'pa_' . $name, array( 'description' => \__('A4 (297x210 mm)', 'gcalc'), 				'slug' => '297x210' ) );
+		\wp_insert_term( $r['420x297'] = '420x297 (A3)', 			'pa_' . $name, array( 'description' => \__('A3 (420x297 mm)', 'gcalc'), 				'slug' => '420x297' ) );
+		\wp_insert_term( $r['176x125'] = '176x125 (B6)', 			'pa_' . $name, array( 'description' => \__('B6 (176x125 mm)', 'gcalc'), 				'slug' => '176x125' ) );
+		\wp_insert_term( $r['250x176'] = '250x176 (B5)',			'pa_' . $name, array( 'description' => \__('B5 (250x176 mm)', 'gcalc'), 				'slug' => '250x176' ) );
+
+
+
+
+
+
 		\wp_insert_term( $r['250x350'] = '250x350 (B4)', 			'pa_' . $name, array( 'description' => \__('B4 (250x350 mm)', 'gcalc'), 				'slug' => '250x350' ) );
 		\wp_insert_term( $r['420x594'] = '420x594 (B3)', 			'pa_' . $name, array( 'description' => \__('A2 (420x594 mm)', 'gcalc'), 				'slug' => '420x594' ) );
 		\wp_insert_term( $r['594x841'] = '594x841 (A1)', 			'pa_' . $name, array( 'description' => \__('A1 (594x841 mm)', 'gcalc'), 				'slug' => '594x841' ) );
@@ -1605,6 +1619,7 @@ class register_woo_elements{
 		*/
 		
 		\wp_insert_term( $r['4x0']='Color 1-sided', 	'pa_' . $name, array( 'description' => \__('Color single side', 'gcalc'), 'slug' => '4x0' ) );		
+		\wp_insert_term( $r['4x4']='Color 2-sided', 	'pa_' . $name, array( 'description' => \__('Color both sides', 'gcalc'), 'slug' => '4x4' ) );		
 	
 		return $return ? $r : null;
 	}

@@ -29,7 +29,7 @@ class book extends product {
 	 */
 		public static function get_rest_data(  ){
 			$r = array();
-			$r['KOOT'] = 'JEST KTAKI KOCHANY';
+			$r['KOOT'] = 'JEST TAKI KOCHANY';
 			return $r;
 		}
 
@@ -39,6 +39,7 @@ class book extends product {
 	 */
 	public static function get_composer_validation_data(  ){
 		$r = array(
+
 
 			array(
 				'attr_name' => 'quantity',
@@ -61,8 +62,8 @@ class book extends product {
 						} else {
 							input_form.unvalid( {
 								attr_name 	: "quantity",
-								msg 		: "Quantity maximum is " + max_quantity + ".",
-								type 		: "error",
+								msg 		: "Optimal quantity is " + max_quantity + ".",
+								type 		: "warning",
 								infobox 	: "basics",
 								code 		: "c23c21"
 							} );
@@ -150,10 +151,18 @@ class book extends product {
 					function( attributes, input_form ){						
 						if( attributes.cover_flaps === "no-flaps" ){
 							input_form.disable_attr( [ "cover_left_flap_width", "cover_right_flap_width" ] );
-						} else {
+						} else if( attributes.cover_flaps === "flap-right" ){
+							input_form.disable_attr( [ "cover_left_flap_width" ] );
+							input_form.enable_attr( [ "cover_right_flap_width" ] );
+						}
+						else if( attributes.cover_flaps === "flap-left" ){
+							input_form.disable_attr( [ "cover_right_flap_width" ] );
+							input_form.enable_attr( [ "cover_left_flap_width" ] );
+						}
+						else {
 							input_form.enable_attr( [ "cover_left_flap_width", "cover_right_flap_width" ] );	
 						}
-						console.log( attributes );
+						
 						var valid = true;
 						if( valid ){
 							input_form.valid( "21ewqd" );
@@ -170,6 +179,8 @@ class book extends product {
 					}
 				'
 			),
+
+			//cover_left_flap_width below 0
 			array(
 				'attr_name' => 'cover_left_flap_width',
 				'validator' =>  'var validator =
@@ -186,6 +197,8 @@ class book extends product {
 					}
 				'
 			),
+
+			//cover_right_flap_width below 0
 			array(
 				'attr_name' => 'cover_right_flap_width',
 				'validator' =>  'var validator =
@@ -251,6 +264,139 @@ class book extends product {
 		$r = array(
 
 			array(
+				'name' => 'pa_orientation',
+				'data' => array(
+					'portrait' => array(
+						'pa_format' => array(
+							'values' => array( '105x148','148x210','210x297','297x420','125x176','176x250', 'custom-value' ),
+							'default' => '148x210'
+						),
+					),
+					'album' => array(
+						'pa_format' => array(
+							'values' => array( '148x105','210x148','297x210','420x297','176x125','250x176', 'custom-value' ),
+							'default' => '210x148'
+						),
+					)
+				)
+			), 
+
+			// COVER TYPE RULES
+			/**/
+			array(
+				'name' => 'pa_cover_type',
+				'data' => array(
+					'perfect_binding' => array(
+						'pa_cover_finish' => array(
+							'values' => array( 'no-finish', 'gloss-1x0', 'matt-1x0', 'soft-touch-1x0' ),
+							'default' => '4x0'
+						)
+					)
+				)
+			),
+			array(
+				'name' => 'pa_cover_type',
+				'data' => array(
+					'saddle_stitch' => array(
+						'pa_cover_finish' => array(
+							'values' => array( 'no-finish', 'gloss-1x0', 'matt-1x0', 'soft-touch-1x0', 'gloss-1x1', 'matt-1x1', 'soft-touch-1x1' ),
+							'default' => '4x0'
+						)
+					)
+				)
+			),
+			array(
+				'name' => 'pa_cover_type',
+				'data' => array(
+					'spiral_binding' => array(
+						'pa_cover_finish' => array(
+							'values' => array( 'no-finish', 'gloss-1x0', 'matt-1x0', 'soft-touch-1x0', 'gloss-1x1', 'matt-1x1', 'soft-touch-1x1' ),
+							'default' => '4x0'
+						)
+					)
+				)
+			),
+			array(
+				'name' => 'pa_cover_type',
+				'data' => array(
+					'section_sewn' => array(
+						'pa_cover_finish' => array(
+							'values' => array( 'no-finish', 'gloss-1x0', 'matt-1x0', 'soft-touch-1x0' ),
+							'default' => '4x0'
+						)
+					)
+				)
+			),
+
+			/*			
+			* cover paper value changes avaible values in
+			* - cover print
+			 */
+			array(
+				'name' => 'pa_cover_paper',
+				'data' => array(
+					'coated' => array(
+						'pa_cover_print' => array(
+							'values' => array( '4x0', '4x4' ),
+							'default' => '4x0'
+						)
+					),
+					'gc' => array(
+						'pa_cover_print' => array(
+							'values' => array( '4x0' ),
+							'default' => '4x0'
+						)
+					),
+
+
+
+				)
+			),
+
+			/***/
+			array(
+				'name' => 'pa_cover_finish',
+				'data' => array(
+					'no-finish' => array(
+						'pa_cover_spot_uv' => array(
+							'values' => array( '0x0' ),
+							'default' => '0x0'
+						)
+					),
+					'gloss-1x0' => array(
+						'pa_cover_spot_uv' => array(
+							'values' => array( '0x0' ),
+							'default' => '0x0'
+						)
+					),
+					'gloss-1x1' => array(
+						'pa_cover_spot_uv' => array(
+							'values' => array( '0x0' ),
+							'default' => '0x0'
+						)
+					),
+					'matt-1x0' => array(
+						'pa_cover_spot_uv' => array(
+							'values' => array( '0x0','1x0' ),
+							'default' => '0x0'
+						)
+					),
+					'matt-1x1' => array(
+						'pa_cover_spot_uv' => array(
+							'values' => array( '0x0','1x0','1x1' ),
+							'default' => '0x0'
+						)
+					)
+
+
+				)
+			),
+
+
+
+
+/*
+			array(
 				'name' => 'pa_cover_print',
 				'data' => array(
 					'4x0' => array(
@@ -261,7 +407,7 @@ class book extends product {
 					),
 					'4x4' => array(
 						'pa_cover_finish' => array(
-							'values' => array( 'gloss-1x0', 'matt-1x0', 'soft-touch-1x0' ),
+							'values' => array( 'no-finish', 'gloss-1x0', 'matt-1x0', 'soft-touch-1x0', 'gloss-1x1', 'matt-1x1', 'soft-touch-1x1' ),
 							'default' => 'matt-1x0'
 						)
 					)
@@ -275,6 +421,12 @@ class book extends product {
 							'values' => array( '0x0', '1x0' ),
 							'default' => '0x0'
 						)
+					),
+					'1x1' => array(
+						'pa_cover_spot_uv' => array(
+							'values' => array( '0x0', '1x1' ),
+							'default' => '0x0'
+						)
 					)
 				)
 			),
@@ -283,7 +435,7 @@ class book extends product {
 				'data' => array(
 					'0x0' => array(
 						'pa_cover_finish' => array(
-							'values' => array( 'gloss-1x0', 'matt-1x0', 'soft-touch-1x0' ),
+							'values' => array( 'gloss-1x0', 'matt-1x0', 'soft-touch-1x0', 'gloss-1x1', 'matt-1x1', 'soft-touch-1x1' ),
 							'default' => 'matt-1x0'
 						)
 					),
@@ -313,7 +465,7 @@ class book extends product {
 				)
 			)
 
-
+*/
 
 		);
 			
@@ -482,7 +634,7 @@ class book extends product {
 																								'placeholder' 	=> __('', 'gcalc') 
 				),
 
-				'pa_cover_type' => 						array( 'default' => 'perfect_binding', 			'type' 			=> 'select', 
+				'pa_cover_type' => 						array( 'default' => 'hard', 			'type' 			=> 'select', 
 																								'placeholder' 	=> __('', 'gcalc') 
 				),
 
@@ -494,7 +646,7 @@ class book extends product {
 																								'placeholder' 	=> __('', 'gcalc') 
 				),
 
-				'pa_cover_dust_jacket_finish' => 		array( 'default' => '0x0', 				'type' 			=> 'select', 
+				'pa_cover_dust_jacket_finish' => 		array( 'default' => 'no-finish',		'type' 			=> 'select', 
 																								'placeholder' 	=> __('', 'gcalc') 
 				),
 
@@ -506,7 +658,7 @@ class book extends product {
 																								'placeholder' 	=> __('', 'gcalc') 
 				),
 
-				'pa_cover_cloth_covering_finish' => 	array( 'default' => '0x0', 				'type' 			=> 'select', 
+				'pa_cover_cloth_covering_finish' => 	array( 'default' => 'no-finish',		'type' 			=> 'select', 
 																								'placeholder' 	=> __('', 'gcalc') 
 				),
 
@@ -518,11 +670,11 @@ class book extends product {
 																								'placeholder' 	=> __('', 'gcalc') 
 				),
 
-				'pa_cover_ribbon' => 					array( 'default' => 'ribbon-0', 			'type' 			=> 'select', 
+				'pa_cover_ribbon' => 					array( 'default' => 'ribbon-0', 		'type' 			=> 'select', 
 																								'placeholder' 	=> __('', 'gcalc') 
 				),
 
-				'pa_cover_finish' => 					array( 'default' => '0x0', 				'type' 			=> 'select', 
+				'pa_cover_finish' => 					array( 'default' => 'no-finish', 		'type' 			=> 'select', 
 																								'placeholder' 	=> __('', 'gcalc') 
 				),
 
@@ -706,7 +858,7 @@ class book extends product {
 		public static function get_attr_defaults( ){
 			$r = array( 
 
-				array( 'format', 		array( '148x210','210x297','297x420','125x176','176x250','custom-value' ), '111' ),				
+				array( 'format', 		array( '105x148','148x210','210x297','297x420','125x176','176x250','148x105','210x148','297x210','420x297','176x125','250x176','custom-value' ), '111' ),				
 				array( 'quantity', 	array( 'custom-value' ), '111' ),
 				array( 'cover_format', 	array( 'custom-value' ), '111' ),
 				array( 'bw_format', 	array( 'custom-value' ), '111' ),
@@ -756,19 +908,19 @@ class book extends product {
 
 				array( 'spot_uv', array( '0x0', '1x0', '1x1' ), '111' ),
 				array( 'cover_spot_uv', array( '0x0', '1x0', '1x1' ), '111' ),
-				array( 'cover_cloth_covering_spot_uv', array( '0x0', '1x0', '1x1' ), '111' ),
+				array( 'cover_cloth_covering_spot_uv', array( '0x0', '1x0' ), '111' ),
 				array( 'cover_dust_jacket_spot_uv', array( '0x0', '1x0', '1x1' ), '111' ),
 
 				array( 'finish', array( '0x0', 'gloss-1x0', 'gloss-1x1', 'matt-1x0','matt-1x1', 'soft-touch-1x0', 'soft-touch-1x1' ), '111' ),
-				array( 'cover_finish', array( '0x0', 'gloss-1x0', 'gloss-1x1', 'matt-1x0','matt-1x1', 'soft-touch-1x0', 'soft-touch-1x1' ), '111' ),
-				array( 'cover_cloth_covering_finish', array( '0x0', 'gloss-1x0', 'gloss-1x1', 'matt-1x0','matt-1x1', 'soft-touch-1x0', 'soft-touch-1x1' ), '111' ),
-				array( 'cover_dust_jacket_finish', array( '0x0', 'gloss-1x0', 'gloss-1x1', 'matt-1x0','matt-1x1', 'soft-touch-1x0', 'soft-touch-1x1' ), '111' ),
+				array( 'cover_finish', array( 'no-finish', 'gloss-1x0', 'gloss-1x1', 'matt-1x0','matt-1x1', 'soft-touch-1x0', 'soft-touch-1x1' ), '111' ),
+				array( 'cover_cloth_covering_finish', array( 'no-finish', 'gloss-1x0', 'matt-1x0', 'soft-touch-1x0' ), '111' ),
+				array( 'cover_dust_jacket_finish', array( 'no-finish', 'gloss-1x0', 'gloss-1x1', 'matt-1x0','matt-1x1', 'soft-touch-1x0', 'soft-touch-1x1' ), '111' ),
 
 				array( 'print', 		array( '1x0','1x1','4x0','4x4' ), '111' ),
 				array( 'cover_print', array( '4x4', '4x0' ), '111' ),
 				array( 'color_print', array( '4x4', '4x0' ), '111' ),
 				array( 'bw_print', array( '1x1', '1x0' ), '111' ),
-				array( 'cover_cloth_covering_print', array( '4x4', '4x0' ), '111' ),
+				array( 'cover_cloth_covering_print', array( '4x0' ), '111' ),
 				array( 'cover_dust_jacket_print', array( '4x4', '4x0' ), '111' ),
 				array( 'cover_endpaper_print', array( '0x0', '1x0', '4x0' ), '111' ),
 				
