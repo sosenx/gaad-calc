@@ -392,10 +392,51 @@ class book extends product {
 				)
 			),
 
+			array(
+				'name' => 'pa_cover_dust_jacket_print',
+				'data' => array(
+					
+					'4x0' => array(
+						'pa_cover_dust_jacket_finish' => array(
+							'values' => array( 'no-finish', 'gloss-1x0', 'matt-1x0', 'soft-touch-1x0' ),
+							'default' => '0x0'
+						)
+					),
+					'4x4' => array(
+						'pa_cover_dust_jacket_spot_uv' => array(
+							'values' => array( 'no-finish', 'gloss-1x0', 'matt-1x0', 'soft-touch-1x0', 'gloss-1x1', 'matt-1x1', 'soft-touch-1x1' ),
+							'default' => '0x0'
+						)
+					)
+				)
+			),
+
+			array(
+				'name' => 'pa_cover_dust_jacket_finish',
+				'data' => array(
+					'gloss' => array(
+						'pa_cover_dust_jacket_spot_uv' => array(
+							'values' => array( '0x0' ),
+							'default' => '0x0'
+						)
+					),
+					'1x0' => array(
+						'pa_cover_dust_jacket_spot_uv' => array(
+							'values' => array( '0x0', '1x0' ),
+							'default' => '0x0'
+						)
+					),
+					'1x1' => array(
+						'pa_cover_dust_jacket_spot_uv' => array(
+							'values' => array( '0x0', '1x0', '1x1' ),
+							'default' => '0x0'
+						)
+					)
+				)
+			),
 
 
-
-/*
+/* 
 			array(
 				'name' => 'pa_cover_print',
 				'data' => array(
