@@ -203,12 +203,34 @@ class formats{
 		return $this->binding_types[ $binding_type ];
 	}
 
+
+
+	/**
+	* Return limit from limits
+	*/
+	function get_limit( string $limit_type ){	
+		return $this->limits[ $limit_type ];
+	}
+
 	/**
 	* This function needs to aquire formats data from db, fo dev version it just sets an array
 	*/
 	public function aquire( ){
 
+
+		$this->limits = array(
+			
+			'quantity' => array(
+				
+			)
+		);
+
+
+
 		/**
+		 *	deprecated, its being kept in product constructor
+		 *
+		 * 
 		 * [$this->product_groups description]
 		 * @var array
 		 */

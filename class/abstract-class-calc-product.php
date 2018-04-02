@@ -202,7 +202,7 @@ abstract class calc_product{
 		}
 		else {	
 			if( isset( $product_id ) ){
-				var_dump($product_id);
+				
 				$this->slug = $this->get_product_slug( $product_id );
 			} else {
 				$this->errors->add( new error( 4001 ) );

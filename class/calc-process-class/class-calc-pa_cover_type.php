@@ -107,7 +107,7 @@ class pa_cover_type extends pa_format{
 		$dust_jacket_spot_uv = $this->get_dust_jacket_spot_uv( $this->get_carg('pa_cover_dust_jacket_spot_uv') );
 		
 		$board_thickness = $this->get_board_thickness( $this->get_carg('pa_cover_board_thickness') );
-		$board_thickness_translate = array( '2.0mm' => 'board_20mm_cost', '2.5mm' => 'board_25mm_cost' );
+		$board_thickness_translate = array( 'board-20' => 'board_20mm_cost', 'board-25' => 'board_25mm_cost' );
 		$board_thickness_index = $board_thickness_translate[$board_thickness];
 
 		$ribbon = $this->get_ribbon( $this->get_carg('pa_cover_ribbon') );
@@ -260,8 +260,12 @@ class pa_cover_type extends pa_format{
 		* case board
 		*/
 		$best_production_format = $this->parent->get_best_production_format( array( 'cover' ) );
+		
 		$common_format_name = $best_production_format['common_format']['name'];		
+
+
 		$common_format_name = str_replace( array('A6', 'B6'), array('A5', 'B5'), $common_format_name );
+		
 		$board_cost = $this->get_val_from( 
 			'', 
 			"exact", 

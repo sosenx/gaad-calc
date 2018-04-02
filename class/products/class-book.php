@@ -45,14 +45,14 @@ class book extends product {
 				'attr_name' => 'quantity',
 				'validator' =>  'var validator =
 					function( attributes, input_form ){
-						var max_quantity = 10;
+						var max_quantity = 1000;
 						var valid = attributes.quantity <= max_quantity;
 
-						if( attributes.quantity < 0 ){ 
+						if( attributes.quantity < 1 ){ 
 							input_form.unvalid( {
 								attr_name 	: "quantity",								
 								type 		: "value_change",									
-								set_value 	: 0
+								set_value 	: 1
 							} );
 							return true;
 						}
@@ -73,10 +73,41 @@ class book extends product {
 				'
 			),
 			array(
+				'attr_name' => 'quantity',
+				'validator' =>  'var validator =
+					function( attributes, input_form ){
+						var max_quantity = 3000;
+						var valid = attributes.quantity <= max_quantity;
+
+						if( attributes.quantity < 1 ){ 
+							input_form.unvalid( {
+								attr_name 	: "quantity",								
+								type 		: "value_change",									
+								set_value 	: 1
+							} );
+							return true;
+						}
+
+						if( valid ){
+							input_form.valid( "c23c22" );
+						} else {
+							input_form.unvalid( {
+								attr_name 	: "quantity",
+								msg 		: "Quantity out of reasonable range.",
+								type 		: "error",
+								infobox 	: "basics",
+								code 		: "c23c22"
+							} );
+						}
+						
+					}
+				'
+			),
+			array(
 				'attr_name' => 'bw_pages',
 				'validator' =>  'var validator =
 					function( attributes, input_form ){
-						var max_pages = 10;
+						var max_pages = 1000;
 						var sum = parseInt(attributes.bw_pages) + parseInt(attributes.color_pages);
   		
 						var valid = sum <= max_pages;
@@ -99,7 +130,7 @@ class book extends product {
 				'attr_name' => 'color_pages',
 				'validator' =>  'var validator =
 					function( attributes, input_form ){
-						var max_pages = 10;
+						var max_pages = 1000;
 						var sum = parseInt(attributes.bw_pages) + parseInt(attributes.color_pages);
   		
 						var valid = sum <= max_pages;
@@ -669,9 +700,9 @@ class book extends product {
 
 				'pa_bw_pages' => 						array( 'default' => 100, 				'type' 			=> 'number', 
 																								'placeholder' 	=> __('Enter B&W pages number', 'gcalc'),
-																								'min' 	=> 2,
-																								'max' 	=> 1000,
-																								'var' 	=> 'int', 
+																								'min' 			=> 2,
+																								'max' 			=> 1000,
+																								'var' 			=> 'int', 
 				),
 
 				'pa_bw_format' => 						array( 'default' => '148x210', 			'type' 			=> 'select', 
@@ -686,11 +717,11 @@ class book extends product {
 																								'placeholder' 	=> __('', 'gcalc') 
 				),
 
-				'pa_color_pages' => 					array( 'default' => 20, 				'type' 			=> 'number', 
+				'pa_color_pages' => 					array( 'default' => 0, 					'type' 			=> 'number', 
 																								'placeholder' 	=> __('Enter color pages number', 'gcalc'),
-																								'min' 	=> 2,
-																								'max' 	=> 1000,
-																								'var' 	=> 'int',
+																								'min' 			=> 2,
+																								'max' 			=> 1000,
+																								'var' 			=> 'int',
 
 				),
 
@@ -737,7 +768,7 @@ class book extends product {
 																								'placeholder' 	=> __('Select book orientation', 'gcalc') 
 				),
 
-				'pa_groupwrap' => 					array( 'default' => '0', 				'type' 			=> 'select', 
+				'pa_groupwrap' => 					array( 'default' => '0', 					'type' 			=> 'select', 
 																								'placeholder' 	=> __('Select book orientation', 'gcalc') 
 				),
 
@@ -745,11 +776,11 @@ class book extends product {
 																								'placeholder' 	=> __('Enter color pages number comma or space separated', 'gcalc') 
 				),
 
-				'pa_drilling_holes' => 			array( 'default' => '0', 				'type' 			=> 'select', 
+				'pa_drilling_holes' => 			array( 'default' => '0', 						'type' 			=> 'select', 
 																								'placeholder' 	=> __('Select number of holes to drill', 'gcalc') 
 				),
 
-				'pa_holes_dia' => 			array( 'default' => '8', 					'type' 			=> 'select', 
+				'pa_holes_dia' => 			array( 'default' => '8', 							'type' 			=> 'select', 
 																								'placeholder' 	=> __('Select holes diameter', 'gcalc') 
 				),
 
@@ -764,26 +795,17 @@ class book extends product {
 
 
 
-				'pa_title' => 			array( 'default' => '', 					'type' 			=> 'textarea', 
+				'pa_title' => 			array( 'default' => '', 								'type' 			=> 'textarea', 
 																								'placeholder' 	=> __('Enter book title', 'gcalc') 
 				),
 
-				'pa_book_number' => 			array( 'default' => 'no-number', 					'type' 			=> 'select', 
+				'pa_book_number' => 			array( 'default' => 'no-number', 				'type' 			=> 'select', 
 																								'placeholder' 	=> __('Select book number ', 'gcalc') 
 				),
 
-				'pa_comments' => 			array( 'default' => '', 					'type' 			=> 'textarea', 
+				'pa_comments' => 			array( 'default' => '', 							'type' 			=> 'textarea', 
 																								'placeholder' 	=> __('You can leve any nessesary information about this work here ', 'gcalc') 
 				)	
-
-
-
-
-
-
-
-
-
 
 			)				
 				

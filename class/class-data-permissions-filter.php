@@ -336,6 +336,7 @@ class data_permissions_filter{
 		}
 
 		public function get_authorization(){
+			
 			$authorization = array_key_exists( 'Authorization' , $this->calc->get_bvars() ) ? $this->calc->get_bvars()[ 'Authorization' ] : false;
 			if ( !$authorization ) {
 				$this->calc->get_errors()->add( new \gcalc\error( 10102 ) );
