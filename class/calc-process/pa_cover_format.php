@@ -71,7 +71,11 @@ class pa_cover_format extends \gcalc\cprocess{
 		/*
 		* Cover spot uv, unsetting because cloth covering spot uv is set
 		*/
-		if ( !is_null( $pa_cloth_covering_spot_uv ) && !is_null( $pa_spot_uv ) ) {
+		if ( 	!is_null( $pa_cloth_covering_spot_uv ) 
+				&& !is_null( $pa_spot_uv )
+				&& $this->cargs['pa_cover_type'] === "hard"
+			) {
+			
 			$this->cargs['pa_' . $group_name . '_spot_uv'] = '0x0';
 			$this->parent->set_bvar('pa_spot_uv', $group_name, '0x0', array( new \gcalc\error( 10015 ) ) );			
 		}

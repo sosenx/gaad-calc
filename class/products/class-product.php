@@ -79,6 +79,7 @@ class product {
 		$product_rest_data = $get_rest_data ? $get_rest_data() : false;
 
 		$r['rest_data'] = array(
+			'calc_data' => \gcalc\db\product\product::product_constructor_method( $product_slug, 'get_calc_data' ),
 			'composer_validation_data' => \gcalc\db\product\product::product_constructor_method( $product_slug, 'get_composer_validation_data' ),
 			'attr_bw_lists' => \gcalc\db\product\product::product_constructor_method( $product_slug, 'get_attr_bw_lists' ),
 			'attr_filter' => \gcalc\db\product\product::product_constructor_method( $product_slug, 'get_attr_filter' ),

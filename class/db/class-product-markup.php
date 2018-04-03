@@ -92,7 +92,7 @@ class product_markup{
 			'*' => array(
 				'pa_paper' => array( 'markup' => 1.1),
 
-				'pa_sewing' => array( 'markup' => 2),
+				'pa_sewing' => array( 'markup' => 1),
 
 				'pa_finish' => array( 'markup' => 1),
 				
