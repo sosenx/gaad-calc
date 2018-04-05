@@ -9,18 +9,28 @@ global $post;
 $pargs = array( 
     "product_slug" => "book",
     "multi_quantity" => "10,50,150",
+    
+    "markup_cover_type" => 1,
+    "markup_bw_print" => 1,
+    "markup_color_print" => 1,
+    "markup_cover_print" => 1,
+    "markup_cover_paper" => 1,
+    "markup_cover_dust_jacket_print" => 1,
+    "markup_cover_cloth_covering_print" => 1,
+    "markup_cover_endpaper_print" => 1,
 
-    "pa_format" => "148x105",
-    "pa_quantity" => 150,    
+
+    "pa_format" => "157x260",
+    "pa_quantity" => 1500,    
     "pa_paper" => "coated-350g",
     "pa_print" => "4x4",                 
-    "pa_finish" => "matt-1x1",   
+    "pa_finish" => "gloss-1x1",   
     "pa_spot_uv" => "1x0",
     "pa_folding" => "half-fold",
-    "pa_cover_format" => "148x100",
+    "pa_cover_format" => "175x235",
     "pa_cover_paper" => "coated-300g",
     "pa_cover_print" => "4x0",    
-    "pa_cover_type" => "perfect_binding",    
+    "pa_cover_type" => "hard",    
     "pa_cover_dust_jacket_paper" => "coated-170g",
     "pa_cover_dust_jacket_print" => "4x4",
     "pa_cover_dust_jacket_finish" => "0x0",
@@ -38,12 +48,12 @@ $pargs = array(
     "pa_cover_cloth_covering_finish" => "gloss-1x0",
     "pa_cover_cloth_covering_spot_uv" => "1x0",
     "pa_cover_ribbon" => true,    
-    "pa_cover_finish" => "matt-1x0",    
-    "pa_cover_spot_uv" => "1x0",
+    "pa_cover_finish" => "gloss-1x0",    
+    "pa_cover_spot_uv" => "1x1",
     "pa_cover_flaps" => true,
     "pa_cover_left_flap_width" => 100,
     "pa_cover_right_flap_width" => 100,
-    "pa_cover_board_thickness" => "2.5mm",
+    "pa_cover_board_thickness" => "board-25",
     "pa_bw_pages" => 100,
     "pa_bw_format" => "175x235",
     "pa_bw_paper" => "ekobookw-70g-2.0",
@@ -77,7 +87,7 @@ $pargs = array(
 
 
 $q= array( 10, 50, 100, 350, 500, 750, 1000, 1500);
-$q= array( 150 );
+$q= array( 100 );
 foreach ($q as $key => $value) {
     $pargs['pa_quantity'] = $value;
     $calc = new gcalc\calculate( $pargs );

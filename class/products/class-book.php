@@ -33,6 +33,52 @@ class book extends product {
 			return $r;
 		}
 
+
+		/**
+		 * [markups_change description]
+		 * @return [type] [description]
+		 */
+			public static function get_markups_changes(  ){
+				$r = array(
+
+					'markup_cover_type'                =>array(
+																'min' => 1.3, 
+																'max' => 10
+						),
+					'markup_bw_print'                  =>array(
+																'min' => 1.3, 
+																'max' => 10
+						),
+					'markup_color_print'               =>array(
+																'min' => 1.3, 
+																'max' => 10
+						),
+					'markup_cover_print'               =>array(
+																'min' => 1.3, 
+																'max' => 10
+						),
+					'markup_cover_paper'               =>array(
+																'min' => 1.3, 
+																'max' => 10
+						),
+					'markup_cover_dust_jacket_print'   =>array(
+																'min' => 1.3, 
+																'max' => 10
+						),
+					'markup_cover_cloth_covering_print'=>array(
+																'min' => 1.3, 
+																'max' => 10
+						),
+					'markup_cover_endpaper_print'      =>array(
+																'min' => 1.3, 
+																'max' => 10
+						),
+
+				);
+				
+				return $r;
+			}
+
 	/**
 	 * returns composer validation data whitch is the last stage of attributes validation before request API for calculation
 	 * @return [type] [description]
@@ -634,7 +680,7 @@ class book extends product {
 																								'placeholder' 	=> __('', 'gcalc') 
 				),
 
-				'pa_cover_type' => 						array( 'default' => 'hard', 			'type' 			=> 'select', 
+				'pa_cover_type' => 						array( 'default' => 'perfect_binding', 			'type' 			=> 'select', 
 																								'placeholder' 	=> __('', 'gcalc') 
 				),
 

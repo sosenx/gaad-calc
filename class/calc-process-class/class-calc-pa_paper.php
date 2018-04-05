@@ -36,10 +36,23 @@ class pa_paper extends \gcalc\cprocess_calculation{
 		$sheet_cost = $pf['format_sq'] / 1000000 * $c * $weight;
 		$sheets_quantity = (int)($this->cargs['pa_quantity'] / $pf['pieces']) + ( $this->cargs['pa_quantity'] % $pf['pieces'] > 0 ? 1 : 0 );
 		$pages = $this->get_pages( );
-		$markup_db = new \gcalc\db\product_markup( $this->cargs, $this->product_id, $this);
-		$markup = $markup_db->get_markup();
+		
+		/**
+		 * outside markup source (prom requst attributes)		  
+		 */
+		$group = $this->get_group();
+		$markup_attr_name = 'markup_' . str_replace( 'pa_', '', $group[1] );
+		$overridden_markup_value = $this->get_carg( $markup_attr_name );
 
-		$markup_ = $markup['markup'];		
+		if ( is_null( $overridden_markup_value ) ) {
+			$markup_db = new \gcalc\db\product_markup( $this->cargs, $this->product_id, $this);
+			$markup = $markup_db->get_markup();
+			$markup_ = $markup['markup'];		
+		} else {	
+			$markup_ = $overridden_markup_value;
+		}
+	
+
 		$production_cost = $sheet_cost * $sheets_quantity * $pages;//* (int)$this->cargs['pa_quantity'];
 		$total_price = $production_cost * $markup_;
 

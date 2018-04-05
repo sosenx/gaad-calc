@@ -258,7 +258,7 @@ abstract class calc_product{
 				'a' => $this->get_bvars()
 			);
 			
-return $return;
+		return $return;
 			
 			//	$data_permissions_f = new data_permissions_filter( $this );
 			//	return $data_permissions_f->get();
@@ -473,6 +473,9 @@ return $return;
 
 		$average_markup = count($total_markup_array) > 0 ? array_sum( $total_markup_array ) / count($total_markup_array) : 1;
 
+
+
+
 		$total_ = array(
 			'equasion' => $total_cost_equasion_string,			
 			'used_formats' => $used_formats_array,
@@ -482,7 +485,7 @@ return $return;
 			'total_cost_equasion' => $total_cost_array,
 			'total_pcost_equasion' => $total_pcost_array,
 			
-			'average_markup' => $average_markup, 
+			'average_markup' => ( ( $total_cost_ - $total_pcost_ ) / $total_pcost_  ) + 1, 
 			'total_cost_' => $total_cost_,
 			'total_pcost_' => $total_pcost_
 		);
@@ -524,7 +527,6 @@ return $return;
 					$index = $key . '_' . str_replace( array('pa_', 'master_' ), array('',''), $key2 );
 					$total_[ 'used_media' ][ $index ] = $value2;
 				}
-
 			}
 		}
 

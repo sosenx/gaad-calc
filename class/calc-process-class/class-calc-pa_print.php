@@ -25,14 +25,25 @@ class pa_print extends \gcalc\cprocess_calculation{
 		$print_color_mode = substr( $pf['print_color_mode'], 0, 2);		
 		$pages = $this->get_pages( );				
 
-		$markup_db = new \gcalc\db\product_markup( $this->cargs, $this->product_id, $this);
-		$markup = $markup_db->get_markup( true );	//true = gets markup from markup product group, not product type
-		$markup_ = $this->get_val_from( 
-			'', 
-			"min", 
-			$markup['markup'][$print_color_mode],
-			$pa_quantity
-			);
+		/**
+		 * outside markup source (prom requst attributes)		  
+		 */
+		$group = $this->get_group();
+		$markup_attr_name = 'markup_' . str_replace( 'pa_', '', $group[1] );
+		$overridden_markup_value = $this->get_carg( $markup_attr_name );
+
+		if ( is_null( $overridden_markup_value ) ) {				
+			$markup_db = new \gcalc\db\product_markup( $this->cargs, $this->product_id, $this);
+			$markup = $markup_db->get_markup( true );	//true = gets markup from markup product group, not product type
+			$markup_ = $this->get_val_from( 
+				'', 
+				"min", 
+				$markup['markup'][$print_color_mode],
+				$pa_quantity
+				);
+		} else {
+			$markup_ = $overridden_markup_value;
+		}
 
 		$production_cost = $sheets_quantity / 2 * $pf['print_cost'] * $pages; // devide by 2 cos we dealing with pages 2pages == 1 sheet
 		$total_price = $production_cost * $markup_;
