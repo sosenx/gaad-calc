@@ -162,8 +162,40 @@ class sql{
 			`av_markup` 	FLOAT NOT NULL,			
 			`bvars` 		TEXT NOT NULL , 	
 			`full_total` 	TEXT NOT NULL ,
-			`tech` 			TEXT NOT NULL ,
-			`tech` 			TEXT NULL DEFAULT NULL
+			`tech` 			TEXT NULL DEFAULT NULL,
+			`user` 			VARCHAR(50) NOT NULL,											
+			`added` 		timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,		  
+		  PRIMARY KEY  (id)
+		) $charset_collate;";
+		
+		$dbDelta = dbDelta( $sql );
+		
+		return $dbDelta;
+	}
+
+
+	/**
+	* Tworzy tabele archives
+	*/
+	public static function archives(){
+		global $wpdb;	
+		$table_name = basename(GAAD_PLUGIN_TEMPLATE_NAMESPACE) . '_archives';
+		$charset_collate = $wpdb->get_charset_collate();
+
+		$sql = "CREATE TABLE $table_name (
+			`id` 			mediumint(9) NOT NULL AUTO_INCREMENT,	
+			`cid` 			VARCHAR(32) NOT NULL,
+			`parent_cid` 	VARCHAR(32) NULL DEFAULT NULL,			
+			`product_slug`	VARCHAR(50) NOT NULL,			
+			`total_price` 	FLOAT NOT NULL,
+			`piece_price` 	FLOAT NOT NULL,
+			`prod_cost` 	FLOAT NOT NULL,
+			`quantity` 		INT NOT NULL,
+			`mquantity` 	VARCHAR(100) NULL,			
+			`av_markup` 	FLOAT NOT NULL,			
+			`bvars` 		TEXT NOT NULL , 	
+			`full_total` 	TEXT NOT NULL ,
+			`tech` 			TEXT NULL DEFAULT NULL,
 			`user` 			VARCHAR(50) NOT NULL,											
 			`added` 		timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,		  
 		  PRIMARY KEY  (id)
@@ -202,6 +234,8 @@ class sql{
 		$wpdb->insert( $table_name, $insert );	
 	}
 
+
+
 	/** 
 	* Do the actual sql tables creation process
 	*/
@@ -213,6 +247,7 @@ class sql{
 		sql::print_media();
 		sql::wrap_media();
 		sql::calculations();
+		sql::archives();  
 
 		$option_slug = basename( GAAD_PLUGIN_TEMPLATE_NAMESPACE ) . '_sql_tables_created';
 		update_option( $option_slug, 'true', '', 'yes' );   
