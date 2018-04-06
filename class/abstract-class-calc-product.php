@@ -898,14 +898,19 @@ $r=1;
 	*
 	* @param bool $filter return product related attributes only | NULL
 	*/
-	function get_done( bool $filter = NULL ){
+	function get_done( $filter = NULL ){
+		
 		if ( $filter ) {
 			$done = $this->done;
 			unset( $done['pa_multi_quantity'] );
 			unset( $done['pa_master_multi_quantity'] );
 			return $done;
-		}			
+		}		
 
+			
+			
+		if ( !$filter ) {
+		}
 		return $this->done;
 	}
 

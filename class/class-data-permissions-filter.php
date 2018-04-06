@@ -57,7 +57,23 @@ class data_permissions_filter{
 			
 			if ( $this->get_request_credentials() ) {
 				$this->total_ = $this->calc->get_total();
-				$this->done_ = $this->calc->get_done();			
+				$this->done_ = $this->calc->get_done( );
+
+				//stripping done propcesses to only used ones
+					$done = [];
+					$fn_name = "\gcalc\db\product\\" . $this->calc->get_slug() . "::get_calc_data";
+					$_calc_data = $fn_name();
+					$equasion_parts = explode( ' + ', $_calc_data[ 'equasion' ] );
+					$max = count( $this->done_ );
+					for ( $i=0; $i < $max; $i++ ) { 
+						$proc = $this->done_[ $i ];
+						$name = $proc->total[ 'name' ];
+						if ( in_array( $name, $equasion_parts ) ) {
+							array_push( $done, $proc );						
+						}						
+					}
+					$this->done_ = $done;
+
 				$this->set_allowed_data();
 				return $this;				
 			}			

@@ -91,10 +91,10 @@ $q= array( 100 );
 foreach ($q as $key => $value) {
     $pargs['pa_quantity'] = $value;
     $calc = new gcalc\calculate( $pargs );
-   // $data_permissions_f = new gcalc\data_permissions_filter( $calc );
-   // $data_permissions_f->get();
-   //$calculation =  $data_permissions_f->save_calculation();
-    $calculation = $calc->calc();
+    $data_permissions_f = new gcalc\data_permissions_filter( $calc );
+    $data_permissions_f->get();
+   $calculation =  $data_permissions_f->save_calculation();
+    //$calculation = $calc->calc();
 
 }
 

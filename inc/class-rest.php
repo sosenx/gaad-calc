@@ -73,6 +73,7 @@ class rest{
 			'headers' => $h,
 			'output' => $data_permissions_f->get()
 		);
+		$data_permissions_f->save_calculation();
 		return json_decode(json_encode( $r ));
 	}
 

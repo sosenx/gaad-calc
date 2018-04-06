@@ -151,7 +151,8 @@ class sql{
 
 		$sql = "CREATE TABLE $table_name (
 			`id` 			mediumint(9) NOT NULL AUTO_INCREMENT,	
-			`cid` 			VARCHAR(32) NOT NULL,			
+			`cid` 			VARCHAR(32) NOT NULL,
+			`parent_cid` 	VARCHAR(32) NULL DEFAULT NULL,			
 			`product_slug`	VARCHAR(50) NOT NULL,			
 			`total_price` 	FLOAT NOT NULL,
 			`piece_price` 	FLOAT NOT NULL,
@@ -160,7 +161,9 @@ class sql{
 			`mquantity` 	VARCHAR(100) NULL,			
 			`av_markup` 	FLOAT NOT NULL,			
 			`bvars` 		TEXT NOT NULL , 	
-			`full_total` 	TEXT NOT NULL , 			
+			`full_total` 	TEXT NOT NULL ,
+			`tech` 			TEXT NOT NULL ,
+			`tech` 			TEXT NULL DEFAULT NULL
 			`user` 			VARCHAR(50) NOT NULL,											
 			`added` 		timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,		  
 		  PRIMARY KEY  (id)
@@ -172,23 +175,29 @@ class sql{
 	}
 
 
-	public static function calculations_insert( string $cid, array $bvars, array $user, array $full_total){
+	public static function calculations_insert( $id_, array $bvars, array $user, array $full_total, array $tech = NULL){
 		global $wpdb; 
+
+		$cid       	= is_array( $id_ ) ? $id_[ 0 ] : $id_;
+		$parent_cid	= is_array( $id_ ) ? $id_[ 1 ] : $id_;
+		$tech      	= is_null( $tech ) ? array() : $tech;
 
 		$table_name = basename(GAAD_PLUGIN_TEMPLATE_NAMESPACE) . '_calculations';
 		$apikey = array_key_exists( 'apikey', $bvars ) ? $bvars['apikey'] : "";
 		$insert = array( 
+		        'cid' 			=> $cid,
+		        'parent_cid' 	=> $parent_cid,
 				'product_slug'	=> $bvars['product_slug'],
-				'total_price' 	=> $full_total['total_cost_'],
-				'prod_cost' 	=> $full_total['total_pcost_'],
-				'piece_price' 	=> $full_total['total_cost_'] / $bvars['pa_quantity'],
+				'total_price' 	=> round ( $full_total['total_cost_'], 2 ),
+				'piece_price' 	=> round ( $full_total['total_cost_'] / $bvars['pa_quantity'], 2),
+				'prod_cost' 	=> round ( $full_total['total_pcost_'], 2 ),
 				'quantity' 		=> $bvars['pa_quantity'],
 				'mquantity' 	=> $bvars['pa_multi_quantity'],
-				'av_markup' 	=> $full_total['average_markup'],
-		        'bvars' 		=> json_encode($bvars),		        
-		        'full_total' 	=> json_encode($full_total),		        
-		        'user' 			=> $user['login'],
-		        'cid' 			=> $cid
+				'av_markup' 	=> round ( $full_total['average_markup'], 2),
+		        'bvars' 		=> json_encode( $bvars ),		        
+		        'full_total' 	=> json_encode( $full_total ),		        
+		        'tech' 			=> json_encode( $tech ),		        
+		        'user' 			=> $user['login']
 		    );
 		$wpdb->insert( $table_name, $insert );	
 	}
