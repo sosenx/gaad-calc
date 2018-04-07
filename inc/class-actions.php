@@ -208,11 +208,11 @@ class actions {
     $post_slug = is_object( $post) ? $post->post_name : false ;
 
     if(  GAAD_PLUGIN_TEMPLATE_ENV === 'DEV' ){      
-      wp_enqueue_style( basename(GAAD_PLUGIN_TEMPLATE_NAMESPACE) . '-app-css', GAAD_PLUGIN_TEMPLATE_URL . '/css/app.css', false, false);
+      //wp_enqueue_style( basename(GAAD_PLUGIN_TEMPLATE_NAMESPACE) . '-app-css', GAAD_PLUGIN_TEMPLATE_URL . '/css/app.css', false, false);
     }
     
     if(  GAAD_PLUGIN_TEMPLATE_ENV === 'DIST' ){
-      wp_enqueue_style( basename(GAAD_PLUGIN_TEMPLATE_NAMESPACE) . '-app-css', GAAD_PLUGIN_TEMPLATE_URL . '/dist/css/app.min.css', false, false);
+      //wp_enqueue_style( basename(GAAD_PLUGIN_TEMPLATE_NAMESPACE) . '-app-css', GAAD_PLUGIN_TEMPLATE_URL . '/dist/css/app.min.css', false, false);
     }        
   }
   
@@ -250,8 +250,8 @@ class actions {
 
     } 
     
-    add_action('wp_head', '\\' . __NAMESPACE__ . '\actions::app_templates', 9 );
-    add_action('wp_head', '\\' . __NAMESPACE__ . '\actions::app_data_src', 8 );
+    //add_action('wp_head', '\\' . __NAMESPACE__ . '\actions::app_templates', 9 );
+    //add_action('wp_head', '\\' . __NAMESPACE__ . '\actions::app_data_src', 8 );
   }
   
   public static function common_scripts(){
