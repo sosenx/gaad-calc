@@ -18,8 +18,7 @@ module.exports = function(grunt) {
       modules: {
         files: {         
           'dist/js/modules.min.js': [
-              'node_modules/tether/dist/js/tether.min.js',
-              'node_modules/bootstrap-vue/dist/bootstrap-vue.min.js'
+              
             ], 
         },
       },
@@ -27,10 +26,7 @@ module.exports = function(grunt) {
       modules_full: {
         files: {         
           'dist/js/modules.js': [
-              'node_modules/tether/dist/js/tether.min.js',
-              'node_modules/vue/dist/vue.min.js',
-              'node_modules/bootstrap-vue/dist/bootstrap-vue.min.js',
-              'node_modules/vuex/dist/vuex.min.js'
+              
             ], 
         },
       },
@@ -45,8 +41,7 @@ module.exports = function(grunt) {
 
       modules_css: {
         files: {         
-          'css/modules.min.css': [
-              'node_modules/tether/dist/css/tether.min.css'             
+          'css/modules.min.css': [             
             ], 
         },
       },

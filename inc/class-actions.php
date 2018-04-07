@@ -272,10 +272,10 @@ class actions {
     if ( GAAD_PLUGIN_TEMPLATE_ENV === 'DIST') {
       $core = array(
         'modules-js' => array( GAAD_PLUGIN_TEMPLATE_URL . '/dist/js/modules.min.js', array( 'vue-js' ), false, null ),
-        'vue-js' => array( 'https://unpkg.com/vue@2.4.2/dist/vue.js', false, false, null  ),        
-        'vue-router-js' => array( 'https://unpkg.com/vue-router/dist/vue-router.js', array( 'vue-js' ), false, null ),
-        'vue-x-js' => array( 'https://unpkg.com/vuex', array( 'vue-js' ), false, null ),       
-        'bootstrap-js' => array( 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js', array( 'modules-js', 'jquery' ), false, null )
+        //'vue-js' => array( 'https://unpkg.com/vue@2.4.2/dist/vue.js', false, false, null  ),        
+        //'vue-router-js' => array( 'https://unpkg.com/vue-router/dist/vue-router.js', array( 'vue-js' ), false, null ),
+        //'vue-x-js' => array( 'https://unpkg.com/vuex', array( 'vue-js' ), false, null ),       
+        //'bootstrap-js' => array( 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js', array( 'modules-js', 'jquery' ), false, null )
       );
     }
 
@@ -285,22 +285,22 @@ class actions {
       * Table index is a slug. Order of args is the same as in wp_enqueue_script function.
       */
       $core = array(
-       'tether-js' => array( GAAD_PLUGIN_TEMPLATE_URL . '/node_modules/tether/dist/js/tether.min.js', false, false, null ),
-       'vue-js' => array( 'https://unpkg.com/vue@2.4.2/dist/vue.js', false, false, null  ),        
-       'vue-router-js' => array( 'https://unpkg.com/vue-router/dist/vue-router.js', array( 'vue-js' ), false, null ),
-       'vue-x-js' => array( 'https://unpkg.com/vuex', array( 'vue-js' ), false, null ),       
-       'bootstrap-js' => array( 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js', array( 'tether-js', 'jquery' ), false, null ),
-       'bootstrap-vue-js' => array( GAAD_PLUGIN_TEMPLATE_URL . '/node_modules/bootstrap-vue/dist/bootstrap-vue.min.js', array( 'vue-js' ), false, null )
+       //'tether-js' => array( GAAD_PLUGIN_TEMPLATE_URL . '/node_modules/tether/dist/js/tether.min.js', false, false, null ),
+       //'vue-js' => array( 'https://unpkg.com/vue@2.4.2/dist/vue.js', false, false, null  ),        
+       //'vue-router-js' => array( 'https://unpkg.com/vue-router/dist/vue-router.js', array( 'vue-js' ), false, null ),
+       //'vue-x-js' => array( 'https://unpkg.com/vuex', array( 'vue-js' ), false, null ),       
+       //'bootstrap-js' => array( 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js', array( 'tether-js', 'jquery' ), false, null ),
+       //'bootstrap-vue-js' => array( GAAD_PLUGIN_TEMPLATE_URL . '/node_modules/bootstrap-vue/dist/bootstrap-vue.min.js', array( 'vue-js' ), false, null )
        );
 
       /*
       * Force load core scripts from own serwer
       */
       if ( GAAD_PLUGIN_TEMPLATE_CORE_SCRIPTS_CDN_USE ) {
-        $core[ 'vue-js' ][0] = GAAD_PLUGIN_TEMPLATE_URL . '/node_modules/vue/dist/vue.min.js';
-        $core[ 'vue-router-js' ][0] = GAAD_PLUGIN_TEMPLATE_URL . '/node_modules/vue-router/dist/vue-router.min.js';
-        $core[ 'vue-x-js' ][0] = GAAD_PLUGIN_TEMPLATE_URL . '/node_modules/vuex/dist/vuex.min.js';
-        $core[ 'bootstrap-js' ][0] = GAAD_PLUGIN_TEMPLATE_URL . '/node_modules/bootstrap/dist/js/bootstrap.min.js';
+        //$core[ 'vue-js' ][0] = GAAD_PLUGIN_TEMPLATE_URL . '/node_modules/vue/dist/vue.min.js';
+        //$core[ 'vue-router-js' ][0] = GAAD_PLUGIN_TEMPLATE_URL . '/node_modules/vue-router/dist/vue-router.min.js';
+        //$core[ 'vue-x-js' ][0] = GAAD_PLUGIN_TEMPLATE_URL . '/node_modules/vuex/dist/vuex.min.js';
+        //$core[ 'bootstrap-js' ][0] = GAAD_PLUGIN_TEMPLATE_URL . '/node_modules/bootstrap/dist/js/bootstrap.min.js';
       }       
     }  
 
@@ -339,17 +339,17 @@ class actions {
       * Table index is a slug. Order of args is the same as in wp_enqueue_style function.
       */
        $core = array(
-         'tether-css' => array( GAAD_PLUGIN_TEMPLATE_URL . '/node_modules/tether/dist/css/tether.min.css', false, false ),
-         'bootstrap-css' => array( 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css', false, false ),      
-         'bootstrap-vue-css' => array( '//unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.css', false, false )
+         //'tether-css' => array( GAAD_PLUGIN_TEMPLATE_URL . '/node_modules/tether/dist/css/tether.min.css', false, false ),
+         //'bootstrap-css' => array( 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css', false, false ),      
+         //'bootstrap-vue-css' => array( '//unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.css', false, false )
        );
 
       /*
       * Force load core scripts from own serwer
       */
       if ( !GAAD_PLUGIN_TEMPLATE_CORE_SCRIPTS_CDN_USE ) {
-         $core[ 'bootstrap-css' ][0] = GAAD_PLUGIN_TEMPLATE_URL . '/node_modules/bootstrap/dist/css/bootstrap.min.css';
-         $core[ 'bootstrap-vue-css' ][0] = GAAD_PLUGIN_TEMPLATE_URL . '/node_modules/bootstrap-vue/dist/bootstrap-vue.min.css';
+         //$core[ 'bootstrap-css' ][0] = GAAD_PLUGIN_TEMPLATE_URL . '/node_modules/bootstrap/dist/css/bootstrap.min.css';
+         //$core[ 'bootstrap-vue-css' ][0] = GAAD_PLUGIN_TEMPLATE_URL . '/node_modules/bootstrap-vue/dist/bootstrap-vue.min.css';
 
       }      
 
