@@ -42,36 +42,76 @@ class book extends product {
 				$r = array(
 
 					'markup_cover_type'                =>array(
-																'min' => 1.3, 
-																'max' => 10
+																'min' 			=> 130, 
+																'max' 			=> 1000,
+																'label' 		=> 'Cover type',
+																'field_type' 	=> 'number',
+																'default'		=> 200,
+																'precision'		=> 0,
+																'enabled'		=> true
 						),
 					'markup_bw_print'                  =>array(
-																'min' => 1.3, 
-																'max' => 10
+																'min' 			=> 130, 
+																'max' 			=> 1000,
+																'label' 		=> 'B&W print',
+																'field_type' 	=> 'number',
+																'default'		=> 200,
+																'precision'		=> 0,
+																'enabled'		=> true
 						),
 					'markup_color_print'               =>array(
-																'min' => 1.3, 
-																'max' => 10
+																'min' 			=> 130, 
+																'max' 			=> 1000,
+																'label' 		=> 'Color print',
+																'field_type' 	=> 'number',
+																'default'		=> 200,
+																'precision'		=> 0,
+																'enabled'		=> true
 						),
 					'markup_cover_print'               =>array(
-																'min' => 1.3, 
-																'max' => 10
+																'min' 			=> 130, 
+																'max' 			=> 1000,
+																'label' 		=> 'Cover print',
+																'field_type' 	=> 'number',
+																'default'		=> 200,
+																'precision'		=> 0,
+																'enabled'		=> false
 						),
 					'markup_cover_paper'               =>array(
-																'min' => 1.3, 
-																'max' => 10
+																'min' 			=> 130, 
+																'max' 			=> 1000,
+																'label' 		=> 'Cover paper',
+																'field_type' 	=> 'number',
+																'default'		=> 200,
+																'precision'		=> 0,
+																'enabled'		=> false
 						),
 					'markup_cover_dust_jacket_print'   =>array(
-																'min' => 1.3, 
-																'max' => 10
+																'min' 			=> 130, 
+																'max' 			=> 1000,
+																'label' 		=> 'Cover dust jacket print',
+																'field_type' 	=> 'number',
+																'default'		=> 200,
+																'precision'		=> 0,
+																'enabled'		=> false
 						),
 					'markup_cover_cloth_covering_print'=>array(
-																'min' => 1.3, 
-																'max' => 10
+																'min' 			=> 1.3, 
+																'max' 			=> 10,
+																'label' 		=> 'Cover cloth covering print',
+																'field_type' 	=> 'number',
+																'default'		=> 2,
+																'precision'		=> 2,
+																'enabled'		=> false
 						),
 					'markup_cover_endpaper_print'      =>array(
-																'min' => 1.3, 
-																'max' => 10
+																'min' 			=> 130, 
+																'max' 			=> 1000,
+																'label' 		=> 'Cover endpaper print',
+																'field_type' 	=> 'number',
+																'default'		=> 200,
+																'precision'		=> 0,
+																'enabled'		=> false
 						),
 
 				);
