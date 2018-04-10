@@ -25,6 +25,18 @@ namespace gcalc;
 
 
 
+//archives calc
+add_action( 'rest_api_init', function () {
+	  register_rest_route( 'gcalc/v1', '/ac', array(
+	    'methods' => 'PUT',
+	    'callback' => 'gcalc\rest::put_acalculation',
+	  ) );
+	} );
+
+
+
+
+
 	add_action( 'rest_api_init', function () {
 	  register_rest_route( 'gcalc/v1', '/test', array(
 	    'methods' => 'GET',

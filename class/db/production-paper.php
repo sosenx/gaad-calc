@@ -117,14 +117,14 @@ fo dev version it just sets an array
 				'price_per_kg' 	=> 3.6, 'label' => 'Ekobook bialy 80g pulchny 2.0', 	'weight' => .08, 	'thickness' => .137 ),
 
 
-			'munkenw-80g-1.5' 	=> array( 
+			'munken_white_15-80g' 	=> array( 
 				'price_per_kg' 	=> 5.6, 'label' => 'Munken bialy 80g pulchny 1.5', 	'weight' => .08, 	'thickness' => .116 ),
-			'munkenc-80g-1.5' 	=> array( 
+			'munken_cream_15-80g' 	=> array( 
 				'price_per_kg' 	=> 5.6, 'label' => 'Munken kremowy 80g pulchny 1.5', 	'weight' => .08, 	'thickness' => .116 ),
 
-			'munkenw-90g-1.5' 	=> array( 
+			'munken_white_15-90g' 	=> array( 
 				'price_per_kg' 	=> 5.6, 'label' => 'Munken bialy 80g pulchny 1.5', 	'weight' => .08, 	'thickness' => .132 ),
-			'munkenc-90g-1.5' 	=> array( 
+			'munken_cream_15-90g' 	=> array( 
 				'price_per_kg' 	=> 5.6, 'label' => 'Munken kremowy 80g pulchny 1.5', 	'weight' => .08, 	'thickness' => .132 ),
 
 		);

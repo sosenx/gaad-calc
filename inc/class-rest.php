@@ -14,6 +14,26 @@ class rest{
 	}	
 
 
+
+public static function put_acalculation(){
+	global $post;
+	$h = \gcalc\rest::getHeaders( "/c-slug|cid|contractor-email|contractor-nip|shipment-country|shipment-date|token|archive-notes/", true )[ 'selected' ];	
+	
+	$calculation =  \gcalc\sql::calculation_get( $h[ 'cid' ], $h[ 'token' ] );	
+	if ( $calculation ) {
+		$token = \gcalc\sql::acalculations_insert( $h[ 'cid' ], $calculation, $h );		
+	}
+
+	$r = array( 
+			'plugin_name' => "gcalc",
+			'handler'     => "put_acalculation",
+			'status'      => $calculation ? 200 : 500,
+			'headers'     => $h,
+			'token'      => $token
+		);
+	return json_decode(json_encode( $r ));
+}
+
 	/**
 	* Zwraca gówny model aplikacji.
 	*
@@ -73,7 +93,9 @@ class rest{
 			'headers' => $h,
 			'output' => $data_permissions_f->get()
 		);
-		$data_permissions_f->save_calculation();
+
+		$r[ 'output' ][ 'token' ] = $data_permissions_f->save_calculation()[ 'token' ];
+		
 		return json_decode(json_encode( $r ));
 	}
 

@@ -181,6 +181,10 @@ class formats{
 		$production_format = $this->production_formats[ $print_color_mode ][ $common_format['name'] ];		
 		$format_data = $this->get_formats( $print_color_mode_translate[$print_color_mode]) [ $production_format['format'] ];
 
+
+
+
+
 		$production_format = array_merge( $production_format, $format_data);
 		//$production_format['grain'] = $common_format['grain'];
 		$production_format['common_format'] = $common_format;		

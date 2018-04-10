@@ -8,6 +8,8 @@ namespace gcalc;
 *
 */
 class data_permissions_filter{
+
+	private $token;
 		/*
 		* calculator
 		*/
@@ -269,11 +271,31 @@ class data_permissions_filter{
 
 			if ( in_array( (int)$credetials['access_level'], $save_type) ) {
 				$user = $this->get_credetials();
-				\gcalc\sql::calculations_insert( $this->calc->get_CID(), $this->calc->get_bvars(), $user, $this->total_ );
+				$token = \gcalc\sql::calculations_insert( $this->calc->get_CID(), $this->calc->get_bvars(), $user, $this->total_ );
+
+			
+				$this->calc->token = $token;
+			} else {
+				$this->calc->get_errors()->add( new error( 10103 ) );
+				$this->set_allowed_data(  );
+			}	
+
+			return $this->get( );		
+		}
+
+		public function save_acalculation(){
+			$credetials = $this->get_credetials();
+			$autosave = \gcalc\GAAD_PLUGIN_TEMPLATE_AUTOSAVE_CALCULATIONS_TYPES;
+			$save_type = strlen($autosave) >= 1 ? array_filter( explode( ',', $autosave ) ) : 2;
+
+			if ( in_array( (int)$credetials['access_level'], $save_type) ) {
+				$user = $this->get_credetials();
+				\gcalc\sql::acalculations_insert( $this->calc->get_CID(), $this->calc->get_bvars(), $user, $this->total_ );
 			} else {
 				$this->calc->get_errors()->add( new error( 10103 ) );
 				$this->set_allowed_data();
 			}	
+
 
 			return $this->get();		
 		}
@@ -306,10 +328,14 @@ class data_permissions_filter{
 		}
 
 
-		public function set_allowed_data(){
-			$this->ALLOWED_DATA = 
-			$this->sort_allowed_data(
-				array(					
+		public function set_allowed_data( ){
+			$data = is_null( $data ) ? array() : $data;
+			$token = array_key_exists( 'token', $data ) ? $data['token'] : false;
+
+			$output_array = array(	
+					'cid'=> $this->calc->get_CID(),	
+					//'token'=> $this->get_token(),	
+
 					't' => $this->parse_( $this->total_ ),
 					'q' => $this->calc->get_bvar( 'pa_master_quantity' ),
 
@@ -319,18 +345,44 @@ class data_permissions_filter{
 
 				//	'c' => $this->parse_( $this->credentials, 'credentials'),
 					//'u' => $this->apikey,
-				)
-			);	
+				);
+
+			if ( $token ) {
+				$output_array[ 'token' ] = $token;
+			}
+			$this->ALLOWED_DATA =$this->sort_allowed_data( $output_array );	
 
 		}
 
-		public function get(){		
+/**
+ * Getter for token
+ * @return [type] [description]
+ */
+function get_token( ){
+	return $this->token;
+}
+
+/**
+ * Setter for token
+ * @param string $token [description]
+ */
+function set_token( string $token ){
+	$this->token = $token;
+}
+
+
+
+		public function get( ){		
 			if ( is_null( $this->ALLOWED_DATA ) ) {
-				$this->ALLOWED_DATA = array(
+				$this->ALLOWED_DATA = array(					 
 					'e' => $this->parse_( $this->calc->get_errors()->get_data(), 'errors')
 				);
-			} 
-			return $this->delete_empty_arrays( $this->ALLOWED_DATA );
+			} else {
+				$this->ALLOWED_DATA['token'] = $this->calc->token;
+			}
+
+			$o = $this->delete_empty_arrays( $this->ALLOWED_DATA );			
+			return $o;
 		}
 
 		/*

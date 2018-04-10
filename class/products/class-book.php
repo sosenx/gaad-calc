@@ -131,6 +131,11 @@ class book extends product {
 				'attr_name' => 'quantity',
 				'validator' =>  'var validator =
 					function( attributes, input_form ){
+
+						if( typeof attributes.quantity === "undefined" ){
+							input_form.valid( "c23c21" );
+						}
+
 						var max_quantity = 1000;
 						var valid = attributes.quantity <= max_quantity;
 
@@ -162,6 +167,11 @@ class book extends product {
 				'attr_name' => 'quantity',
 				'validator' =>  'var validator =
 					function( attributes, input_form ){
+
+						if( typeof attributes.quantity === "undefined" ){
+							input_form.valid( "c23c22" );
+						}
+
 						var max_quantity = 3000;
 						var valid = attributes.quantity <= max_quantity;
 
@@ -720,7 +730,7 @@ class book extends product {
 																								'placeholder' 	=> __('', 'gcalc') 
 				),
 
-				'pa_cover_type' => 						array( 'default' => 'perfect_binding', 			'type' 			=> 'select', 
+				'pa_cover_type' => 						array( 'default' => 'hard', 			'type' 			=> 'select', 
 																								'placeholder' 	=> __('', 'gcalc') 
 				),
 
@@ -756,7 +766,7 @@ class book extends product {
 																								'placeholder' 	=> __('', 'gcalc') 
 				),
 
-				'pa_cover_ribbon' => 					array( 'default' => 'ribbon-0', 		'type' 			=> 'select', 
+				'pa_cover_ribbon' => 					array( 'default' => 'ribbon-red', 		'type' 			=> 'select', 
 																								'placeholder' 	=> __('', 'gcalc') 
 				),
 
@@ -838,7 +848,7 @@ class book extends product {
 
 
 
-				'pa_cover_ribbon_width' => 				array( 'default' => 'ribbon-0', 		'type' 			=> 'select', 
+				'pa_cover_ribbon_width' => 				array( 'default' => 'ribbon-3', 		'type' 			=> 'select', 
 																								'placeholder' 	=> __('', 'gcalc') 
 				),
 
@@ -1002,8 +1012,8 @@ class book extends product {
 				array( 'cover_endpaper_print', array( '0x0', '1x0', '4x0' ), '111' ),
 				
 
-				array( 'cover_ribbon', array( 'ribbon-0', 'ribbon-red', 'ribbon-orange', 'ribbon-green', 'ribbon-yellow' ), '111' ),
-				array( 'cover_ribbon_width', array( 'ribbon-0', 'ribbon-3', 'ribbon-6' ), '111' ),
+				array( 'cover_ribbon', array(  'ribbon-red', 'ribbon-orange', 'ribbon-green', 'ribbon-yellow' ), '111' ),
+				array( 'cover_ribbon_width', array(  'ribbon-3', 'ribbon-6' ), '111' ),
 				array( 'cover_flaps', array( 'no-flaps', 'flap-left', 'flap-right', 'flap-both' ), '111' ),
 				array( 'cover_left_flap_width', array( 'custom-value' ), '111' ),
 				array( 'cover_right_flap_width', array( 'custom-value' ), '111' ),

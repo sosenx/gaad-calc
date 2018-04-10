@@ -406,7 +406,7 @@ class pa_cover_type extends pa_format{
 		 */
 		$group = $this->get_group();
 		$markup_attr_name = 'markup_' . str_replace( 'pa_', '', $group[1] );
-		$overridden_markup_value = $this->get_carg( $markup_attr_name );
+		$overridden_markup_value = (int)$this->get_carg( $markup_attr_name ) / 100;
 
 		if ( is_null( $overridden_markup_value ) ) {				
 			$markup_db = new \gcalc\db\product_markup( $this->cargs, $this->product_id, $this);

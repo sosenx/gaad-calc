@@ -164,12 +164,14 @@ class sql{
 			`full_total` 	TEXT NOT NULL ,
 			`tech` 			TEXT NULL DEFAULT NULL,
 			`user` 			VARCHAR(50) NOT NULL,											
-			`added` 		timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,		  
+			`archives_id` 	mediumint(9) NULL,	
+			`added` 		timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+			`token` 		VARCHAR(32) NOT NULL,		  
 		  PRIMARY KEY  (id)
 		) $charset_collate;";
 		
-		$dbDelta = dbDelta( $sql );
-		
+		$dbDelta = dbDelta( $sql );	
+
 		return $dbDelta;
 	}
 
@@ -183,29 +185,53 @@ class sql{
 		$charset_collate = $wpdb->get_charset_collate();
 
 		$sql = "CREATE TABLE $table_name (
-			`id` 			mediumint(9) NOT NULL AUTO_INCREMENT,	
-			`cid` 			VARCHAR(32) NOT NULL,
-			`parent_cid` 	VARCHAR(32) NULL DEFAULT NULL,			
-			`product_slug`	VARCHAR(50) NOT NULL,			
-			`total_price` 	FLOAT NOT NULL,
-			`piece_price` 	FLOAT NOT NULL,
-			`prod_cost` 	FLOAT NOT NULL,
-			`quantity` 		INT NOT NULL,
-			`mquantity` 	VARCHAR(100) NULL,			
-			`av_markup` 	FLOAT NOT NULL,			
-			`bvars` 		TEXT NOT NULL , 	
-			`full_total` 	TEXT NOT NULL ,
-			`tech` 			TEXT NULL DEFAULT NULL,
-			`user` 			VARCHAR(50) NOT NULL,											
-			`added` 		timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,		  
+			`id` 				mediumint(9) NOT NULL AUTO_INCREMENT,	
+			`cid` 				VARCHAR(32) NOT NULL ,
+			`parent_cid` 		VARCHAR(32) NULL DEFAULT NULL,						
+			`product_slug`		VARCHAR(32) NOT NULL,			
+			`total_price` 		FLOAT NOT NULL,
+			`piece_price` 		FLOAT NOT NULL,
+			`prod_cost` 		FLOAT NOT NULL,
+			`quantity` 			INT NOT NULL,
+			`mquantity` 		VARCHAR(100) NULL,			
+			`av_markup` 		FLOAT NOT NULL,			
+			`bvars` 			TEXT NOT NULL , 	
+			`full_total` 		TEXT NOT NULL ,
+			`tech` 				TEXT NULL DEFAULT NULL,
+			`user` 				VARCHAR(32) NOT NULL,
+			`contractor_id` 	VARCHAR(32) NULL,	
+			`contractor_nip` 	VARCHAR(32) NOT NULL,	
+			`contractor_email` 	VARCHAR(100) NOT NULL,
+			`c-slug` 			VARCHAR(100) NOT NULL,
+			`notes` 			VARCHAR(250) NULL,
+			`added` 			timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,	
+			`token` 			VARCHAR(32) NOT NULL,		  
 		  PRIMARY KEY  (id)
 		) $charset_collate;";
 		
 		$dbDelta = dbDelta( $sql );
-		
 		return $dbDelta;
 	}
 
+
+	public static function calculation_get( $cid, $token ){
+		global $wpdb; 
+		$table_name = basename( GAAD_PLUGIN_TEMPLATE_NAMESPACE ) . '_calculations';
+		$get = array(
+			'cid' => $cid, 
+			'token' => $token
+		);
+
+		$r = $wpdb->get_results( "SELECT *  FROM `$table_name` WHERE cid LIKE '$cid' AND token LIKE '$token' ", ARRAY_A );	
+		if ( isset( $r[0] ) ) {		
+			
+			$r[ 0 ]['av_markup']  = json_decode( $r[0]['av_markup'], true );
+			$r[ 0 ]['bvars']      = json_decode( $r[0]['bvars'], true );
+			$r[ 0 ]['full_total'] = json_decode( $r[0]['full_total'], true );
+
+			return  $r[0];		
+		}
+	}
 
 	public static function calculations_insert( $id_, array $bvars, array $user, array $full_total, array $tech = NULL){
 		global $wpdb; 
@@ -213,6 +239,7 @@ class sql{
 		$cid       	= is_array( $id_ ) ? $id_[ 0 ] : $id_;
 		$parent_cid	= is_array( $id_ ) ? $id_[ 1 ] : $id_;
 		$tech      	= is_null( $tech ) ? array() : $tech;
+		$token = \uniqid('ct-');
 
 		$table_name = basename(GAAD_PLUGIN_TEMPLATE_NAMESPACE) . '_calculations';
 		$apikey = array_key_exists( 'apikey', $bvars ) ? $bvars['apikey'] : "";
@@ -229,11 +256,72 @@ class sql{
 		        'bvars' 		=> json_encode( $bvars ),		        
 		        'full_total' 	=> json_encode( $full_total ),		        
 		        'tech' 			=> json_encode( $tech ),		        
-		        'user' 			=> $user['login']
+		        'user' 			=> $user['login'],
+		        'token' 		=> $token
 		    );
 		$wpdb->insert( $table_name, $insert );	
+		
+		return $token;
 	}
 
+/**
+ * Saves calculation as archive
+ * @param  [type]     $id_        [description]
+ * @param  array      $bvars      [description]
+ * @param  array      $user       [description]
+ * @param  array      $full_total [description]
+ * @param  array|null $tech       [description]
+ * @return [type]                 [description]
+ */
+	public static function acalculations_insert( $cid, array $calculation, array $contractor){
+		global $wpdb; 
+		$table_name = basename(GAAD_PLUGIN_TEMPLATE_NAMESPACE) . '_archives';		
+		$atoken = \uniqid('at-');
+		$insert = array(
+			'cid'              => $calculation[ 'cid' ],
+			'parent_cid'       => $calculation[ 'parent_cid' ],
+			'product_slug'     => $calculation[ 'product_slug' ],
+			'total_price'      => $calculation[ 'total_price' ],
+			'piece_price'      => $calculation[ 'piece_price' ],
+			'prod_cost'        => $calculation[ 'prod_cost' ],
+			'quantity'         => $calculation[ 'quantity' ],
+			'mquantity'        => $calculation[ 'mquantity' ],
+			'av_markup'        => $calculation[ 'av_markup' ],
+			'bvars'            => '{}',
+			'full_total'       => '{}',
+			'tech'             => '{}',
+
+			/*
+			'bvars'            => json_encode( $calculation[ 'bvars' ] ),
+			'full_total'       => json_encode( $calculation[ 'full_total' ] ),
+			'tech'             => json_encode( $calculation[ 'tech' ] ),
+
+			 */
+			'user'             => $calculation[ 'user' ],
+			'contractor_id'    => $contractor[ 'contractor-id' ],
+			'contractor_nip'   => $contractor[ 'contractor-nip' ],
+			'contractor_email' => $contractor[ 'contractor-email' ],
+			'c-slug'           =>  $contractor[ 'c-slug' ],
+
+			'notes'				=> $contractor['archive-notes'],
+			'token'            => $atoken
+		);
+		
+		$record_id = $wpdb->insert( $table_name, $insert );	
+
+		$duplicate_entry = preg_match( '/Duplicate entry/', $wpdb->last_error );
+		if ( $duplicate_entry ) {
+			$token = $wpdb->get_results( "SELECT `token` FROM `$table_name` WHERE `cid` LIKE '" . $calculation[ 'cid' ] . "'", ARRAY_A );
+			$token = !empty($token) ? $token[ 0 ]['token'] : false;
+			return $token;
+		}
+
+		if ( $record_id > 0) {
+			$deleted = $wpdb->delete( $table_name, array( 'cid' => $calculation[ 'cid' ] ), array( '%s' ) );
+		}
+
+		return $atoken;
+	}
 
 
 	/** 
