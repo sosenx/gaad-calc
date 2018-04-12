@@ -306,7 +306,7 @@ class formats{
 					'compare' => 'min',
 					'scale' => array(
 						array( 'price' => 180, 	'v' => 0 ),
-						array( 'price' => 250, 	'v' => 50 ),
+						array( 'price' => 250, 	'v' => 49 ),
 						array( 'price' => 350, 'v' => 98 ),						
 						array( 'price' => -1, 'v' => 99 )						
 					)

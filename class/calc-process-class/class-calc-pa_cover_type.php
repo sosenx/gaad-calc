@@ -431,10 +431,6 @@ class pa_cover_type extends pa_format{
 		$total_price += $additional_cover_cost['total_price'];
 
 
-		
-		
-		
-
 		return $this->parse_total( 			
 			array(				
 				'production_cost' 	=> 	$production_cost,				
@@ -448,8 +444,6 @@ class pa_cover_type extends pa_format{
 			)
 		);
 	}
-
-
 	
 	/**
 	* Returns default cloth covering paper if there is no in attributes
@@ -487,7 +481,6 @@ class pa_cover_type extends pa_format{
 		}
 		return '0x0';
 	}
-
 	
 	/**
 	* Returns default cloth covering print if there is no in attributes
@@ -500,8 +493,6 @@ class pa_cover_type extends pa_format{
 		}
 		return '4x0';
 	}
-
-
 
 	/**
 	* Returns default cloth covering print if there is no in attributes
@@ -528,7 +519,6 @@ class pa_cover_type extends pa_format{
 		return '0x0';
 	}
 
-
 	/** 
 	* Returns default dust jacket print if there is no in attributes
 	*/
@@ -538,7 +528,6 @@ class pa_cover_type extends pa_format{
 		}
 		return '0x0';
 	}
-
 
 	/**
 	* Returns default dust jacket paper if there is no in attributes

@@ -216,8 +216,6 @@ if ( !defined( GAAD_PLUGIN_TEMPLATE_NAMESPACE . 'GAAD_PLUGIN_TEMPLATE_AUTOSAVE_C
 	
 	
 	
-	
-
 
 	require_once( 'class/products/class-book.php' );
 	require_once( 'class/products/class-catalog.php' );
@@ -240,7 +238,6 @@ if ( !defined( GAAD_PLUGIN_TEMPLATE_NAMESPACE . 'GAAD_PLUGIN_TEMPLATE_AUTOSAVE_C
 	require_once( 'class/abstract-class-calc-product.php' );
 	require_once( 'class/class-calculate.php' );
 
-	
 
 	require_once( 'class/class-call-stack.php' );
 	require_once( 'class/class-todo-list.php' );

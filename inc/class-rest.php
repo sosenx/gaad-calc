@@ -13,26 +13,28 @@ class rest{
 		return true;
 	}	
 
+	public static function put_acalculation(){
+		global $post;
+		$h = \gcalc\rest::getHeaders( "/c-slug|cid|contractor-email|contractor-nip|shipment-country|shipment-date|token|archive-notes/", true )[ 'selected' ];	
+		
+		$calculation =  \gcalc\sql::calculation_get( $h[ 'cid' ], $h[ 'token' ] );	
 
+		if ( $calculation ) {
+			$put_data = \gcalc\sql::acalculations_insert( $h[ 'cid' ], $calculation, $h );		
+			$token = $put_data[ 'token' ];
+		}
 
-public static function put_acalculation(){
-	global $post;
-	$h = \gcalc\rest::getHeaders( "/c-slug|cid|contractor-email|contractor-nip|shipment-country|shipment-date|token|archive-notes/", true )[ 'selected' ];	
-	
-	$calculation =  \gcalc\sql::calculation_get( $h[ 'cid' ], $h[ 'token' ] );	
-	if ( $calculation ) {
-		$token = \gcalc\sql::acalculations_insert( $h[ 'cid' ], $calculation, $h );		
-	}
-
-	$r = array( 
-			'plugin_name' => "gcalc",
-			'handler'     => "put_acalculation",
-			'status'      => $calculation ? 200 : 500,
-			'headers'     => $h,
-			'token'      => $token
+		$r = array( 
+			'plugin_name' 	=> "gcalc",
+			'handler'     	=> "put_acalculation",
+			'status'      	=> $calculation ? 200 : 500,
+			'headers'     	=> $h,
+			'output' 		=> $put_data,
+			'token'      	=> $token
 		);
-	return json_decode(json_encode( $r ));
-}
+
+		return json_decode( json_encode( $r ) );
+	}
 
 	/**
 	* Zwraca gówny model aplikacji.
@@ -69,7 +71,7 @@ public static function put_acalculation(){
 	    \header( 'Access-Control-Allow-Origin: *' );
 	    \header('Access-Control-Allow-Credentials: true');
 	    \header( 'Access-Control-Allow-Methods: GET' );
-	    \header( 'Access-Control-Allow-Headers: apikey,apisecret,authorization,group_bw,group_color,group_cover,pa_bw_format,pa_bw_pages,pa_bw_paper,pa_bw_print,pa_color_format,pa_color_pages,pa_color_paper,pa_color_print,pa_color_stack,pa_cover_cloth_covering_paper,pa_cover_cloth_covering_print,pa_cover_cloth_covering_spot_uv,pa_cover_cloth_covering_finish,pa_cover_dust_jacket_paper,pa_cover_dust_jacket_print,pa_cover_dust_jacket_spot_uv,pa_cover_dust_jacket_finish,pa_cover_flaps,pa_cover_format,pa_cover_left_flap_width,pa_cover_paper,pa_cover_print,pa_cover_ribbon,pa_cover_right_flap_width,pa_cover_spot_uv,pa_cover_type,pa_cover_finish,pa_format,pa_multi_quantity,multi_quantity,pa_paper,pa_print,pa_quantity,pa_spot_uv,pa_finish,product_slug, pa_cover_board_thickness, pa_folding, markup_bw_print, markup_color_print, markup_cover_cloth_covering_print, markup_cover_dust_jacket_print, markup_cover_endpaper_print, markup_cover_paper, markup_cover_print, markup_cover_type ' );
+	    \header( 'Access-Control-Allow-Headers: apikey,apisecret,authorization,group_bw,group_color,group_cover,pa_bw_format,pa_bw_pages,pa_bw_paper,pa_bw_print,pa_color_format,pa_color_pages,pa_color_paper,pa_color_print,pa_color_stack,pa_cover_cloth_covering_paper,pa_cover_cloth_covering_print,pa_cover_cloth_covering_spot_uv,pa_cover_cloth_covering_finish,pa_cover_dust_jacket_paper,pa_cover_dust_jacket_print,pa_cover_dust_jacket_spot_uv,pa_cover_dust_jacket_finish,pa_cover_flaps,pa_cover_format,pa_cover_left_flap_width,pa_cover_paper,pa_cover_print,pa_cover_ribbon,pa_cover_right_flap_width,pa_cover_spot_uv,pa_cover_type,pa_cover_finish,pa_format,pa_multi_quantity,multi_quantity,pa_paper,pa_print,pa_quantity,pa_spot_uv,pa_finish,product_slug, pa_cover_board_thickness, pa_folding, markup_bw_print, markup_color_print, markup_cover_cloth_covering_print, markup_cover_dust_jacket_print, markup_cover_endpaper_print, markup_cover_paper, markup_cover_print, markup_cover_type, spine_shape ' );
 
 	   // \gcalc\rest::cors();
 	    return $value;

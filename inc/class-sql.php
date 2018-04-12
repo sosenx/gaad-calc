@@ -276,6 +276,7 @@ class sql{
 	public static function acalculations_insert( $cid, array $calculation, array $contractor){
 		global $wpdb; 
 		$table_name = basename(GAAD_PLUGIN_TEMPLATE_NAMESPACE) . '_archives';		
+		$calculations_table_name = basename(GAAD_PLUGIN_TEMPLATE_NAMESPACE) . '_calculations';		
 		$atoken = \uniqid('at-');
 		$insert = array(
 			'cid'              => $calculation[ 'cid' ],
@@ -287,16 +288,17 @@ class sql{
 			'quantity'         => $calculation[ 'quantity' ],
 			'mquantity'        => $calculation[ 'mquantity' ],
 			'av_markup'        => $calculation[ 'av_markup' ],
-			'bvars'            => '{}',
+						
+			 'bvars'            => '{}',
 			'full_total'       => '{}',
 			'tech'             => '{}',
-
 			/*
+			
 			'bvars'            => json_encode( $calculation[ 'bvars' ] ),
 			'full_total'       => json_encode( $calculation[ 'full_total' ] ),
 			'tech'             => json_encode( $calculation[ 'tech' ] ),
-
-			 */
+*/
+			 
 			'user'             => $calculation[ 'user' ],
 			'contractor_id'    => $contractor[ 'contractor-id' ],
 			'contractor_nip'   => $contractor[ 'contractor-nip' ],
@@ -307,20 +309,37 @@ class sql{
 			'token'            => $atoken
 		);
 		
+		$deleted = -1;
 		$record_id = $wpdb->insert( $table_name, $insert );	
 
 		$duplicate_entry = preg_match( '/Duplicate entry/', $wpdb->last_error );
 		if ( $duplicate_entry ) {
 			$token = $wpdb->get_results( "SELECT `token` FROM `$table_name` WHERE `cid` LIKE '" . $calculation[ 'cid' ] . "'", ARRAY_A );
 			$token = !empty($token) ? $token[ 0 ]['token'] : false;
-			return $token;
+
+			$r = array(
+				'duplicate_entry' => $duplicate_entry,
+				'last_error' => $wpdb->last_error,
+				'deleted' => $deleted,
+				'insert_id' => $wpdb->insert_id,
+				'token' => $token
+			);
+			return $r; 
 		}
 
 		if ( $record_id > 0) {
-			$deleted = $wpdb->delete( $table_name, array( 'cid' => $calculation[ 'cid' ] ), array( '%s' ) );
+			$deleted = $wpdb->delete( $calculations_table_name, array( 'cid' => $calculation[ 'cid' ] ), array( '%s' ) );
 		}
 
-		return $atoken;
+			$r = array(
+				'duplicate_entry' => $duplicate_entry,
+				'last_error' => $wpdb->last_error,
+				'deleted' => $deleted,
+				'insert_id' => $wpdb->insert_id,
+				'token' => $token
+			);
+
+		return $r;
 	}
 
 

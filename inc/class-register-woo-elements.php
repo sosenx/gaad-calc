@@ -112,7 +112,6 @@ class register_woo_elements{
 	public static function create_product_attributes(){
 
 		if ( !\gcalc\GAAD_PLUGIN_TEMPLATE_DISABLE_CREATE_ATTRIBUTES ) {
-			
 
 			\gcalc\register_woo_elements::pa_quantity();
 			\gcalc\register_woo_elements::pa_bw_pages();
@@ -130,9 +129,7 @@ class register_woo_elements{
 			\gcalc\register_woo_elements::pa_title();
 			\gcalc\register_woo_elements::pa_book_number();
 			\gcalc\register_woo_elements::pa_comments();
-
-
-
+			\gcalc\register_woo_elements::pa_spine_shape();
 
 			/*
 			 * Cover
@@ -193,10 +190,6 @@ class register_woo_elements{
 			\gcalc\register_woo_elements::pa_folding();	
 			\gcalc\register_woo_elements::pa_folding_dir();	
 
-
-
-
-				
 		}		
 	}
 
@@ -219,8 +212,6 @@ class register_woo_elements{
 		$posts = new \WP_Query( array( 'post_title' => $product_title, 'post_type' => 'product', 'post_status' => 'publish'  ));
 		return $posts->posts;
 	}
-
-	
 
 	/**
 	* Adds attribute to product
@@ -248,14 +239,6 @@ class register_woo_elements{
 	    $_post_meta = update_post_meta($post_id, '_product_attributes', array_merge( is_array( $_product_attributes ) ? $_product_attributes : array(), $data));		
 		return $_post_meta;
 	}
-
-
-
-
-
-
-
-
 
 	/**
 	* Adds paper attribute
@@ -372,6 +355,31 @@ class register_woo_elements{
 	/**pa_cover_board_thickness
 	* Adds paper attribute
 	*/
+	public static function pa_spine_shape($return = NULL ){
+		$r = array();
+		$name = 'spine_shape';
+		$label = \__('Spine shape', 'gcalc');
+		\gcalc\register_woo_elements::process_add_attribute( array(
+			'attribute_name' => $name,
+			'attribute_label' => $label,
+			'attribute_type' => 'select',
+			'attribute_orderby' => 'menu_order',
+			'attribute_public' => false
+		) );
+		
+		/*
+		* Adding print sizes
+		*/
+		\wp_insert_term( $r[ 'rounded' ] = 'Rounded spine',	'pa_' . $name, array( 'description' => \__('Rounded spine', 'gcalc'), 	'slug' => 'rounded' ) );
+		\wp_insert_term( $r[ 'straight' ] = 'Straight spine',	'pa_' . $name, array( 'description' => \__('Straight spine', 'gcalc'), 	'slug' => 'straight' ) );
+
+		return $return ? $r : null;
+	}
+
+
+	/**pa_cover_board_thickness
+	* Adds paper attribute
+	*/
 	public static function pa_cover_paper($return = NULL ){
 		$r = array();
 		$name = 'cover_paper';
@@ -399,7 +407,7 @@ class register_woo_elements{
 		\wp_insert_term( $r['coated-350g']='Coated paper 350g', 		'pa_' . $name, array( 'description' => \__('Coated 350g', 'gcalc'), 	'slug' => 'coated-350g' ) );
 		
 		return $return ? $r : null;				
-	}
+	}	
 
 	/**pa_cover_board_thickness
 	* Adds paper attribute
@@ -760,7 +768,7 @@ class register_woo_elements{
 	public static function pa_color_pages_numbers($return = NULL ){
 		$r = array();
 		$name = 'color_pages_numbers';
-		$label = \__('Color pages nymbers', 'gcalc');
+		$label = \__('Color pages numbers', 'gcalc');
 		\gcalc\register_woo_elements::process_add_attribute( array(
 			'attribute_name' => $name,
 			'attribute_label' => $label,
@@ -806,7 +814,7 @@ class register_woo_elements{
 	public static function pa_book_number($return = NULL ){
 		$r = array();
 		$name = 'book_number';
-		$label = \__('Color pages nymbers', 'gcalc');
+		$label = \__('Color pages numbers', 'gcalc');
 		\gcalc\register_woo_elements::process_add_attribute( array(
 			'attribute_name' => $name,
 			'attribute_label' => $label,

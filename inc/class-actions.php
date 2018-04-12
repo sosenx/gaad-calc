@@ -69,7 +69,7 @@ class actions {
   
   /*
   * Tworzy niezbędne pluginowi pliki i katalogi w bieżącym szablonie
-  * Trzeba dopisac akcje zmiany parametru files_updated kiedy zmienia sie szablon z panelu!!!!!!!!!!!!!!!!
+  * Trzeba dopisac akcje zmiany parametru files_updated kiedy zmienia sie szablon z panelu!
   */
   public static function update_theme_files( ){
    
@@ -94,15 +94,7 @@ class actions {
       $userpwd = trim($_POST[ 'userpwd' ]);
       $check = wp_authenticate_username_password( NULL, $username, $userpwd );
 
-     /* if( $check instanceof WP_Error ){
-        //obsługa błędów
-        
-        ?><script id="login-wp-error" type="application/javascript">
-          var login_wp_error = <?php echo json_encode( WP_Error ); ?>;          
-          </script><?php
-
-        
-      } else*/if( $check instanceof WP_User ){
+     if( $check instanceof WP_User ){
         $creds = array();
         $creds['user_login'] = $username;
         $creds['user_password'] = $userpwd;
