@@ -1,3 +1,21 @@
 table{
 	border: 1px solid red;
+
+	&.basic-info{
+		width: 140mm;
+		border: 1px solid gray;
+		margin-top: 10mm;
+
+		.label{
+			width: 30%;
+			border-bottom: 1px solid gray;
+		}
+
+		.value{
+			width: 70%;
+			border-bottom: 1px solid gray;
+		}
+
+	}
+
 }
