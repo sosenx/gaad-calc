@@ -2,9 +2,115 @@
 namespace gcalc;
    
 class actions {
-  
+    
+
+/**
+ * generate calculation post type content  
+ * @return [type] [description]
+ */
+  public static function calculation_post_content( string $cid, $calculation, array $headers ){
+
+    $r = array();
+    $content = '<h1>byly sobie ' . $cid . '</h1>';
+    return $content;
+  }
+
+  /**
+   * Gets calculation post type
+   * @return [type] [description]
+   */
+    public static function get_calculation_post_by_cid( string $cid ){
+      $attr = array (
+          'post_type' => 'calculation',
+          'post_title' => $cid
+        );
+      $q = new \WP_Query( $attr );
+      $r = array( 'posts' => $q->posts[ 0 ] );
+      $r[ 'exists' ] = $q->have_posts();
+      return $r;
+    }
+
+  /**
+   * Adds calculation custom post for further use.
+   * @param  string $cid         [description]
+   * @param  [type] $calculation [description]
+   * @param  array  $headers     [description]
+   * @return [type]              [description]
+   */
+    public static function acalculations_insert_wp_post( string $cid, $calculation, array $headers  ){
+      $r = array();
+      $action = 'add';
+      $post_title = $cid;
+      $exists = actions::get_calculation_post_by_cid( $post_title );
+      $post_content = actions::calculation_post_content( $cid, $calculation, $headers );
+
+      $attr = array (
+          'post_type' => 'calculation',
+          'post_title' => $post_title,
+          'post_content' => $post_content,
+          'post_status' => 'publish',
+          'comment_status' => 'closed',
+          'ping_status' => 'closed',   
+      );
+     
+      if ( !$exists[ 'exists' ] ) {
+        $post_id = \wp_insert_post( $attr );
+        
+      } else {
+        $post_id = $attr[ 'ID' ] = $exists[ 'posts' ]->ID; 
+        $action = 'update';
+        \wp_update_post( $attr );
+      }
+
+      $r['post_id'] = $post_id;
+      $r['action'] = $action;
+      $r['post_content'] = $post_content;
+      return $r;
+    }
   
 
+
+
+
+  /**
+   * Create type to store calculations for viewing
+   * @return [type] [description]
+   */
+    public static function create_calclaton_post_type(  ){
+      
+      //labels array added inside the function and precedes args array
+
+       $labels = array(
+        'name'               => \_x( 'Kalkulacje', 'post type general name' ),
+        'singular_name'      => \_x( 'Kalkulacja', 'post type singular name' ),
+        'add_new'            => \_x( 'Add New', 'Calculation' ),
+        'add_new_item'       => \__( 'Add New Calculation' ),
+        'edit_item'          => \__( 'Edit Calculation' ),
+        'new_item'           => \__( 'New Calculation' ),
+        'all_items'          => \__( 'All Calculations' ),
+        'view_item'          => \__( 'View Calculation' ),
+        'search_items'       => \__( 'Search calculations' ),
+        'not_found'          => \__( 'No calculations found' ),
+        'not_found_in_trash' => \__( 'No calculations found in the Trash' ),
+        'parent_item_colon'  => '',
+        'menu_name'          => 'Calculations'
+      );
+
+      // args array
+
+       $args = array(
+        'labels'        => $labels,
+        'description'   => 'Displays product calculations',
+        'public'        => true,
+        'menu_position' => 4,
+        'supports'      => array( 'title', 'editor', 'thumbnail', 'excerpt' ),
+        'has_archive'   => true,
+      );
+
+      \register_post_type( 'calculation', $args );
+
+      return $r;
+    }
 
   public static function calculate_product_variation_before_save( $obj, $data_store ){
     $calc = new calculate( $obj->get_attributes(), $obj->get_parent_id() );

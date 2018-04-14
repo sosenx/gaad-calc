@@ -33,6 +33,14 @@ add_action( 'rest_api_init', function () {
 	  ) );
 	} );
 
+//archives calc
+add_action( 'rest_api_init', function () {
+	  register_rest_route( 'gcalc/v1', '/ac', array(
+	    'methods' => 'GET',
+	    'callback' => 'gcalc\rest::get_acalculations',
+	  ) );
+	} );
+
 
 
 

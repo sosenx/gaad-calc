@@ -190,6 +190,7 @@ if ( !defined( GAAD_PLUGIN_TEMPLATE_NAMESPACE . 'GAAD_PLUGIN_TEMPLATE_AUTOSAVE_C
 		require_once( 'class/calc-process/pa_sewing.php' );
 		require_once( 'class/calc-process/pa_pages.php' );
 
+	require_once( 'inc/class-pdf.php' );	
 	require_once( 'inc/class-sql.php' );	
 
 

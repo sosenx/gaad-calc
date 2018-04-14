@@ -13,24 +13,49 @@ class rest{
 		return true;
 	}	
 
+	public static function get_acalculations(){
+		$h = \gcalc\rest::getHeaders( "//", true )[ 'selected' ];	
+		$calculations =  \gcalc\sql::calculations_get( );
+
+		$r = array( 
+			'plugin_name' 	=> "gcalc",
+			'handler'     	=> "gut_acalculation",
+			'status'      	=> $calculations ? 200 : 500,
+			'headers'     	=> $h,
+			'output' 		=> $calculations
+		);
+
+		return json_decode( json_encode( $r ) );
+	}
+/**
+ * Write calculation in archives
+ * @return [type] [description]
+ */
 	public static function put_acalculation(){
 		global $post;
 		$h = \gcalc\rest::getHeaders( "/c-slug|cid|contractor-email|contractor-nip|shipment-country|shipment-date|token|archive-notes/", true )[ 'selected' ];	
 		
 		$calculation =  \gcalc\sql::calculation_get( $h[ 'cid' ], $h[ 'token' ] );	
 
-		if ( $calculation ) {
-			$put_data = \gcalc\sql::acalculations_insert( $h[ 'cid' ], $calculation, $h );		
+		if ( is_array( $calculation ) && !empty( $calculation ) ) {
+			$put_data = \gcalc\sql::acalculations_insert( $h[ 'cid' ], $calculation, $h );					
 			$token = $put_data[ 'token' ];
+			$wp_post_data = \gcalc\actions::acalculations_insert_wp_post( $h[ 'cid' ], $calculation, $h );
 		}
 
+		$pdf = new \gcalc\pdf( $h[ 'cid' ], 'archives', array( $wp_post_data['post_content'] ) );
+		$calculation_pdf = array(
+			'contractor' => $pdf->calculation()
+		);
+		
 		$r = array( 
 			'plugin_name' 	=> "gcalc",
 			'handler'     	=> "put_acalculation",
 			'status'      	=> $calculation ? 200 : 500,
 			'headers'     	=> $h,
 			'output' 		=> $put_data,
-			'token'      	=> $token
+			'token'      	=> $token,
+			'pdf' 			=> $calculation_pdf
 		);
 
 		return json_decode( json_encode( $r ) );

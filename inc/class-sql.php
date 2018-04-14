@@ -11,7 +11,7 @@ class sql{
 	*/
 	public static function log(){
 		global $wpdb;	
-		$table_name = basename(GAAD_PLUGIN_TEMPLATE_NAMESPACE) . '_log';		
+		$table_name = basename( GAAD_PLUGIN_TEMPLATE_NAMESPACE ) . '_log';		
 		$charset_collate = $wpdb->get_charset_collate();
 
 		$sql = "CREATE TABLE $table_name (
@@ -29,18 +29,18 @@ class sql{
 	*/
 	public static function formats(){
 		global $wpdb;	
-		$table_name = basename(GAAD_PLUGIN_TEMPLATE_NAMESPACE) . '_formats';		
+		$table_name = basename( GAAD_PLUGIN_TEMPLATE_NAMESPACE ) . '_formats';		
 		$charset_collate = $wpdb->get_charset_collate();
 
 		$sql = "CREATE TABLE $table_name (
 			`id` mediumint(9) NOT NULL AUTO_INCREMENT,
-			`name` VARCHAR(50) NOT NULL ,
-			`w` INT NOT NULL ,
-			`h` INT NOT NULL ,
-			`tm` INT NULL ,
-			`rm` INT NULL ,
-			`bm` INT NULL ,
-			`lm` INT NULL ,
+			`name` VARCHAR(50) NOT NULL,
+			`w` INT NOT NULL,
+			`h` INT NOT NULL,
+			`tm` INT NULL,
+			`rm` INT NULL,
+			`bm` INT NULL,
+			`lm` INT NULL,
 		  	`added` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,		  
 		  PRIMARY KEY  (id)
 		) $charset_collate;";
@@ -214,6 +214,21 @@ class sql{
 	}
 
 
+	public static function calculations_get( ){
+		global $wpdb; 
+		$table_name = basename( GAAD_PLUGIN_TEMPLATE_NAMESPACE ) . '_archives';
+		$get = array(
+			
+		);
+
+		//$r = $wpdb->get_results( "SELECT * FROM `$table_name` WHERE cid LIKE '$cid' AND token LIKE '$token' ", ARRAY_A );	
+		$r = $wpdb->get_results( "SELECT * FROM `$table_name` ", ARRAY_A );	
+		
+
+			return  $r;		
+		
+	}
+
 	public static function calculation_get( $cid, $token ){
 		global $wpdb; 
 		$table_name = basename( GAAD_PLUGIN_TEMPLATE_NAMESPACE ) . '_calculations';
@@ -222,7 +237,10 @@ class sql{
 			'token' => $token
 		);
 
-		$r = $wpdb->get_results( "SELECT *  FROM `$table_name` WHERE cid LIKE '$cid' AND token LIKE '$token' ", ARRAY_A );	
+
+		//$r = $wpdb->get_results( "SELECT * FROM `$table_name` WHERE cid LIKE '$cid' AND token LIKE '$token' ", ARRAY_A );	//prod version
+		$r = $wpdb->get_results( "SELECT * FROM `$table_name` WHERE cid LIKE '$cid'", ARRAY_A );	//dev version
+
 		if ( isset( $r[0] ) ) {		
 			
 			$r[ 0 ]['av_markup']  = json_decode( $r[0]['av_markup'], true );
@@ -277,7 +295,7 @@ class sql{
 		global $wpdb; 
 		$table_name = basename(GAAD_PLUGIN_TEMPLATE_NAMESPACE) . '_archives';		
 		$calculations_table_name = basename(GAAD_PLUGIN_TEMPLATE_NAMESPACE) . '_calculations';		
-		$atoken = \uniqid('at-');
+		$token = \uniqid('at-');
 		$insert = array(
 			'cid'              => $calculation[ 'cid' ],
 			'parent_cid'       => $calculation[ 'parent_cid' ],
@@ -288,25 +306,16 @@ class sql{
 			'quantity'         => $calculation[ 'quantity' ],
 			'mquantity'        => $calculation[ 'mquantity' ],
 			'av_markup'        => $calculation[ 'av_markup' ],
-						
-			 'bvars'            => '{}',
-			'full_total'       => '{}',
-			'tech'             => '{}',
-			/*
-			
 			'bvars'            => json_encode( $calculation[ 'bvars' ] ),
 			'full_total'       => json_encode( $calculation[ 'full_total' ] ),
-			'tech'             => json_encode( $calculation[ 'tech' ] ),
-*/
-			 
+			'tech'             => json_encode( $calculation[ 'tech' ] ),			 
 			'user'             => $calculation[ 'user' ],
 			'contractor_id'    => $contractor[ 'contractor-id' ],
 			'contractor_nip'   => $contractor[ 'contractor-nip' ],
 			'contractor_email' => $contractor[ 'contractor-email' ],
 			'c-slug'           =>  $contractor[ 'c-slug' ],
-
 			'notes'				=> $contractor['archive-notes'],
-			'token'            => $atoken
+			'token'            => $token
 		);
 		
 		$deleted = -1;
@@ -328,7 +337,7 @@ class sql{
 		}
 
 		if ( $record_id > 0) {
-			$deleted = $wpdb->delete( $calculations_table_name, array( 'cid' => $calculation[ 'cid' ] ), array( '%s' ) );
+			//$deleted = $wpdb->delete( $calculations_table_name, array( 'cid' => $calculation[ 'cid' ] ), array( '%s' ) );
 		}
 
 			$r = array(

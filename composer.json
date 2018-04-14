@@ -1,5 +1,15 @@
 {
+"repositiories": [
+    	{
+    		       	
+    		"url": "https://github.com/tecnickcom/TCPDF.git",
+            "type": "git"       	
+        }
+    ],
+
     "require": {
+       "tecnickcom/TCPDF" : "*",
+       "pelago/emogrifier": "*",
        "adoy/oauth2" : "*"
     }
 }
