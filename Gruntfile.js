@@ -78,8 +78,7 @@ module.exports = function(grunt) {
           style: 'expanded' // we don't want to compress it
         },
         files: {
-          'css/components/compon-1.css': 'sass/components/compon-1.scss',
-          'css/components/compon-2.css': 'sass/components/compon-2.scss'
+          'css/calculations/basic-pdf.css': 'sass/calculations/basic-pdf.scss'
 
         }
 

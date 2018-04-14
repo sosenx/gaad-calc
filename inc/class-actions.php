@@ -5,20 +5,40 @@ class actions {
     
 
 /**
- * generate calculation post type content  
+ * generate basic calculation post type content  
  * @return [type] [description]
  */
   public static function calculation_post_content( string $cid, $calculation, array $headers ){
+    $css_file = GAAD_PLUGIN_TEMPLATE_CALCULATIONS_CSS_DIR . '/basic-pdf.css';
+    $css_ = is_readable( $css_file ) ? file_get_contents( $css_file ) : '';
+
+    $emogrifier = new \Pelago\Emogrifier();
+
 
     $r = array();
-    $content = '<h1>byly sobie ' . $cid . '</h1><ul>
-  <li>chuj</li>
-  <li>w</li>
-  <li>dupę</li>
-  <li style="font-family:freesans">jeżowi</li>
-  <li>.</li>
-  
-</ul>';
+    
+    ob_start(); ?>
+    <table>
+      <tbody>
+        <tr>
+          <td>
+              ala ma kota
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <?php
+
+
+    $content = ob_get_contents();
+    ob_end_clean();
+
+    $emogrifier->setHtml( $content );
+    $emogrifier->setCss( $css_ );
+    $content = $emogrifier->emogrify();
+
+
     return $content;
   }
 
