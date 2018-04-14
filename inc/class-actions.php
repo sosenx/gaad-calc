@@ -11,24 +11,17 @@ class actions {
   public static function calculation_post_content( string $cid, $calculation, array $headers ){
     $css_file = GAAD_PLUGIN_TEMPLATE_CALCULATIONS_CSS_DIR . '/basic-pdf.css';
     $css_ = is_readable( $css_file ) ? file_get_contents( $css_file ) : '';
+    $template_file = GAAD_PLUGIN_TEMPLATE_APP_TEMPLATES_DIR. '/calculations/basic-pdf.php';
 
     $emogrifier = new \Pelago\Emogrifier();
 
 
     $r = array();
     
-    ob_start(); ?>
-    <table>
-      <tbody>
-        <tr>
-          <td>
-              ala ma kota
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    ob_start(); 
+      include( $template_file );
 
-    <?php
+    ?><?php
 
 
     $content = ob_get_contents();
