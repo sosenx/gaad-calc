@@ -38,14 +38,15 @@ class rest{
 		$calculation =  \gcalc\sql::calculation_get( $h[ 'cid' ], $h[ 'token' ] );	
 
 		if ( is_array( $calculation ) && !empty( $calculation ) ) {
+			//insert calculation into gcalc db structure
 			$put_data = \gcalc\sql::acalculations_insert( $h[ 'cid' ], $calculation, $h );					
 			$token = $put_data[ 'token' ];
 			$wp_post_data = \gcalc\actions::acalculations_insert_wp_post( $h[ 'cid' ], $calculation, $h );
 		}
 
-		$pdf = new \gcalc\pdf( $h[ 'cid' ], 'archives', array( $wp_post_data['post_content'] ) );
+		$pdf = new \gcalc\pdf( $h[ 'cid' ], 'archives', array( $wp_post_data['post_content'] ), $wp_post_data['post_id'] );
 		$calculation_pdf = array(
-			'contractor' => $pdf->calculation()
+			'contractor' => $pdf->calculation( $wp_post_data['post_id'] )
 		);
 		
 		$r = array( 

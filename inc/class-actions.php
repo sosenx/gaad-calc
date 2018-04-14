@@ -11,7 +11,14 @@ class actions {
   public static function calculation_post_content( string $cid, $calculation, array $headers ){
 
     $r = array();
-    $content = '<h1>byly sobie ' . $cid . '</h1>';
+    $content = '<h1>byly sobie ' . $cid . '</h1><ul>
+  <li>chuj</li>
+  <li>w</li>
+  <li>dupę</li>
+  <li style="font-family:freesans">jeżowi</li>
+  <li>.</li>
+  
+</ul>';
     return $content;
   }
 
