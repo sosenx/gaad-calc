@@ -1,5 +1,27 @@
 table {
   border: 1px solid red;
 }
+table.basic-info {
+  width: 140mm;
+  border: 1px solid gray;
+}
+table.basic-info .header td {
+  border-bottom: 3px solid gray;
+}
+table.basic-info .line {
+  color: black;
+  position: absolute;
+  line-height: 300%;
+}
+table.basic-info .label {
+  width: 30%;
+  border-bottom: 1px solid gray;
+  position: relative;
+}
+table.basic-info .value {
+  width: 70%;
+  border-bottom: 1px solid gray;
+  position: relative;
+}
 
 /*# sourceMappingURL=basic-pdf.css.map */

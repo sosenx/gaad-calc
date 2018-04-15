@@ -12,25 +12,16 @@ class actions {
     $css_file = GAAD_PLUGIN_TEMPLATE_CALCULATIONS_CSS_DIR . '/basic-pdf.css';
     $css_ = is_readable( $css_file ) ? file_get_contents( $css_file ) : '';
     $template_file = GAAD_PLUGIN_TEMPLATE_APP_TEMPLATES_DIR. '/calculations/basic-pdf.php';
-
-    $emogrifier = new \Pelago\Emogrifier();
-
-
-    $r = array();
-    
-    ob_start(); 
+   
+    ob_start( ); 
       include( $template_file );
-
-    ?><?php
-
-
-    $content = ob_get_contents();
+      $content = ob_get_contents();
     ob_end_clean();
-
+    
+    $emogrifier = new \Pelago\Emogrifier();
     $emogrifier->setHtml( $content );
     $emogrifier->setCss( $css_ );
     $content = $emogrifier->emogrify();
-
 
     return $content;
   }

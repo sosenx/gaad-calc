@@ -96,13 +96,19 @@ module.exports = function(grunt) {
     watch: { // watch task for general work
       sass: {
         files: ['sass/**/*.scss'],
-        tasks: ['sass:dist']
+        tasks: ['sass:dev']
       },
       styles: {
         files: ['css/app.css'],
         tasks: ['cssmin']
       }
     },
+
+
+
+
+
+
         browserSync: {
             dev: {
                 bsFiles: {

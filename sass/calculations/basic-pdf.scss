@@ -1,19 +1,39 @@
+$line-height: 6.5mm;
+$text-color: black;
+$label-color: gray;
+
+
+
 table{
 	border: 1px solid red;
 
 	&.basic-info{
 		width: 140mm;
 		border: 1px solid gray;
-		margin-top: 10mm;
+
+		.header{
+			td {
+				border-bottom: 3px solid gray;
+			}	
+		}
+
+		.line{
+			color: $text-color;
+			position: absolute;
+			line-height: 300%;
+			
+		}
 
 		.label{
 			width: 30%;
 			border-bottom: 1px solid gray;
+			position: relative;
 		}
 
 		.value{
 			width: 70%;
 			border-bottom: 1px solid gray;
+			position: relative;
 		}
 
 	}

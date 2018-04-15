@@ -1,6 +1,6 @@
 {
 "version": 3,
-"mappings": "AAAA,kBAAkB;AAClB,SAAS;EAAE,KAAK,EAAG,GAAG",
+"mappings": "AAAA,kBAAkB;AAClB,SAAS;EAAE,KAAK,EAAG,GAAG;EAAE,MAAM,EAAC,gBAAgB",
 "sources": ["../sass/base-app.scss"],
 "names": [],
 "file": "app.css"

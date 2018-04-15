@@ -66,45 +66,43 @@
 
 <table class="basic-info">
   <tbody>
-    <tr class="header_tr">
-      <td colspan="2">
-          <?php echo __( 'Product short info', GAAD_PLUGIN_TEMPLATE_NAMESPACE) ?>
-      </td>
+    <tr class="header">
+      <td colspan="2"><div class="line"><?php echo __( 'Product short info', GAAD_PLUGIN_TEMPLATE_NAMESPACE) ?></div></td>
     </tr>
 
     <tr>
-    	<td class="label"><?php echo $basic_labels['product_slug'] ?></td>
-    	<td class="value"><?php echo $basic['product_slug'] ?></td>
+    	<td class="label"><div class="line"><?php echo $basic_labels['product_slug'] ?></div></td>
+    	<td class="value"><div class="line"><?php echo $basic['product_slug'] ?></div></td>
     </tr>
     
     <tr>
-    	<td class="label"><?php echo $basic_labels['quantity'] ?></td>
-    	<td class="value"><?php echo $basic['quantity'] ?></td>
+    	<td class="label"><div class="line"><?php echo $basic_labels['quantity'] ?></div></td>
+    	<td class="value"><div class="line"><?php echo $basic['quantity'] ?></div></td>
     </tr>
     
     <tr>
-    	<td class="label"><?php echo $basic_labels['total_price'] ?></td>
-    	<td class="value"><?php echo $basic['total_price'] ?></td>
+    	<td class="label"><div class="line"><?php echo $basic_labels['total_price'] ?></div></td>
+    	<td class="value"><div class="line"><?php echo $basic['total_price'] ?></div></td>
     </tr>
     
     <tr>
-    	<td class="label"><?php echo $basic_labels['profit'] ?></td>
-    	<td class="value"><?php echo $basic['profit'] ?></td>
+    	<td class="label"><div class="line"><?php echo $basic_labels['profit'] ?></div></td>
+    	<td class="value"><div class="line"><?php echo $basic['profit'] ?></div></td>
     </tr>
     
     <tr>
-    	<td class="label"><?php echo $basic_labels['piece_price'] ?></td>
-    	<td class="value"><?php echo $basic['piece_price'] ?></td>
+    	<td class="label"><div class="line"><?php echo $basic_labels['piece_price'] ?></div></td>
+    	<td class="value"><div class="line"><?php echo $basic['piece_price'] ?></div></td>
     </tr>
     
     <tr>
-    	<td class="label"><?php echo $basic_labels['prod_cost'] ?></td>
-    	<td class="value"><?php echo $basic['prod_cost'] ?></td>
+    	<td class="label"><div class="line"><?php echo $basic_labels['prod_cost'] ?></div></td>
+    	<td class="value"><div class="line"><?php echo $basic['prod_cost'] ?></div></td>
     </tr>
     
     <tr>
-    	<td class="label"><?php echo $basic_labels['av_markup'] ?></td>
-    	<td class="value"><?php echo $basic['av_markup'] ?> (<?php echo ($basic['av_markup']-1)*100 ?>%)</td>
+    	<td class="label"><div class="line"><?php echo $basic_labels['av_markup'] ?></div></td>
+    	<td class="value"><div class="line"><?php echo $basic['av_markup'] ?> (<?php echo ($basic['av_markup']-1)*100 ?>%)</div></td>
     </tr>
     
   </tbody>
