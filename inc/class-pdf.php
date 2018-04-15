@@ -31,7 +31,14 @@ class pdf  {
 		$this->PDF->SetSubject('');
 		$this->PDF->SetKeywords('');
  		$this->PDF->setFontSubsetting(true);
-		$this->PDF->SetFont('freesans', '', 10, '', true);
+		$this->PDF->SetFont('freesans', '', 8, '', true);
+
+		// remove default header/footer
+		$this->PDF->setPrintHeader(false);
+		$this->PDF->setPrintFooter(false);
+
+
+		$this->PDF->setImageScale(\PDF_IMAGE_SCALE_RATIO);
 		$this->PDF->AddPage();
  	}
 

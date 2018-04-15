@@ -239,7 +239,7 @@ class sql{
 
 
 		//$r = $wpdb->get_results( "SELECT * FROM `$table_name` WHERE cid LIKE '$cid' AND token LIKE '$token' ", ARRAY_A );	//prod version
-		$r = $wpdb->get_results( "SELECT * FROM `$table_name` WHERE cid LIKE '$cid'", ARRAY_A );	//dev version
+		$r = $wpdb->get_results( $q = "SELECT * FROM `$table_name` WHERE cid LIKE '$cid'", ARRAY_A );	//dev version
 
 		if ( isset( $r[0] ) ) {		
 			
