@@ -1,0 +1,185 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Gaad calc api\n"
+"POT-Creation-Date: 2018-04-15 16:56+0200\n"
+"PO-Revision-Date: 2018-04-15 17:22+0200\n"
+"Last-Translator: \n"
+"Language-Team: barteksosnowski711@gmail.com\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.0.6\n"
+"X-Poedit-Basepath: ../templates/calculations\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __\n"
+"X-Poedit-SearchPath-0: basic-pdf.php\n"
+
+#: basic-pdf.php:19
+msgid "cid"
+msgstr "Calculation ID"
+
+#: basic-pdf.php:20
+msgid "parent_cid"
+msgstr ""
+
+#: basic-pdf.php:21
+msgid "product_slug"
+msgstr ""
+
+#: basic-pdf.php:22
+msgid "total_price"
+msgstr ""
+
+#: basic-pdf.php:23
+msgid "piece_price"
+msgstr ""
+
+#: basic-pdf.php:24
+msgid "prod_cost"
+msgstr ""
+
+#: basic-pdf.php:25
+msgid "quantity"
+msgstr ""
+
+#: basic-pdf.php:26
+msgid "av_markup"
+msgstr ""
+
+#: basic-pdf.php:27
+msgid "profit"
+msgstr ""
+
+#: basic-pdf.php:28
+msgid "added"
+msgstr ""
+
+#: basic-pdf.php:42
+msgid "Title"
+msgstr "Tłumaczenia kurwa mać działąją ja pierdole!!!!"
+
+#: basic-pdf.php:43
+msgid "Book number"
+msgstr ""
+
+#: basic-pdf.php:44
+msgid "contractor-nip"
+msgstr ""
+
+#: basic-pdf.php:45
+msgid "contractor-email"
+msgstr ""
+
+#: basic-pdf.php:84
+msgid "Basic info"
+msgstr ""
+
+#: basic-pdf.php:95
+msgid "Cover"
+msgstr ""
+
+#: basic-pdf.php:114
+msgid "B&W block"
+msgstr ""
+
+#: basic-pdf.php:125
+msgid "Color block"
+msgstr ""
+
+#: basic-pdf.php:138
+msgid "Packing for shipment"
+msgstr ""
+
+#: basic-pdf.php:149 basic-pdf.php:150
+msgid "pages"
+msgstr ""
+
+#: basic-pdf.php:151 basic-pdf.php:152
+msgid "mm"
+msgstr ""
+
+#: basic-pdf.php:153
+msgid " pcs."
+msgstr ""
+
+#: basic-pdf.php:154
+msgid " pcs. together"
+msgstr ""
+
+#: basic-pdf.php:177 basic-pdf.php:210
+msgid "Cloth covering"
+msgstr ""
+
+#: basic-pdf.php:193
+msgid "Endpaper"
+msgstr ""
+
+#: basic-pdf.php:284
+msgid "Calculation"
+msgstr ""
+
+#: basic-pdf.php:288
+msgid "Created"
+msgstr ""
+
+#: basic-pdf.php:296
+msgid "Product"
+msgstr ""
+
+#: basic-pdf.php:300 basic-pdf.php:547
+msgid "Quantity"
+msgstr ""
+
+#: basic-pdf.php:300 basic-pdf.php:385 basic-pdf.php:555
+msgid "pcs."
+msgstr ""
+
+#: basic-pdf.php:324
+msgid "Book"
+msgstr ""
+
+#: basic-pdf.php:344
+msgid "Contreactor"
+msgstr ""
+
+#: basic-pdf.php:375
+msgid "Product short info"
+msgstr ""
+
+#: basic-pdf.php:423
+msgid "Markups"
+msgstr ""
+
+#: basic-pdf.php:449
+msgid "Costs"
+msgstr ""
+
+#: basic-pdf.php:470
+msgid "Total"
+msgstr ""
+
+#: basic-pdf.php:487
+msgid "Product attributes"
+msgstr ""
+
+#: basic-pdf.php:541
+msgid "Summary"
+msgstr ""
+
+#: basic-pdf.php:545
+msgid "Account contact"
+msgstr ""
+
+#: basic-pdf.php:546
+msgid "Created, date"
+msgstr ""
+
+#: basic-pdf.php:548
+msgid "Total price"
+msgstr ""
+
+#: basic-pdf.php:549
+msgid "Piece price"
+msgstr ""

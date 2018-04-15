@@ -1,6 +1,7 @@
 <?php
 
-  $__ns = GAAD_PLUGIN_TEMPLATE_NAMESPACE . '-basic-pdf';
+  $__ns = 'gcalc-basic-pdf';
+
 
 	$basic = array(
 		'cid'          => $calculation[ 'cid' ],
@@ -71,10 +72,6 @@ foreach ($calculation[ 'bvars' ] as $key => $value) {
 
 
 
-
-
-
-
   $pa_bw_pages = $calculation[ 'bvars' ][ 'pa_bw_pages' ] == 0 ? -1 : $calculation[ 'bvars' ][ 'pa_bw_pages' ];
   $pa_color_pages = $calculation[ 'bvars' ][ 'pa_color_pages' ] == 0 ? -1 : $calculation[ 'bvars' ][ 'pa_color_pages' ];
 
@@ -103,10 +100,6 @@ foreach ($calculation[ 'bvars' ] as $key => $value) {
         'pa_cover_left_flap_width'  => $calculation[ 'bvars' ]['pa_cover_left_flap_width'],
         'pa_cover_right_flap_width' => $calculation[ 'bvars' ]['pa_cover_right_flap_width'],
         'pa_cover_board_thickness' => $calculation[ 'bvars' ][ 'pa_cover_board_thickness' ],
-
-
-
-
       ) 
     ),
 
@@ -116,8 +109,6 @@ foreach ($calculation[ 'bvars' ] as $key => $value) {
         'pa_bw_pages'     => $calculation[ 'bvars' ][ 'pa_bw_pages' ] == 0 ? -1 : $calculation[ 'bvars' ][ 'pa_bw_pages' ],
         'pa_bw_paper' => $calculation[ 'bvars' ][ 'pa_bw_paper' ],
         'pa_bw_print' => $calculation[ 'bvars' ][ 'pa_bw_print' ]
-
-
       ) 
     ),
 
@@ -129,8 +120,6 @@ foreach ($calculation[ 'bvars' ] as $key => $value) {
         'pa_color_print' => $calculation[ 'bvars' ][ 'pa_color_print' ],
         'pa_color_pages_numbers' => $calculation[ 'bvars' ][ 'pa_color_pages_numbers' ],
         'pa_color_stack' => $calculation[ 'bvars' ][ 'pa_color_stack' ] === 'true' ? 'block' : 'mixed',
-
-
       ) 
     ),
 
@@ -158,8 +147,7 @@ foreach ($calculation[ 'bvars' ] as $key => $value) {
 
 
 //cover mod
- if ( $attr['cover'][ 'attr' ]['pa_cover_type'] === 'hard') {
-   
+ if ( $attr['cover'][ 'attr' ]['pa_cover_type'] === 'hard') {   
   unset( $attr['cover'][ 'attr' ][ 'pa_cover_spot_uv' ] );
   unset( $attr['cover'][ 'attr' ][ 'pa_cover_flaps' ] );
   unset( $attr['cover'][ 'attr' ][ 'pa_cover_paper' ] );
@@ -234,12 +222,7 @@ foreach ($calculation[ 'bvars' ] as $key => $value) {
       if ( $attr['cover'][ 'attr' ][ 'pa_cover_flaps' ] === 'flap-right') {
         unset( $attr['cover'][ 'attr' ][ 'pa_cover_left_flap_width' ] );
       }
-
     }
-
-
-
-
  } 
 
 

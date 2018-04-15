@@ -3,6 +3,26 @@ namespace gcalc;
    
 class actions {
     
+/**
+ * setd locale filter function
+ * @param [type] $locale [description]
+ */
+  public static function set_locale( $locale ){    
+    return 'en_US';
+  }
+
+    public static function load_textdomains( ) {
+
+      $pdf_calc_basic_namespace = str_replace('\\','', GAAD_PLUGIN_TEMPLATE_NAMESPACE) . '-basic-pdf';
+      $locale = \apply_filters( 'plugin_locale', \is_admin() ? \get_user_locale() : \get_locale(), $pdf_calc_basic_namespace );
+      $pdf_calc_basic_file_path = GAAD_PLUGIN_TEMPLATE_DIR . 'languages/' .$pdf_calc_basic_namespace . '-' . $locale . '.mo';
+      
+      if ( is_file( $pdf_calc_basic_file_path )  ) {
+        $pdf_calc_basic_tranlations_status = \load_textdomain( $pdf_calc_basic_namespace, $pdf_calc_basic_file_path );        
+      }
+
+   
+   }
 
 /**
  * generate basic calculation post type content  

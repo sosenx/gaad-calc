@@ -8,6 +8,10 @@ $core_hooks = new hooks_mng( 'core' );
 $core_hooks->add_hook( 'action', 'init', array(GAAD_PLUGIN_TEMPLATE_NAMESPACE . 'actions::create_calclaton_post_type', 10, 0, true));
 
 
+$core_hooks->add_hook( 'action', 'plugins_loaded', array(GAAD_PLUGIN_TEMPLATE_NAMESPACE . 'actions::load_textdomains', 10, 0, true));
+$core_hooks->add_hook( 'filter', array('locale' ), array( GAAD_PLUGIN_TEMPLATE_NAMESPACE . 'actions::set_locale', 10, 1) );
+
+
 
 
 
