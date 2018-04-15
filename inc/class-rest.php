@@ -47,11 +47,14 @@ class rest{
 				'master' => \gcalc\actions::acalculations_insert_wp_post( $h[ 'cid' ], $calculation, $h, 'master' ),
 			);
 
-			$pdf_account = new \gcalc\pdf( $h[ 'cid' ], 'archives', array( $wp_post_data[ 'account' ]['post_content'] ), $wp_post_data[ 'account' ]['post_id'] );
-			$pdf_contractor = new \gcalc\pdf( $h[ 'cid' ], 'archives', array( $wp_post_data[ 'contractor' ]['post_content'] ), $wp_post_data[ 'contractor' ]['post_id'] );
+			$pdf_account	 	= new \gcalc\pdf( $h[ 'cid' ], 'archives', array( $wp_post_data[ 'account' ]['post_content'] ), $wp_post_data[ 'account' ]['post_id'] );
+			$pdf_contractor 	= new \gcalc\pdf( $h[ 'cid' ], 'archives', array( $wp_post_data[ 'contractor' ]['post_content'] ), $wp_post_data[ 'contractor' ]['post_id'] );
+			$pdf_master 		= new \gcalc\pdf( $h[ 'cid' ], 'archives', array( $wp_post_data[ 'master' ]['post_content'] ), $wp_post_data[ 'master' ]['post_id'] );
+			
 			$calculation_pdf = array(
 				'account' => $pdf_account->account_calculation_pdf( $wp_post_data[ 'account' ]['post_id'] ),
 				'contractor' => $pdf_contractor->contractor_calculation_pdf( $wp_post_data[ 'contractor' ]['post_id'] ),
+				'master' => $pdf_master->master_calculation_pdf( $wp_post_data[ 'master' ]['post_id'] ),
 			);
 		}
 		

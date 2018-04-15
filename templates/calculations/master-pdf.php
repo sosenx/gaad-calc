@@ -273,7 +273,7 @@ if( $pa_color_pages === -1 ){
 ">
                 </td>
                 <td colspan="2">
-                    <h3><?php echo __( 'Calculation', $__ns ) ?> # <?php echo $basic['cid'] ?></h3>
+                    <h3><?php echo __( 'Calculation', $__ns ) ?> ( master ) # <?php echo $basic['cid'] ?></h3>
                 </td>
 
                 <td rowspan="1" class="bardoce-holder" valign="middle" align="center">

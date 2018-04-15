@@ -139,6 +139,29 @@ class pdf  {
  	}
 
 
+ 	/**
+ 	 * create summary pdf for client
+ 	 * @param  [type] $parent_post_id [description]
+ 	 * @return [type]                 [description]
+ 	 */
+ 	public function master_calculation_pdf( $parent_post_id ) {
+ 		//var_dump( GAAD_PLUGIN_TEMPLATE_DIR . $this->get_cid() .'-calc.pdf' );
+
+		$calc_pdf_path = GAAD_PLUGIN_TEMPLATE_DIR . $this->get_cid() . '-master.pdf';
+
+		// Set some content to print
+		$html = $this->get_content()[0];
+
+		// Print text using writeHTMLCell()
+		$this->PDF->writeHTMLCell(0, 0, '', '', $html, 0, 1, 0, true, '', true);
+		 
+		$this->PDF->Output( $calc_pdf_path, "F" );
+		$uploaded = $this->upload_calculation_pdf_as_media_lib_items( $calc_pdf_path );
+
+ 		return $uploaded;
+ 	}
+
+
 	/**/
 	function set_content(  $content ){
 		$this->content = $content;

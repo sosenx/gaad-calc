@@ -15,7 +15,7 @@ class actions {
 
       $pdf_namespace = 'gcalc-report-pdf';
       $locale = \apply_filters( 'plugin_locale', \is_admin() ? \get_user_locale() : \get_locale(), $pdf_namespace );
-      $pdf_calc_basic_file_path = GAAD_PLUGIN_TEMPLATE_DIR . 'languages/' .$pdf_calc_basic_namespace . '-' . $locale . '.mo';
+      $pdf_calc_basic_file_path = GAAD_PLUGIN_TEMPLATE_DIR . 'languages/' .$pdf_namespace . '-' . $locale . '.mo';
            
       if ( is_file( $pdf_calc_basic_file_path )  ) {
         $pdf_calc_basic_tranlations_status = \load_textdomain( $pdf_namespace, $pdf_calc_basic_file_path );        
