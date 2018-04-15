@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Gaad calc api\n"
-"POT-Creation-Date: 2018-04-15 16:56+0200\n"
-"PO-Revision-Date: 2018-04-15 17:22+0200\n"
+"POT-Creation-Date: 2018-04-15 17:57+0200\n"
+"PO-Revision-Date: 2018-04-15 18:16+0200\n"
 "Last-Translator: \n"
 "Language-Team: barteksosnowski711@gmail.com\n"
 "Language: en\n"
@@ -10,176 +10,326 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 2.0.6\n"
-"X-Poedit-Basepath: ../templates/calculations\n"
+"X-Poedit-Basepath: ../../../../../../..\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: __\n"
-"X-Poedit-SearchPath-0: basic-pdf.php\n"
+"X-Poedit-SearchPath-0: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-"
+"calc/templates/calculations/basic-pdf.php\n"
+"X-Poedit-SearchPath-1: Users/Gaad/Desktop/test.php\n"
 
-#: basic-pdf.php:19
+#: Users/Gaad/Desktop/test.php:6
+msgid "pa_cover_type"
+msgstr "Cover type"
+
+#: Users/Gaad/Desktop/test.php:7
+msgid "pa_comments"
+msgstr ""
+
+#: Users/Gaad/Desktop/test.php:8
+msgid "pa_color_paper"
+msgstr ""
+
+#: Users/Gaad/Desktop/test.php:9
+msgid "pa_cover_spot_uv"
+msgstr ""
+
+#: Users/Gaad/Desktop/test.php:10
+msgid "pa_cover_cloth_covering_finish"
+msgstr ""
+
+#: Users/Gaad/Desktop/test.php:11
+msgid "pa_cover_endpaper_print"
+msgstr ""
+
+#: Users/Gaad/Desktop/test.php:12
+msgid "pa_color_print"
+msgstr ""
+
+#: Users/Gaad/Desktop/test.php:13
+msgid "pa_cover_flaps"
+msgstr ""
+
+#: Users/Gaad/Desktop/test.php:14
+msgid "pa_cover_cloth_covering_print"
+msgstr ""
+
+#: Users/Gaad/Desktop/test.php:15
+msgid "pa_pieces_per_carton"
+msgstr ""
+
+#: Users/Gaad/Desktop/test.php:16
+msgid "pa_spot_uv"
+msgstr ""
+
+#: Users/Gaad/Desktop/test.php:17
+msgid "pa_color_pages_numbers"
+msgstr ""
+
+#: Users/Gaad/Desktop/test.php:18
+#, fuzzy
+#| msgid "Title"
+msgid "pa_title"
+msgstr "Tytuł"
+
+#: Users/Gaad/Desktop/test.php:19
+msgid "pa_groupwrap"
+msgstr ""
+
+#: Users/Gaad/Desktop/test.php:20
+msgid "pa_color_stack"
+msgstr ""
+
+#: Users/Gaad/Desktop/test.php:21
+msgid "pa_orientation"
+msgstr ""
+
+#: Users/Gaad/Desktop/test.php:22
+msgid "pa_bw_format"
+msgstr ""
+
+#: Users/Gaad/Desktop/test.php:23
+msgid "pa_cover_format"
+msgstr ""
+
+#: Users/Gaad/Desktop/test.php:24
+msgid "pa_finish"
+msgstr ""
+
+#: Users/Gaad/Desktop/test.php:25
+msgid "pa_bw_pages"
+msgstr ""
+
+#: Users/Gaad/Desktop/test.php:26
+msgid "pa_cover_cloth_covering_paper"
+msgstr ""
+
+#: Users/Gaad/Desktop/test.php:27
+msgid "pa_cover_left_flap_width"
+msgstr ""
+
+#: Users/Gaad/Desktop/test.php:28
+msgid "pa_cover_paper"
+msgstr ""
+
+#: Users/Gaad/Desktop/test.php:29
+msgid "pa_cover_print"
+msgstr ""
+
+#: Users/Gaad/Desktop/test.php:30
+msgid "pa_cover_finish"
+msgstr ""
+
+#: Users/Gaad/Desktop/test.php:31
+msgid "pa_cover_endpaper_paper"
+msgstr ""
+
+#: Users/Gaad/Desktop/test.php:32
+msgid "pa_cover_cloth_covering_spot_uv"
+msgstr ""
+
+#: Users/Gaad/Desktop/test.php:33
+msgid "pa_cover_right_flap_width"
+msgstr ""
+
+#: Users/Gaad/Desktop/test.php:34
+msgid "pa_bw_paper"
+msgstr ""
+
+#: Users/Gaad/Desktop/test.php:35
+msgid "pa_cover_board_thickness"
+msgstr ""
+
+#: Users/Gaad/Desktop/test.php:36
+msgid "pa_color_format"
+msgstr ""
+
+#: Users/Gaad/Desktop/test.php:37
+msgid "pa_bw_print"
+msgstr ""
+
+#: Users/Gaad/Desktop/test.php:38
+msgid "pa_format"
+msgstr ""
+
+#: Users/Gaad/Desktop/test.php:39
+msgid "pa_quantity"
+msgstr "Quantity"
+
+#: Users/Gaad/Desktop/test.php:40
+msgid "pa_print"
+msgstr "Print"
+
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/basic-pdf.php:20
 msgid "cid"
 msgstr "Calculation ID"
 
-#: basic-pdf.php:20
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/basic-pdf.php:21
 msgid "parent_cid"
-msgstr ""
+msgstr "Parent calculation ID"
 
-#: basic-pdf.php:21
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/basic-pdf.php:22
 msgid "product_slug"
-msgstr ""
+msgstr "Slug"
 
-#: basic-pdf.php:22
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/basic-pdf.php:23
 msgid "total_price"
-msgstr ""
+msgstr "Total price"
 
-#: basic-pdf.php:23
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/basic-pdf.php:24
 msgid "piece_price"
-msgstr ""
+msgstr "Piece price"
 
-#: basic-pdf.php:24
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/basic-pdf.php:25
 msgid "prod_cost"
-msgstr ""
+msgstr "Production cost"
 
-#: basic-pdf.php:25
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/basic-pdf.php:26
 msgid "quantity"
-msgstr ""
+msgstr "Quantity"
 
-#: basic-pdf.php:26
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/basic-pdf.php:27
 msgid "av_markup"
-msgstr ""
+msgstr "Average markup"
 
-#: basic-pdf.php:27
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/basic-pdf.php:28
 msgid "profit"
-msgstr ""
+msgstr "Profit"
 
-#: basic-pdf.php:28
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/basic-pdf.php:29
 msgid "added"
-msgstr ""
+msgstr "Created"
 
-#: basic-pdf.php:42
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/basic-pdf.php:43
 msgid "Title"
-msgstr "Tłumaczenia kurwa mać działąją ja pierdole!!!!"
+msgstr "Tytuł"
 
-#: basic-pdf.php:43
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/basic-pdf.php:44
 msgid "Book number"
-msgstr ""
+msgstr "Book number"
 
-#: basic-pdf.php:44
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/basic-pdf.php:45
 msgid "contractor-nip"
-msgstr ""
+msgstr "Contractor NIP"
 
-#: basic-pdf.php:45
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/basic-pdf.php:46
 msgid "contractor-email"
-msgstr ""
+msgstr "Contractor email"
 
-#: basic-pdf.php:84
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/basic-pdf.php:81
 msgid "Basic info"
-msgstr ""
+msgstr "Basic info"
 
-#: basic-pdf.php:95
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/basic-pdf.php:92
 msgid "Cover"
-msgstr ""
+msgstr "Cover"
 
-#: basic-pdf.php:114
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/basic-pdf.php:107
 msgid "B&W block"
 msgstr ""
 
-#: basic-pdf.php:125
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/basic-pdf.php:116
 msgid "Color block"
 msgstr ""
 
-#: basic-pdf.php:138
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/basic-pdf.php:127
 msgid "Packing for shipment"
 msgstr ""
 
-#: basic-pdf.php:149 basic-pdf.php:150
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/basic-pdf.php:138
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/basic-pdf.php:139
 msgid "pages"
 msgstr ""
 
-#: basic-pdf.php:151 basic-pdf.php:152
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/basic-pdf.php:140
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/basic-pdf.php:141
 msgid "mm"
 msgstr ""
 
-#: basic-pdf.php:153
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/basic-pdf.php:142
 msgid " pcs."
 msgstr ""
 
-#: basic-pdf.php:154
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/basic-pdf.php:143
 msgid " pcs. together"
 msgstr ""
 
-#: basic-pdf.php:177 basic-pdf.php:210
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/basic-pdf.php:165
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/basic-pdf.php:198
 msgid "Cloth covering"
 msgstr ""
 
-#: basic-pdf.php:193
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/basic-pdf.php:181
 msgid "Endpaper"
 msgstr ""
 
-#: basic-pdf.php:284
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/basic-pdf.php:267
 msgid "Calculation"
 msgstr ""
 
-#: basic-pdf.php:288
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/basic-pdf.php:271
 msgid "Created"
 msgstr ""
 
-#: basic-pdf.php:296
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/basic-pdf.php:279
 msgid "Product"
 msgstr ""
 
-#: basic-pdf.php:300 basic-pdf.php:547
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/basic-pdf.php:283
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/basic-pdf.php:530
 msgid "Quantity"
 msgstr ""
 
-#: basic-pdf.php:300 basic-pdf.php:385 basic-pdf.php:555
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/basic-pdf.php:283
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/basic-pdf.php:368
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/basic-pdf.php:538
 msgid "pcs."
 msgstr ""
 
-#: basic-pdf.php:324
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/basic-pdf.php:307
 msgid "Book"
 msgstr ""
 
-#: basic-pdf.php:344
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/basic-pdf.php:327
 msgid "Contreactor"
 msgstr ""
 
-#: basic-pdf.php:375
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/basic-pdf.php:358
 msgid "Product short info"
 msgstr ""
 
-#: basic-pdf.php:423
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/basic-pdf.php:406
 msgid "Markups"
 msgstr ""
 
-#: basic-pdf.php:449
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/basic-pdf.php:432
 msgid "Costs"
 msgstr ""
 
-#: basic-pdf.php:470
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/basic-pdf.php:453
 msgid "Total"
 msgstr ""
 
-#: basic-pdf.php:487
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/basic-pdf.php:470
 msgid "Product attributes"
 msgstr ""
 
-#: basic-pdf.php:541
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/basic-pdf.php:524
 msgid "Summary"
 msgstr ""
 
-#: basic-pdf.php:545
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/basic-pdf.php:528
 msgid "Account contact"
 msgstr ""
 
-#: basic-pdf.php:546
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/basic-pdf.php:529
 msgid "Created, date"
 msgstr ""
 
-#: basic-pdf.php:548
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/basic-pdf.php:531
 msgid "Total price"
 msgstr ""
 
-#: basic-pdf.php:549
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/basic-pdf.php:532
 msgid "Piece price"
 msgstr ""

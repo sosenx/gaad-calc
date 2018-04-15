@@ -610,9 +610,6 @@ class book extends product {
 					'pa_color_paper' => 					array( 'required' => false ),
 					'pa_color_print' => 					array( 'required' => false ),
 					'pa_color_stack' => 					array( 'required' => false ),
-					
-
-
 					'pa_cover_ribbon_width' =>				array( 'required' => false ),
 					'pa_cover_endpaper_paper' =>			array( 'required' => false ),
 					'pa_cover_endpaper_print' =>			array( 'required' => false ),

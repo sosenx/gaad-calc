@@ -12,7 +12,7 @@ table.header {
   color: #FFFFFF;
 }
 table.header h3 {
-  line-height: 200%;
+  line-height: 130%;
   color: #FFFFFF;
 }
 table.header .created {
@@ -57,6 +57,14 @@ table .header td {
 }
 table .header td .line {
   color: #FFFFFF;
+}
+table .bardoce-holder {
+  background-color: white;
+  text-align: right;
+}
+table img.barcode {
+  width: 35mm;
+  height: 15mm;
 }
 table.basic-info, table.markups-info, table.costs-info {
   border: 1px solid #0a78ac;

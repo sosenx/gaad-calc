@@ -24,7 +24,7 @@ table.header{
 	color: $header-text-color;
 
 	h3{
-		line-height: 200%;
+		line-height: 130%;
 		color:$header-text-color;
 	}
 	
@@ -54,7 +54,8 @@ table.header{
 
 table{
 	width: 100%;
-	
+
+
 	.line{
 		color: $text-color;			
 		line-height: 200%;
@@ -92,6 +93,19 @@ table{
 
 	}
 		
+	
+	.bardoce-holder{
+		background-color: white;
+		text-align: right;
+	}
+
+	img.barcode{
+		width: 35mm;
+		height:15mm;
+		
+		
+
+	} 
 	
 	&.basic-info, &.markups-info, &.costs-info{
 		border: 1px solid $header-bg-color;

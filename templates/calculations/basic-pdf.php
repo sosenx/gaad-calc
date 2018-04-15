@@ -69,9 +69,6 @@ foreach ($calculation[ 'bvars' ] as $key => $value) {
 
 
 
-
-
-
   $pa_bw_pages = $calculation[ 'bvars' ][ 'pa_bw_pages' ] == 0 ? -1 : $calculation[ 'bvars' ][ 'pa_bw_pages' ];
   $pa_color_pages = $calculation[ 'bvars' ][ 'pa_color_pages' ] == 0 ? -1 : $calculation[ 'bvars' ][ 'pa_color_pages' ];
 
@@ -141,6 +138,18 @@ foreach ($calculation[ 'bvars' ] as $key => $value) {
     'pa_cover_right_flap_width' => ' ' . __( 'mm', $__ns ),
     'pa_pieces_per_carton' => ' ' . __( ' pcs.', $__ns ),
     'pa_groupwrap' => ' ' . __( ' pcs. together', $__ns ),
+
+
+    'costs_pa_bw_paper' => ' ' . __( 'b&w block', $__ns ),
+    'costs_pa_color_paper' => ' ' . __( 'color block', $__ns ),
+    'costs_pa_cover_dust_jacket_print' => ' ' . __( 'cover', $__ns ),
+    'costs_pa_cover_type' => ' ',
+    'costs_pa_bw_print' => ' ' . __( 'b&w', $__ns ),
+    'costs_pa_cover_endpaper_print' => ' ' . __( 'cover', $__ns ),
+    'costs_pa_cover_paper' => ' ' . __( 'cover', $__ns ),
+    'costs_pa_cover_cloth_covering_print' => ' ' . __( 'cover', $__ns ),
+    'costs_pa_cover_print' => ' ' . __( 'cover', $__ns ),
+    'costs_pa_color_print' => ' ' . __( 'color', $__ns ),
   );
 
 
@@ -267,8 +276,11 @@ if( $pa_color_pages === -1 ){
                     <h3><?php echo __( 'Calculation', $__ns ) ?> # <?php echo $basic['cid'] ?></h3>
                 </td>
 
-                <td rowspan="2" class="created" valign="middle" align="center">
-                    <p><?php echo __( 'Created', $__ns ) ?> : <?php echo $basic['added'] ?></p>
+                <td rowspan="1" class="bardoce-holder" valign="middle" align="center">
+                    <?php 
+                      $generator = new \Picqer\Barcode\BarcodeGeneratorJPG();
+                      echo '<img class="barcode" src="data:image/jpg;base64,' . base64_encode( $generator->getBarcode( substr($basic['cid'], strlen($basic['cid'])-6 ) , $generator::TYPE_CODE_128)) . '">';
+                    ?>
                 </td>
 
             </tr>
@@ -279,9 +291,15 @@ if( $pa_color_pages === -1 ){
                   <?php echo __( 'Product', $__ns ) ?>: <?php echo $basic['product_slug'] ?>
               </td>
 
-              <td class="last">
+              <td class="center">
                   <?php echo __( 'Quantity', $__ns ) ?>: <?php echo $basic['quantity']. ' ' . __( 'pcs.', $__ns ) ?>
               </td>
+
+              <td class="last">
+                  <?php echo __( 'Created', $__ns ) ?> : <?php echo $basic['added'] ?>
+              </td>
+
+
             </tr>
 
           </tbody>
@@ -409,7 +427,7 @@ if( $pa_color_pages === -1 ){
             <?php foreach ($custom_markups as $key => $value) { ?>
 
                 <tr>
-                  <td class="label"><div class="line"><?php echo __( str_replace( 'markup_','', $key ), $__ns ) ?></div></td>
+                  <td class="label"><div class="line"><?php echo __( $name = str_replace( 'markup_','pa_', $key ), $__ns ) . ' ' . $attr_val_suffix[ 'costs_' . $name ] ?></div></td>
                   <td class="value"><div class="line"><?php echo $value ?>%</div></td>
                 </tr>
 
@@ -440,7 +458,7 @@ if( $pa_color_pages === -1 ){
 
                 ?>
                   <tr>
-                    <td class="label"><div class="line"><?php echo __( $key, $__ns ) ?></div></td>
+                    <td class="label"><div class="line"><?php echo __( $key, $__ns ) . ' ' . $attr_val_suffix[ 'costs_' . $key ]?></div></td>
                     <td class="value"><div class="line"><?php echo round($value, 2) ?> PLN</div></td>
                   </tr>
                 <?php
@@ -485,7 +503,7 @@ if( $pa_color_pages === -1 ){
                     ?>
                         <tr>
                           <td class="label"><div class="line"><?php echo __( $key2, $__ns ); ?></div></td>
-                          <td class="value"><div class="line"><?php echo $value2;
+                          <td class="value"><div class="line"><?php echo __( $value2, $__ns );
                             if ( array_key_exists( $key2, $attr_val_suffix ) ) {
                               echo $attr_val_suffix[ $key2 ];
                             }

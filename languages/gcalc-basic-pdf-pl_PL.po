@@ -1,0 +1,624 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Gaad calc api\n"
+"POT-Creation-Date: 2018-04-15 19:59+0200\n"
+"PO-Revision-Date: 2018-04-15 20:00+0200\n"
+"Last-Translator: \n"
+"Language-Team: barteksosnowski711@gmail.com\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.0.6\n"
+"X-Poedit-Basepath: ../../../../../../..\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __\n"
+"X-Poedit-SearchPath-0: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-"
+"calc/templates/calculations/basic-pdf.php\n"
+"X-Poedit-SearchPath-1: Users/Gaad/Desktop/test.php\n"
+
+#: Users/Gaad/Desktop/test.php:6 Users/Gaad/Desktop/test.php:20
+msgid "pa_cover_type"
+msgstr "Rodzaj oprawy"
+
+#: Users/Gaad/Desktop/test.php:10
+msgid "pa_format"
+msgstr "rozmiar"
+
+#: Users/Gaad/Desktop/test.php:11
+msgid "pa_quantity"
+msgstr "nakład"
+
+#: Users/Gaad/Desktop/test.php:12
+msgid "pa_paper"
+msgstr "papier"
+
+#: Users/Gaad/Desktop/test.php:13
+msgid "pa_print"
+msgstr "zadruk"
+
+#: Users/Gaad/Desktop/test.php:14
+msgid "pa_finish"
+msgstr "uszlachetnienie"
+
+#: Users/Gaad/Desktop/test.php:15
+msgid "pa_spot_uv"
+msgstr "lakier uv"
+
+#: Users/Gaad/Desktop/test.php:16
+msgid "pa_folding"
+msgstr "bigowanie"
+
+#: Users/Gaad/Desktop/test.php:17
+msgid "pa_cover_format"
+msgstr "rozmiar"
+
+#: Users/Gaad/Desktop/test.php:18
+msgid "pa_cover_paper"
+msgstr "papier"
+
+#: Users/Gaad/Desktop/test.php:19
+msgid "pa_cover_print"
+msgstr "print"
+
+#: Users/Gaad/Desktop/test.php:21
+msgid "pa_cover_dust_jacket_paper"
+msgstr "papier"
+
+#: Users/Gaad/Desktop/test.php:22
+msgid "pa_cover_dust_jacket_print"
+msgstr "zadruk"
+
+#: Users/Gaad/Desktop/test.php:23
+msgid "pa_cover_dust_jacket_finish"
+msgstr "uszlachetnienie"
+
+#: Users/Gaad/Desktop/test.php:24
+msgid "pa_cover_dust_jacket_spot_uv"
+msgstr "lakier uv"
+
+#: Users/Gaad/Desktop/test.php:25
+msgid "pa_cover_cloth_covering_paper"
+msgstr "papier"
+
+#: Users/Gaad/Desktop/test.php:26
+msgid "pa_cover_cloth_covering_finish"
+msgstr "uszlachetnienie"
+
+#: Users/Gaad/Desktop/test.php:27
+msgid "pa_cover_cloth_covering_print"
+msgstr "zadruk"
+
+#: Users/Gaad/Desktop/test.php:28
+msgid "pa_cover_cloth_covering_spot_uv"
+msgstr "lakier uv"
+
+#: Users/Gaad/Desktop/test.php:29
+msgid "pa_cover_ribbon"
+msgstr "tasiemka"
+
+#: Users/Gaad/Desktop/test.php:30
+msgid "pa_cover_finish"
+msgstr "uszlachetnienie"
+
+#: Users/Gaad/Desktop/test.php:31
+msgid "pa_cover_spot_uv"
+msgstr "lakier uv"
+
+#: Users/Gaad/Desktop/test.php:32
+msgid "pa_cover_flaps"
+msgstr "skrzydełka"
+
+#: Users/Gaad/Desktop/test.php:33
+msgid "pa_cover_left_flap_width"
+msgstr "szerokość lewego skrzydełka"
+
+#: Users/Gaad/Desktop/test.php:34
+msgid "pa_cover_right_flap_width"
+msgstr "szerokość prawego skrzydełka"
+
+#: Users/Gaad/Desktop/test.php:35
+msgid "pa_cover_board_thickness"
+msgstr "grubość tektury"
+
+#: Users/Gaad/Desktop/test.php:36
+msgid "pa_bw_pages"
+msgstr "strony cz-b"
+
+#: Users/Gaad/Desktop/test.php:37
+msgid "pa_bw_format"
+msgstr "rozmiar"
+
+#: Users/Gaad/Desktop/test.php:38
+msgid "pa_bw_paper"
+msgstr "papier"
+
+#: Users/Gaad/Desktop/test.php:39
+msgid "pa_bw_print"
+msgstr "zadruk"
+
+#: Users/Gaad/Desktop/test.php:40
+msgid "pa_color_pages"
+msgstr "strony kolorowe"
+
+#: Users/Gaad/Desktop/test.php:41
+msgid "pa_color_format"
+msgstr "rozmiar"
+
+#: Users/Gaad/Desktop/test.php:42
+msgid "pa_color_paper"
+msgstr "papier"
+
+#: Users/Gaad/Desktop/test.php:43
+msgid "pa_color_print"
+msgstr "zadruk"
+
+#: Users/Gaad/Desktop/test.php:44
+msgid "pa_color_stack"
+msgstr "Strony kolorowe w bloku"
+
+#: Users/Gaad/Desktop/test.php:45
+msgid "pa_cover_ribbon_width"
+msgstr "szerokość tasiemki"
+
+#: Users/Gaad/Desktop/test.php:46
+msgid "pa_cover_endpaper_paper"
+msgstr "papier"
+
+#: Users/Gaad/Desktop/test.php:47
+msgid "pa_cover_endpaper_print"
+msgstr "zadruk"
+
+#: Users/Gaad/Desktop/test.php:48
+msgid "pa_orientation"
+msgstr "orientacja"
+
+#: Users/Gaad/Desktop/test.php:49
+msgid "pa_groupwrap"
+msgstr "pakowanie w folię"
+
+#: Users/Gaad/Desktop/test.php:50
+msgid "pa_color_pages_numbers"
+msgstr "numery stron kolorowych"
+
+#: Users/Gaad/Desktop/test.php:51
+msgid "pa_drilling_holes"
+msgstr "wiercenie otworów"
+
+#: Users/Gaad/Desktop/test.php:52
+msgid "pa_holes_dia"
+msgstr "średnica otworów"
+
+#: Users/Gaad/Desktop/test.php:53
+msgid "pa_holes_pos"
+msgstr "położenie otworów"
+
+#: Users/Gaad/Desktop/test.php:54
+msgid "pa_pieces_per_carton"
+msgstr "ilość szt./karton"
+
+#: Users/Gaad/Desktop/test.php:55
+msgid "pa_title"
+msgstr "tytuł"
+
+#: Users/Gaad/Desktop/test.php:56
+msgid "pa_book_number"
+msgstr "numer isbn/issn"
+
+#: Users/Gaad/Desktop/test.php:57
+msgid "pa_comments"
+msgstr "uwagi"
+
+#: Users/Gaad/Desktop/test.php:62
+msgid "coated-70g"
+msgstr "kreda 70g"
+
+#: Users/Gaad/Desktop/test.php:63
+msgid "coated-80g"
+msgstr "kreda 80g"
+
+#: Users/Gaad/Desktop/test.php:64
+msgid "coated-90g"
+msgstr "kreda 90g"
+
+#: Users/Gaad/Desktop/test.php:65
+msgid "coated-115g"
+msgstr "kreda 115g"
+
+#: Users/Gaad/Desktop/test.php:66
+msgid "coated-135g"
+msgstr "kreda 135g"
+
+#: Users/Gaad/Desktop/test.php:67
+msgid "coated-170g"
+msgstr "kreda 170g"
+
+#: Users/Gaad/Desktop/test.php:68
+msgid "coated-250g"
+msgstr "kreda 250g"
+
+#: Users/Gaad/Desktop/test.php:69
+msgid "coated-300g"
+msgstr "kreda 300g"
+
+#: Users/Gaad/Desktop/test.php:70
+msgid "coated-350g"
+msgstr "kreda 350g"
+
+#: Users/Gaad/Desktop/test.php:71
+msgid "uncoated-70g"
+msgstr "offset 70g"
+
+#: Users/Gaad/Desktop/test.php:72
+msgid "uncoated-80g"
+msgstr "offset 80g"
+
+#: Users/Gaad/Desktop/test.php:73
+msgid "uncoated-90g"
+msgstr "offset 90g"
+
+#: Users/Gaad/Desktop/test.php:74
+msgid "uncoated-100g"
+msgstr "offset 100g"
+
+#: Users/Gaad/Desktop/test.php:75
+msgid "uncoated-120g"
+msgstr "offset 120g"
+
+#: Users/Gaad/Desktop/test.php:76
+msgid "uncoated-150g"
+msgstr "offset 150g"
+
+#: Users/Gaad/Desktop/test.php:77
+msgid "eccobook_cream_16-60g"
+msgstr "ekobook cream vol 1.6 60g"
+
+#: Users/Gaad/Desktop/test.php:78
+msgid "eccobook_cream_16-70g"
+msgstr "ekobook cream vol 1.6 70g"
+
+#: Users/Gaad/Desktop/test.php:79
+msgid "eccobook_cream_16-80g"
+msgstr "ekobook cream vol 1.6 80g"
+
+#: Users/Gaad/Desktop/test.php:80
+msgid "eccobook_cream_20-60g"
+msgstr "ekobook cream vol 2.0 60g"
+
+#: Users/Gaad/Desktop/test.php:81
+msgid "eccobook_cream_20-70g"
+msgstr "ekobook cream vol 2.0 70g"
+
+#: Users/Gaad/Desktop/test.php:82
+msgid "eccobook_cream_20-80g"
+msgstr "ekobook cream vol 2.0 80g"
+
+#: Users/Gaad/Desktop/test.php:83
+msgid "ibook_white_16-60g"
+msgstr "ibook white vol 1.6 60g"
+
+#: Users/Gaad/Desktop/test.php:84
+msgid "ibook_white_16-70g"
+msgstr "ibook white vol 1.6 70g"
+
+#: Users/Gaad/Desktop/test.php:85
+msgid "ibook_cream_20-60g"
+msgstr "ibook cream vol 2.0 60g"
+
+#: Users/Gaad/Desktop/test.php:86
+msgid "ibook_cream_20-70g"
+msgstr "iBook cream vol 2.0 70g"
+
+#: Users/Gaad/Desktop/test.php:87
+msgid "ibook_cream_20-80g"
+msgstr "iBook cream vol 2.0 60g"
+
+#: Users/Gaad/Desktop/test.php:88
+msgid "munken_cream_18-80g"
+msgstr "Munken cream vol 1.8 80g"
+
+#: Users/Gaad/Desktop/test.php:89
+msgid "munken_cream_18-90g"
+msgstr "Munken cream vol 1.8 90g"
+
+#: Users/Gaad/Desktop/test.php:90
+msgid "munken_cream_15-80g"
+msgstr "Munken cream vol 1.5 80g"
+
+#: Users/Gaad/Desktop/test.php:91
+msgid "munken_cream_15-90g"
+msgstr "Munken cream vol 1.5 90g"
+
+#: Users/Gaad/Desktop/test.php:92
+msgid "munken_white_18-80g"
+msgstr "Munken white vol 1.8 80g"
+
+#: Users/Gaad/Desktop/test.php:93
+msgid "munken_white_18-90g"
+msgstr "Munken white vol 1.8 90g"
+
+#: Users/Gaad/Desktop/test.php:94
+msgid "munken_white_15-80g"
+msgstr "Munken white vol 1.5 80g"
+
+#: Users/Gaad/Desktop/test.php:95
+msgid "munken_white_15-90g"
+msgstr "Munken white vol 1.5 90g"
+
+#: Users/Gaad/Desktop/test.php:97
+msgid "gc1-230g"
+msgstr "karton Arktika 230g"
+
+#: Users/Gaad/Desktop/test.php:98
+msgid "gc1-250g"
+msgstr "karton Arktika 250g"
+
+#: Users/Gaad/Desktop/test.php:99
+msgid "gc2-230g"
+msgstr "karton Alaska 230g"
+
+#: Users/Gaad/Desktop/test.php:100
+msgid "gc2-250g"
+msgstr "karton Alaska 250g"
+
+#: Users/Gaad/Desktop/test.php:101
+msgid "gloss-1x0"
+msgstr "1x0 błysk"
+
+#: Users/Gaad/Desktop/test.php:102
+msgid "gloss-1x1"
+msgstr "1x1 błysk"
+
+#: Users/Gaad/Desktop/test.php:103
+msgid "matt-1x0"
+msgstr "1x0 mat"
+
+#: Users/Gaad/Desktop/test.php:104
+msgid "matt-1x1"
+msgstr "1x1 mat"
+
+#: Users/Gaad/Desktop/test.php:105
+msgid "soft-touch-1x0"
+msgstr "1x0 soft touch"
+
+#: Users/Gaad/Desktop/test.php:106
+msgid "soft-touch-1x1"
+msgstr "1x1 soft touch"
+
+#: Users/Gaad/Desktop/test.php:107
+msgid "no-flaps"
+msgstr "bez skrzydełek"
+
+#: Users/Gaad/Desktop/test.php:108
+msgid "flap-left"
+msgstr "lewe skrzydełko"
+
+#: Users/Gaad/Desktop/test.php:109
+msgid "flap-right"
+msgstr "prawe skrzedełko"
+
+#: Users/Gaad/Desktop/test.php:110
+msgid "flap-both"
+msgstr "dwa skrzydełka"
+
+#: Users/Gaad/Desktop/test.php:111
+msgid "perfect_binding"
+msgstr "oprawa klejona"
+
+#: Users/Gaad/Desktop/test.php:112
+msgid "saddle_stitch"
+msgstr "oprawa zeszytowa"
+
+#: Users/Gaad/Desktop/test.php:113
+msgid "spiral_binding"
+msgstr "oprawa spiralowana"
+
+#: Users/Gaad/Desktop/test.php:114
+msgid "section_sewn"
+msgstr "oprawa szyto-klejona"
+
+#: Users/Gaad/Desktop/test.php:115
+msgid "hard"
+msgstr "oprawa twarda"
+
+#: Users/Gaad/Desktop/test.php:119
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/basic-pdf.php:149
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/basic-pdf.php:152
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/basic-pdf.php:153
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/basic-pdf.php:154
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/basic-pdf.php:155
+msgid "cover"
+msgstr "okładka"
+
+#: Users/Gaad/Desktop/test.php:120
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/basic-pdf.php:151
+msgid "b&w"
+msgstr "cz-b"
+
+#: Users/Gaad/Desktop/test.php:121
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/basic-pdf.php:156
+msgid "color"
+msgstr "kolor"
+
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/basic-pdf.php:20
+msgid "cid"
+msgstr "ID kalkulacji"
+
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/basic-pdf.php:21
+msgid "parent_cid"
+msgstr "ID rodzica kalkulacji"
+
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/basic-pdf.php:22
+msgid "product_slug"
+msgstr "Nazwa  produktu"
+
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/basic-pdf.php:23
+msgid "total_price"
+msgstr "Razem netto"
+
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/basic-pdf.php:24
+msgid "piece_price"
+msgstr "cena sztuki netto"
+
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/basic-pdf.php:25
+msgid "prod_cost"
+msgstr "koszt produkcji"
+
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/basic-pdf.php:26
+msgid "quantity"
+msgstr "Nakład"
+
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/basic-pdf.php:27
+msgid "av_markup"
+msgstr "Średnia marża"
+
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/basic-pdf.php:28
+msgid "profit"
+msgstr "Zysk"
+
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/basic-pdf.php:29
+msgid "added"
+msgstr "Utworzono"
+
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/basic-pdf.php:43
+msgid "Title"
+msgstr "Tytuł"
+
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/basic-pdf.php:44
+msgid "Book number"
+msgstr "Book number"
+
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/basic-pdf.php:45
+msgid "contractor-nip"
+msgstr "NIP klienta"
+
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/basic-pdf.php:46
+msgid "contractor-email"
+msgstr "Email klienta"
+
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/basic-pdf.php:81
+msgid "Basic info"
+msgstr "Basic info"
+
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/basic-pdf.php:92
+msgid "Cover"
+msgstr "Cover"
+
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/basic-pdf.php:107
+msgid "B&W block"
+msgstr "Blok Cz-b"
+
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/basic-pdf.php:116
+msgid "Color block"
+msgstr "Blok kolor"
+
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/basic-pdf.php:127
+msgid "Packing for shipment"
+msgstr "Pakowanie do wysyłki"
+
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/basic-pdf.php:138
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/basic-pdf.php:139
+msgid "pages"
+msgstr "stron"
+
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/basic-pdf.php:140
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/basic-pdf.php:141
+msgid "mm"
+msgstr "mm"
+
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/basic-pdf.php:142
+msgid " pcs."
+msgstr "szt."
+
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/basic-pdf.php:143
+msgid " pcs. together"
+msgstr "szt. razem"
+
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/basic-pdf.php:146
+msgid "b&w block"
+msgstr "blok cz-b"
+
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/basic-pdf.php:147
+msgid "color block"
+msgstr "blok kolor"
+
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/basic-pdf.php:178
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/basic-pdf.php:211
+msgid "Cloth covering"
+msgstr "Oklejka"
+
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/basic-pdf.php:194
+msgid "Endpaper"
+msgstr "Wyklejka"
+
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/basic-pdf.php:280
+msgid "Calculation"
+msgstr "Kalkulacja"
+
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/basic-pdf.php:284
+msgid "Created"
+msgstr "Utworzono"
+
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/basic-pdf.php:292
+msgid "Product"
+msgstr "Produkt"
+
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/basic-pdf.php:296
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/basic-pdf.php:543
+msgid "Quantity"
+msgstr "Nakład"
+
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/basic-pdf.php:296
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/basic-pdf.php:381
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/basic-pdf.php:551
+msgid "pcs."
+msgstr "szt."
+
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/basic-pdf.php:320
+msgid "Book"
+msgstr "Książka"
+
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/basic-pdf.php:340
+msgid "Contreactor"
+msgstr "Kontrahent"
+
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/basic-pdf.php:371
+msgid "Product short info"
+msgstr "Produkt: informacje podstawowe"
+
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/basic-pdf.php:419
+msgid "Markups"
+msgstr "Marże"
+
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/basic-pdf.php:445
+msgid "Costs"
+msgstr "Koszty"
+
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/basic-pdf.php:466
+msgid "Total"
+msgstr "Razem"
+
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/basic-pdf.php:483
+msgid "Product attributes"
+msgstr "Parametry produktu"
+
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/basic-pdf.php:537
+msgid "Summary"
+msgstr "Podsumowanie"
+
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/basic-pdf.php:541
+msgid "Account contact"
+msgstr "Dane osoby kontaktowej"
+
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/basic-pdf.php:542
+msgid "Created, date"
+msgstr "Utworzono, dnia"
+
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/basic-pdf.php:544
+msgid "Total price"
+msgstr "Razem"
+
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/basic-pdf.php:545
+msgid "Piece price"
+msgstr "Cena sztuki"

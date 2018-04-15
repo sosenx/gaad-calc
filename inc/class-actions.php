@@ -8,7 +8,7 @@ class actions {
  * @param [type] $locale [description]
  */
   public static function set_locale( $locale ){    
-    return 'en_US';
+    return $locale;
   }
 
     public static function load_textdomains( ) {

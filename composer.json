@@ -10,6 +10,7 @@
     "require": {
        "tecnickcom/TCPDF" : "*",
        "pelago/emogrifier": "*",
-       "adoy/oauth2" : "*"
+       "adoy/oauth2" : "*",
+    		    		"picqer/php-barcode-generator": "^0.2.2"
     }
 }
