@@ -2,7 +2,7 @@
 	"folders":
 	[
 		{
-			"path": "C:/xampp7/htdocs/gaadcalcapi"
+			"path": "C:/xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc"
 		}
 	],
 	"settings":
@@ -17,4 +17,3 @@
 		}
 	}
 }
-///wp-content/plugins/gaad-calc

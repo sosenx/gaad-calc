@@ -41,13 +41,19 @@ class rest{
 			//insert calculation into gcalc db structure
 			$put_data = \gcalc\sql::acalculations_insert( $h[ 'cid' ], $calculation, $h );					
 			$token = $put_data[ 'token' ];
-			$wp_post_data = \gcalc\actions::acalculations_insert_wp_post( $h[ 'cid' ], $calculation, $h );
-		}
+			$wp_post_data = array(
+				'account' => \gcalc\actions::acalculations_insert_wp_post( $h[ 'cid' ], $calculation, $h, 'account' ),
+				'contractor' => \gcalc\actions::acalculations_insert_wp_post( $h[ 'cid' ], $calculation, $h, 'contractor' ),
+				'master' => \gcalc\actions::acalculations_insert_wp_post( $h[ 'cid' ], $calculation, $h, 'master' ),
+			);
 
-		$pdf = new \gcalc\pdf( $h[ 'cid' ], 'archives', array( $wp_post_data['post_content'] ), $wp_post_data['post_id'] );
-		$calculation_pdf = array(
-			'contractor' => $pdf->calculation( $wp_post_data['post_id'] )
-		);
+			$pdf_account = new \gcalc\pdf( $h[ 'cid' ], 'archives', array( $wp_post_data[ 'account' ]['post_content'] ), $wp_post_data[ 'account' ]['post_id'] );
+			$pdf_contractor = new \gcalc\pdf( $h[ 'cid' ], 'archives', array( $wp_post_data[ 'contractor' ]['post_content'] ), $wp_post_data[ 'contractor' ]['post_id'] );
+			$calculation_pdf = array(
+				'account' => $pdf_account->account_calculation_pdf( $wp_post_data[ 'account' ]['post_id'] ),
+				'contractor' => $pdf_contractor->contractor_calculation_pdf( $wp_post_data[ 'contractor' ]['post_id'] ),
+			);
+		}
 		
 		$r = array( 
 			'plugin_name' 	=> "gcalc",

@@ -1,0 +1,161 @@
+$line-height: 6.5mm;
+$text-color: black;
+$label-color: #CCC;
+$header-bg-color: #Da2FDD;
+$header-text-color: #FFFFFF;
+
+
+
+.page{
+	width: 190mm;
+
+	td{
+		&.left{
+			width: 40%
+		}
+
+		&.right{
+			width: 60%
+		}
+	}
+}
+
+table.header{
+	color: $header-text-color;
+
+	h3{
+		line-height: 130%;
+		color:$header-text-color;
+	}
+	
+	.created{
+		border-left: 1px solid $header-text-color;
+	}
+
+	.logotype{
+		border-right: 1px solid $header-text-color;
+	}
+
+	.header-nd-line{
+		td{
+			line-height: 300%;
+
+			&.first{
+				
+			}
+			&.last{
+				border-right: 1px solid $header-text-color;
+			}
+		}
+	}
+}
+
+
+
+table{
+	width: 100%;
+
+
+	.line{
+		color: $text-color;			
+		line-height: 200%;
+		
+	}
+	.label{
+		border-bottom: 1px solid $header-bg-color;
+		position: relative;
+	}
+
+	.value{
+		border-bottom: 1px solid $header-bg-color;
+		position: relative;
+	}
+	
+	.logo{
+		width: 50mm;
+	}
+
+	.total-bar{
+		height: 1px;
+		border-top: 2px solid $header-bg-color;
+	} 
+
+	.header{
+		td {
+			border-bottom: 1px solid $header-text-color;			
+			background-color: $header-bg-color;
+			font-weight: bold;
+
+			.line{
+				color: $header-text-color;	
+			}
+		}	
+
+	}
+		
+	
+	.bardoce-holder{
+		background-color: white;
+		text-align: right;
+	}
+
+	img.barcode{
+		width: 35mm;
+		height:15mm;
+		
+		
+
+	} 
+	
+	&.basic-info, &.markups-info, &.costs-info{
+		border: 1px solid $header-bg-color;
+
+		
+
+		.label{
+			width: 60%; 
+		}
+
+		.value{
+			width: 40%;			
+		}
+	}
+
+
+	&.book-info{
+		border: 1px solid $header-bg-color;
+
+		
+
+		.label{
+			width: 20%; 
+		}
+
+		.value{
+			width: 80%;			
+		}
+	}
+
+	&.attr-list{
+		border: 1px solid $header-bg-color;
+
+		.label{
+			width: 60%;
+		}
+		.value{
+			width: 40%;
+		}
+	}
+
+
+	&.summary{
+		border: 1px solid $header-bg-color;
+		.header.big{
+			.line{
+				font-size: 10pt;
+			}
+		}
+	}
+
+
+}

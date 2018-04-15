@@ -1,0 +1,103 @@
+.page {
+  width: 190mm;
+}
+.page td.left {
+  width: 40%;
+}
+.page td.right {
+  width: 60%;
+}
+
+table.header {
+  color: #FFFFFF;
+}
+table.header h3 {
+  line-height: 130%;
+  color: #FFFFFF;
+}
+table.header .created {
+  border-left: 1px solid #FFFFFF;
+}
+table.header .logotype {
+  border-right: 1px solid #FFFFFF;
+}
+table.header .header-nd-line td {
+  line-height: 300%;
+}
+table.header .header-nd-line td.last {
+  border-right: 1px solid #FFFFFF;
+}
+
+table {
+  width: 100%;
+}
+table .line {
+  color: black;
+  line-height: 200%;
+}
+table .label {
+  border-bottom: 1px solid #0a78ac;
+  position: relative;
+}
+table .value {
+  border-bottom: 1px solid #0a78ac;
+  position: relative;
+}
+table .logo {
+  width: 50mm;
+}
+table .total-bar {
+  height: 1px;
+  border-top: 2px solid #0a78ac;
+}
+table .header td {
+  border-bottom: 1px solid #FFFFFF;
+  background-color: #0a78ac;
+  font-weight: bold;
+}
+table .header td .line {
+  color: #FFFFFF;
+}
+table .bardoce-holder {
+  background-color: white;
+  text-align: right;
+}
+table img.barcode {
+  width: 35mm;
+  height: 15mm;
+}
+table.basic-info, table.markups-info, table.costs-info {
+  border: 1px solid #0a78ac;
+}
+table.basic-info .label, table.markups-info .label, table.costs-info .label {
+  width: 60%;
+}
+table.basic-info .value, table.markups-info .value, table.costs-info .value {
+  width: 40%;
+}
+table.book-info {
+  border: 1px solid #0a78ac;
+}
+table.book-info .label {
+  width: 20%;
+}
+table.book-info .value {
+  width: 80%;
+}
+table.attr-list {
+  border: 1px solid #0a78ac;
+}
+table.attr-list .label {
+  width: 60%;
+}
+table.attr-list .value {
+  width: 40%;
+}
+table.summary {
+  border: 1px solid #0a78ac;
+}
+table.summary .header.big .line {
+  font-size: 10pt;
+}
+
+/*# sourceMappingURL=account-pdf.css.map */

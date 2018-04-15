@@ -85,14 +85,23 @@ class pdf  {
 				$attachment_data = \wp_generate_attachment_metadata( $attachment_id, $upload_file['file'] );
 				\wp_update_attachment_metadata( $attachment_id,  $attachment_data );
 			}
+
+		unlink( $path );
+
+		return $upload_file;
 		}
  	}
 
- 	public function calculation( $parent_post_id ) {
- 		//var_dump( GAAD_PLUGIN_TEMPLATE_DIR . $this->get_cid() .'-calc.pdf' );
- 		$r = array( 'pdf' => true ); 
 
-		$calc_basic_path = GAAD_PLUGIN_TEMPLATE_DIR . $this->get_cid() . '-calc.pdf';
+ 	/**
+ 	 * create summary pdf for account
+ 	 * @param  [type] $parent_post_id [description]
+ 	 * @return [type]                 [description]
+ 	 */
+ 	public function account_calculation_pdf( $parent_post_id ) {
+ 		//var_dump( GAAD_PLUGIN_TEMPLATE_DIR . $this->get_cid() .'-calc.pdf' );
+
+		$calc_pdf_path = GAAD_PLUGIN_TEMPLATE_DIR . $this->get_cid() . '-account.pdf';
 
 		// Set some content to print
 		$html = $this->get_content()[0];
@@ -100,11 +109,33 @@ class pdf  {
 		// Print text using writeHTMLCell()
 		$this->PDF->writeHTMLCell(0, 0, '', '', $html, 0, 1, 0, true, '', true);
 		 
-		$this->PDF->Output( $calc_basic_path, "F" );
-		$this->upload_calculation_pdf_as_media_lib_items( $calc_basic_path );
+		$this->PDF->Output( $calc_pdf_path, "F" );
+		$uploaded = $this->upload_calculation_pdf_as_media_lib_items( $calc_pdf_path );
+
+ 		return $uploaded;
+ 	}
 
 
- 		return $r;
+ 	/**
+ 	 * create summary pdf for client
+ 	 * @param  [type] $parent_post_id [description]
+ 	 * @return [type]                 [description]
+ 	 */
+ 	public function contractor_calculation_pdf( $parent_post_id ) {
+ 		//var_dump( GAAD_PLUGIN_TEMPLATE_DIR . $this->get_cid() .'-calc.pdf' );
+
+		$calc_pdf_path = GAAD_PLUGIN_TEMPLATE_DIR . $this->get_cid() . '-contractor.pdf';
+
+		// Set some content to print
+		$html = $this->get_content()[0];
+
+		// Print text using writeHTMLCell()
+		$this->PDF->writeHTMLCell(0, 0, '', '', $html, 0, 1, 0, true, '', true);
+		 
+		$this->PDF->Output( $calc_pdf_path, "F" );
+		$uploaded = $this->upload_calculation_pdf_as_media_lib_items( $calc_pdf_path );
+
+ 		return $uploaded;
  	}
 
 

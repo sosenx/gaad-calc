@@ -363,7 +363,7 @@ if( $pa_color_pages === -1 ){
 
 <!-- margin between book info and content -->
 <tr>  
-  <td colspan="2"><br><br></td>  
+  <td colspan="2"><br></td>  
 </tr>
 
 <!-- body, left + right -->

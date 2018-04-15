@@ -13,25 +13,25 @@ class actions {
 
     public static function load_textdomains( ) {
 
-      $pdf_calc_basic_namespace = str_replace('\\','', GAAD_PLUGIN_TEMPLATE_NAMESPACE) . '-basic-pdf';
-      $locale = \apply_filters( 'plugin_locale', \is_admin() ? \get_user_locale() : \get_locale(), $pdf_calc_basic_namespace );
+      $pdf_namespace = 'gcalc-report-pdf';
+      $locale = \apply_filters( 'plugin_locale', \is_admin() ? \get_user_locale() : \get_locale(), $pdf_namespace );
       $pdf_calc_basic_file_path = GAAD_PLUGIN_TEMPLATE_DIR . 'languages/' .$pdf_calc_basic_namespace . '-' . $locale . '.mo';
-      
+           
       if ( is_file( $pdf_calc_basic_file_path )  ) {
-        $pdf_calc_basic_tranlations_status = \load_textdomain( $pdf_calc_basic_namespace, $pdf_calc_basic_file_path );        
+        $pdf_calc_basic_tranlations_status = \load_textdomain( $pdf_namespace, $pdf_calc_basic_file_path );        
+        $pdf_calc_client_tranlations_status = \load_textdomain( $pdf_namespace, $pdf_calc_basic_file_path );        
       }
 
-   
    }
 
 /**
  * generate basic calculation post type content  
  * @return [type] [description]
  */
-  public static function calculation_post_content( string $cid, $calculation, array $headers ){
-    $css_file = GAAD_PLUGIN_TEMPLATE_CALCULATIONS_CSS_DIR . '/basic-pdf.css';
+  public static function calculation_post_content( string $cid, $calculation, array $headers, string $template_filename ){
+    $css_file = GAAD_PLUGIN_TEMPLATE_CALCULATIONS_CSS_DIR . '/' . $template_filename . '.css';
     $css_ = is_readable( $css_file ) ? file_get_contents( $css_file ) : '';
-    $template_file = GAAD_PLUGIN_TEMPLATE_APP_TEMPLATES_DIR. '/calculations/basic-pdf.php';
+    $template_file = GAAD_PLUGIN_TEMPLATE_APP_TEMPLATES_DIR. '/calculations/' . $template_filename . '.php';
    
     ob_start( ); 
       include( $template_file );
@@ -61,19 +61,24 @@ class actions {
       return $r;
     }
 
-  /**
+  
+
+
+
+
+     /**
    * Adds calculation custom post for further use.
    * @param  string $cid         [description]
    * @param  [type] $calculation [description]
    * @param  array  $headers     [description]
    * @return [type]              [description]
    */
-    public static function acalculations_insert_wp_post( string $cid, $calculation, array $headers  ){
+    public static function acalculations_insert_wp_post( string $cid, $calculation, array $headers, string $token = NULL ){
       $r = array();
       $action = 'add';
-      $post_title = $cid;
+      $post_title = $cid. '-' . $token;
       $exists = actions::get_calculation_post_by_cid( $post_title );
-      $post_content = actions::calculation_post_content( $cid, $calculation, $headers );
+      $post_content = actions::calculation_post_content( $cid, $calculation, $headers, $token .'-pdf' );
 
       $attr = array (
           'post_type' => 'calculation',
