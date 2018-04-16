@@ -149,10 +149,13 @@ $summary = array(
 
 //cover mod
  if ( $attr['cover'][ 'attr' ]['pa_cover_type'] === 'hard') {   
-  unset( $attr['cover'][ 'attr' ][ 'pa_cover_spot_uv' ] );
+unset( $attr['cover'][ 'attr' ][ 'pa_cover_spot_uv' ] );
   unset( $attr['cover'][ 'attr' ][ 'pa_cover_flaps' ] );
   unset( $attr['cover'][ 'attr' ][ 'pa_cover_paper' ] );
+  unset( $attr['cover'][ 'attr' ][ 'pa_cover_finish' ] );
   unset( $attr['cover'][ 'attr' ][ 'pa_cover_print' ] );
+  unset( $attr['cover'][ 'attr' ][ 'pa_cover_left_flap_width' ] );
+  unset( $attr['cover'][ 'attr' ][ 'pa_cover_right_flap_width' ] );
  // unset( $attr['cover'][ 'attr' ][ '' ] );
  
    // cloth_covering

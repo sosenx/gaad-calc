@@ -60,9 +60,17 @@ class pdf  {
  		$this->PDF->setFontSubsetting(true);
 		$this->PDF->SetFont('freesans', '', 8, '', true);
 
-		// remove default header/footer
+
+		$this->PDF->SetMargins(6, 8, 6);
+		$this->PDF->SetHeaderMargin(0);
+		$this->PDF->SetFooterMargin(0);
+
+		// set auto page breaks
+		$this->PDF->SetAutoPageBreak(TRUE, 20);
+
+
 		$this->PDF->setPrintHeader(false);
-		//$this->PDF->setPrintFooter(true);
+
 
 
 		$this->PDF->setImageScale(\PDF_IMAGE_SCALE_RATIO);
@@ -173,7 +181,9 @@ class pdf  {
  	 */
  	public function master_calculation_pdf( $parent_post_id ) {
  		//var_dump( GAAD_PLUGIN_TEMPLATE_DIR . $this->get_cid() .'-calc.pdf' );
-$this->PDF->setPrintFooter(false);
+		$this->PDF->setPrintFooter(false);
+		$this->PDF->SetAutoPageBreak(TRUE, 5);
+
 		$calc_pdf_path = GAAD_PLUGIN_TEMPLATE_DIR . $this->get_cid() . '-master.pdf';
 
 		// Set some content to print
@@ -182,6 +192,16 @@ $this->PDF->setPrintFooter(false);
 		// Print text using writeHTMLCell()
 		$this->PDF->writeHTMLCell(0, 0, '', '', $html, 0, 1, 0, true, '', true);
 		 
+// 2nd page
+		$this->PDF->AddPage();
+
+
+		// Set some content to print
+		$html = '<h1>tutaj szczegółowe opisy procesów, surowych kosztów etc</h1>';
+
+		// Print text using writeHTMLCell()
+		$this->PDF->writeHTMLCell(0, 0, '', '', $html, 0, 1, 0, true, '', true);
+
 		$this->PDF->Output( $calc_pdf_path, "F" );
 		$uploaded = $this->upload_calculation_pdf_as_media_lib_items( $calc_pdf_path );
 
