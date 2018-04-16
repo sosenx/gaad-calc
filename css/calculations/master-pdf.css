@@ -8,6 +8,16 @@
   width: 60%;
 }
 
+.page2 {
+  width: 190mm;
+}
+.page2 td.left {
+  width: 50%;
+}
+.page2 td.right {
+  width: 50%;
+}
+
 table.header {
   color: #FFFFFF;
 }
@@ -92,6 +102,30 @@ table.attr-list .label {
 }
 table.attr-list .value {
   width: 40%;
+}
+table.formats-info, table.media-info {
+  border: 1px solid #FF4433;
+}
+table.formats-info .label, table.media-info .label {
+  width: 30%;
+}
+table.formats-info .value, table.media-info .value {
+  width: auto;
+}
+table.formats-info .value-1, table.media-info .value-1 {
+  width: 35%;
+}
+table.formats-info .value-2, table.media-info .value-2 {
+  width: 35%;
+}
+table.markups-info, table.costs-info, table.pcosts-info, table.totals-info {
+  border: 1px solid #FF4433;
+}
+table.markups-info .label, table.costs-info .label, table.pcosts-info .label, table.totals-info .label {
+  width: 50%;
+}
+table.markups-info .value, table.costs-info .value, table.pcosts-info .value, table.totals-info .value {
+  width: 50%;
 }
 table.summary {
   border: 1px solid #FF4433;

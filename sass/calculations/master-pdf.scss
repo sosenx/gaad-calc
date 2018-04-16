@@ -20,6 +20,20 @@ $header-text-color: #FFFFFF;
 	}
 }
 
+.page2{
+	width: 190mm;
+
+	td{
+		&.left{
+			width: 50%
+		}
+
+		&.right{
+			width: 50%
+		}
+	}
+}
+
 table.header{
 	color: $header-text-color;
 
@@ -146,6 +160,37 @@ table{
 			width: 40%;
 		}
 	}
+
+	&.formats-info, &.media-info {
+		border: 1px solid $header-bg-color;
+
+		.label{
+			width: 30%;
+		}
+		.value{
+			width: auto;
+		}
+		.value-1{
+			width: 35%;
+		}
+		.value-2{
+			width: 35%;
+		}
+	}
+
+	
+
+	&.markups-info, &.costs-info, &.pcosts-info, &.totals-info {
+		border: 1px solid $header-bg-color;
+
+		.label{
+			width: 50%;
+		}
+		.value{
+			width: 50%;
+		}
+	}
+
 
 
 	&.summary{

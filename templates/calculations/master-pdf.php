@@ -586,12 +586,244 @@ if( $pa_color_pages === -1 ){
 
 
 
-<p>to jest druga strona</p>
+<?php 
+  $used_formats = $calculation['full_total']['used_formats'];
+  $used_media = $calculation['full_total']['used_media'];
+  $total_markup = $calculation['full_total']['total_markup'];
+  $total_pcost = $calculation['full_total']['total_pcost_equasion'];
+  $total_cost = $calculation['full_total']['total_cost_equasion'];
+  $total_cost_ = $calculation['full_total']['total_cost_'];
+  $total_pcost_ = $calculation['full_total']['total_pcost_'];
+  $average_markup = $calculation['full_total']['average_markup'];
+?>
+
+
+<table class="page2">  
+  <tbody>
+    
+
+    <tr>  
+      <td colspan="2"> 
+
+        <h3 class="document-title-red"><?php echo __( 'Used formats', $__ns ) ?></h3>
+        <table class="formats-info">
+          <tbody>
+            <tr class="header">
+              <td><div class="line"><?php echo __( 'Type', $__ns ) ?></div></td>
+              <td><div class="line"><?php echo __( 'Imposition slots', $__ns ) ?></div></td>
+              <td><div class="line"><?php echo __( 'Print format', $__ns ) ?></div></td>
+            </tr>
+
+                <?php foreach ($used_formats as $key => $value) { ?>
+
+                    <tr>
+                      <td class="label"><div class="line"><?php echo __( 'formats_' . $key, $__ns );  ?></div></td>
+                      
+                      <?php 
+                        $split = explode('@', $value);
+                      ?>
+                      <td class="value value-1"><div class="line"><?php echo $split[0] ?></div></td>
+                      <td class="value value-2"><div class="line"><?php echo $split[1] ?></div></td>
+                    </tr>
+
+                <?php } ?>
+                    
+           
+            
+          </tbody>
+        </table>
+
+      </td>  
+    </tr>
+
+
+     <tr>  
+      <td colspan="2"> 
+
+        <h3 class="document-title-red"><?php echo __( 'Used Media', $__ns ) ?></h3>
+        <table class="formats-info">
+          <tbody>
+            <tr class="header">
+              <td><div class="line"><?php echo __( 'Type', $__ns ) ?></div></td>
+              <td><div class="line"><?php echo __( 'Imposition slots', $__ns ) ?></div></td>
+              <td><div class="line"><?php echo __( 'Print format', $__ns ) ?></div></td>
+            </tr>
+
+                <?php foreach ($used_media as $key => $value) { ?>
+
+                    <tr>
+                      <td class="label"><div class="line"><?php echo __( 'media_' . $key, $__ns );  ?></div></td>
+                      
+                      <?php 
+                        $split = explode('@', $value);
+                      ?>
+                      <td class="value value-1"><div class="line"><?php echo $split[0] ?></div></td>
+                      <td class="value value-2"><div class="line"><?php echo $split[1] ?></div></td>
+                    </tr>
+
+                <?php } ?>
+                    
+           
+            
+          </tbody>
+        </table>
+
+      </td>  
+    </tr>
+
+
+
+    <tr>
+      <td colspan="2"> <!-- first col -->
+      </td>
+    </tr>
+
+
+    <tr> 
+      <td class="left">
+      
+ <h3 class="document-title-red"><?php echo __( 'Production costs', $__ns ) ?></h3>
+        <table class="pcosts-info">
+          <tbody>
+            <tr class="header">
+              <td><div class="line"><?php echo __( 'Process', $__ns ) ?></div></td>
+              <td><div class="line"><?php echo __( 'Value', $__ns ) ?></div></td>
+            </tr>
+
+                <?php foreach ($total_pcost as $key => $value) { ?>
+                  
+                    <tr>
+                      <td class="label"><div class="line"><?php echo __( 'pcost_' . $key, $__ns );  ?></div></td>
+                      <td class="value"><div class="line"><?php echo round( $value, 2) ?></div></td>
+                      
+                    </tr>
+
+                <?php } ?>
+                    
+           
+            
+          </tbody>
+        </table>
+
+
+      </td>
+
+      <td class="right">
+      
+
+        <h3 class="document-title-red"><?php echo __( 'Selling prices', $__ns ) ?></h3>
+        <table class="costs-info">
+          <tbody>
+            <tr class="header">
+              <td><div class="line"><?php echo __( 'Process', $__ns ) ?></div></td>
+              <td><div class="line"><?php echo __( 'Value', $__ns ) ?></div></td>
+            </tr>
+
+                <?php foreach ($total_cost as $key => $value) { ?>
+                  
+                    <tr>
+                      <td class="label"><div class="line"><?php echo __( 'cost_' . $key, $__ns );  ?></div></td>
+                      <td class="value"><div class="line"><?php echo round( $value, 2) ?></div></td>
+                      
+                    </tr>
+
+                <?php } ?>
+                    
+           
+            
+          </tbody>
+        </table>
+
+
+      </td>
+    </tr>
+
+
+    <tr>
+      <td class="left">
+       
+        <h3 class="document-title-red"><?php echo __( 'Markups layers', $__ns ) ?></h3>
+        <table class="markups-info">
+          <tbody>
+            <tr class="header">
+              <td><div class="line"><?php echo __( 'Markup layer', $__ns ) ?></div></td>
+              <td><div class="line"><?php echo __( 'Value', $__ns ) ?></div></td>
+            </tr>
+
+                <?php foreach ($total_markup as $key => $value) { ?>
+                  
+                    <tr>
+                      <td class="label"><div class="line"><?php echo __( 'markup_' . $key, $__ns );  ?></div></td>
+                      <td class="value"><div class="line"><?php echo round( ( $value - 1 ) * 100, 2)
+
+ ?>%</div></td>
+                      
+                    </tr>
+
+                <?php } ?>
+                    
+           
+            
+          </tbody>
+        </table>
+
+
+
+
+      </td>
+    
+      <td class="right">
+        
+       <?php
+       $totals = array(
+          'cost_' => $total_cost_,
+          'pcost_' => $total_pcost_,
+          'profit_' => $total_cost_ - $total_pcost_,
+          'commision' => ( $total_cost_ - $total_pcost_ ) / 20,
+          'average_markup' => $average_markup,
+       );
+
+
+
+       ?>
+
+      <h3 class="document-title-red"><?php echo __( 'TOTALS', $__ns ) ?></h3>
+        <table class="totals-info">
+          <tbody>
+            <tr class="header">
+              <td><div class="line"><?php echo __( 'Name', $__ns ) ?></div></td>
+              <td><div class="line"><?php echo __( 'Value', $__ns ) ?></div></td>
+            </tr>
+
+                <?php foreach ($totals as $key => $value) { ?>
+                  
+                    <tr>
+                      <td class="label"><div class="line"><?php echo __( 'totals_' . $key, $__ns );  ?></div></td>
+                      <td class="value"><div class="line"><?php echo round( $value, 2) ?></div></td>                      
+                    </tr>
+
+                <?php } ?>
+                    
+           
+            
+          </tbody>
+        </table>
+
+
+
+
+      </td>
+    </tr>
+   
+
+
+  </tbody>
+</table>       
+
 
 
 
 
     <?php
-
 //var_dump( $calculation );
     ?>

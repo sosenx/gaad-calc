@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Gaad calc api\n"
-"POT-Creation-Date: 2018-04-16 12:09+0200\n"
-"PO-Revision-Date: 2018-04-16 12:10+0200\n"
+"POT-Creation-Date: 2018-04-16 19:21+0200\n"
+"PO-Revision-Date: 2018-04-16 19:26+0200\n"
 "Last-Translator: \n"
 "Language-Team: barteksosnowski711@gmail.com\n"
 "Language: pl_PL\n"
@@ -456,7 +456,7 @@ msgid "color"
 msgstr "kolor"
 
 #: Users/Gaad/Desktop/test.php:125
-#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/contractor-pdf.php:312
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/contractor-pdf.php:315
 msgid "Product costs calculation"
 msgstr "Kalkulacja ceny produktu"
 
@@ -477,29 +477,29 @@ msgid "landscape"
 msgstr "poziomo"
 
 #: Users/Gaad/Desktop/test.php:134
-#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/contractor-pdf.php:495
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/contractor-pdf.php:498
 msgid "Document info"
 msgstr "Informacje o dokumencie"
 
 #: Users/Gaad/Desktop/test.php:135
-#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/contractor-pdf.php:497
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/contractor-pdf.php:500
 msgid "This document is NOT a work order, its a costs calculation raport"
 msgstr "To NIE jest zlecenie wykonania pracy. To jest kalkulacja kosztów."
 
 #: Users/Gaad/Desktop/test.php:136
-#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/contractor-pdf.php:498
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/contractor-pdf.php:501
 msgid "Net prices"
 msgstr "Ceny netto."
 
 #: Users/Gaad/Desktop/test.php:137
-#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/contractor-pdf.php:499
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/contractor-pdf.php:502
 msgid "For further information please call given customer service number"
 msgstr ""
 "W celu uzyskania bardziej szczegółowych informacji prosimy o kontakt "
 "telefoniczny. Numer podany został w podsumowaniu."
 
 #: Users/Gaad/Desktop/test.php:138
-#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/contractor-pdf.php:500
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/contractor-pdf.php:503
 msgid "Offer is valid for 2 weeks from"
 msgstr "Oferta jest ważna 2 tygodnie od daty utworzenia."
 
@@ -524,9 +524,243 @@ msgid "no-finish"
 msgstr "bez uszlachetnienia"
 
 #: Users/Gaad/Desktop/test.php:146
-#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/master-pdf.php:317
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/master-pdf.php:320
 msgid "Confidential company data."
 msgstr "Szczegółowe dane kalkulacji produktu."
+
+#: Users/Gaad/Desktop/test.php:148
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/master-pdf.php:612
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/master-pdf.php:647
+msgid "Type"
+msgstr "Rodzaj"
+
+#: Users/Gaad/Desktop/test.php:149
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/master-pdf.php:613
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/master-pdf.php:648
+msgid "Imposition slots"
+msgstr "Impozycja"
+
+#: Users/Gaad/Desktop/test.php:150
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/master-pdf.php:614
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/master-pdf.php:649
+msgid "Print format"
+msgstr "Format produkcyjny"
+
+#: Users/Gaad/Desktop/test.php:153
+msgid "formats_pa_master_format"
+msgstr "Rozmiar"
+
+#: Users/Gaad/Desktop/test.php:154
+msgid "formats_pa_color_format"
+msgstr "Rozmiar blok kolor"
+
+#: Users/Gaad/Desktop/test.php:155
+msgid "formats_pa_cover_format"
+msgstr "Rozmiar okładki"
+
+#: Users/Gaad/Desktop/test.php:156
+msgid "formats_pa_bw_format"
+msgstr "Rozmiar blok cz-b"
+
+#: Users/Gaad/Desktop/test.php:157
+msgid "formats_pa_cover_cloth_covering_format"
+msgstr "Rozmiar oklejka"
+
+#: Users/Gaad/Desktop/test.php:158
+msgid "formats_pa_cover_dust_jacket_format"
+msgstr "Rozmiar obwoluta"
+
+#: Users/Gaad/Desktop/test.php:159
+msgid "formats_pa_cover_endpaper_format"
+msgstr "Rozmiar wyklejka"
+
+#: Users/Gaad/Desktop/test.php:163
+msgid "markup_pa_color_sewing"
+msgstr "Szycie blok kolor"
+
+#: Users/Gaad/Desktop/test.php:164
+msgid "markup_pa_bw_sewing"
+msgstr "Szycie blok cz-b"
+
+#: Users/Gaad/Desktop/test.php:165
+msgid "markup_pa_cover_paper"
+msgstr "Papier okładki)"
+
+#: Users/Gaad/Desktop/test.php:166
+msgid "markup_pa_cover_print"
+msgstr "Zadruk okładki"
+
+#: Users/Gaad/Desktop/test.php:167
+msgid "markup_pa_cover_type"
+msgstr "Rodzaj oprawy"
+
+#: Users/Gaad/Desktop/test.php:168
+msgid "markup_pa_cover_spot_uv"
+msgstr "Lakier UV okładki"
+
+#: Users/Gaad/Desktop/test.php:169
+msgid "markup_pa_cover_finish"
+msgstr "Uszlachetnienie okładki"
+
+#: Users/Gaad/Desktop/test.php:170
+msgid "markup_pa_bw_paper"
+msgstr "Papier cz-b"
+
+#: Users/Gaad/Desktop/test.php:171
+msgid "markup_pa_bw_print"
+msgstr "Zadruk cz-b"
+
+#: Users/Gaad/Desktop/test.php:172
+msgid "markup_pa_color_paper"
+msgstr "Papier kolor"
+
+#: Users/Gaad/Desktop/test.php:173
+msgid "markup_pa_color_print"
+msgstr "Zadruk kolor"
+
+#: Users/Gaad/Desktop/test.php:176
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/master-pdf.php:608
+msgid "Used formats"
+msgstr "Wykorzystane formaty"
+
+#: Users/Gaad/Desktop/test.php:177
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/master-pdf.php:643
+msgid "Used Media"
+msgstr "Wykorzystane media (papier)"
+
+#: Users/Gaad/Desktop/test.php:178
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/master-pdf.php:745
+msgid "Markups layers"
+msgstr "Marża/proces"
+
+#: Users/Gaad/Desktop/test.php:179
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/master-pdf.php:749
+msgid "Markup layer"
+msgstr "Marża/proces"
+
+#: Users/Gaad/Desktop/test.php:180
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/master-pdf.php:690
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/master-pdf.php:719
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/master-pdf.php:750
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/master-pdf.php:793
+msgid "Value"
+msgstr "Wartość"
+
+#: Users/Gaad/Desktop/test.php:184
+msgid "pcost_pa_color_sewing"
+msgstr "Szycie blok kolor"
+
+#: Users/Gaad/Desktop/test.php:185
+msgid "pcost_pa_bw_sewing"
+msgstr "Szycie blok cz-b"
+
+#: Users/Gaad/Desktop/test.php:186
+msgid "pcost_pa_cover_paper"
+msgstr "Papier okładki"
+
+#: Users/Gaad/Desktop/test.php:187
+msgid "pcost_pa_cover_print"
+msgstr "Zadruk okładki"
+
+#: Users/Gaad/Desktop/test.php:188
+msgid "pcost_pa_cover_type"
+msgstr "Rodzaj oprawy"
+
+#: Users/Gaad/Desktop/test.php:189
+msgid "pcost_pa_cover_spot_uv"
+msgstr "Lakier UV okładki"
+
+#: Users/Gaad/Desktop/test.php:190
+msgid "pcost_pa_cover_finish"
+msgstr "Uszlachetnienie okładki"
+
+#: Users/Gaad/Desktop/test.php:191
+msgid "pcost_pa_bw_paper"
+msgstr "Papier cz-b"
+
+#: Users/Gaad/Desktop/test.php:192
+msgid "pcost_pa_bw_print"
+msgstr "Zadruk cz-b"
+
+#: Users/Gaad/Desktop/test.php:193
+msgid "pcost_pa_color_paper"
+msgstr "Papier kolor"
+
+#: Users/Gaad/Desktop/test.php:194
+msgid "pcost_pa_color_print"
+msgstr "Zadruk kolor"
+
+#: Users/Gaad/Desktop/test.php:195
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/master-pdf.php:714
+msgid "Selling prices"
+msgstr "Ceny sprzedaży"
+
+#: Users/Gaad/Desktop/test.php:196
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/master-pdf.php:685
+msgid "Production costs"
+msgstr "Koszty produkcji"
+
+#: Users/Gaad/Desktop/test.php:197
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/master-pdf.php:689
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/master-pdf.php:718
+msgid "Process"
+msgstr "Proces"
+
+#: Users/Gaad/Desktop/test.php:198
+msgid "cost_pa_color_sewing"
+msgstr "Szycie blok kolor"
+
+#: Users/Gaad/Desktop/test.php:199
+msgid "cost_pa_bw_sewing"
+msgstr "Szycie blok cz-b"
+
+#: Users/Gaad/Desktop/test.php:200
+msgid "cost_pa_cover_paper"
+msgstr "Papier okładki"
+
+#: Users/Gaad/Desktop/test.php:201
+msgid "cost_pa_cover_print"
+msgstr "Zadruk okładki"
+
+#: Users/Gaad/Desktop/test.php:202
+msgid "cost_pa_cover_type"
+msgstr "Rodzaj oprawy"
+
+#: Users/Gaad/Desktop/test.php:203
+msgid "cost_pa_cover_spot_uv"
+msgstr "Lakier UV okładki"
+
+#: Users/Gaad/Desktop/test.php:204
+msgid "cost_pa_cover_finish"
+msgstr "Uszlachetnienie okładki"
+
+#: Users/Gaad/Desktop/test.php:205
+msgid "cost_pa_bw_paper"
+msgstr "Papier blok cz-b"
+
+#: Users/Gaad/Desktop/test.php:206
+msgid "cost_pa_bw_print"
+msgstr "Zadruk cz-b"
+
+#: Users/Gaad/Desktop/test.php:207
+msgid "cost_pa_color_paper"
+msgstr "Papier kolor"
+
+#: Users/Gaad/Desktop/test.php:208
+msgid "cost_pa_color_print"
+msgstr "Zadruk kolor"
+
+#: Users/Gaad/Desktop/test.php:209
+msgid "markup_total_cost_"
+msgstr "Wartość sprzedaży"
+
+#: Users/Gaad/Desktop/test.php:210
+msgid "markup_total_pcost_"
+msgstr "Koszt produkcji"
+
+#: Users/Gaad/Desktop/test.php:211
+msgid "markup_average_markup"
+msgstr "Marża (średnia)"
 
 #: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/account-pdf.php:20
 #: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/contractor-pdf.php:20
@@ -684,125 +918,160 @@ msgstr "blok cz-b"
 msgid "color block"
 msgstr "blok kolor"
 
-#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/account-pdf.php:174
-#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/account-pdf.php:207
-#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/contractor-pdf.php:166
-#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/contractor-pdf.php:199
-#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/master-pdf.php:174
-#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/master-pdf.php:207
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/account-pdf.php:177
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/account-pdf.php:210
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/contractor-pdf.php:169
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/contractor-pdf.php:202
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/master-pdf.php:177
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/master-pdf.php:210
 msgid "Cloth covering"
 msgstr "Oklejka"
 
-#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/account-pdf.php:190
-#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/contractor-pdf.php:182
-#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/master-pdf.php:190
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/account-pdf.php:193
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/contractor-pdf.php:185
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/master-pdf.php:193
 msgid "Endpaper"
 msgstr "Wyklejka"
 
-#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/account-pdf.php:276
-#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/contractor-pdf.php:268
-#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/master-pdf.php:276
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/account-pdf.php:279
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/contractor-pdf.php:271
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/master-pdf.php:279
 msgid "Calculation"
 msgstr "Kalkulacja"
 
-#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/account-pdf.php:291
-#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/contractor-pdf.php:283
-#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/master-pdf.php:291
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/account-pdf.php:294
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/contractor-pdf.php:286
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/master-pdf.php:294
 msgid "Product"
 msgstr "Produkt"
 
-#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/account-pdf.php:295
-#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/account-pdf.php:548
-#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/contractor-pdf.php:287
-#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/contractor-pdf.php:463
-#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/master-pdf.php:295
-#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/master-pdf.php:552
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/account-pdf.php:298
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/account-pdf.php:551
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/contractor-pdf.php:290
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/contractor-pdf.php:466
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/master-pdf.php:298
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/master-pdf.php:557
 msgid "Quantity"
 msgstr "Nakład"
 
-#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/account-pdf.php:295
-#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/account-pdf.php:386
-#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/account-pdf.php:556
-#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/contractor-pdf.php:287
-#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/contractor-pdf.php:382
-#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/contractor-pdf.php:471
-#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/master-pdf.php:295
-#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/master-pdf.php:390
-#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/master-pdf.php:560
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/account-pdf.php:298
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/account-pdf.php:389
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/account-pdf.php:559
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/contractor-pdf.php:290
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/contractor-pdf.php:385
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/contractor-pdf.php:474
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/master-pdf.php:298
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/master-pdf.php:393
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/master-pdf.php:565
 msgid "pcs."
 msgstr "szt."
 
-#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/account-pdf.php:299
-#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/contractor-pdf.php:291
-#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/master-pdf.php:299
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/account-pdf.php:302
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/contractor-pdf.php:294
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/master-pdf.php:302
 msgid "Created"
 msgstr "Utworzono"
 
-#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/account-pdf.php:325
-#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/contractor-pdf.php:402
-#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/master-pdf.php:329
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/account-pdf.php:328
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/contractor-pdf.php:405
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/master-pdf.php:332
 msgid "Book"
 msgstr "Książka"
 
-#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/account-pdf.php:345
-#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/contractor-pdf.php:422
-#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/master-pdf.php:349
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/account-pdf.php:348
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/contractor-pdf.php:425
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/master-pdf.php:352
 msgid "Contreactor"
 msgstr "Kontrahent"
 
-#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/account-pdf.php:376
-#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/contractor-pdf.php:372
-#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/master-pdf.php:380
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/account-pdf.php:379
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/contractor-pdf.php:375
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/master-pdf.php:383
 msgid "Product short info"
 msgstr "Produkt: informacje podstawowe"
 
-#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/account-pdf.php:424
-#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/master-pdf.php:428
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/account-pdf.php:427
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/master-pdf.php:431
 msgid "Markups"
 msgstr "Marże"
 
-#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/account-pdf.php:450
-#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/master-pdf.php:454
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/account-pdf.php:453
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/master-pdf.php:457
 msgid "Costs"
 msgstr "Koszty"
 
-#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/account-pdf.php:471
-#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/master-pdf.php:475
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/account-pdf.php:474
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/master-pdf.php:478
 msgid "Total"
 msgstr "Razem"
 
-#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/account-pdf.php:488
-#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/contractor-pdf.php:330
-#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/master-pdf.php:492
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/account-pdf.php:491
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/contractor-pdf.php:333
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/master-pdf.php:495
 msgid "Product attributes"
 msgstr "Parametry produktu"
 
-#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/account-pdf.php:542
-#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/contractor-pdf.php:457
-#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/master-pdf.php:546
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/account-pdf.php:545
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/contractor-pdf.php:460
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/master-pdf.php:551
 msgid "Summary"
 msgstr "Podsumowanie"
 
-#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/account-pdf.php:546
-#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/contractor-pdf.php:461
-#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/master-pdf.php:550
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/account-pdf.php:549
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/contractor-pdf.php:464
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/master-pdf.php:555
 msgid "Account contact"
 msgstr "Dane osoby kontaktowej"
 
-#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/account-pdf.php:547
-#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/contractor-pdf.php:462
-#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/master-pdf.php:551
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/account-pdf.php:550
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/contractor-pdf.php:465
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/master-pdf.php:556
 msgid "Created, date"
 msgstr "Utworzono, dnia"
 
-#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/account-pdf.php:549
-#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/contractor-pdf.php:464
-#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/master-pdf.php:553
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/account-pdf.php:552
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/contractor-pdf.php:467
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/master-pdf.php:558
 msgid "Total price"
 msgstr "Razem"
 
-#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/account-pdf.php:550
-#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/contractor-pdf.php:465
-#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/master-pdf.php:554
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/account-pdf.php:553
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/contractor-pdf.php:468
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/master-pdf.php:559
 msgid "Piece price"
 msgstr "Cena sztuki"
+
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/master-pdf.php:620
+msgid "formats_"
+msgstr "rozmiar"
+
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/master-pdf.php:655
+msgid "media_"
+msgstr "papier"
+
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/master-pdf.php:696
+msgid "pcost_"
+msgstr "koszt produkcji"
+
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/master-pdf.php:725
+msgid "cost_"
+msgstr "koszt"
+
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/master-pdf.php:756
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/master-pdf.php:799
+msgid "markup_"
+msgstr "marża"
+
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/master-pdf.php:788
+msgid "TOTALS"
+msgstr "PODSUMOWANIE"
+
+#: xampp7/htdocs/gaadcalcapi/wp-content/plugins/gaad-calc/templates/calculations/master-pdf.php:792
+msgid "Name"
+msgstr "Nazwa"
+
+#~ msgid "Paper"
+#~ msgstr "Papier"
+
+#~ msgid "Paper info"
+#~ msgstr "Informacje o papierze"

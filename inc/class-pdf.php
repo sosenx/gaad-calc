@@ -189,7 +189,7 @@ class pdf  {
 		// Print text using writeHTMLCell()
 		$this->PDF->writeHTMLCell(0, 0, '', '', $html[0], 0, 1, 0, true, '', true);
 		 
-// 2nd page
+		// 2nd page
 		$this->PDF->AddPage();
 		//var_dump($html[1]);
 
