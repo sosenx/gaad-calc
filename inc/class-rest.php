@@ -47,9 +47,12 @@ class rest{
 				'master' => \gcalc\actions::acalculations_insert_wp_post( $h[ 'cid' ], $calculation, $h, 'master' ),
 			);
 
-			$pdf_account	 	= new \gcalc\pdf( $h[ 'cid' ], 'archives', array( $wp_post_data[ 'account' ]['post_content'] ), $wp_post_data[ 'account' ]['post_id'] );
-			$pdf_contractor 	= new \gcalc\pdf( $h[ 'cid' ], 'archives', array( $wp_post_data[ 'contractor' ]['post_content'] ), $wp_post_data[ 'contractor' ]['post_id'] );
-			$pdf_master 		= new \gcalc\pdf( $h[ 'cid' ], 'archives', array( $wp_post_data[ 'master' ]['post_content'] ), $wp_post_data[ 'master' ]['post_id'] );
+			$pdf_account	 	= new \gcalc\pdf( $h[ 'cid' ], 'archives', 
+				array( $wp_post_data[ 'account' ]['post_content'] ), $wp_post_data[ 'account' ]['post_id'] );
+			$pdf_contractor 	= new \gcalc\pdf( $h[ 'cid' ], 'archives', 
+				array( $wp_post_data[ 'contractor' ]['post_content'] ), $wp_post_data[ 'contractor' ]['post_id'] );
+			$pdf_master 		= new \gcalc\pdf( $h[ 'cid' ], 'archives', 
+				array( $wp_post_data[ 'master' ]['post_content'] ), $wp_post_data[ 'master' ]['post_id'] );
 			
 			$calculation_pdf = array(
 				'account' => $pdf_account->account_calculation_pdf( $wp_post_data[ 'account' ]['post_id'] ),
@@ -58,6 +61,12 @@ class rest{
 			);
 		}
 		
+
+		$email_not = new email_notifications( $wp_post_data );
+		var_dump($email_not);
+
+		
+
 		$r = array( 
 			'plugin_name' 	=> "gcalc",
 			'handler'     	=> "put_acalculation",
@@ -65,7 +74,8 @@ class rest{
 			'headers'     	=> $h,
 			'output' 		=> $put_data,
 			'token'      	=> $token,
-			'pdf' 			=> $calculation_pdf
+			'pdf' 			=> $calculation_pdf,
+			'wp_post_data' => $wp_post_data
 		);
 
 		return json_decode( json_encode( $r ) );

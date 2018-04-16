@@ -34,8 +34,9 @@ class actions {
  * generate basic calculation post type content  
  * @return [type] [description]
  */
-  public static function calculation_post_content( string $cid, $calculation, array $headers, string $template_filename ){
-    $css_file = GAAD_PLUGIN_TEMPLATE_CALCULATIONS_CSS_DIR . '/' . $template_filename . '.css';
+  public static function calculation_post_content( string $cid, $calculation, array $headers, string $template_filename, string $template_css_filename = NULL ){
+    $css_file = !is_null( $template_css_filename ) ? $template_css_filename :
+      GAAD_PLUGIN_TEMPLATE_CALCULATIONS_CSS_DIR . '/' . $template_filename . '.css';
     $css_ = is_readable( $css_file ) ? file_get_contents( $css_file ) : '';
     $template_file = GAAD_PLUGIN_TEMPLATE_APP_TEMPLATES_DIR. '/calculations/' . $template_filename . '.php';
    
@@ -47,9 +48,15 @@ class actions {
     $emogrifier = new \Pelago\Emogrifier();
     $emogrifier->setHtml( $content );
     $emogrifier->setCss( $css_ );
-    $content = $emogrifier->emogrify();
+    $emogrified_content = $emogrifier->emogrify();
 
-    return $content;
+    $r = array(
+      'css' => $css_,
+      'raw_content' => $content,
+      'post_content' => $emogrified_content
+    );
+
+    return $r;
   }
 
   /**
@@ -86,7 +93,7 @@ class actions {
       $attr = array (
           'post_type' => 'calculation',
           'post_title' => $post_title,
-          'post_content' => $post_content,
+          'post_content' => $post_content['post_content'],
           'post_status' => 'publish',
           'comment_status' => 'closed',
           'ping_status' => 'closed',   
@@ -103,7 +110,9 @@ class actions {
 
       $r['post_id'] = $post_id;
       $r['action'] = $action;
-      $r['post_content'] = $post_content;
+      $r['post_content'] = $post_content['post_content'];
+      $r['raw_content'] = $post_content['raw_content'];
+      $r['css'] = $post_content['css'];
       return $r;
     }
   
