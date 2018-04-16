@@ -1,7 +1,7 @@
 $line-height: 6.5mm;
 $text-color: black;
 $label-color: #CCC;
-$header-bg-color: #1a9000;
+$header-bg-color: #0a78ac;
 $header-text-color: #FFFFFF;
 
 
@@ -58,7 +58,7 @@ table{
 
 	.line{
 		color: $text-color;			
-		line-height: 200%;
+		line-height: 150%;
 		
 	}
 	.label{
@@ -156,6 +156,30 @@ table{
 			}
 		}
 	}
+}
 
 
+table.footer-info{
+	border-top:1px solid red; 
+	.logo{
+		width: 20mm;
+		img{
+			width:10mm;
+		}
+	}
+	.text{
+		width: 170mm;
+	}
+}
+
+.document-title{
+	text-align: center;
+	width: 190mm;
+}
+
+.footer-p{
+	font-size: 8pt;
+	color:black;
+	text-align: center;
+	width: 190mm;
 }

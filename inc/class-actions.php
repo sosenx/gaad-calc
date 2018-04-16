@@ -3,6 +3,67 @@ namespace gcalc;
    
 class actions {
     
+
+
+/**
+ * Footer text in calculation raports, company name, adress etc
+ * @return [type] [description]
+ */
+  public static function calculation_pdf_Footer(  ){
+    $r = array();
+$r[] = '<table class="footer-info">';
+$r[] = '<tbody>';
+$r[] = '<tr><td colspan="2" class="top-margin">.<td></tr>';
+$r[] = '<tr>';
+$r[] = '<td class="logo">';
+$r[] = '<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALEAAAA9CAYAAADiW4hmAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyFpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTQyIDc5LjE2MDkyNCwgMjAxNy8wNy8xMy0wMTowNjozOSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIChXaW5kb3dzKSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDpCREUzMTM1MTQxNTYxMUU4QUU1NzlBOTM2NUZDOUY5MSIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDpCREUzMTM1MjQxNTYxMUU4QUU1NzlBOTM2NUZDOUY5MSI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkJERTMxMzRGNDE1NjExRThBRTU3OUE5MzY1RkM5RjkxIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOkJERTMxMzUwNDE1NjExRThBRTU3OUE5MzY1RkM5RjkxIi8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+C4VavQAABfZJREFUeNrsXY1tqzAQhqgL8EZIpXYAMgIZIR0hHYGMEEZoRmhGKCOUAVKpjFBG6PNVR0XTEjA+22dyn4Ra9T2wsT9//nz+If78/IwEgpCxkCIQCIkFAs+4MX1AHMdSigO4u7tL1I9t50/7EbftOr8f3t7emjmWDYWdjf96yP39/bv6sSTO70pVRGVAgg8LZXir8lRbIu4WyzAnfGyhrkrl+Uic1xf1I/PA4RKv6HQ6Fd6UWANQSJXBvSEp7t5SEjmmU6M6F1HYyNq6VcK5R34cdQnt0hOnnu51ReAce4u9g+RA4fcqzXd1ZdF8APW8Byegrg1HEmee7rVN3lRdr47I+xeZX1T6+2hegPd6RnVmReIEKnxiF50yJTCoxSuD/OUqL88zHPflisjPnEg8VVEzpgQG+8CJOJuZEnkzpMiuSZw6uscFgTl24ZsZWotWkTNRYloLwZkoOeZxbnjiQuJEZzTNzQ+r/CwvFSanCseym9VgT6nxlgOJdZWVmx8GBQ6BHAnz3mKyXQqRxJxUOOsrRKbYYs8xJ2RKjRMOJE41ujpOSkypbDDjBmsjYCo+7l749wOVP56hGv/iBOW0c6PR1UJGjoR+WCftqSpM1Ss8KrL2krSdSlZpFui/TRoyqHFha31IB2uVRnlhHLGJOlPMpiJ4zh1KJS6JbUJmKe1JZCBS39UlAp+RuVbXmkCVvVogfI8C3+WBYoBn007oLO7JiIg+JW1dFU4IiAA9xcOUVXzqnsehXstBA6Qi9DH6ucSUHYm1lHiEL95aStvmQLQPxdRlqIgdNoSxaMkC1uWWk6FFu2SyNjqx7YkrDQXt9cW4xmKsx22AIOoeawNRUxthumQSumT1foeegVrdsRyhLJ4vKW0O9Xrio0alpxe6SU5+2FSJD4RlCyRulazqG0wFANKGdmOhhVGQg5MfTjmQGO3IXPaCkUaSSOPEWNBjW9klX8xFiU0nC+q57o3z2Ls1VklMocZT/DBjElfC11/1azp1X7sgsU7Fpcz9sLESC21/EDiPzGcRa9ueWJdYEEbbGfhh7gObRoj7tSx0iXVNsZajsk5iDHeNnQb+2rJ0Zgl0lPhouQ4SIfEovFgMcQ4K18JVQmN8saYfrhwMmpJIwAnV6XRqXJF4qi/m5IcF/PBnuJKVEkdM4sMClqiVCrsjsWa8uLuVn5sSS3SBD3qn7m0uitdSY4Z+WDw1Hxz7VNg2iXV9MUc/3AiJ/dsIdT1e+g82DxSE8NfYLT2ZxQbik8Ske9xwtmuJ73+4giltIPD6r4iEEyXGLTFjyaa78NyVElecSIyNvT334gMPFMynHA8WAKCOV4rAg+OShYOMkBPLlQJhQzRJK6U6/6FnRd0SCf2q/v0TlBrPRQ4ZUN6PiryDCuzCTtjq9l3Hh+vIbDnm4KbYkRhDzvb84idMswroDONyaADni8RlIA1j6B1CIXEXYDvas9l2DMn8vU3J5JR46ySGbl8VYhXRHoLiWonbHRWTyWe6bb7z6QSuZbaeusuE4psdLg5PoSxA5/FhnLgxnfTYGxB4GZkd3GJ7zbV3uCBxxbRB6MD47AdcSztlMAdnDice8y4kplZiT+VE4WkhcvA8NlqBYbMXAit2FBIT+GJC8nlRYvSzFIoGg62PvlAYEBzjvqC+FJ9RKOduJVxEJ6hG+F+K4nmGqkASUsR9u6Ew23mePVydilkxeYapGodEijLgcylYkrhk8gxTIhcBecxddCVYOKp8U1/MKUwEK6q4rzMursELu1Zi01Eym24RG+QD4zoFG3E1KuyaxCZEZKUqqHJrhvVZMW9gYZNYc8sSWyXuvE+JRG4YEXh9jcdmuf5mxxQysp02RSKvGPQUEH5cXeu5bwsPahG8Cp8RGQ4NXHmMBsBB2g/RFSMEJQ5ilI3hNziV3VUsGdL5N/YbIHPGjeOK1jniKgglPldlVOQdLviBWUrKD79UaB2KSPCN2HQ9ZxzHUooD6HwGq0U+oiF312s0c1VcivXEMcVDBIJr8sQCgZBYIBASC4TEAgE3/BdgAMH0V3lyOMywAAAAAElFTkSuQmCC
+">';
+$r[] = '</td>';
+$r[] = '<td class="text">';
+$r[] = '<p class="footer-p">Mazowieckie Centrum Poligrafii Wojciech Hunkiewicz, 05-270 Marki, ul. Ciurlionisa 4. Dane kontaktowe podane w podsumowaniu wyceny. Zapraszamy do współpracy.</p>';
+$r[] = '</td>';
+$r[] = '</tr>';
+$r[] = '</tbody>';
+$r[] = '</table>';
+
+    $r[] = '';
+
+    $css_ =  <<<EOD
+table.footer-info {
+  border-top: 1px dashed #CCCCCC;
+}
+
+table.footer-info .top-margin{
+  height:1mm;
+}
+
+table.footer-info .logo {
+  width: 13mm;
+  height: 17mm;
+}
+table.footer-info .logo img {
+  width: 10mm;
+}
+table.footer-info .text {
+  width: 180mm;
+}
+table.footer-info .text p{
+  line-height:140%;
+}
+EOD;
+    $content = implode( '', $r );
+
+    $emogrifier = new \Pelago\Emogrifier();
+    $emogrifier->setHtml( $content );
+    $emogrifier->setCss( $css_ );
+    $content = $emogrifier->emogrify();
+
+    return $content;
+  }
+
+
+
+
 /**
  * setd locale filter function
  * @param [type] $locale [description]

@@ -303,9 +303,7 @@ if( $pa_color_pages === -1 ){
     </tr>
 
 <!-- margin between header and book info -->
-<tr>  
-  <td colspan="2"><br></td>  
-</tr>
+
 
 
 <tr>  
@@ -488,7 +486,7 @@ if( $pa_color_pages === -1 ){
 
 <!-- margin summary -->
 <tr>  
-  <td colspan="2"><br><br><br><br></td>  
+  <td colspan="2"></td>  
 </tr>
 
 <!-- margin summary -->
@@ -501,7 +499,10 @@ if( $pa_color_pages === -1 ){
       <li><?php echo __( 'For further information please call given customer service number', $__ns ) ?></li>
       <li><?php echo __( 'Offer is valid for 2 weeks from', $__ns ); echo ' ' . $summary[ 'added' ]?></li>
     </ul>
-
+    
+    <p>Informacja o zgoda o przetwarzanie danych Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</p>
+    
+    
   </td>  
 </tr>
 

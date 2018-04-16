@@ -33,7 +33,7 @@ table {
 }
 table .line {
   color: black;
-  line-height: 200%;
+  line-height: 150%;
 }
 table .label {
   border-bottom: 1px solid #FF4433;
@@ -98,6 +98,12 @@ table.summary {
 }
 table.summary .header.big .line {
   font-size: 10pt;
+}
+
+.document-title-red {
+  color: red;
+  text-align: center;
+  width: 190mm;
 }
 
 /*# sourceMappingURL=master-pdf.css.map */

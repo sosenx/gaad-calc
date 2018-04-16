@@ -58,7 +58,7 @@ table{
 
 	.line{
 		color: $text-color;			
-		line-height: 200%;
+		line-height: 150%;
 		
 	}
 	.label{
@@ -158,4 +158,11 @@ table{
 	}
 
 
+}
+
+
+.document-title-red{
+	color: red;
+	text-align: center;
+	width: 190mm;
 }

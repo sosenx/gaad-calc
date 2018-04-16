@@ -33,14 +33,14 @@ table {
 }
 table .line {
   color: black;
-  line-height: 200%;
+  line-height: 150%;
 }
 table .label {
-  border-bottom: 1px solid #1a9000;
+  border-bottom: 1px solid #0a78ac;
   position: relative;
 }
 table .value {
-  border-bottom: 1px solid #1a9000;
+  border-bottom: 1px solid #0a78ac;
   position: relative;
 }
 table .logo {
@@ -48,11 +48,11 @@ table .logo {
 }
 table .total-bar {
   height: 1px;
-  border-top: 2px solid #1a9000;
+  border-top: 2px solid #0a78ac;
 }
 table .header td {
   border-bottom: 1px solid #FFFFFF;
-  background-color: #1a9000;
+  background-color: #0a78ac;
   font-weight: bold;
 }
 table .header td .line {
@@ -67,7 +67,7 @@ table img.barcode {
   height: 15mm;
 }
 table.basic-info, table.markups-info, table.costs-info {
-  border: 1px solid #1a9000;
+  border: 1px solid #0a78ac;
 }
 table.basic-info .label, table.markups-info .label, table.costs-info .label {
   width: 50%;
@@ -76,7 +76,7 @@ table.basic-info .value, table.markups-info .value, table.costs-info .value {
   width: 50%;
 }
 table.book-info {
-  border: 1px solid #1a9000;
+  border: 1px solid #0a78ac;
 }
 table.book-info .label {
   width: 30%;
@@ -85,7 +85,7 @@ table.book-info .value {
   width: 70%;
 }
 table.attr-list {
-  border: 1px solid #1a9000;
+  border: 1px solid #0a78ac;
 }
 table.attr-list .label {
   width: 50%;
@@ -94,10 +94,35 @@ table.attr-list .value {
   width: 50%;
 }
 table.summary {
-  border: 1px solid #1a9000;
+  border: 1px solid #0a78ac;
 }
 table.summary .header.big .line {
   font-size: 10pt;
+}
+
+table.footer-info {
+  border-top: 1px solid red;
+}
+table.footer-info .logo {
+  width: 20mm;
+}
+table.footer-info .logo img {
+  width: 10mm;
+}
+table.footer-info .text {
+  width: 170mm;
+}
+
+.document-title {
+  text-align: center;
+  width: 190mm;
+}
+
+.footer-p {
+  font-size: 8pt;
+  color: black;
+  text-align: center;
+  width: 190mm;
 }
 
 /*# sourceMappingURL=contractor-pdf.css.map */

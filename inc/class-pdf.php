@@ -10,7 +10,19 @@ class gaadPdf extends \TCPDF {
 		parent::__construct( $orientation, $unit, $format, $unicode, $encoding, $diskcache, $pdfa );
 	
 
+	}
 
+	public function Footer(){
+ 		$this->SetY(-13);
+		$this->SetFont('freesans', '', 7, '', true);
+		$html = \gcalc\actions::calculation_pdf_Footer();
+
+
+
+
+
+		// Print text using writeHTMLCell()
+		$this->writeHTMLCell(0, 0, '', '', $html, 0, 1, 0, true, '', true);
 	}
 }
 
@@ -50,7 +62,7 @@ class pdf  {
 
 		// remove default header/footer
 		$this->PDF->setPrintHeader(false);
-		$this->PDF->setPrintFooter(false);
+		//$this->PDF->setPrintFooter(true);
 
 
 		$this->PDF->setImageScale(\PDF_IMAGE_SCALE_RATIO);
@@ -161,7 +173,7 @@ class pdf  {
  	 */
  	public function master_calculation_pdf( $parent_post_id ) {
  		//var_dump( GAAD_PLUGIN_TEMPLATE_DIR . $this->get_cid() .'-calc.pdf' );
-
+$this->PDF->setPrintFooter(false);
 		$calc_pdf_path = GAAD_PLUGIN_TEMPLATE_DIR . $this->get_cid() . '-master.pdf';
 
 		// Set some content to print

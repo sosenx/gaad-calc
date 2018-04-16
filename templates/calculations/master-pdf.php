@@ -312,7 +312,11 @@ if( $pa_color_pages === -1 ){
 
 <!-- margin between header and book info -->
 <tr>  
-  <td colspan="2"><br></td>  
+  <td colspan="2"> 
+
+    <h3 class="document-title-red"><?php echo __( 'Confidential company data.', $__ns ) ?></h3>
+
+  </td>  
 </tr>
 
 
