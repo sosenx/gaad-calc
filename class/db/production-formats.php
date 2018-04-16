@@ -9,6 +9,8 @@ namespace gcalc\db\production;
 */
 class formats{
 
+	public $masteradmin;
+
 	/**
 	* Production format
 	*/
@@ -119,6 +121,14 @@ class formats{
 
 
 	/**
+	* Return wrap cost
+	*/
+	function get_masteradmin( $field_name ){			
+		return array_key_exists( $field_name, $this->masteradmin ) ? $this->masteradmin[ $field_name ] : false;
+	}
+
+
+	/**
 	* Return common_format
 	*/
 	function get_common_format( ){			
@@ -220,6 +230,13 @@ class formats{
 	* This function needs to aquire formats data from db, fo dev version it just sets an array
 	*/
 	public function aquire( ){
+
+		$this->masteradmin = array(
+			'notifications' => array(
+				'master_email' => 'barteksosnowski711@gmail.com'	
+			)
+
+		);
 
 
 		$this->limits = array(

@@ -1,25 +1,25 @@
 <?php
-namespace gcalc;
+namespace gcalc\calculations;
+
+//$production_formats = new \gcalc\db\production\formats();
+
+class email_notifications extends \gcalc\email_notifications {
 
 
 
-class email_notifications{
-
-	private $post_data;
-
-	public function __construct( array $post_data ){
-		$this->set_post_data( $post_data );
-		
+	public function __construct( array $post_data, \WP_User $user ){
+		parent::__construct( $post_data, $user );
 	}
 
 
-	/**/
-	function set_post_data( array $post_data ){
-		$this->post_data = $post_data;
+
+	public function send( array $settings = NULL ) {
+		//var_dump( $settings);
 	}
-	
-	/**/
-	function get_post_data( ){
-		return $this->post_data;
-	}
+
+
+
+
+
+
 }

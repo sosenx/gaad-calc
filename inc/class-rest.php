@@ -62,10 +62,9 @@ class rest{
 		}
 		
 
-		$email_not = new email_notifications( $wp_post_data );
-		var_dump($email_not);
+		$email_not = new \gcalc\calculations\email_notifications( $wp_post_data, \get_user_by( 'login', $calculation[ 'user' ] ) );
+		$email_not->send();
 
-		
 
 		$r = array( 
 			'plugin_name' 	=> "gcalc",
