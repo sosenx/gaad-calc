@@ -308,50 +308,14 @@ if( $pa_color_pages === -1 ){
 </tr>
 
 
-    <tr>
-      <td colspan="2">
-        
-        <table class="book-info">
-          <tbody>
-            <tr class="header">
-              <td colspan="2"><div class="line"><?php echo __( 'Book', $__ns ) ?></div></td>
-            </tr>
+<tr>  
+  <td colspan="2"> 
 
-            <tr>
-              <td class="label"><div class="line"><?php echo $book_info_labels['title']; ?></div></td>
-              <td class="value"><div class="line"><?php echo $book_info['title'] ?></div></td>
-            </tr>
+    <h3 class="document-title"><?php echo __( 'Product costs calculation', $__ns ) ?></h3>
 
-              <?php if ( $book_info['isbn'] === 'isbn' || $book_info['isbn'] === 'issn' ) {
-                ?>
+  </td>  
+</tr>
 
-                <tr>
-                  <td class="label"><div class="line"><?php echo $book_info_labels['isbn']; ?></div></td>
-                  <td class="value"><div class="line"><?php echo $book_info['isbn'] ?></div></td>
-                </tr>     
-
-                <?php
-              } ?>
-
-            <tr class="header">
-              <td colspan="2"><div class="line"><?php echo __( 'Contreactor', $__ns ) ?></div></td>
-            </tr>
-
-            <tr>
-              <td class="label"><div class="line"><?php echo $book_info_labels['contractor-nip']; ?></div></td>
-              <td class="value"><div class="line"><?php echo $book_info['contractor-nip'] ?></div></td>
-            </tr>
-            <tr>
-              <td class="label"><div class="line"><?php echo $book_info_labels['contractor-email']; ?></div></td>
-              <td class="value"><div class="line"><?php echo $book_info['contractor-email'] ?></div></td>
-            </tr>     
-           
-            
-          </tbody>
-        </table>
-
-      </td>
-    </tr>
 
 <!-- margin between book info and content -->
 <tr>  
@@ -361,42 +325,6 @@ if( $pa_color_pages === -1 ){
 <!-- body, left + right -->
     <tr>
       <td class="left">
-
-        <table class="basic-info">
-          <tbody>
-            <tr class="header">
-              <td colspan="2"><div class="line"><?php echo __( 'Product short info', $__ns ) ?></div></td>
-            </tr>
-
-            <tr>
-              <td class="label"><div class="line"><?php echo $basic_labels['product_slug'] ?></div></td>
-              <td class="value"><div class="line"><?php echo $basic['product_slug'] ?></div></td>
-            </tr>
-            
-            <tr>
-              <td class="label"><div class="line"><?php echo $basic_labels['quantity'] ?></div></td>
-              <td class="value"><div class="line"><?php echo $basic['quantity'] . ' ' . __( 'pcs.', $__ns ) ?></div></td>
-            </tr>
-            
-            <tr>
-              <td class="label"><div class="line"><?php echo $basic_labels['total_price'] ?></div></td>
-              <td class="value"><div class="line"><?php echo $basic['total_price'] ?> PLN</div></td>
-            </tr>
-            
-            <tr>
-              <td class="label"><div class="line"><?php echo $basic_labels['piece_price'] ?></div></td>
-              <td class="value"><div class="line"><?php echo $basic['piece_price'] ?> PLN</div></td>
-            </tr>            
-
-            
-          </tbody>
-        </table>
-
-
-      </td><!--/.left col -->
-      
-      <td class="right">
-
 
         <table class="attr-list">
           <tbody>
@@ -433,6 +361,79 @@ if( $pa_color_pages === -1 ){
             ?>
 
 
+          </tbody>
+        </table>
+
+      </td><!--/.left col -->
+      
+      <td class="right">
+
+        <table class="basic-info">
+          <tbody>
+            <tr class="header">
+              <td colspan="2"><div class="line"><?php echo __( 'Product short info', $__ns ) ?></div></td>
+            </tr>
+
+            <tr>
+              <td class="label"><div class="line"><?php echo $basic_labels['product_slug'] ?></div></td>
+              <td class="value"><div class="line"><?php echo $basic['product_slug'] ?></div></td>
+            </tr>
+            
+            <tr>
+              <td class="label"><div class="line"><?php echo $basic_labels['quantity'] ?></div></td>
+              <td class="value"><div class="line"><?php echo $basic['quantity'] . ' ' . __( 'pcs.', $__ns ) ?></div></td>
+            </tr>
+            
+            <tr>
+              <td class="label"><div class="line"><?php echo $basic_labels['total_price'] ?></div></td>
+              <td class="value"><div class="line"><?php echo $basic['total_price'] ?> PLN</div></td>
+            </tr>
+            
+            <tr>
+              <td class="label"><div class="line"><?php echo $basic_labels['piece_price'] ?></div></td>
+              <td class="value"><div class="line"><?php echo $basic['piece_price'] ?> PLN</div></td>
+            </tr>            
+
+            
+          </tbody>
+        </table>
+              <br><br>  
+        <table class="book-info">
+          <tbody>
+            <tr class="header">
+              <td colspan="2"><div class="line"><?php echo __( 'Book', $__ns ) ?></div></td>
+            </tr>
+
+            <tr>
+              <td class="label"><div class="line"><?php echo $book_info_labels['title']; ?></div></td>
+              <td class="value"><div class="line"><?php echo $book_info['title'] ?></div></td>
+            </tr>
+
+              <?php if ( $book_info['isbn'] === 'isbn' || $book_info['isbn'] === 'issn' ) {
+                ?>
+
+                <tr>
+                  <td class="label"><div class="line"><?php echo $book_info_labels['isbn']; ?></div></td>
+                  <td class="value"><div class="line"><?php echo $book_info['isbn'] ?></div></td>
+                </tr>     
+
+                <?php
+              } ?>
+
+            <tr class="header">
+              <td colspan="2"><div class="line"><?php echo __( 'Contreactor', $__ns ) ?></div></td>
+            </tr>
+
+            <tr>
+              <td class="label"><div class="line"><?php echo $book_info_labels['contractor-nip']; ?></div></td>
+              <td class="value"><div class="line"><?php echo $book_info['contractor-nip'] ?></div></td>
+            </tr>
+            <tr>
+              <td class="label"><div class="line"><?php echo $book_info_labels['contractor-email']; ?></div></td>
+              <td class="value"><div class="line"><?php echo $book_info['contractor-email'] ?></div></td>
+            </tr>     
+           
+            
           </tbody>
         </table>
 
@@ -479,6 +480,27 @@ if( $pa_color_pages === -1 ){
             
           </tbody>
         </table>
+
+  </td>  
+</tr>
+
+
+
+<!-- margin summary -->
+<tr>  
+  <td colspan="2"><br><br><br><br></td>  
+</tr>
+
+<!-- margin summary -->
+<tr>  
+  <td colspan="2">
+    <h4><?php echo __( 'Document info', $__ns ) ?></h4>
+    <ul>
+      <li><?php echo __( 'This document is NOT a work order, its a costs calculation raport', $__ns ) ?></li>
+      <li><?php echo __( 'Net prices', $__ns ) ?></li>
+      <li><?php echo __( 'For further information please call given customer service number', $__ns ) ?></li>
+      <li><?php echo __( 'Offer is valid for 2 weeks from', $__ns ); echo ' ' . $summary[ 'added' ]?></li>
+    </ul>
 
   </td>  
 </tr>

@@ -1,6 +1,21 @@
 <?php 
 namespace gcalc;
 
+
+
+class gaadPdf extends \TCPDF {
+
+
+	public function __construct($orientation='P', $unit='mm', $format='A4', $unicode=true, $encoding='UTF-8', $diskcache=false, $pdfa=false) {
+		parent::__construct( $orientation, $unit, $format, $unicode, $encoding, $diskcache, $pdfa );
+	
+
+
+	}
+}
+
+
+
 class pdf  {
 
 	private $cid;
@@ -22,7 +37,7 @@ class pdf  {
  	}
 
  	private function pdf_basic_setup(){
- 		$this->PDF = new \TCPDF( 'P', 'mm', 'A4', true, 'UTF-8', false, false );
+ 		$this->PDF = new gaadPdf( 'P', 'mm', 'A4', true, 'UTF-8', false, false );
 
 		// set document information
 		$this->PDF->SetCreator( 'GAAD CALC API' );

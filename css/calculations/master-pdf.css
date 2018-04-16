@@ -36,11 +36,11 @@ table .line {
   line-height: 200%;
 }
 table .label {
-  border-bottom: 1px solid #4432FF;
+  border-bottom: 1px solid #FF4433;
   position: relative;
 }
 table .value {
-  border-bottom: 1px solid #4432FF;
+  border-bottom: 1px solid #FF4433;
   position: relative;
 }
 table .logo {
@@ -48,11 +48,11 @@ table .logo {
 }
 table .total-bar {
   height: 1px;
-  border-top: 2px solid #4432FF;
+  border-top: 2px solid #FF4433;
 }
 table .header td {
   border-bottom: 1px solid #FFFFFF;
-  background-color: #4432FF;
+  background-color: #FF4433;
   font-weight: bold;
 }
 table .header td .line {
@@ -67,7 +67,7 @@ table img.barcode {
   height: 15mm;
 }
 table.basic-info, table.markups-info, table.costs-info {
-  border: 1px solid #4432FF;
+  border: 1px solid #FF4433;
 }
 table.basic-info .label, table.markups-info .label, table.costs-info .label {
   width: 60%;
@@ -76,7 +76,7 @@ table.basic-info .value, table.markups-info .value, table.costs-info .value {
   width: 40%;
 }
 table.book-info {
-  border: 1px solid #4432FF;
+  border: 1px solid #FF4433;
 }
 table.book-info .label {
   width: 20%;
@@ -85,7 +85,7 @@ table.book-info .value {
   width: 80%;
 }
 table.attr-list {
-  border: 1px solid #4432FF;
+  border: 1px solid #FF4433;
 }
 table.attr-list .label {
   width: 60%;
@@ -94,7 +94,7 @@ table.attr-list .value {
   width: 40%;
 }
 table.summary {
-  border: 1px solid #4432FF;
+  border: 1px solid #FF4433;
 }
 table.summary .header.big .line {
   font-size: 10pt;

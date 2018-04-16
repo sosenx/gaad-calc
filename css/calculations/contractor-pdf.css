@@ -2,10 +2,10 @@
   width: 190mm;
 }
 .page td.left {
-  width: 40%;
+  width: 50%;
 }
 .page td.right {
-  width: 60%;
+  width: 50%;
 }
 
 table.header {
@@ -36,11 +36,11 @@ table .line {
   line-height: 200%;
 }
 table .label {
-  border-bottom: 1px solid #Da2FDD;
+  border-bottom: 1px solid #1a9000;
   position: relative;
 }
 table .value {
-  border-bottom: 1px solid #Da2FDD;
+  border-bottom: 1px solid #1a9000;
   position: relative;
 }
 table .logo {
@@ -48,11 +48,11 @@ table .logo {
 }
 table .total-bar {
   height: 1px;
-  border-top: 2px solid #Da2FDD;
+  border-top: 2px solid #1a9000;
 }
 table .header td {
   border-bottom: 1px solid #FFFFFF;
-  background-color: #Da2FDD;
+  background-color: #1a9000;
   font-weight: bold;
 }
 table .header td .line {
@@ -67,34 +67,34 @@ table img.barcode {
   height: 15mm;
 }
 table.basic-info, table.markups-info, table.costs-info {
-  border: 1px solid #Da2FDD;
+  border: 1px solid #1a9000;
 }
 table.basic-info .label, table.markups-info .label, table.costs-info .label {
-  width: 60%;
+  width: 50%;
 }
 table.basic-info .value, table.markups-info .value, table.costs-info .value {
-  width: 40%;
+  width: 50%;
 }
 table.book-info {
-  border: 1px solid #Da2FDD;
+  border: 1px solid #1a9000;
 }
 table.book-info .label {
-  width: 20%;
+  width: 30%;
 }
 table.book-info .value {
-  width: 80%;
+  width: 70%;
 }
 table.attr-list {
-  border: 1px solid #Da2FDD;
+  border: 1px solid #1a9000;
 }
 table.attr-list .label {
-  width: 60%;
+  width: 50%;
 }
 table.attr-list .value {
-  width: 40%;
+  width: 50%;
 }
 table.summary {
-  border: 1px solid #Da2FDD;
+  border: 1px solid #1a9000;
 }
 table.summary .header.big .line {
   font-size: 10pt;
