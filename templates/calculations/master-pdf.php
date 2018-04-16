@@ -582,8 +582,11 @@ if( $pa_color_pages === -1 ){
 
 
 
+<!--more-->
 
 
+
+<p>to jest druga strona</p>
 
 
 

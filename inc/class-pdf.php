@@ -79,18 +79,15 @@ class pdf  {
 
 
  	private  function get_attachment_by_post_name( $post_name ) {
- 		$post_name = trim ( $post_name );
-        $args = array(
-            'posts_per_page' => 1,
-            'post_type'      => 'attachment',
-            'name'           => $post_name,
-        );
-        $get_attachment = new \WP_Query( $args );
+		$r = array();
+ 		global $wpdb;
+      	$results = $wpdb->get_results( 
+        	$q = "SELECT * FROM `wp_posts` WHERE `post_name` LIKE '" .$post_name. "%' AND `post_type` LIKE 'attachment' ORDER BY `ID` DESC",
+        	\ARRAY_A );
 
-        if ( $get_attachment->posts[0] )
-            return $get_attachment->posts[0];
-        else
-          return false;
+      	$results['exists'] = !empty( $results );
+     
+      return $results;
     }
 
  	private function upload_calculation_pdf_as_media_lib_items( string $path, array $attr = NULL ){
@@ -99,9 +96,8 @@ class pdf  {
 		$attachment_name = str_replace( '.pdf','', $filename );
 		$attachment_exists = $this->get_attachment_by_post_name( $attachment_name );
 
-
-		if ( $attachment_exists ) {
-			$delete_attachment_status = wp_delete_attachment( $attachment_exists->ID, true );			
+		if ( $attachment_exists['exists'] ) {
+			$delete_attachment_status = wp_delete_attachment( $attachment_exists[0]['ID'], true );			
 		}
 
 		$upload_file = \wp_upload_bits( $filename, null, file_get_contents($path) );
@@ -188,19 +184,20 @@ class pdf  {
 
 		// Set some content to print
 		$html = $this->get_content()[0];
+		$html = explode('<!--more-->', $html );
 
 		// Print text using writeHTMLCell()
-		$this->PDF->writeHTMLCell(0, 0, '', '', $html, 0, 1, 0, true, '', true);
+		$this->PDF->writeHTMLCell(0, 0, '', '', $html[0], 0, 1, 0, true, '', true);
 		 
 // 2nd page
 		$this->PDF->AddPage();
-
+		//var_dump($html[1]);
 
 		// Set some content to print
-		$html = '<h1>tutaj szczegółowe opisy procesów, surowych kosztów etc</h1>';
+	//$html = '<h1>tutaj szczegółowe opisy procesów, surowych kosztów etc</h1>';
 
 		// Print text using writeHTMLCell()
-		$this->PDF->writeHTMLCell(0, 0, '', '', $html, 0, 1, 0, true, '', true);
+		$this->PDF->writeHTMLCell(0, 0, '', '', $html[1], 0, 1, 0, true, '', true);
 
 		$this->PDF->Output( $calc_pdf_path, "F" );
 		$uploaded = $this->upload_calculation_pdf_as_media_lib_items( $calc_pdf_path );

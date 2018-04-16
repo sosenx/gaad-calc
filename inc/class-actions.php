@@ -96,7 +96,7 @@ class actions {
         $post_id = \wp_insert_post( $attr );
         
       } else {
-        $post_id = $attr[ 'ID' ] = $exists[ 'posts' ]->ID; 
+        $post_id = $attr[ 'ID' ] = $exists[ 'posts' ][0]['ID']; 
         $action = 'update';
         \wp_update_post( $attr );
       }
