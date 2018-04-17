@@ -266,7 +266,7 @@ class data_permissions_filter{
 
 		public function save_calculation(){
 			$credetials = $this->get_credetials();
-			$autosave = \gcalc\GAAD_PLUGIN_TEMPLATE_AUTOSAVE_CALCULATIONS_TYPES;
+			$autosave = \gcalc\GCALC_AUTOSAVE_CALCULATIONS_TYPES;
 			$save_type = strlen($autosave) >= 1 ? array_filter( explode( ',', $autosave ) ) : 2;
 
 			if ( in_array( (int)$credetials['access_level'], $save_type) ) {
@@ -285,7 +285,7 @@ class data_permissions_filter{
 
 		public function save_acalculation(){
 			$credetials = $this->get_credetials();
-			$autosave = \gcalc\GAAD_PLUGIN_TEMPLATE_AUTOSAVE_CALCULATIONS_TYPES;
+			$autosave = \gcalc\GCALC_AUTOSAVE_CALCULATIONS_TYPES;
 			$save_type = strlen($autosave) >= 1 ? array_filter( explode( ',', $autosave ) ) : 2;
 
 			if ( in_array( (int)$credetials['access_level'], $save_type) ) {

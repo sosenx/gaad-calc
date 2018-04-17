@@ -240,7 +240,7 @@ class product {
 	 */
 	public function create_product( ){
 		$base = $this->get_base();
-		if ( !$this->get_exists() || \gcalc\GAAD_PLUGIN_TEMPLATE_FORCE_CREATE_WOO_ELEMENTS) {
+		if ( !$this->get_exists() || \gcalc\GCALC_FORCE_CREATE_WOO_ELEMENTS) {
 			//creating product
 			$post_id = wp_insert_post( array(
 		        'post_author' => $base['author'],

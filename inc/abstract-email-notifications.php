@@ -24,7 +24,7 @@ abstract class email_notifications{
 
 	public function get_owner_footer(){
  		$user = $this->get_owner_user( );
-		$avatar_filename = GAAD_PLUGIN_TEMPLATE_DIR . '/gravatars/avatar-'.$user->ID.'.jpg';
+		$avatar_filename = GCALC_DIR . '/gravatars/avatar-'.$user->ID.'.jpg';
  		
  		//getting and storing gravatar image
  		if ( !is_file( $avatar_filename ) ) {

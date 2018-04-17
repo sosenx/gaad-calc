@@ -10,7 +10,7 @@ class shortcodes {
 		$defaults = array( 
 			'id' => uniqid( '' )
 		);
-		$main_app_file = GAAD_PLUGIN_TEMPLATE_APP_TEMPLATES_DIR . '/router.html';
+		$main_app_file = GCALC_APP_TEMPLATES_DIR . '/router.html';
 
 		$output = array();
 		if ( is_file( $main_app_file ) ) {
@@ -24,7 +24,7 @@ class shortcodes {
 
 	public static function no_main_shortcode_error(){		
 		$output = array();
- 		$shortcode = basename( constant( 'gcalc\GAAD_PLUGIN_TEMPLATE_SHORTCODE' ) );
+ 		$shortcode = basename( constant( 'gcalc\GCALC_SHORTCODE' ) );
     
     	$output[] = '<br><br>BRAK FUNKCJI: shortcodes::'.$shortcode . '<br><br>';
 		$r = implode( "\n", $output );

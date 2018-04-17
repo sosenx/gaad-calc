@@ -11,7 +11,7 @@ class sql{
 	*/
 	public static function log(){
 		global $wpdb;	
-		$table_name = basename( GAAD_PLUGIN_TEMPLATE_NAMESPACE ) . '_log';		
+		$table_name = basename( GCALC_NAMESPACE ) . '_log';		
 		$charset_collate = $wpdb->get_charset_collate();
 
 		$sql = "CREATE TABLE $table_name (
@@ -29,7 +29,7 @@ class sql{
 	*/
 	public static function formats(){
 		global $wpdb;	
-		$table_name = basename( GAAD_PLUGIN_TEMPLATE_NAMESPACE ) . '_formats';		
+		$table_name = basename( GCALC_NAMESPACE ) . '_formats';		
 		$charset_collate = $wpdb->get_charset_collate();
 
 		$sql = "CREATE TABLE $table_name (
@@ -54,7 +54,7 @@ class sql{
 	*/
 	public static function printers(){
 		global $wpdb;	
-		$table_name = basename(GAAD_PLUGIN_TEMPLATE_NAMESPACE) . '_printers';		
+		$table_name = basename(GCALC_NAMESPACE) . '_printers';		
 		$charset_collate = $wpdb->get_charset_collate();
 
 		$sql = "CREATE TABLE $table_name (
@@ -77,7 +77,7 @@ class sql{
 	*/
 	public static function markup(){
 		global $wpdb;	
-		$table_name = basename(GAAD_PLUGIN_TEMPLATE_NAMESPACE) . '_markup';
+		$table_name = basename(GCALC_NAMESPACE) . '_markup';
 		$charset_collate = $wpdb->get_charset_collate();
 
 		$sql = "CREATE TABLE $table_name (
@@ -97,7 +97,7 @@ class sql{
 	*/
 	public static function print_media(){
 		global $wpdb;	
-		$table_name = basename(GAAD_PLUGIN_TEMPLATE_NAMESPACE) . '_print_media';
+		$table_name = basename(GCALC_NAMESPACE) . '_print_media';
 		$charset_collate = $wpdb->get_charset_collate();
 
 		$sql = "CREATE TABLE $table_name (
@@ -123,7 +123,7 @@ class sql{
 	*/
 	public static function wrap_media(){
 		global $wpdb;	
-		$table_name = basename(GAAD_PLUGIN_TEMPLATE_NAMESPACE) . '_print_media';
+		$table_name = basename(GCALC_NAMESPACE) . '_print_media';
 		$charset_collate = $wpdb->get_charset_collate();
 
 		$sql = "CREATE TABLE $table_name (
@@ -146,7 +146,7 @@ class sql{
 	*/
 	public static function calculations(){
 		global $wpdb;	
-		$table_name = basename(GAAD_PLUGIN_TEMPLATE_NAMESPACE) . '_calculations';
+		$table_name = basename(GCALC_NAMESPACE) . '_calculations';
 		$charset_collate = $wpdb->get_charset_collate();
 
 		$sql = "CREATE TABLE $table_name (
@@ -181,7 +181,7 @@ class sql{
 	*/
 	public static function archives(){
 		global $wpdb;	
-		$table_name = basename(GAAD_PLUGIN_TEMPLATE_NAMESPACE) . '_archives';
+		$table_name = basename(GCALC_NAMESPACE) . '_archives';
 		$charset_collate = $wpdb->get_charset_collate();
 
 		$sql = "CREATE TABLE $table_name (
@@ -216,7 +216,7 @@ class sql{
 
 	public static function calculations_get( ){
 		global $wpdb; 
-		$table_name = basename( GAAD_PLUGIN_TEMPLATE_NAMESPACE ) . '_archives';
+		$table_name = basename( GCALC_NAMESPACE ) . '_archives';
 		$get = array(
 			
 		);
@@ -231,7 +231,7 @@ class sql{
 
 	public static function calculation_get( $cid, $token ){
 		global $wpdb; 
-		$table_name = basename( GAAD_PLUGIN_TEMPLATE_NAMESPACE ) . '_calculations';
+		$table_name = basename( GCALC_NAMESPACE ) . '_calculations';
 		$get = array(
 			'cid' => $cid, 
 			'token' => $token
@@ -259,7 +259,7 @@ class sql{
 		$tech      	= is_null( $tech ) ? array() : $tech;
 		$token = \uniqid('ct-');
 
-		$table_name = basename(GAAD_PLUGIN_TEMPLATE_NAMESPACE) . '_calculations';
+		$table_name = basename(GCALC_NAMESPACE) . '_calculations';
 		$apikey = array_key_exists( 'apikey', $bvars ) ? $bvars['apikey'] : "";
 		$insert = array( 
 		        'cid' 			=> $cid,
@@ -293,8 +293,8 @@ class sql{
  */
 	public static function acalculations_insert( $cid, array $calculation, array $contractor){
 		global $wpdb; 
-		$table_name = basename(GAAD_PLUGIN_TEMPLATE_NAMESPACE) . '_archives';		
-		$calculations_table_name = basename(GAAD_PLUGIN_TEMPLATE_NAMESPACE) . '_calculations';		
+		$table_name = basename(GCALC_NAMESPACE) . '_archives';		
+		$calculations_table_name = basename(GCALC_NAMESPACE) . '_calculations';		
 		$token = \uniqid('at-');
 		$insert = array(
 			'cid'              => $calculation[ 'cid' ],
@@ -365,7 +365,7 @@ class sql{
 		sql::calculations();
 		sql::archives();  
 
-		$option_slug = basename( GAAD_PLUGIN_TEMPLATE_NAMESPACE ) . '_sql_tables_created';
+		$option_slug = basename( GCALC_NAMESPACE ) . '_sql_tables_created';
 		update_option( $option_slug, 'true', '', 'yes' );   
 	}
 
@@ -374,10 +374,10 @@ class sql{
 	*/
 	public static function app_sql_tables_check(){
 		
-		$option_slug = basename( GAAD_PLUGIN_TEMPLATE_NAMESPACE ) . '_sql_tables_created';
+		$option_slug = basename( GCALC_NAMESPACE ) . '_sql_tables_created';
 		$sql_tables_created = filter_var( get_option( $option_slug, 'false' ), FILTER_VALIDATE_BOOLEAN);
     	
-    	if( !$sql_tables_created || GAAD_PLUGIN_TEMPLATE_FORCE_CREATE_SQL_TABLES ){
+    	if( !$sql_tables_created || GCALC_FORCE_CREATE_SQL_TABLES ){
 	    	sql::create_sql_tables();
 	    }  	
 	}

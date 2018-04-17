@@ -27,7 +27,7 @@ class json_data {
   }
 
   function draw( $return = false ){
-    $string = 'var '. basename( constant( 'gcalc\GAAD_PLUGIN_TEMPLATE_NAMESPACE' ) ) .'__app_model ='. $this->getJson() .';';
+    $string = 'var '. basename( constant( 'gcalc\GCALC_NAMESPACE' ) ) .'__app_model ='. $this->getJson() .';';
     if ( !$return ) {
       echo $string;
     }

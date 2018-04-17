@@ -17,7 +17,7 @@ class register_woo_elements{
 	*/
 	public static function create_users(){
 
-		if ( !\gcalc\GAAD_PLUGIN_TEMPLATE_DISABLE_CREATE_USERS ) {
+		if ( !\gcalc\GCALC_DISABLE_CREATE_USERS ) {
 			\gcalc\register_woo_elements::create_user( 'gaad', 'koot123', 'bsoqsnowski@c-p.com.pl', 'editor',
 				array(
 					'apikey' => 'g1a2a3d',
@@ -81,7 +81,7 @@ class register_woo_elements{
 	*	
 	*/
 	public static function create_products(){
-		if ( !\gcalc\GAAD_PLUGIN_TEMPLATE_DISABLE_CREATE_PRODUCTS ) {
+		if ( !\gcalc\GCALC_DISABLE_CREATE_PRODUCTS ) {
 			/*
 			new \gcalc\db\product\business_card();	
 			new \gcalc\db\product\flyer();	
@@ -111,7 +111,7 @@ class register_woo_elements{
 	*/
 	public static function create_product_attributes(){
 
-		if ( !\gcalc\GAAD_PLUGIN_TEMPLATE_DISABLE_CREATE_ATTRIBUTES ) {
+		if ( !\gcalc\GCALC_DISABLE_CREATE_ATTRIBUTES ) {
 
 			\gcalc\register_woo_elements::pa_quantity();
 			\gcalc\register_woo_elements::pa_bw_pages();

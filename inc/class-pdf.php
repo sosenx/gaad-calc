@@ -130,9 +130,9 @@ class pdf  {
  	 * @return [type]                 [description]
  	 */
  	public function account_calculation_pdf( $parent_post_id ) {
- 		//var_dump( GAAD_PLUGIN_TEMPLATE_DIR . $this->get_cid() .'-calc.pdf' );
+ 		//var_dump( GCALC_DIR . $this->get_cid() .'-calc.pdf' );
 
-		$calc_pdf_path = GAAD_PLUGIN_TEMPLATE_DIR . $this->get_cid() . '-account.pdf';
+		$calc_pdf_path = GCALC_DIR . $this->get_cid() . '-account.pdf';
 
 		// Set some content to print
 		$html = $this->get_content()[0];
@@ -153,9 +153,9 @@ class pdf  {
  	 * @return [type]                 [description]
  	 */
  	public function contractor_calculation_pdf( $parent_post_id ) {
- 		//var_dump( GAAD_PLUGIN_TEMPLATE_DIR . $this->get_cid() .'-calc.pdf' );
+ 		//var_dump( GCALC_DIR . $this->get_cid() .'-calc.pdf' );
 
-		$calc_pdf_path = GAAD_PLUGIN_TEMPLATE_DIR . $this->get_cid() . '-contractor.pdf';
+		$calc_pdf_path = GCALC_DIR . $this->get_cid() . '-contractor.pdf';
 
 		// Set some content to print
 		$html = $this->get_content()[0];
@@ -176,11 +176,11 @@ class pdf  {
  	 * @return [type]                 [description]
  	 */
  	public function master_calculation_pdf( $parent_post_id ) {
- 		//var_dump( GAAD_PLUGIN_TEMPLATE_DIR . $this->get_cid() .'-calc.pdf' );
+ 		//var_dump( GCALC_DIR . $this->get_cid() .'-calc.pdf' );
 		$this->PDF->setPrintFooter(false);
 		$this->PDF->SetAutoPageBreak(TRUE, 5);
 
-		$calc_pdf_path = GAAD_PLUGIN_TEMPLATE_DIR . $this->get_cid() . '-master.pdf';
+		$calc_pdf_path = GCALC_DIR . $this->get_cid() . '-master.pdf';
 
 		// Set some content to print
 		$html = $this->get_content()[0];
@@ -213,7 +213,7 @@ class pdf  {
 
  	/**/
  	function set_table( string $table = NULL ){
- 		$this->table =  GAAD_PLUGIN_TEMPLATE_NAMESPACE . ( is_null( $table ) ?'_archives' : $table );
+ 		$this->table =  GCALC_NAMESPACE . ( is_null( $table ) ?'_archives' : $table );
  	}
  	
 	/**/
