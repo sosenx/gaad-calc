@@ -50,7 +50,7 @@
 
 
 $summary = array(
-  'account' => $calculation[ 'bvars' ][ 'user' ],
+   'account' => \gcalc\actions::calculation_owner_short_info( $calculation ),
   'added' => $basic[ 'added' ],
   'total_price' => $basic[ 'total_price' ],
   'piece_price' => $basic[ 'piece_price' ],

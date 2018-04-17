@@ -6,6 +6,8 @@
 	$description = str_replace("\n", "<br>", $user->description );
 	$first_name = str_replace("\n", "<br>", $user->first_name );
 	$last_name = str_replace("\n", "<br>", $user->last_name );
+
+    $email = $user->user_email;
 	?>
 
 	<tbody>
@@ -15,11 +17,11 @@
 			
 			<td class="text-data" valign="top">
 			</td>
-			
+
 			<td class="text-data" valign="top">
 				<h3 class="name_first_last"><?php echo $first_name . ' ' .$last_name; ?></h3>
 				<p class="description"><?php echo $description; ?></p>
-
+				<a href="mailto:<?php echo $email; ?>"><?php echo $email; ?></a>
 				<hr>
 
 				<p>Mazowieckie Centrum Poligrafii Wojciech Hunkiewicz<br>05-270 Marki, ul.Ciurlionisa 4</p>

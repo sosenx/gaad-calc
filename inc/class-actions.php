@@ -7,6 +7,23 @@ class actions {
 
 
 /**
+ * generate basic info about calculation owner account manager
+ * @return [type] [description]
+ */
+  public static function calculation_owner_short_info( $calculation ){
+
+    $user = \get_user_by( 'login', $calculation[ 'user' ] ); 
+    $description = str_replace("\n", "<br>", $user->description );
+    $first_name = $user->first_name;
+    $last_name = $user->last_name;
+    $email = $user->user_email;
+    
+    return $first_name . ' ' . $last_name . '<br>' . $description. '<br>' 
+            . '<a href="mailto:' . $email .'">' . $email . '</a>';
+  }
+
+
+/**
  * generate basic calculation post type content  
  * @return [type] [description]
  */
@@ -39,9 +56,6 @@ class actions {
 
     return $r;
   }
-
-
-
 
 
 
