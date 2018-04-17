@@ -70,17 +70,18 @@ class rest{
 			),
 			\get_user_by( 'login', $calculation[ 'user' ] )
 		);
-		$email_not->send();
+		$send_notification_email_status = $email_not->send();
 
 		$r = array( 
-			'plugin_name' 	=> "gcalc",
-			'handler'     	=> "put_acalculation",
-			'status'      	=> $calculation ? 200 : 500,
-			'headers'     	=> $h,
-			'output' 		=> $put_data,
-			'token'      	=> $token,
-			'pdf' 			=> $calculation_pdf,
-			'wp_post_data' => $wp_post_data
+			'plugin_name'                    => "gcalc",
+			'handler'                        => "put_acalculation",
+			'status'                         => $calculation ? 200 : 500,
+			'headers'                        => $h,
+			'output'                         => $put_data,
+			'token'                          => $token,
+			'pdf'                            => $calculation_pdf,
+			'send_notification_email_status' =>$send_notification_email_status,
+			//'wp_post_data' => $wp_post_data
 		);
 
 		return json_decode( json_encode( $r ) );

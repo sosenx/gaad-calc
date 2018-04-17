@@ -23,12 +23,18 @@ class email_notifications extends \gcalc\email_notifications {
 	 * @return [type]               [description]
 	 */
 	public function send( array $settings = NULL ) {
+		$contractor_send = \gcalc\GAAD_PLUGIN_TEMPLATE_AUTOSEND_CALCULATION_TO_CONTRACTOR_ON_SAVE;
+		$r = array(
+			'contractor' => false
+		);
+
+		$r['master'] = $this->send_account_calculation_raport();
+		$r['account'] = $this->send_master_calculation_raport();		
+		if ( $contractor_send ) {
+			$r['contractor'] = $this->send_contractor_calculation_raport();
+		}
 		
-		$this->send_account_calculation_raport();
-		$this->send_master_calculation_raport();
-		$this->send_contractor_calculation_raport();
-		
-		//var_dump($a);
+		return $r;
 	}
 
 
@@ -58,7 +64,7 @@ class email_notifications extends \gcalc\email_notifications {
 		$phpmailer->AddAddress( $owner_user->user_email ); // the recipient's address
 		$phpmailer->Body = $body;
 		$phpmailer->AddAttachment( $pdf_data['account']['file'], $calculation_pdf_filename ); // add the attachment
-		$a = $phpmailer->Send(); // the last thing - send the email
+		return $phpmailer->Send(); // the last thing - send the email
 	}
 
 
@@ -88,7 +94,7 @@ class email_notifications extends \gcalc\email_notifications {
 		$phpmailer->AddAddress( $h[ 'contractor-email' ] ); // the recipient's address
 		$phpmailer->Body = $body;
 		$phpmailer->AddAttachment( $pdf_data['contractor']['file'], $calculation_pdf_filename ); // add the attachment
-		$a = $phpmailer->Send(); // the last thing - send the email
+		return $phpmailer->Send(); // the last thing - send the email
 	}
 
 
@@ -118,7 +124,7 @@ class email_notifications extends \gcalc\email_notifications {
 		$phpmailer->AddAddress( 'master@localhost' ); // the recipient's address
 		$phpmailer->Body = $body;
 		$phpmailer->AddAttachment( $pdf_data['master']['file'], $calculation_pdf_filename ); // add the attachment
-		$a = $phpmailer->Send(); // the last thing - send the email
+		return $phpmailer->Send(); // the last thing - send the email
 	}
 
 
