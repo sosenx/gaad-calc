@@ -1,0 +1,20 @@
+.calculation-footer-gravatar{
+	width: 190mm;
+
+	.gravatar{
+		width:35%;
+	}
+
+	.text-data{
+		width:65%;
+		font-size: 10pt;
+		.name_first_last{
+			line-height: 150%;
+		}
+
+		.description{
+			line-height: 130%;
+		}
+	}
+
+}

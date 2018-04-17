@@ -78,9 +78,11 @@ module.exports = function(grunt) {
           style: 'expanded' // we don't want to compress it
         },
         files: {
-          'css/calculations/account-pdf.css': 'sass/calculations/account-pdf.scss',
-          'css/calculations/contractor-pdf.css': 'sass/calculations/contractor-pdf.scss',
-          'css/calculations/master-pdf.css': 'sass/calculations/master-pdf.scss'
+          'css/calculations/account-pdf.css'                : 'sass/calculations/account-pdf.scss',
+          'css/calculations/contractor-pdf.css'             : 'sass/calculations/contractor-pdf.scss',
+          'css/calculations/master-pdf.css'                 : 'sass/calculations/master-pdf.scss',
+          
+          'css/calculations/calculation-footer-gravatar.css': 'sass/calculations/calculation-footer-gravatar.scss'
 
         }
 

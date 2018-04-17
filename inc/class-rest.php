@@ -60,11 +60,17 @@ class rest{
 				'master' => $pdf_master->master_calculation_pdf( $wp_post_data[ 'master' ]['post_id'] ),
 			);
 		}
-		
 
-		$email_not = new \gcalc\calculations\email_notifications( $wp_post_data, \get_user_by( 'login', $calculation[ 'user' ] ) );
+		$email_not = new \gcalc\calculations\email_notifications( 
+			array(
+				'post_data' => $wp_post_data,
+				'pdf_data' => $calculation_pdf,
+				'calculation' => $calculation,
+				'h' => $h
+			),
+			\get_user_by( 'login', $calculation[ 'user' ] )
+		);
 		$email_not->send();
-
 
 		$r = array( 
 			'plugin_name' 	=> "gcalc",

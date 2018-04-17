@@ -233,7 +233,7 @@ class formats{
 
 		$this->masteradmin = array(
 			'notifications' => array(
-				'master_email' => 'barteksosnowski711@gmail.com'	
+				'master_email' => 'master@localhost'	
 			)
 
 		);

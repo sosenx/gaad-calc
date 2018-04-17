@@ -6,6 +6,43 @@ class actions {
 
 
 
+/**
+ * generate basic calculation post type content  
+ * @return [type] [description]
+ */
+  public static function calculation_footer_content( \WP_User $user ){
+
+    $css_file = GAAD_PLUGIN_TEMPLATE_CALCULATIONS_CSS_DIR . '/calculation_footer_gravatar.css';
+    $css_ = is_readable( $css_file ) ? file_get_contents( $css_file ) : '';
+    $template_file = GAAD_PLUGIN_TEMPLATE_APP_TEMPLATES_DIR. '/calculations/calculation_footer_gravatar.php';
+   
+    $avatar_filename = GAAD_PLUGIN_TEMPLATE_DIR . '/gravatars/avatar-'.$user->ID.'.jpg';
+    $size = getimagesize( $avatar_filename );
+    $avatar_base64 = chunk_split( base64_encode( file_get_contents( $avatar_filename ) ) );
+
+
+    ob_start( ); 
+      include( $template_file );
+      $content = ob_get_contents();
+    ob_end_clean();
+    
+    $emogrifier = new \Pelago\Emogrifier();
+    $emogrifier->setHtml( $content );
+    $emogrifier->setCss( $css_ );
+    $emogrified_content = $emogrifier->emogrify();
+
+    $r = array(
+      'css' => $css_,
+      'raw_content' => $content,
+      'post_content' => $emogrified_content
+    );
+
+    return $r;
+  }
+
+
+
+
 
 
 

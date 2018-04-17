@@ -325,7 +325,7 @@ if( $pa_color_pages === -1 ){
 
 <!-- body, left + right -->
     <tr>
-      <td class="left">
+      <td class="left" valign="top">
 
         <table class="attr-list">
           <tbody>
@@ -367,7 +367,7 @@ if( $pa_color_pages === -1 ){
 
       </td><!--/.left col -->
       
-      <td class="right">
+      <td class="right"  valign="top">
 
         <table class="basic-info">
           <tbody>
