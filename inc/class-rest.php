@@ -4,6 +4,50 @@ namespace gcalc;
 
 class rest{
 
+/**
+ * [send_contractor_notification_email description]
+ * @return [type] [description]
+ */
+	public static function send_contractor_notification_email(  ){
+		$h = \gcalc\rest::getHeaders( "//", true )[ 'selected' ];
+		$_status = false;
+      	$calculation =  \gcalc\sql::acalculation_get_by_token( $h[ 'token' ] );	
+
+      	$wp_post_data = array(
+      		'contractor' => \gcalc\actions::acalculations_get_wp_post( $calculation[ 'cid' ], 'contractor' )
+      	);
+		
+		$attachment = \gcalc\pdf::get_attachment_by_post_name( $calculation['cid'] .'-contractor' );
+
+		$calculation_pdf = array(
+			'contractor' => array( 'file' => \get_attached_file($attachment[0]['ID']) )
+		);
+
+
+      	if ( $calculation ) {
+			$email_not = new \gcalc\calculations\email_notifications( 
+				array(
+					'post_data' => $wp_post_data,
+					'pdf_data' => $calculation_pdf,
+					'calculation' => $calculation,
+					'h' => array( 'contractor-email' => $calculation[ 'contractor_email' ] )
+				),
+				\get_user_by( 'login', $calculation[ 'user' ] )
+			);
+
+			$_status = $email_not->send_contractor_calculation_raport();
+      	}
+
+      	$r['sent'] = $_status;
+      	$r['action'] = 'send';
+		//$r['h'] = $h;
+		//$r['calculation'] = $calculation;
+		return $r;
+	}
+
+
+
+
 	/**
 	* Auth method, blank
 	*

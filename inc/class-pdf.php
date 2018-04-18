@@ -78,7 +78,7 @@ class pdf  {
  	}
 
 
- 	private  function get_attachment_by_post_name( $post_name ) {
+ 	public static function get_attachment_by_post_name( $post_name ) {
 		$r = array();
  		global $wpdb;
       	$results = $wpdb->get_results( 

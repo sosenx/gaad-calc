@@ -33,6 +33,18 @@ add_action( 'rest_api_init', function () {
 	  ) );
 	} );
 
+
+//Contractor notification email send
+add_action( 'rest_api_init', function () {
+	  register_rest_route( 'gcalc/v1', '/scnot', array(
+	    'methods' => 'POST',
+	    'callback' => 'gcalc\rest::send_contractor_notification_email',
+	  ) );
+	} );
+
+
+
+
 //archives calc
 add_action( 'rest_api_init', function () {
 	  register_rest_route( 'gcalc/v1', '/ac', array(

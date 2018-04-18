@@ -250,6 +250,26 @@ class sql{
 			return  $r[0];		
 		}
 	}
+	public static function acalculation_get_by_token( $token ){
+		global $wpdb; 
+		$table_name = basename( GCALC_NAMESPACE ) . '_archives';
+		$get = array(
+			'cid' => $cid, 
+			'token' => $token
+		);
+
+
+		$r = $wpdb->get_results( "SELECT * FROM `$table_name` WHERE token LIKE '$token' ", ARRAY_A );	
+
+		if ( isset( $r[0] ) ) {		
+			
+			$r[ 0 ]['av_markup']  = json_decode( $r[0]['av_markup'], true );
+			$r[ 0 ]['bvars']      = json_decode( $r[0]['bvars'], true );
+			$r[ 0 ]['full_total'] = json_decode( $r[0]['full_total'], true );
+
+			return  $r[0];		
+		}
+	}
 
 	public static function calculations_insert( $id_, array $bvars, array $user, array $full_total, array $tech = NULL){
 		global $wpdb; 

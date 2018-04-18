@@ -168,6 +168,41 @@ class actions {
     }
   
 
+    /**
+   * Adds calculation custom post for further use.
+   * @param  string $cid         [description]
+   * @param  [type] $calculation [description]
+   * @param  array  $headers     [description]
+   * @return [type]              [description]
+   */
+    public static function acalculations_get_wp_post( string $cid, string $token ){
+      global $wpdb;
+      $r = array( 'action' => 'get');
+      $post_title = $cid. '-' . $token;
+      $exists = actions::get_calculation_post_by_cid( $post_title );
+     // $post_content = actions::calculation_post_content( $cid, $calculation, $headers, $token .'-pdf' );
+
+      $results = $wpdb->get_results( 
+        $q = "SELECT * FROM `wp_posts` WHERE `post_title` LIKE '" .$post_title. "' AND `post_type` LIKE 'calculation' ORDER BY `ID` DESC",
+        \ARRAY_A );
+
+      $calculation = $results[0];
+    
+      $r['post_id'] = $calculation['ID'];
+      $r['post_content'] = $calculation['post_content'];
+      
+      return $r;
+    }
+
+
+
+
+
+
+
+
+
+
 
 
 
