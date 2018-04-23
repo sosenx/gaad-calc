@@ -43,6 +43,11 @@ class codes{
 			'err' => 'Unknownk format',
 			'solution' => 'Send pa_format header with request'
 		),
+		4012 => array( 'type' => 'fatal',
+			'label' => 'Products attributes out of range (format)',
+			'err' => 'Format out of range',
+			'solution' => 'Select smaller format or change cover type.'
+		),
 		4003 => array( 'type' => 'fatal',
 			'label' => 'Missing products attributes',
 			'err' => 'Unknownk print',

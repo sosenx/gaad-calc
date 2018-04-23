@@ -682,7 +682,7 @@ if( $pa_color_pages === -1 ){
     <tr> 
       <td class="left">
       
- <h3 class="document-title-red">tutaj<?php echo __( 'Production costs', $__ns ) ?></h3>
+        <h3 class="document-title-red"><?php echo __( 'Production costs', $__ns ) ?></h3>
         <table class="pcosts-info">
           <tbody>
             <tr class="header">
@@ -695,13 +695,10 @@ if( $pa_color_pages === -1 ){
                     <tr>
                       <td class="label"><div class="line"><?php echo __( 'pcost_' . $key, $__ns );  ?></div></td>
                       <td class="value"><div class="line"><?php echo round( $value, 2) ?></div></td>
-                      
                     </tr>
 
                 <?php } ?>
-                    
-           
-            
+                  
           </tbody>
         </table>
 

@@ -389,26 +389,7 @@ class book extends product {
 	 */
 	public static function get_attr_bw_lists( ){
 		$r = array(
-
-			array(
-				'name' => 'pa_orientation',
-				'data' => array(
-					'portrait' => array(
-						'pa_format' => array(
-							'values' => array( '105x148','148x210','210x297','297x420','125x176','176x250', 'custom-value' ),
-							'default' => '148x210'
-						),
-					),
-					'album' => array(
-						'pa_format' => array(
-							'values' => array( '148x105','210x148','297x210','420x297','176x125','250x176', 'custom-value' ),
-							'default' => '210x148'
-						),
-					)
-				)
-			), 
-
-			// COVER TYPE RULES
+		// COVER TYPE RULES
 			/**/
 			array(
 				'name' => 'pa_cover_type',
@@ -421,6 +402,7 @@ class book extends product {
 					)
 				)
 			),
+			
 			array(
 				'name' => 'pa_cover_type',
 				'data' => array(
@@ -454,6 +436,26 @@ class book extends product {
 					)
 				)
 			),
+
+			array(
+				'name' => 'pa_orientation',
+				'data' => array(
+					'portrait' => array(
+						'pa_format' => array(
+							'values' => array( '105x148','148x210','210x297','297x420','125x176','176x250', 'custom-value' ),
+							'default' => '148x210'
+						),
+					),
+					'album' => array(
+						'pa_format' => array(
+							'values' => array( '148x105','210x148','297x210','420x297','176x125','250x176', 'custom-value' ),
+							'default' => '210x148'
+						),
+					)
+				)
+			), 
+
+	
 
 			/*			
 			* cover paper value changes avaible values in

@@ -2,11 +2,11 @@
 namespace gcalc\calc;
 
 
-class pa_print extends \gcalc\cprocess_calculation{
+class pa_cover_print extends \gcalc\cprocess_calculation{
 
 	function __construct( array $product_attributes, int $product_id, \gcalc\calculate $parent, array $group, \gcalc\cprocess $pa_parent ){	
 		parent::__construct( $product_attributes, $product_id, $parent, $group, $pa_parent );
-		$this->name = "pa_print";	
+		$this->name = "pa_cover_print";	
 		$this->group = $group;	
 		$this->cargs = $product_attributes;
 		$this->product_id = $product_id;
@@ -45,7 +45,7 @@ class pa_print extends \gcalc\cprocess_calculation{
 			$markup_ = $overridden_markup_value;
 		}
 
-		$production_cost = $sheets_quantity / 2 * $pf['print_cost'] * $pages; // devide by 2 cos we dealing with pages 2pages == 1 sheet
+		$production_cost = $sheets_quantity * $pf['print_cost'] * $pages; // devide by 2 cos we dealing with pages 2pages == 1 sheet
 		
 		$total_price = $production_cost * $markup_;
 		

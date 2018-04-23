@@ -186,8 +186,9 @@ if ( !defined( GCALC_NAMESPACE . 'GCALC_AUTOSEND_CALCULATION_TO_CONTRACTOR_ON_SA
 		require_once( 'class/calc-process-class/class-calc-pa_color_paper.php' );
 		require_once( 'class/calc-process-class/class-calc-pa_bw_paper.php' );
 		require_once( 'class/calc-process-class/class-calc-pa_print.php' );
+		require_once( 'class/calc-process-class/class-calc-pa_cover_print.php' );
 
-		
+
 		require_once( 'class/calc-process-class/class-calc-pa_finish.php' );
 		require_once( 'class/calc-process-class/class-calc-pa_spot_uv.php' );
 		require_once( 'class/calc-process-class/class-calc-pa_sewing.php' );
@@ -204,6 +205,11 @@ if ( !defined( GCALC_NAMESPACE . 'GCALC_AUTOSEND_CALCULATION_TO_CONTRACTOR_ON_SA
 		require_once( 'class/calc-process/pa_color_paper.php' );
 		require_once( 'class/calc-process/pa_bw_paper.php' );
 		require_once( 'class/calc-process/pa_print.php' );
+		require_once( 'class/calc-process/pa_cover_print.php' );
+
+
+
+
 		require_once( 'class/calc-process/pa_finish.php' );
 		require_once( 'class/calc-process/pa_spot_uv.php' );
 		require_once( 'class/calc-process/pa_sewing.php' );

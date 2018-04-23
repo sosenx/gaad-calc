@@ -7,9 +7,11 @@ namespace gcalc;
 *
 *
 */
-class data_permissions_filter{
+class data_permissions_filter {
 
-	private $token;
+		private $errors = false;
+
+		private $token;
 		/*
 		* calculator
 		*/
@@ -53,7 +55,13 @@ class data_permissions_filter{
 
 		public function __construct( \gcalc\calc_product $calc ){
 			$this->calc = $calc;
-			$this->calc->calc();
+			$calc_test = $this->calc->calc();
+
+			if ( array_key_exists('info', $calc_test ) && array_key_exists('info', $calc_test ) && count($calc_test) ) {
+				$this->set_errors( $calc_test );
+				return $this;
+			}
+						
 			$this->authorization = $this->get_authorization();
 			
 			
@@ -332,6 +340,7 @@ class data_permissions_filter{
 			$data = is_null( $data ) ? array() : $data;
 			$token = array_key_exists( 'token', $data ) ? $data['token'] : false;
 
+
 			$output_array = array(	
 					'cid'=> $this->calc->get_CID(),	
 					//'token'=> $this->get_token(),	
@@ -373,6 +382,13 @@ function set_token( string $token ){
 
 
 		public function get( ){		
+
+			if ( $this->get_errors() ) {
+				return array(
+					'e' => $this->get_errors()
+				); 
+			}
+
 			if ( is_null( $this->ALLOWED_DATA ) ) {
 				$this->ALLOWED_DATA = array(					 
 					'e' => $this->parse_( $this->calc->get_errors()->get_data(), 'errors')
@@ -453,5 +469,14 @@ function set_token( string $token ){
 			return $done;
 		}
 
+		/**/
+		function get_errors( ){
+			return $this->errors;
+		}
 
+		/**/
+		function set_errors( array $errors ){
+			$this->errors = $errors;
+		}
+		
 }

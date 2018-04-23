@@ -228,7 +228,7 @@ class rest{
 		$product_id = \gcalc\rest::getHeaders( "/product_id/" );	
 		$product_id = count( $product_id ) == 0 ? NULL : (int) $product_id[ "product_id" ];
 		$calc = new calculate( $h['selected'], $product_id );
-		
+	
 		$data_permissions_f = new data_permissions_filter( $calc );
 		$r = array( 
 			'plugin_name' => "gcalc",

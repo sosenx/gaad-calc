@@ -37,31 +37,35 @@ class pa_format extends \gcalc\cprocess_calculation{
 	* Calculates format costs (no costs in this case)
 	*/
 	function calc(){			
-		$pf = $this->parent->get_best_production_format( $this->group );	
-		$sheets_quantity = (int)($this->cargs['pa_quantity'] / $pf['pieces']) + ( $this->cargs['pa_quantity'] % $pf['pieces'] > 0 ? 1 : 0 );
-		$markup_ = 1;		
-		$production_cost = $sheets_quantity * 0;
-		$total_price = $production_cost * $markup_;
-		$grain = $pf['grain'];
+		$pf = $this->parent->get_best_production_format( $this->group );
+		if ( $pf['pieces'] > 0) {
+			$sheets_quantity = (int)($this->cargs['pa_quantity'] / $pf['pieces']) + ( $this->cargs['pa_quantity'] % $pf['pieces'] > 0 ? 1 : 0 );
+			$markup_ = 1;		
+			$production_cost = $sheets_quantity * 0;
+			$total_price = $production_cost * $markup_;
+			$grain = $pf['grain'];
 
-		return $this->parse_total( 			
-			array(
-				
-				'production_cost' => $production_cost,
-				'total_price' => $total_price,
-				'markup_value' => $total_price - $production_cost,
-				'markup' => $markup_
-			),
-			array(				
-				'product' => array(
-					'width' => $this->get_width(),
-					'height' => $this->get_height(),
+			return $this->parse_total( 			
+				array(
+					
+					'production_cost' => $production_cost,
+					'total_price' => $total_price,
+					'markup_value' => $total_price - $production_cost,
+					'markup' => $markup_
 				),
-				'sheets_quantity' => $sheets_quantity,
-				'production_format_short' => $pf['format'].' '.$grain.' ('. $pf['common_format']['width'] .'x'. $pf['common_format']['height'] . ')',
-				'production_format' => $pf
-			)
-		);
+				array(				
+					'product' => array(
+						'width' => $this->get_width(),
+						'height' => $this->get_height(),
+					),
+					'sheets_quantity' => $sheets_quantity,
+					'production_format_short' => $pf['format'].' '.$grain.' ('. $pf['common_format']['width'] .'x'. $pf['common_format']['height'] . ')',
+					'production_format' => $pf
+				)
+			);			
+		} else {
+			return new \gcalc\error( 4012 );
+		}
 	}
 	/**
 	* Calculates best production format fit
@@ -81,7 +85,7 @@ class pa_format extends \gcalc\cprocess_calculation{
 				return $cformat;				
 			}
 		}
-		var_dump($width, $height);
+
 		return false;
 	}	
 
@@ -100,9 +104,15 @@ class pa_format extends \gcalc\cprocess_calculation{
 			$print_color_mode = $this->get_print_color_mode('pa_print');
 			$std_format = $this->calc_common_format(); //a4, a5 etc
 
-			$name = $this->get_name();
-			$this->best_production_format = $production_formats->get_production_format( $std_format, $print_color_mode, $name );
-			$this->parent->set_best_production_format( $this->best_production_format, $this->group );
+			if ( $std_format ) {
+				$name = $this->get_name();
+				$this->best_production_format = $production_formats->get_production_format( $std_format, $print_color_mode, $name );
+				$this->parent->set_best_production_format( $this->best_production_format, $this->group );				
+			} else {
+				$this->parent->get_errors()->add( new \gcalc\error( 4012 ) ); 
+			}
+
+
 		}		
 	}
 
@@ -120,7 +130,12 @@ class pa_format extends \gcalc\cprocess_calculation{
 	*
 	*/
 	function do__( ){	
-		$this->ptotal = new \gcalc\ptotal( $this->calc(), "+", NULL, $this->name );
+		$calculated_process = $this->calc();
+
+		if ( $calculated_process instanceof \gcalc\error ) {
+			return $calculated_process;
+		}
+		$this->ptotal = new \gcalc\ptotal( $calculated_process, "+", NULL, $this->name );
 		$this->done = true;
 		return $this->ptotal;
 	}

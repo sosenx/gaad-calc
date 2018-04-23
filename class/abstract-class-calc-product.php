@@ -222,17 +222,23 @@ abstract class calc_product{
 		if ( $this->errors->fcheck() ) { return $this->errors->get_data(); }		
 
 		$this->create_todos_groups();
+
+
 		$this->validate_todos_groups();
 		if ( $this->errors->fcheck() ) { return $this->errors->get_data(); }				
 
-		if ( 
-			! $this->generate_formats_list()	||
-			! $this->generate_todo_list() 		||
-			! $this->process_todo_list()
-		) {
+		if ( ! $this->generate_formats_list()){
+			return $this->errors->get_data();
+		}			
+
+		if ( ! $this->generate_todo_list() ){
+			return $this->errors->get_data();
+		}				
+
+		if ( ! $this->process_todo_list() ) {
 			return $this->errors->get_data();
 		}
-		
+	 
 		//last status check
 		if ( !$this->status_ok() ) {
 			return $this->errors->get_data();
@@ -794,7 +800,14 @@ $r=1;
 			if ( !$new_todo->ok() ) {
 				return false;
 			}
-			array_push( $this->done, $new_todo->do__() );
+			$done_process_total = $new_todo->do__();
+
+		if ( $done_process_total instanceof \gcalc\error ) {
+			$this->get_errors()->add( $done_process_total );
+			return false;
+		}
+
+			array_push( $this->done, $done_process_total );
 			array_push( $used, $group_process_name );
 			
 		}
@@ -982,7 +995,9 @@ $r=1;
 	/**
 	* Getter best_production_format
 	*/
-	public function get_best_production_format( array $group ){		
+	public function get_best_production_format( array $group ){	
+
+
 		$production_formats = new \gcalc\db\production\formats();	
 
 		if ( array_key_exists( $group[0], is_array($this->best_production_format) ? $this->best_production_format : array() ) ) {
@@ -1003,7 +1018,7 @@ $r=1;
 		$best_production_format['print_color_mode'] = $print_color_mode;
 		$best_production_format['print_cost'] = $click_cost;
 
-$a =1;
+
 		return $best_production_format;
 	}
 
