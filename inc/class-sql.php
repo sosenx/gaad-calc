@@ -214,18 +214,21 @@ class sql{
 	}
 
 
-	public static function calculations_get( ){
+	public static function acalculations_get( $data ){
+
 		global $wpdb; 
 		$table_name = basename( GCALC_NAMESPACE ) . '_archives';
+		$owner = $data['owner'];
 		$get = array(
 			
 		);
 
 		//$r = $wpdb->get_results( "SELECT * FROM `$table_name` WHERE cid LIKE '$cid' AND token LIKE '$token' ", ARRAY_A );	
-		$r = $wpdb->get_results( "SELECT * FROM `$table_name` ", ARRAY_A );	
-		
+		$r = $wpdb->get_results( $q = "SELECT * FROM `$table_name` WHERE `user` LIKE '$owner' ORDER BY `id` DESC LIMIT 100", ARRAY_A );	
+	//`id`, `cid`, `product_slug`, `total_price`, `piece_price`, `prod_cost`, `quantity`, `mquantity`, `av_markup`, `contractor_nip`, `contractor_email`, `c-slug`, `notes`, `added`, `token`
 
-			return  $r;		
+		
+		return  $r;		
 		
 	}
 

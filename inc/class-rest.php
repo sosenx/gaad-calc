@@ -58,8 +58,11 @@ class rest{
 	}	
 
 	public static function get_acalculations(){
-		$h = \gcalc\rest::getHeaders( "//", true )[ 'selected' ];	
-		$calculations =  \gcalc\sql::calculations_get( );
+		$h = \gcalc\rest::getHeaders( "//", true )[ 'selected' ];
+		$GCUI = explode(':', $h['GCUI']);
+		$user_login = $GCUI[0];
+
+		$calculations =  \gcalc\sql::acalculations_get( array( 'owner' => $user_login ) );
 
 		$r = array( 
 			'plugin_name' 	=> "gcalc",
@@ -68,9 +71,55 @@ class rest{
 			'headers'     	=> $h,
 			'output' 		=> $calculations
 		);
+		
+		$max = count( $r );
+		for ($i=0; $i < $max; $i++) { 
+			$r[ $i ]['av_markup']  = json_decode( $r[0]['av_markup'], true );
+			$r[ $i ]['bvars']      = json_decode( $r[0]['bvars'], true );
+			$r[ $i ]['full_total'] = json_decode( $r[0]['full_total'], true );
+		}
+
 
 		return json_decode( json_encode( $r ) );
 	}
+
+
+
+	public static function get_acalculations_raports( ){
+		$h = \gcalc\rest::getHeaders( "/cid|post_id|GCUI/", true )[ 'selected' ];
+
+		
+			$attachment_ =  \gcalc\pdf::get_attachment_by_post_name( $h[ 'cid' ] . '-account' );
+			$calculation_pdf[ 'account' ] = array( 
+				'file' => \get_attached_file( $attachment_[0]['ID'] ),
+				'url'	=>\wp_get_attachment_url( $attachment_[0]['ID'] ) 
+			);
+
+			$attachment_ =  \gcalc\pdf::get_attachment_by_post_name( $h[ 'cid' ] . '-contractor' );
+			$calculation_pdf[ 'contractor' ] = array( 
+				'file' => \get_attached_file( $attachment_[0]['ID'] ),
+				'url'	=>\wp_get_attachment_url( $attachment_[0]['ID'] ) 
+			);
+
+
+				
+
+		$r = array( 
+			'plugin_name'                      => "gcalc",
+			'handler'                          => "get_acalculations_raports",
+			//'status'                         => $calculation ? 200 : 500,
+			'headers'                          => $h,
+			//'output'                         => $put_data,
+			//'token'                          => $token,
+			'pdf'                              => $calculation_pdf,
+			//'send_notification_email_status' => $send_notification_email_status,
+			//'wp_post_data'                   => $wp_post_data
+		);
+
+		return json_decode( json_encode( $r ) );
+	}
+
+
 /**
  * Write calculation in archives
  * @return [type] [description]

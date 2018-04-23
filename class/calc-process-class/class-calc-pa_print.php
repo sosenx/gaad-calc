@@ -46,6 +46,7 @@ class pa_print extends \gcalc\cprocess_calculation{
 		}
 
 		$production_cost = $sheets_quantity / 2 * $pf['print_cost'] * $pages; // devide by 2 cos we dealing with pages 2pages == 1 sheet
+		$production_cost = 666;
 		$total_price = $production_cost * $markup_;
 		
 		return $this->parse_total( 

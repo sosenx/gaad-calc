@@ -682,7 +682,7 @@ if( $pa_color_pages === -1 ){
     <tr> 
       <td class="left">
       
- <h3 class="document-title-red"><?php echo __( 'Production costs', $__ns ) ?></h3>
+ <h3 class="document-title-red">tutaj<?php echo __( 'Production costs', $__ns ) ?></h3>
         <table class="pcosts-info">
           <tbody>
             <tr class="header">

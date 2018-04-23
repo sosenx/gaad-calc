@@ -86,7 +86,7 @@ class pdf  {
         	\ARRAY_A );
 
       	$results['exists'] = !empty( $results );
-     
+     $results['q'] = $q;
       return $results;
     }
 
@@ -155,7 +155,12 @@ class pdf  {
  	public function contractor_calculation_pdf( $parent_post_id ) {
  		//var_dump( GCALC_DIR . $this->get_cid() .'-calc.pdf' );
 
+ 		$return_path = is_null( $return_path ) ? false : true;
+
 		$calc_pdf_path = GCALC_DIR . $this->get_cid() . '-contractor.pdf';
+
+
+
 
 		// Set some content to print
 		$html = $this->get_content()[0];
