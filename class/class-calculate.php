@@ -15,7 +15,7 @@ class calculate extends calc_product {
 	private $calc_order;
 
 
-	public function __construct( array $product_attributes, \integer $product_id = NULL ) {
+	public function __construct( array $product_attributes, $product_id = NULL ) {
 		if ( !empty( $product_attributes ) ) {
 			$calc_product = parent::__construct( $product_attributes, $product_id );
 

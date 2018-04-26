@@ -11,7 +11,7 @@ class product_shipment{
 
 	
 
-	function __construct( array $product_attributes, \integer $product_id = NULL ) {
+	function __construct( array $product_attributes, $product_id = NULL ) {
 		
 	}
 

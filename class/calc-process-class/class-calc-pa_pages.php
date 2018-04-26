@@ -5,7 +5,7 @@ namespace gcalc\calc;
 class pa_pages extends \gcalc\cprocess_calculation{
 
 	
-	function __construct( array $product_attributes, \integer $product_id, \gcalc\calculate $parent, array $group, \gcalc\cprocess $pa_parent ){	
+	function __construct( array $product_attributes, $product_id, \gcalc\calculate $parent, array $group, \gcalc\cprocess $pa_parent ){	
 		parent::__construct( $product_attributes, $product_id, $parent, $group, $pa_parent );
 		$this->group = $group;
 		$this->name = "pa_pages";		

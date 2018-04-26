@@ -141,7 +141,7 @@ abstract class calc_product{
 	/**
 	* Class constructor
 	*/
-	function __construct( array $product_attributes, \integer $product_id = NULL ) {
+	function __construct( array $product_attributes, $product_id = NULL ) {
 		
 		if ( !empty( $product_attributes ) ) {	
 
@@ -171,7 +171,7 @@ abstract class calc_product{
 	/**
 	*
 	*/
-	function get_product_slug( \integer $product_id ){		
+	function get_product_slug( $product_id ){		
 		$product = new \WC_Product( $product_id );		
 		return $product->get_slug();
 	}
@@ -180,7 +180,7 @@ abstract class calc_product{
 	* calc product
 	*
 	*/
-	function set_product_id( \integer $product_id = NULL, array $product_attributes = NULL){
+	function set_product_id( $product_id = NULL, array $product_attributes = NULL){
 
 		if ( !isset( $product_id ) && isset( $product_attributes['product_slug'] )) {			
 			$args = array(

@@ -37,7 +37,7 @@ class pdf  {
 	private $parent_post_id;
 
 
- 	public function __construct( $cid, $table = NULL, array $content = NULL, \integer $parent_post_id ) {
+ 	public function __construct( $cid, $table = NULL, array $content = NULL, $parent_post_id ) {
  		
  		$this->set_cid( $cid );
  		$this->set_table( $table );
@@ -227,7 +227,7 @@ class pdf  {
 	}
 
 	/**/
-	function set_parent_post_id( \integer $parent_post_id ){
+	function set_parent_post_id( $parent_post_id ){
 		$this->parent_post_id = $parent_post_id;
 	}
 	

@@ -169,7 +169,7 @@ class formats{
 	/**
 	* Return wrap cost
 	*/
-	function get_total_cost_equasion( \integer $product_id ){	
+	function get_total_cost_equasion( $product_id ){	
 		$product = new \WC_Product( $product_id );
 		$slug = $product->get_slug();	
 		if ( array_key_exists( $slug, $this->total_cost_equasion ) ) {
