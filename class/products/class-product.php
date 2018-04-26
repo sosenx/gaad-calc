@@ -76,7 +76,8 @@ class product {
 		$get_rest_data = $get_rest_data_method['exists'] 
 			? $get_rest_data_method['product_constructor_name'].'::'.$get_rest_data_method['method_name']
 			: false;		
-		$product_rest_data = $get_rest_data ? $get_rest_data() : false;
+
+		//$product_rest_data = $get_rest_data ? $get_rest_data() : false;
 
 		$r['rest_data'] = array(
 
@@ -91,7 +92,7 @@ class product {
 		);
 
 		$r['rest_data']['attr_values_names'] = \gcalc\db\product\product::get_product_attr_values_names( $r['rest_data']['attr_values'] );
-		$r['product_rest_data'] = $product_rest_data;
+		//$r['product_rest_data'] = $product_rest_data;
 
 		return $r;
 	}
