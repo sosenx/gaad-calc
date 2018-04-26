@@ -107,7 +107,7 @@ if ( !defined( GCALC_NAMESPACE . 'GCALC_DISABLE_CREATE_USERS') )
 	* Disables predefined users creation
 	* Created mostly for developmnet reasons.
 	*/
-	define( GCALC_NAMESPACE . 'GCALC_DISABLE_CREATE_USERS', false );
+	define( GCALC_NAMESPACE . 'GCALC_DISABLE_CREATE_USERS', true );
 
 
 if ( !defined( GCALC_NAMESPACE . 'GCALC_DISABLE_CREATE_ATTRIBUTES') )
