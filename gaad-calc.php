@@ -98,7 +98,7 @@ if ( !defined( GCALC_NAMESPACE . 'GCALC_DISABLE_CREATE_PRODUCTS') )
 	* Disables predefined product creation
 	* Created mostly for developmnet reasons.
 	*/
-	define( GCALC_NAMESPACE . 'GCALC_DISABLE_CREATE_PRODUCTS', true );
+	define( GCALC_NAMESPACE . 'GCALC_DISABLE_CREATE_PRODUCTS', false );
 
 
 
@@ -107,7 +107,7 @@ if ( !defined( GCALC_NAMESPACE . 'GCALC_DISABLE_CREATE_USERS') )
 	* Disables predefined users creation
 	* Created mostly for developmnet reasons.
 	*/
-	define( GCALC_NAMESPACE . 'GCALC_DISABLE_CREATE_USERS', true );
+	define( GCALC_NAMESPACE . 'GCALC_DISABLE_CREATE_USERS', flase );
 
 
 if ( !defined( GCALC_NAMESPACE . 'GCALC_DISABLE_CREATE_ATTRIBUTES') )
@@ -115,7 +115,7 @@ if ( !defined( GCALC_NAMESPACE . 'GCALC_DISABLE_CREATE_ATTRIBUTES') )
 	* Disables predefined attributes creation
 	* Created mostly for developmnet reasons.
 	*/
-	define( GCALC_NAMESPACE . 'GCALC_DISABLE_CREATE_ATTRIBUTES', true );
+	define( GCALC_NAMESPACE . 'GCALC_DISABLE_CREATE_ATTRIBUTES', false );
 
 
 
