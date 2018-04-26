@@ -15,7 +15,7 @@ class calculate extends calc_product {
 	private $calc_order;
 
 
-	public function __construct( array $product_attributes, $product_id = NULL ) {
+	public function __construct( $product_attributes, $product_id = NULL ) {
 		if ( !empty( $product_attributes ) ) {
 			$calc_product = parent::__construct( $product_attributes, $product_id );
 
@@ -27,7 +27,7 @@ class calculate extends calc_product {
 	/**
 	* Returns named process from done array
 	*/
-	public function get_done_process( string $name ){
+	public function get_done_process( $name ){
 		if ( $name != "" ) {
 			foreach ( $this->done as $key => $value ) {
 				if ( $value->total['name'] == $name) {
@@ -40,7 +40,7 @@ class calculate extends calc_product {
 	/**
 	* Returns named process from done array
 	*/
-	public function get_todo_process( string $name ){
+	public function get_todo_process( $name ){
 		if ( $name != "" ) {
 			foreach ( $this->get_todo()->get_plist() as $key => $value ) {
 				if ( $value->name == $name) {
@@ -54,7 +54,7 @@ class calculate extends calc_product {
 	/**
 	* Returns named process from done array
 	*/
-	public function add_todo_process( array $bvars, array $group ){		
+	public function add_todo_process( $bvars, $group ){		
 		$pa_class_name = '\gcalc\pa\\' . str_replace( array($group[0], '__'), array( '', '_'), $group[1]);
 		$new_todo = new  $pa_class_name( $bvars, $this->get_product_id(), $this, $group );
 		$todo = $this->get_todo()->get_plist( );
@@ -70,9 +70,9 @@ class calculate extends calc_product {
 	 * 
 	*Parses total equasion and returns calculation total
 	*
-	*@param string $equasion equasion to calculate total price from todo elements
+	*@param $equasion equasion to calculate total price from todo elements
 	*/
-	public function parse_total_cost_equasion( string $equasion ){ 
+	public function parse_total_cost_equasion( $equasion ){ 
 		$plist = $this->get_todo()->get_plist();
 		$parsed_equasion = $equasion;
 		$equasion_parts = array();

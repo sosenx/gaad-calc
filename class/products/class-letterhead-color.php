@@ -13,7 +13,7 @@ class letterhead_color extends letterhead {
 	public $base;
 	public $attr;
 
-	function __construct( array $base = NULL, array $attr = NULL )	{
+	function __construct( $base = NULL, $attr = NULL )	{
 		parent::__construct( $base, $attr );
 		
 		$this->set_base_defaults( );
@@ -30,7 +30,7 @@ class letterhead_color extends letterhead {
 	 * Returns product calculation data
 	 * @return [type] [description]
 	 */
-	public static function get_calc_data( string $key = NULL ){
+	public static function get_calc_data( $key = NULL ){
 		$calc_data = array(
 			'equasion' => 'pa_color_paper + pa_color_print', 
 			'order' => array ( 				
@@ -42,7 +42,7 @@ class letterhead_color extends letterhead {
 
 	/**
 	 * setter for base
-	 * @param array $base Array of primary product parameters
+	 * @param $base Array of primary product parameters
 	 */
 	function set_base_defaults( ){
 		
@@ -92,7 +92,7 @@ class letterhead_color extends letterhead {
 
 	/**
 	 * setter for product attributes array
-	 * @param array $attr peoduct attributes array
+	 * @param $attr peoduct attributes array
 	 */
 	public function set_attr_defaults(  ){
 		

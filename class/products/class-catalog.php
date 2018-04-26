@@ -13,7 +13,7 @@ class catalog extends product {
 	public $base;
 	public $attr;
 
-	function __construct( array $base = NULL, array $attr = NULL )	{
+	function __construct( $base = NULL, $attr = NULL )	{
 		parent::__construct( $base, $attr );
 		
 		$this->set_base_defaults( );
@@ -29,7 +29,7 @@ class catalog extends product {
 
 	/**
 	 * setter for base
-	 * @param array $base Array of primary product parameters
+	 * @param $base Array of primary product parameters
 	 */
 	function set_base_defaults( ){
 		
@@ -132,7 +132,7 @@ class catalog extends product {
 
 	/**
 	 * setter for product attributes array
-	 * @param array $attr peoduct attributes array
+	 * @param $attr peoduct attributes array
 	 */
 	public function set_attr_defaults(  ){
 		

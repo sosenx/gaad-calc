@@ -6,7 +6,7 @@ class todo_list extends call_stack {
 
 
 
-	function __construct( array $cpdata ){	
+	function __construct( $cpdata ){	
 		parent::__construct( $cpdata  );
 
 		return $this;

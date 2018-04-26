@@ -12,7 +12,7 @@ abstract class email_notifications{
 	private $owner_user;
 
 
-	public function __construct( array $data, \WP_User $user){
+	public function __construct( $data, \WP_User $user){
 		$this->set_post_data( $data[ 'post_data' ] );
 		$this->set_pdf_data( $data[ 'pdf_data' ] );
 		$this->set_owner_user( $user );
@@ -42,7 +42,7 @@ abstract class email_notifications{
 
 
 	/**/
-	function set_h( array $h ){
+	function set_h( $h ){
 		$this->h = $h;
 	}
 
@@ -53,7 +53,7 @@ abstract class email_notifications{
 
 
 	/**/
-	function set_pdf_data( array $pdf_data ){
+	function set_pdf_data( $pdf_data ){
 		$this->pdf_data = $pdf_data;
 	}
 
@@ -64,7 +64,7 @@ abstract class email_notifications{
 	}
 
 	/**/
-	function set_post_data( array $post_data ){
+	function set_post_data( $post_data ){
 		$this->post_data = $post_data;
 	}
 	

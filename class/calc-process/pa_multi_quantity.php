@@ -4,7 +4,7 @@ namespace gcalc\pa;
 
 class pa_multi_quantity extends \gcalc\cprocess{
 
-	function __construct( array $product_attributes, $product_id, \gcalc\calculate $parent, array $group){	
+	function __construct( $product_attributes, $product_id, \gcalc\calculate $parent, $group){	
 		$this->cargs = $product_attributes;
 		$this->parent = $parent;
 		$this->group = $group;
@@ -49,7 +49,7 @@ class pa_multi_quantity extends \gcalc\cprocess{
 	/**
 	*
 	*/
-	function get_carg( string $arg_name ){
+	function get_carg( $arg_name ){
 		if ( !array_key_exists( $arg_name, $this->cargs ) ) {
 			$arg_name = str_replace( '_master', '', $arg_name);
 			if ( array_key_exists( $arg_name, $this->cargs ) ) {

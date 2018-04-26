@@ -5,7 +5,7 @@ namespace gcalc\calc;
 class pa_folding extends \gcalc\cprocess_calculation{
 
 	
-	function __construct( array $product_attributes, $product_id, \gcalc\calculate $parent, array $group, \gcalc\cprocess $pa_parent ){	
+	function __construct( $product_attributes, $product_id, \gcalc\calculate $parent, $group, \gcalc\cprocess $pa_parent ){	
 		parent::__construct( $product_attributes, $product_id, $parent, $group, $pa_parent );
 		$this->group = $group;
 		$this->name = "pa_folding";		
@@ -19,10 +19,10 @@ class pa_folding extends \gcalc\cprocess_calculation{
 
 	/**
 	 * Strips pa_folding string into arrays using known unadjustable separators.
-	 * @param  string $folds pa_folding attribute value
+	 * @param  $folds pa_folding attribute value
 	 * @return boolean|array	Returns false if folding isnt nessesary or string parameter is null
 	 */
-	public function get_folding_data( string $folds ){
+	public function get_folding_data( $folds ){
 		if (strlen( $folds ) > 0 ) {
 			$m = array( array(), array() );
 			$tmp = explode('|', $folds );
@@ -48,7 +48,7 @@ class pa_folding extends \gcalc\cprocess_calculation{
 	 * @param  array 	$folds Parsed by pa_folding::get_folding_data $folds array
 	 * @return float 	Folding click cost
 	 */
-	public function get_click( array $folds = NULL ){
+	public function get_click( $folds = NULL ){
 		$production_formats = new \gcalc\db\production\formats();
 		if ( !empty( $folds ) && !is_null( $folds ) ) {
 			return 0.01 * (int)$folds['runs'];

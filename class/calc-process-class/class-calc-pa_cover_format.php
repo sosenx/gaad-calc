@@ -35,7 +35,7 @@ class pa_cover_format extends pa_format{
 	*/
 	private $errors = false;
 
-	function __construct( array $product_attributes, $product_id, \gcalc\calculate $parent, array $group, \gcalc\cprocess $pa_parent ){	
+	function __construct( $product_attributes, $product_id, \gcalc\calculate $parent, $group, \gcalc\cprocess $pa_parent ){	
 		$this->cargs = $product_attributes;
 		$this->parent = $parent;
 		$this->group = $group;

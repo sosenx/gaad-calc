@@ -10,7 +10,7 @@ class api_user {
 	private $authorization;
 	private $credentials;
 
-	function __construct( string $apikey, string $apisecret, string $authorization ){
+	function __construct( $apikey, $apisecret, $authorization ){
 		$this->apikey = $apikey;
 		$this->apisecret = $apisecret;
 		$this->authorization = $authorization;
@@ -74,7 +74,7 @@ class api_user {
 	}
 
 
-	private function get_access_credentials( string $hash ){
+	private function get_access_credentials( $hash ){
 		if ( array_key_exists( $hash, $this->access ) ) {
 			return $this->access[ $hash ];
 		}

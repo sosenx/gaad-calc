@@ -13,7 +13,7 @@ class ticket extends product {
 	public $base;
 	public $attr;
 
-	function __construct( array $base = NULL, array $attr = NULL )	{
+	function __construct( $base = NULL, $attr = NULL )	{
 		parent::__construct( $base, $attr );
 		
 		$this->set_base_defaults( );
@@ -30,7 +30,7 @@ class ticket extends product {
 	 * Returns product calculation data
 	 * @return [type] [description]
 	 */
-	public static function get_calc_data( string $key = NULL ){
+	public static function get_calc_data( $key = NULL ){
 		$calc_data = array(
 			'equasion' => 'pa_master_paper + pa_master_print + pa_master_wrap + pa_master_folding + pa_master_spot_uv', 
 			'order' => array ( 
@@ -75,7 +75,7 @@ class ticket extends product {
 
 	/**
 	 * setter for base
-	 * @param array $base Array of primary product parameters
+	 * @param $base Array of primary product parameters
 	 */
 	function set_base_defaults( ){
 		
@@ -106,7 +106,7 @@ class ticket extends product {
 
 	/**
 	 * setter for product attributes array
-	 * @param array $attr peoduct attributes array
+	 * @param $attr peoduct attributes array
 	 */
 	public function set_attr_defaults(  ){
 		

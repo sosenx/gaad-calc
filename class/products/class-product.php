@@ -44,17 +44,17 @@ class product {
 	 * @param array|null $base array of primary product parameters
 	 * @param array|null $attr [description]
 	 */
-	function __construct( array $base = NULL, array $attr = NULL )	{
+	function __construct( $base = NULL, $attr = NULL )	{
 		$this->set_base( $base );
 		$this->set_attr( $attr );
 	}
 
 	/**
 	 * Gets product constructor attributes filter array using product slug
-	 * @param  string $product_slug Product slug
+	 * @param  $product_slug Product slug
 	 * @return array               products attributes returned by get_attr_filter method
 	 */
-		public static function product_constructor_method( string $product_slug, string $method_name ){
+		public static function product_constructor_method( $product_slug, $method_name ){
 			$get_attr_filter_method = \gcalc\calc_product::get_product_constructor_method( $method_name, $product_slug );
 			$get_attr_filter_data = $get_attr_filter_method['exists'] 
 			? $get_attr_filter_method['product_constructor_name'].'::'.$get_attr_filter_method['method_name']
@@ -102,7 +102,7 @@ class product {
 	 * @param  [type] $data [description]
 	 * @return [type]       [description]
 	 */
-	public static function get_product_attr_values_names( array $data ){
+	public static function get_product_attr_values_names( $data ){
 		$r = array();	
 		foreach ($data as $pa_name => $values ) {
 			if ( method_exists( '\gcalc\register_woo_elements', 'pa_' . $pa_name) ) {
@@ -142,7 +142,7 @@ class product {
 	 * 
 	 * @return array filtered set of nessesary product attributes
 	 */
-	public static function filter_attributes( array $input, string $product_slug ) {
+	public static function filter_attributes( $input, $product_slug ) {
 		/*
 		 * Checking if product have filtering matrix array
 		 */
@@ -194,7 +194,7 @@ class product {
 	 * @param  \gcalc\calculate $parent       [description]
 	 * @return [type]                         [description]
 	 */
-	public static function validate_cargs( $process, array $cargs, \gcalc\calculate $parent, string $product_constructor ){
+	public static function validate_cargs( $process, $cargs, \gcalc\calculate $parent, $product_constructor ){
 		$process_name = $process->name;
 		$group = $process->group[0];
 		$full_process_name = $process->group[1];
@@ -298,9 +298,9 @@ class product {
 
 	/**
 	 * setter for base
-	 * @param array $base array of primary product parameters
+	 * @param $base array of primary product parameters
 	 */
-	function set_base( array $base = NULL ){
+	function set_base( $base = NULL ){
 		$this->base = is_array( $base ) ? $base : 
 			( method_exists( $this, 'set_base_defaults' ) ? $this->set_base_defaults( ) : array() )
 		;
@@ -310,9 +310,9 @@ class product {
 
 	/**
 	 * setter for product attributes array
-	 * @param array $attr peoduct attributes array
+	 * @param $attr peoduct attributes array
 	 */
-	function set_attr( array $attr = NULL ){
+	function set_attr( $attr = NULL ){
 		$this->attr = is_array( $attr ) ? $attr :
 			( method_exists( $this, 'set_attr_defaults' ) ? $this->set_attr_defaults( ) : array() )
 		;
@@ -321,9 +321,9 @@ class product {
 
 	/**
 	 * Setter for product title
-	 * @param string $title product title
+	 * @param $title product title
 	 */
-	function set_title( string $title = NULL ){
+	function set_title( $title = NULL ){
 		if ( is_null( $title ) && array_key_exists( 'post_title', $this->base ) ) {
 			$title = $this->base['post_title'];			
 		} 
@@ -351,9 +351,9 @@ class product {
 	
 	/**
 	 * Setter for attr filter
-	 * @param array $attr_filter [description]
+	 * @param $attr_filter [description]
 	 */
-	function set_attr_filter( array $attr_filter ){	
+	function set_attr_filter( $attr_filter ){	
 		$this->attr_filter = $attr_filter;
 	}
 

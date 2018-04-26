@@ -49,7 +49,7 @@ class errors  {
 	/**
 	*
 	*/
-	public function __construct( array $data = NULL ){	
+	public function __construct( $data = NULL ){	
 		$this->data = is_null( $data ) ? array() : $data ;
 
 		return $this;
@@ -74,7 +74,7 @@ class errors  {
 	/**
 	* returns errors var as fast check if there are any errors at all
 	*/
-	public function add_status_count( string $index ){			
+	public function add_status_count( $index ){			
 		if ( array_key_exists( $index, $this->status_count ) ) {
 			$this->status_count[ $index ]++;	
 		}		

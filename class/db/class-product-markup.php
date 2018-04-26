@@ -31,7 +31,7 @@ class product_markup{
 
 
 
-	function __construct( array $product_attributes, $product_id, $parent ) {
+	function __construct( $product_attributes, $product_id, $parent ) {
 		$this->parent = $parent;	
 		$this->product_id = $product_id;
 		$this->product = new \WC_Product( $product_id );
@@ -45,7 +45,7 @@ class product_markup{
 	/**
 	* branch
 	*/
-	public function get_markup_value( $needle, array $haystack){
+	public function get_markup_value( $needle, $haystack){
 		arsort( $haystack );
 		foreach ($haystack as $key => $value) {
 			if ( $needle < $key) {

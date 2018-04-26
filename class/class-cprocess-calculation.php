@@ -57,7 +57,7 @@ abstract class cprocess_calculation{
 	*/
 	private $pa_parent;
 
-	function __construct( array $product_attributes, $product_id, \gcalc\calculate $parent, array $group, \gcalc\cprocess $pa_parent ){	
+	function __construct( $product_attributes, $product_id, \gcalc\calculate $parent, $group, \gcalc\cprocess $pa_parent ){	
 		$this->parent = $parent;
 		$this->pa_parent = $pa_parent;
 		$this->group = $group;
@@ -73,7 +73,7 @@ abstract class cprocess_calculation{
 	}
 
 
-	function get_val_from( string $factor, string $compare, array $scale, string $outside_factor = NULL ){
+	function get_val_from( $factor, $compare, $scale, $outside_factor = NULL ){
 		$compare_sign = array(
 			'exact' => '==',
 			'min' => '>='
@@ -128,7 +128,7 @@ abstract class cprocess_calculation{
 	/**
 	* 
 	*/
-	function parse_total( array $calc_total, array $extended = array()){			
+	function parse_total( $calc_total, $extended = array()){			
 		$return = $calc_total;
 		$return[ 'name' ] = $this->get_name();
 
@@ -145,7 +145,7 @@ abstract class cprocess_calculation{
 	/**
 	*
 	*/
-	function get_carg( string $arg_name ){
+	function get_carg( $arg_name ){
 		if ( !array_key_exists( $arg_name, $this->cargs ) ) {
 			$arg_name = str_replace( '_master', '', $arg_name);
 			if ( array_key_exists( $arg_name, $this->cargs ) ) {
@@ -210,7 +210,7 @@ abstract class cprocess_calculation{
 	/**
 	* Is double side
 	*/
-	function get_print_color_mode( string $process_slug ){			
+	function get_print_color_mode( $process_slug ){			
 		$group = $this->get_group();
 		//$process_slug = $group[0] === 'master' ? $process_slug : 'pa_' . $group[0] . '_' . str_replace('pa_', '', $group[1]);
 		$process_slug = str_replace('master_', '', str_replace('pa_', 'pa_'.$group[0].'_', $process_slug) );

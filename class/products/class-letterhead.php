@@ -13,7 +13,7 @@ class letterhead extends product {
 	public $base;
 	public $attr;
 
-	function __construct( array $base = NULL, array $attr = NULL )	{
+	function __construct( $base = NULL, $attr = NULL )	{
 		parent::__construct( $base, $attr );
 		
 		$this->set_base_defaults( );
@@ -30,7 +30,7 @@ class letterhead extends product {
 	 * Returns product calculation data
 	 * @return [type] [description]
 	 */
-	public static function get_calc_data( string $key = NULL ){
+	public static function get_calc_data( $key = NULL ){
 		$calc_data = array(
 			'equasion' => 'pa_color_paper + pa_color_print + pa_bw_paper + pa_bw_print', 
 			'order' => array ( 
@@ -48,7 +48,7 @@ class letterhead extends product {
 	 * @param  \gcalc\calculate $parent Parent object to add errors and info
 	 * @return [type]                   [description]
 	 */
-	public static function validate__pa_color_format( array $cargs, \gcalc\calculate $parent, $process ){
+	public static function validate__pa_color_format( $cargs, \gcalc\calculate $parent, $process ){
 		$valid = true;
 		$value = $parent->get_bvar( str_replace('validate__', '', explode( '::' , __METHOD__)[1] ) );
 
@@ -67,7 +67,7 @@ class letterhead extends product {
 	 * @param  \gcalc\calculate $parent Parent object to add errors and info
 	 * @return [type]                   [description]
 	 */
-	public static function validate__pa_bw_pages( array $cargs, \gcalc\calculate $parent, $process ){
+	public static function validate__pa_bw_pages( $cargs, \gcalc\calculate $parent, $process ){
 		$valid = true;
 		$value = $parent->get_bvar( str_replace('validate__', '', explode( '::' , __METHOD__)[1] ) );
 
@@ -85,7 +85,7 @@ class letterhead extends product {
 	 * @param  \gcalc\calculate $parent Parent object to add errors and info
 	 * @return [type]                   [description]
 	 */
-	public static function validate__pa_color_pages( array $cargs, \gcalc\calculate $parent, $process ){
+	public static function validate__pa_color_pages( $cargs, \gcalc\calculate $parent, $process ){
 		$valid = true;
 		$value = $parent->get_bvar( str_replace('validate__', '', explode( '::' , __METHOD__)[1] ) );
 
@@ -100,7 +100,7 @@ class letterhead extends product {
 
 	/**
 	 * setter for base
-	 * @param array $base Array of primary product parameters
+	 * @param $base Array of primary product parameters
 	 */
 	function set_base_defaults( ){
 		
@@ -158,7 +158,7 @@ class letterhead extends product {
 
 	/**
 	 * setter for product attributes array
-	 * @param array $attr peoduct attributes array
+	 * @param $attr peoduct attributes array
 	 */
 	public function set_attr_defaults(  ){
 		

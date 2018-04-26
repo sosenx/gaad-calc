@@ -22,7 +22,7 @@ class admin_actions{
   *
   * Sprawdza czy na końcu adresu skryptu znajduje się `#defer` i jeżeli tak dodaje `defer="defer"` po atrybucie `src` taga script.
   *
-  * @param string $url Adres URL skryptu
+  * @param $url Adres URL skryptu
   * @return string 
   */
   public static function ikreativ_async_scripts( $url )
@@ -65,7 +65,7 @@ class admin_actions{
   * Funkcja dołącza wszystkie pliki w katalogu GCALC_TEMPLATES_DIR/common oraz katalogu zdefiniowanym w stałej GCALC_ADMIN_TEMPLATES_DIR
   * Zdefiniowa wewnątrz funkcji tablica $dirs przechowuje ścieżki do katalogów z szablonami do dołączenia.
   *
-  * @param array $additional_directories tablica ścieżek z dodadkowymi plikami szablonów
+  * @param $additional_directories tablica ścieżek z dodadkowymi plikami szablonów
   *
   * @return void
   */

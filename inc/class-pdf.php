@@ -37,7 +37,7 @@ class pdf  {
 	private $parent_post_id;
 
 
- 	public function __construct( $cid, $table = NULL, array $content = NULL, $parent_post_id ) {
+ 	public function __construct( $cid, $table = NULL, $content = NULL, $parent_post_id ) {
  		
  		$this->set_cid( $cid );
  		$this->set_table( $table );
@@ -90,7 +90,7 @@ class pdf  {
       return $results;
     }
 
- 	private function upload_calculation_pdf_as_media_lib_items( string $path, array $attr = NULL ){
+ 	private function upload_calculation_pdf_as_media_lib_items( $path, $attr = NULL ){
  		$parent_post_id = $this->get_parent_post_id();
 		$filename = basename( $path );
 		$attachment_name = str_replace( '.pdf','', $filename );
@@ -217,12 +217,12 @@ class pdf  {
 	}
 
  	/**/
- 	function set_table( string $table = NULL ){
+ 	function set_table( $table = NULL ){
  		$this->table =  GCALC_NAMESPACE . ( is_null( $table ) ?'_archives' : $table );
  	}
  	
 	/**/
-	function set_cid( string $cid ){
+	function set_cid( $cid ){
 		$this->cid = $cid;
 	}
 

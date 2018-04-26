@@ -9,7 +9,7 @@ class book extends product {
 	public $base;
 	public $attr;
 
-	function __construct( array $base = NULL, array $attr = NULL )	{
+	function __construct( $base = NULL, $attr = NULL )	{
 		parent::__construct( $base, $attr );
 		
 		$this->set_base_defaults( );
@@ -658,7 +658,7 @@ class book extends product {
 	 * Returns product calculation data
 	 * @return [type] [description]
 	 */
-	public static function get_calc_data( string $key = NULL ){
+	public static function get_calc_data( $key = NULL ){
 		$calc_data = array(
 			'equasion' => 'pa_cover_type + pa_cover_paper + pa_cover_print + pa_cover_finish + pa_cover_spot_uv + pa_bw_paper + pa_bw_print + pa_color_paper + pa_color_print + pa_bw_sewing + pa_color_sewing', 
 			'order' => array ( 
@@ -903,7 +903,7 @@ class book extends product {
 
 	/**
 	 * setter for base
-	 * @param array $base Array of primary product parameters
+	 * @param $base Array of primary product parameters
 	 */
 	function set_base_defaults( ){
 		
@@ -1038,7 +1038,7 @@ class book extends product {
 
 	/**
 	 * setter for product attributes array
-	 * @param array $attr peoduct attributes array
+	 * @param $attr peoduct attributes array
 	 */
 	function set_attr_defaults(  ){
 		

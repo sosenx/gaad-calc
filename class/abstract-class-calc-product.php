@@ -93,7 +93,7 @@ abstract class calc_product{
 	/**
 	* Merges errors array with another object errors array
 	*/
-	public function merge_errors( array $errors, string $label ){
+	public function merge_errors( $errors, $label ){
 		$this_errors = $this->get_errors();
 		foreach ($errors['errors'] as $key => $value) {
 			$this_errors->add( new \gcalc\error( $value->code, ' ('.$label.')') );
@@ -114,7 +114,7 @@ abstract class calc_product{
 	/**
 	* Merges errors array with another object errors array
 	*/
-	public function merge_bvars( \gcalc\calc_product $donor, string $recipient_group_name, string $recipient_sub_group_name  ){
+	public function merge_bvars( \gcalc\calc_product $donor, $recipient_group_name, $recipient_sub_group_name  ){
 		
 		$donor_bvars = $donor->get_bvars();	
 		$recipient_bvars = $this->get_bvars();	
@@ -141,7 +141,7 @@ abstract class calc_product{
 	/**
 	* Class constructor
 	*/
-	function __construct( array $product_attributes, $product_id = NULL ) {
+	function __construct( $product_attributes, $product_id = NULL ) {
 		
 		if ( !empty( $product_attributes ) ) {	
 
@@ -180,7 +180,7 @@ abstract class calc_product{
 	* calc product
 	*
 	*/
-	function set_product_id( $product_id = NULL, array $product_attributes = NULL){
+	function set_product_id( $product_id = NULL, $product_attributes = NULL){
 
 		if ( !isset( $product_id ) && isset( $product_attributes['product_slug'] )) {			
 			$args = array(
@@ -313,7 +313,7 @@ abstract class calc_product{
 	}
 
 	/**/
-	public static function get_product_constructor_method( string $method_name, string $slug ) {
+	public static function get_product_constructor_method( $method_name, $slug ) {
 
 		//$slug = is_null( $slug ) ? $this->get_slug() : $slug;
 		$product_constructor_name = '\gcalc\db\product\\' . str_replace( '-', '_', $slug );
@@ -504,7 +504,7 @@ abstract class calc_product{
 
 	}
 
-	private function merge_children_totals( array $total_ ){
+	private function merge_children_totals( $total_ ){
 		if ( !empty( $this->children ) ) {
 			foreach ($this->children as $key => $value) {	
 
@@ -557,7 +557,7 @@ abstract class calc_product{
 	/**
 	*
 	*/
-	function set_bvar( string $arg_name, string $group_name, $value, $error ){
+	function set_bvar( $arg_name, $group_name, $value, $error ){
 		if ( !isset( $value)) {
 			return false;
 		}
@@ -839,7 +839,7 @@ $r=1;
 	/**
 	* Finds format class name
 	*/
-	function find_in_group( string $proceses_name, array $group_procesess ){
+	function find_in_group( $proceses_name, $group_procesess ){
 		foreach ($group_procesess as $key => $value) {
 			if ( preg_match('/.*_'.$proceses_name.'/', $key)) {
 				return $key;
@@ -923,7 +923,7 @@ $r=1;
 	/**
 	* setter todo_groups
 	*/
-	function set_todo_groups( array $todo_groups ){
+	function set_todo_groups( $todo_groups ){
 		$this->todo_groups = $todo_groups;
 	}
 
@@ -935,9 +935,9 @@ $r=1;
 	*
 	* To manage parts of $calculation_array use other more sophisticated methods like set_calculation_array_part.
 	*
-	* @param array $calculation_array
+	* @param $calculation_array
 	*/
-	public function set_calculation_array( array $calculation_array ){
+	public function set_calculation_array( $calculation_array ){
 		$this->calculation_array = $calculation_array;
 	}
 
@@ -948,9 +948,9 @@ $r=1;
 	*
 	* To manage parts of $calculation_array use other more sophisticated methods like set_calculation_array_part.
 	*
-	* @param array $calculation_array
+	* @param $calculation_array
 	*/
-	public function set_calculation_array_part( string $name, array $calculation_array_part, string $mode = NULL ){
+	public function set_calculation_array_part( $name, $calculation_array_part, $mode = NULL ){
 		$mode = is_null( $mode ) ? "public" : $mode;
 		/*
 		* Need some atention here and do some work with permission check
@@ -964,12 +964,12 @@ $r=1;
 	/**
 	* setter best_production_format
 	*/
-	public function set_best_production_format( $best_production_format, array $group){		
+	public function set_best_production_format( $best_production_format, $group){		
 		$this->best_production_format[$group[0]] = $best_production_format;
 	}
 
 
-	public function check_best_production_format( array $group ){
+	public function check_best_production_format( $group ){
 		if ( array_key_exists( $group[0], $this->best_production_format ) ) {
 			return $this->best_production_format[$group[0]];			
 		}
@@ -979,7 +979,7 @@ $r=1;
 	/**
 	* Getter best_production_format
 	*/
-	public function get_best_production_format( array $group ){	
+	public function get_best_production_format( $group ){	
 
 
 		$production_formats = new \gcalc\db\production\formats();	
@@ -1010,7 +1010,7 @@ $r=1;
 	/**
 	* 
 	*/
-	function get_print_sides( string $print_process ){		
+	function get_print_sides( $print_process ){		
 		$pa_print = $this->bvars[ $print_process ];
 		$single = preg_match("/4x0|1x0/", $pa_print);
 		$double = preg_match("/4x4|1x1/", $pa_print);
@@ -1028,7 +1028,7 @@ $r=1;
 	/**
 	* Setter todo
 	*/
-	public function set_todo( array $todo ){		
+	public function set_todo( $todo ){		
 		$this->todo = $todo;
 	}
 
@@ -1090,7 +1090,7 @@ $r=1;
 	/**
 	*
 	*/
-	function get_bvar( string $arg_name ){
+	function get_bvar( $arg_name ){
 		if ( !array_key_exists( $arg_name, $this->bvars ) ) {
 			$arg_name = str_replace( '_master', '', $arg_name);
 			if ( array_key_exists( $arg_name, $this->bvars ) ) {

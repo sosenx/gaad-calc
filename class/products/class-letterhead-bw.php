@@ -13,7 +13,7 @@ class letterhead_bw extends letterhead {
 	public $base;
 	public $attr;
 
-	function __construct( array $base = NULL, array $attr = NULL )	{
+	function __construct( $base = NULL, $attr = NULL )	{
 		parent::__construct( $base, $attr );
 		
 		$this->set_base_defaults( );
@@ -31,7 +31,7 @@ class letterhead_bw extends letterhead {
 	 * Returns product calculation data
 	 * @return [type] [description]
 	 */
-	public static function get_calc_data( string $key = NULL ){
+	public static function get_calc_data( $key = NULL ){
 		$calc_data = array(
 			'equasion' => 'pa_bw_paper + pa_bw_print', 
 			'order' => array ( 
@@ -43,7 +43,7 @@ class letterhead_bw extends letterhead {
 
 	/**
 	 * setter for base
-	 * @param array $base Array of primary product parameters
+	 * @param $base Array of primary product parameters
 	 */
 	function set_base_defaults( ){
 		
@@ -94,7 +94,7 @@ class letterhead_bw extends letterhead {
 
 	/**
 	 * setter for product attributes array
-	 * @param array $attr peoduct attributes array
+	 * @param $attr peoduct attributes array
 	 */
 	public function set_attr_defaults(  ){
 		

@@ -274,7 +274,7 @@ class sql{
 		}
 	}
 
-	public static function calculations_insert( $id_, array $bvars, array $user, array $full_total, array $tech = NULL){
+	public static function calculations_insert( $id_, $bvars, $user, $full_total, $tech = NULL){
 		global $wpdb; 
 
 		$cid       	= is_array( $id_ ) ? $id_[ 0 ] : $id_;
@@ -314,7 +314,7 @@ class sql{
  * @param  array|null $tech       [description]
  * @return [type]                 [description]
  */
-	public static function acalculations_insert( $cid, array $calculation, array $contractor){
+	public static function acalculations_insert( $cid, $calculation, $contractor){
 		global $wpdb; 
 		$table_name = basename(GCALC_NAMESPACE) . '_archives';		
 		$calculations_table_name = basename(GCALC_NAMESPACE) . '_calculations';		

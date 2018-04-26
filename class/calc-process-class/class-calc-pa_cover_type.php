@@ -5,7 +5,7 @@ namespace gcalc\calc;
 class pa_cover_type extends pa_format{
 
 
-	function __construct( array $product_attributes, $product_id, \gcalc\calculate $parent, array $group, \gcalc\cprocess $pa_parent ){	
+	function __construct( $product_attributes, $product_id, \gcalc\calculate $parent, $group, \gcalc\cprocess $pa_parent ){	
 		parent::__construct( $product_attributes, $product_id, $parent, $group, $pa_parent );
 		$this->group = $group;
 		$this->product_id = $product_id;
@@ -323,7 +323,7 @@ class pa_cover_type extends pa_format{
 	/**
 	* Returns total price of additional covering costs array
 	*/
-	function parse_additional_cover_cost( array $additional_cover_cost_array ){
+	function parse_additional_cover_cost( $additional_cover_cost_array ){
 		if ( empty( $additional_cover_cost_array)) {
 			return 0;
 		}
@@ -448,7 +448,7 @@ class pa_cover_type extends pa_format{
 	/**
 	* Returns default cloth covering paper if there is no in attributes
 	*/
-	function get_cloth_covering_paper( string $cloth_covering_paper = NULL){
+	function get_cloth_covering_paper( $cloth_covering_paper = NULL){
 		if ( isset( $cloth_covering_paper ) ) {
 			return $cloth_covering_paper;
 		} else {
@@ -460,7 +460,7 @@ class pa_cover_type extends pa_format{
 	/**
 	* Returns default cloth covering paper if there is no in attributes
 	*/
-	function get_endpaper_paper( string $endpaper_paper = NULL){
+	function get_endpaper_paper( $endpaper_paper = NULL){
 		if ( isset( $endpaper_paper ) ) {
 			return $endpaper_paper;
 		} else {
@@ -473,7 +473,7 @@ class pa_cover_type extends pa_format{
 	/**
 	* Returns default cloth covering paper if there is no in attributes
 	*/
-	function get_cloth_covering_wrap( string $cloth_covering_wrap = NULL){
+	function get_cloth_covering_wrap( $cloth_covering_wrap = NULL){
 		if ( isset( $cloth_covering_wrap ) ) {
 			return $cloth_covering_wrap;
 		} else {
@@ -485,7 +485,7 @@ class pa_cover_type extends pa_format{
 	/**
 	* Returns default cloth covering print if there is no in attributes
 	*/
-	function get_cloth_covering_print( string $cloth_covering_print = NULL){
+	function get_cloth_covering_print( $cloth_covering_print = NULL){
 		if ( isset( $cloth_covering_print ) ) {
 			return $cloth_covering_print;
 		} else {
@@ -497,7 +497,7 @@ class pa_cover_type extends pa_format{
 	/**
 	* Returns default cloth covering print if there is no in attributes
 	*/
-	function get_endpaper_print( string $endpaper_print = NULL){
+	function get_endpaper_print( $endpaper_print = NULL){
 		if ( isset( $endpaper_print ) ) {
 			return $endpaper_print;
 		} else {
@@ -509,7 +509,7 @@ class pa_cover_type extends pa_format{
 	/** 
 	* Returns default cloth covering print if there is no in attributes
 	*/
-	function get_cloth_covering_spot_uv( string $cloth_covering_spot_uv = NULL){
+	function get_cloth_covering_spot_uv( $cloth_covering_spot_uv = NULL){
 		if ( isset( $cloth_covering_spot_uv ) ) {
 
 			$r=1;
@@ -522,7 +522,7 @@ class pa_cover_type extends pa_format{
 	/** 
 	* Returns default dust jacket print if there is no in attributes
 	*/
-	function get_dust_jacket_spot_uv( string $dust_jacket_spot_uv = NULL){
+	function get_dust_jacket_spot_uv( $dust_jacket_spot_uv = NULL){
 		if ( isset( $dust_jacket_spot_uv ) ) {
 			return $dust_jacket_spot_uv;
 		}
@@ -532,7 +532,7 @@ class pa_cover_type extends pa_format{
 	/**
 	* Returns default dust jacket paper if there is no in attributes
 	*/
-	function get_dust_jacket_paper( string $dust_jacket_paper = NULL){
+	function get_dust_jacket_paper( $dust_jacket_paper = NULL){
 		if ( isset( $dust_jacket_paper ) ) {
 			return $dust_jacket_paper;
 		}
@@ -542,7 +542,7 @@ class pa_cover_type extends pa_format{
 	/**
 	* Returns default dust jacket print if there is no in attributes
 	*/
-	function get_dust_jacket_print( string $dust_jacket_print = NULL){
+	function get_dust_jacket_print( $dust_jacket_print = NULL){
 		if ( isset( $dust_jacket_print ) ) {
 			return $dust_jacket_print;
 		} else {
@@ -554,7 +554,7 @@ class pa_cover_type extends pa_format{
 	/**
 	* Returns default dust jacket print if there is no in attributes
 	*/
-	function get_board_thickness( string $board_thickness = NULL){
+	function get_board_thickness( $board_thickness = NULL){
 		if ( isset( $board_thickness ) ) {
 			return $board_thickness;
 		}
@@ -564,7 +564,7 @@ class pa_cover_type extends pa_format{
 	/**
 	* Returns default dust jacket print if there is no in attributes
 	*/
-	function get_dust_jacket_wrap( string $dust_jacket_wrap = NULL){
+	function get_dust_jacket_wrap( $dust_jacket_wrap = NULL){
 		if ( isset( $dust_jacket_wrap ) ) {
 			return $dust_jacket_wrap;
 		} else {
@@ -576,7 +576,7 @@ class pa_cover_type extends pa_format{
 	/**
 	* Returns default ribbon
 	*/
-	function get_ribbon( string $ribbon = NULL){
+	function get_ribbon( $ribbon = NULL){
 		if ( isset( $ribbon ) ) {
 			return true;
 		}

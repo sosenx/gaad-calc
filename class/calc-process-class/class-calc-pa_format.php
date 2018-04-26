@@ -20,7 +20,7 @@ class pa_format extends \gcalc\cprocess_calculation{
 	private $best_production_format;
 
 
-	function __construct( array $product_attributes, $product_id, \gcalc\calculate $parent, array $group, \gcalc\cprocess $pa_parent ){	
+	function __construct( $product_attributes, $product_id, \gcalc\calculate $parent, $group, \gcalc\cprocess $pa_parent ){	
 		parent::__construct( $product_attributes, $product_id, $parent, $group, $pa_parent );
 		$this->group = $group;
 		$this->name = "pa_format";		
@@ -119,7 +119,7 @@ class pa_format extends \gcalc\cprocess_calculation{
 	/**
 	*
 	*/
-	function str_dim_to_format( string $format_str ){	
+	function str_dim_to_format( $format_str ){	
 		$production_formats = new \gcalc\db\production\formats();
 		$str_dim_to_format = $production_formats->get_str_dim_to_format( $format_str );
 

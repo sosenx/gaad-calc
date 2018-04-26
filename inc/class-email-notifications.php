@@ -6,7 +6,7 @@ namespace gcalc\calculations;
 class email_notifications extends \gcalc\email_notifications {
 
  
-	public function __construct( array $data, \WP_User $user ){
+	public function __construct( $data, \WP_User $user ){
 		parent::__construct( $data, $user );
 	}
 
@@ -22,7 +22,7 @@ class email_notifications extends \gcalc\email_notifications {
 	 * @param  array|null $settings [description]
 	 * @return [type]               [description]
 	 */
-	public function send( array $settings = NULL ) {
+	public function send( $settings = NULL ) {
 		$contractor_send = \gcalc\GCALC_AUTOSEND_CALCULATION_TO_CONTRACTOR_ON_SAVE;
 		$r = array(
 			'contractor' => false

@@ -32,7 +32,7 @@ abstract class call_stack{
 
 
 
-	public function __construct( array $cpdata ){	
+	public function __construct( $cpdata ){	
 		$this->plist = $cpdata;
 	}
 
@@ -53,7 +53,7 @@ abstract class call_stack{
 	/**
 	* Setter for plist
 	*/
-	public function set_plist( array $plist ){	
+	public function set_plist( $plist ){	
 		$this->plist = $plist;
 	}
 

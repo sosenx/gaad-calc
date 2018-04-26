@@ -51,7 +51,7 @@ abstract class cprocess{
 	private $errors = false;
 
 	
-	function __construct( array $product_attributes, $product_id, \gcalc\calculate $parent, array $group ){	
+	function __construct( $product_attributes, $product_id, \gcalc\calculate $parent, $group ){	
 		
 		$this->cargs = $product_attributes;
 		$this->parent = $parent;
@@ -68,7 +68,7 @@ abstract class cprocess{
 	/**
 	*
 	*/
-	function get_carg( string $arg_name ){
+	function get_carg( $arg_name ){
 		if ( !array_key_exists( $arg_name, $this->cargs ) ) {
 			$arg_name = str_replace( '_master', '', $arg_name);
 			if ( array_key_exists( $arg_name, $this->cargs ) ) {
@@ -88,14 +88,14 @@ abstract class cprocess{
 	/**
 	* Setter for errors
 	*/
-	public function set_carg( string $name, $value ){
+	public function set_carg( $name, $value ){
 		$this->cargs[ $name ] = $value;
 	}
 	
 	/**
 	* Setter for errors
 	*/
-	public function set_cargs( array $cargs ){
+	public function set_cargs( $cargs ){
 		$this->cargs = $cargs;
 	}
 

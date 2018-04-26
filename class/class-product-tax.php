@@ -11,7 +11,7 @@ class product_tax{
 
 	
 
-	function __construct( array $product_attributes, $product_id = NULL ) {
+	function __construct( $product_attributes, $product_id = NULL ) {
 		
 	}
 

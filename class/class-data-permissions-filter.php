@@ -92,19 +92,19 @@ class data_permissions_filter {
 		}
 
 
-		private function parse_total__access_level__10( array $data ){
+		private function parse_total__access_level__10( $data ){
 			return $data;
 		}
 
-		private function parse_total__access_level__9( array $data ){
+		private function parse_total__access_level__9( $data ){
 			return $data;
 		}
 
-		private function parse_total__access_level__1( array $data ){
+		private function parse_total__access_level__1( $data ){
 			return $data;
 		}
 
-		private function parse_total__access_level__0( array $data ){
+		private function parse_total__access_level__0( $data ){
 			return $data['total_cost_'];
 		}
 
@@ -112,38 +112,38 @@ class data_permissions_filter {
 
 
 
-		private function parse_done__access_level__10( array $data ){
+		private function parse_done__access_level__10( $data ){
 			return $data;
 		}
 
-		private function parse_done__access_level__9( array $data ){
+		private function parse_done__access_level__9( $data ){
 			return $this->get_needed_done_processes( $data );
 		}
 
-		private function parse_done__access_level__1( array $data ){
+		private function parse_done__access_level__1( $data ){
 			return $this->get_needed_done_processes( $data );
 		}
 
-		private function parse_done__access_level__0( array $data ){
+		private function parse_done__access_level__0( $data ){
 			return array();
 		}
 
 
 
 
-		private function parse_errors__access_level__10( array $data ){
+		private function parse_errors__access_level__10( $data ){
 			return $data;
 		}
 
-		private function parse_errors__access_level__9( array $data ){
+		private function parse_errors__access_level__9( $data ){
 			return $data;
 		}
 
-		private function parse_errors__access_level__1( array $data ){
+		private function parse_errors__access_level__1( $data ){
 			return $this->parse_errors_array($data, 'code_err');
 		}
 
-		private function parse_errors__access_level__0( array $data ){
+		private function parse_errors__access_level__0( $data ){
 			return $this->parse_errors_array($data, 'codes_only');
 		}
 
@@ -151,66 +151,66 @@ class data_permissions_filter {
 
 
 		//www
-		private function parse_total__access_level__2( array $data ){
+		private function parse_total__access_level__2( $data ){
 			return $data['total_cost_'];
 		}
 
-		private function parse_done__access_level__2( array $data ){
+		private function parse_done__access_level__2( $data ){
 			return array();
 		}
 
-		private function parse_errors__access_level__2( array $data ){
+		private function parse_errors__access_level__2( $data ){
 			return $data;
 		}
 
 
 		//inner
-		private function parse_total__access_level__5( array $data ){
+		private function parse_total__access_level__5( $data ){
 			return $data['total_cost_'];
 		}
 
-		private function parse_done__access_level__5( array $data ){
+		private function parse_done__access_level__5( $data ){
 			return array();
 		}
 
-		private function parse_errors__access_level__5( array $data ){
+		private function parse_errors__access_level__5( $data ){
 			return array();
 		}
 
 
-		private function parse_bvars__access_level__0( array $data ){
+		private function parse_bvars__access_level__0( $data ){
 			return array();
 		}
-		private function parse_bvars__access_level__1( array $data ){
+		private function parse_bvars__access_level__1( $data ){
 			return $data;
 		}
-		private function parse_bvars__access_level__2( array $data ){
+		private function parse_bvars__access_level__2( $data ){
 			return $data;
 		}
-		private function parse_bvars__access_level__5( array $data ){
+		private function parse_bvars__access_level__5( $data ){
 			return array();
 		}
-		private function parse_bvars__access_level__9( array $data ){
+		private function parse_bvars__access_level__9( $data ){
 			return $data;
 		}
-		private function parse_bvars__access_level__10( array $data ){
+		private function parse_bvars__access_level__10( $data ){
 			return $data;
 		}
 
 /*
-		private function parse_credentials__access_level__0( array $data ){
+		private function parse_credentials__access_level__0( $data ){
 			return $data;
 		}
-		private function parse_credentials__access_level__1( array $data ){
+		private function parse_credentials__access_level__1( $data ){
 			return $data;
 		}
-		private function parse_credentials__access_level__5( array $data ){
+		private function parse_credentials__access_level__5( $data ){
 			return array();
 		}
-		private function parse_credentials__access_level__9( array $data ){
+		private function parse_credentials__access_level__9( $data ){
 			return $data;
 		}
-		private function parse_credentials__access_level__10( array $data ){
+		private function parse_credentials__access_level__10( $data ){
 			return $data;
 		}
 
@@ -220,7 +220,7 @@ class data_permissions_filter {
 
 
 
-		private function parse_( array $data = NULL, string $mode = NULL ){
+		private function parse_( $data = NULL, $mode = NULL ){
 			$mode = is_null( $mode ) ? 'total' : $mode; 
 			$credetials = $this->get_credetials();
 
@@ -242,7 +242,7 @@ class data_permissions_filter {
 		* Last touch before data is sent
 		*
 		*/
-		private function sort_allowed_data( array $d ){
+		private function sort_allowed_data( $d ){
 			$d = $this->sort_multi_quantity_data( $d );
 			return $d;
 		}
@@ -311,7 +311,7 @@ class data_permissions_filter {
 		/*
 		*
 		*/
-		private function parse_errors_array( array $errors_array, string $mode ){
+		private function parse_errors_array( $errors_array, $mode ){
 			if ( empty( $errors_array )) { return array(); }
 			$e = array( 'info' => $errors_array['info'], 'errors' => array() );
 			
@@ -373,9 +373,9 @@ function get_token( ){
 
 /**
  * Setter for token
- * @param string $token [description]
+ * @param $token [description]
  */
-function set_token( string $token ){
+function set_token( $token ){
 	$this->token = $token;
 }
 
@@ -404,7 +404,7 @@ function set_token( string $token ){
 		/*
 		* Looks for empty arrays in data array and usets it
 		*/
-		public function delete_empty_arrays( array $data ){
+		public function delete_empty_arrays( $data ){
 			if ( !empty( $data ) ) {
 				$data_clear = array();
 
@@ -429,7 +429,7 @@ function set_token( string $token ){
 			return $authorization;
 		}
 
-		public function set_credetials( array $credentials ){
+		public function set_credetials( $credentials ){
 			$this->credentials = $credentials;
 		}
 
@@ -453,7 +453,7 @@ function set_token( string $token ){
 		* Gets procecesses from done array that are actually in calculation equasion
 		*
 		*/
-		private function get_needed_done_processes( array $data ){
+		private function get_needed_done_processes( $data ){
 			$done = array();
 			$done_needed = $this->calc->get_total()['total_cost_equasion'];
 			foreach ($data as $key => $value) {
@@ -475,7 +475,7 @@ function set_token( string $token ){
 		}
 
 		/**/
-		function set_errors( array $errors ){
+		function set_errors( $errors ){
 			$this->errors = $errors;
 		}
 		

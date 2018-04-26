@@ -42,7 +42,7 @@ class register_woo_elements{
 	* Creates predefined products base.
 	*	
 	*/
-	public static function create_user( string $nickname, string $password, string $email_address, string $role, array $meta = NULL ){		
+	public static function create_user( $nickname, $password, $email_address, $role, $meta = NULL ){		
 		
 		$username_exists = \username_exists( $email_address );
 		if( is_null( $username_exists) || !$username_exists ) {
@@ -196,7 +196,7 @@ class register_woo_elements{
 	/**
 	* Adds Business cards to product base
 	*
-	* @param string $product_title Tytul produktu
+	* @param $product_title Tytul produktu
 	*/
 	public static function product_exists( $product_title ){
 		$posts = new \WP_Query( array( 'post_title' => $product_title, 'post_type' => 'product', 'post_status' => 'publish'  ));
@@ -206,7 +206,7 @@ class register_woo_elements{
 	/**
 	* Returns product by title name
 	*
-	* @param string $product_title Tytul produktu
+	* @param $product_title Tytul produktu
 	*/
 	public static function get_product_by_title( $product_title ){
 		$posts = new \WP_Query( array( 'post_title' => $product_title, 'post_type' => 'product', 'post_status' => 'publish'  ));
@@ -217,11 +217,11 @@ class register_woo_elements{
 	* Adds attribute to product
 	*
 	* @param $post_id,
-	* @param string $attribute_name
+	* @param $attribute_name
 	* @param array 	$attribute_value
-	* @param string $attribute_sett
+	* @param $attribute_sett
 	*/
-	public static function add_product_attribute( $post_id, \string $attribute_name, \array $attribute_value, \string $attribute_sett ) {
+	public static function add_product_attribute( $post_id, $attribute_name, $attribute_value, $attribute_sett ) {
 		$attribute_name = preg_match('/^pa_.*/', $attribute_name ) ? $attribute_name : 'pa_' . $attribute_name;
 		wp_set_object_terms($post_id, $attribute_value, $attribute_name, true);
 	    $data = array(
@@ -1748,9 +1748,9 @@ class register_woo_elements{
 	/**
 	* Sprawdza
 	*
-	* @param array $attribute	
+	* @param $attribute	
 	*/
-	public static function process_add_attribute( array $attribute ){
+	public static function process_add_attribute( $attribute ){
 	    global $wpdb;
 
 	    if ( empty($attribute['attribute_type']) ) { $attribute['attribute_type'] = 'text'; }
@@ -1777,7 +1777,7 @@ class register_woo_elements{
 	/**
 	* Check if given name is a valid attribute name.
 	*
-	* @param array $attribute_name
+	* @param $attribute_name
 	*/
 	public static function valid_attribute_name( $attribute_name ) {
 	    if ( strlen( $attribute_name ) >= 28 ) {

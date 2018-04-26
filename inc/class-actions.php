@@ -85,7 +85,7 @@ class actions {
  * generate basic calculation post type content  
  * @return [type] [description]
  */
-  public static function calculation_post_content( string $cid, $calculation, array $headers, string $template_filename, string $template_css_filename = NULL ){
+  public static function calculation_post_content( $cid, $calculation, $headers, $template_filename, $template_css_filename = NULL ){
     $css_file = !is_null( $template_css_filename ) ? $template_css_filename :
       GCALC_CALCULATIONS_CSS_DIR . '/' . $template_filename . '.css';
     $css_ = is_readable( $css_file ) ? file_get_contents( $css_file ) : '';
@@ -114,7 +114,7 @@ class actions {
    * Gets calculation post type
    * @return [type] [description]
    */
-    public static function get_calculation_post_by_cid( string $title ){
+    public static function get_calculation_post_by_cid( $title ){
       global $wpdb;
       $results = $wpdb->get_results( 
         $q = "SELECT * FROM `wp_posts` WHERE `post_title` LIKE '" .$title. "' AND `post_type` LIKE 'calculation' ORDER BY `ID` DESC",
@@ -129,12 +129,12 @@ class actions {
   
      /**
    * Adds calculation custom post for further use.
-   * @param  string $cid         [description]
+   * @param  $cid         [description]
    * @param  [type] $calculation [description]
    * @param  array  $headers     [description]
    * @return [type]              [description]
    */
-    public static function acalculations_insert_wp_post( string $cid, $calculation, array $headers, string $token = NULL ){
+    public static function acalculations_insert_wp_post( $cid, $calculation, $headers, $token = NULL ){
       $r = array();
       $action = 'add';
       $post_title = $cid. '-' . $token;
@@ -170,12 +170,12 @@ class actions {
 
     /**
    * Adds calculation custom post for further use.
-   * @param  string $cid         [description]
+   * @param  $cid         [description]
    * @param  [type] $calculation [description]
    * @param  array  $headers     [description]
    * @return [type]              [description]
    */
-    public static function acalculations_get_wp_post( string $cid, string $token ){
+    public static function acalculations_get_wp_post( $cid, $token ){
       global $wpdb;
       $r = array( 'action' => 'get');
       $post_title = $cid. '-' . $token;

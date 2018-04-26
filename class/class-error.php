@@ -15,7 +15,7 @@ class error  {
 	/**
 	*
 	*/
-	function __construct( $code, string $msg = NULL ){	
+	function __construct( $code, $msg = NULL ){	
 		$codes = new \gcalc\db\error\codes();
 		$error_data = $codes->get( $code );
 
