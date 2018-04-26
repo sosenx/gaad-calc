@@ -370,14 +370,6 @@ class book extends product {
 			)
 
 
-
-
-			
-
-
-
-
-
 		);
 		
 		return $r;
@@ -448,7 +440,7 @@ class book extends product {
 					),
 					'album' => array(
 						'pa_format' => array(
-							'values' => array( '148x105','210x148','297x210','420x297','176x125','250x176', 'custom-value' ),
+							'values' => array( '148x105','210x148','297x210','176x125','250x176', 'custom-value' ),
 							'default' => '210x148'
 						),
 					)

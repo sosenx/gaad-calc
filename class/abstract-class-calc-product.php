@@ -155,12 +155,12 @@ abstract class calc_product{
 			
 			$product_attributes = \gcalc\db\product\product::filter_attributes( $product_attributes, $this->get_product_slug( $this->get_product_id() ) );
 
-			$this->bvars = $product_attributes;
-			$this->CID = uniqid();
-			$this->todo = new todo_list( array() );
-			$this->markup = array();
-			$this->tax = new product_tax( $this->bvars, $this->product_id );
-			$this->ship = new product_shipment( $this->bvars, $this->product_id );
+			$this->bvars      = $product_attributes;
+			$this->CID        = uniqid();
+			$this->todo       = new todo_list( array() );
+			$this->markup     = array();
+			$this->tax        = new product_tax( $this->bvars, $this->product_id );
+			$this->ship       = new product_shipment( $this->bvars, $this->product_id );
 			$this->calc_order = new \gcalc\db\calc_order( $this->get_product_id() );	
 		}
 
@@ -184,10 +184,10 @@ abstract class calc_product{
 
 		if ( !isset( $product_id ) && isset( $product_attributes['product_slug'] )) {			
 			$args = array(
-				'post_type' => 'product',
-				'name' => $product_attributes['product_slug'],
-				'post_status' => 'publish',
-  				'numberposts' => 1
+				'post_type' 	=> 'product',
+				'name' 			=> $product_attributes['product_slug'],
+				'post_status' 	=> 'publish',
+				'numberposts' 	=> 1
 			);
 			$product = \get_posts( $args );
 			if ( count( $product ) == 1 && array_key_exists('ID', $product[0]) ) {
@@ -244,20 +244,8 @@ abstract class calc_product{
 			return $this->errors->get_data();
 		} else {
 			$this->parse_total();
-
-			/*
-			* Checks from where this function was called
-			
-			$trace = debug_backtrace( DEBUG_BACKTRACE_IGNORE_ARGS, 2);
-			$last_trace = array_pop( $trace );
-
-			if ( array_key_exists('class', $last_trace ) ) {
-				$inner_origin = preg_match( '/^gcalc/', array_pop( $trace )['class'] );	
-			} else $inner_origin = false;			
-			var_dump($inner_origin);
-*/
 			$return = array(
-				
+				// (t)otals, (d)one processes. (e)rrors, (a)ttributes
 				't' => $this->total_,
 				'd' => $this->get_done( true ),
 				'e' => $this->errors->get_data(),
@@ -265,10 +253,6 @@ abstract class calc_product{
 			);
 			
 		return $return;
-			
-			//	$data_permissions_f = new data_permissions_filter( $this );
-			//	return $data_permissions_f->get();
-			
 		}
 	}
 

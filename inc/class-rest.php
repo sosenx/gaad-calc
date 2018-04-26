@@ -4,10 +4,10 @@ namespace gcalc;
 
 class rest{
 
-/**
- * [send_contractor_notification_email description]
- * @return [type] [description]
- */
+	/**
+	 * [send_contractor_notification_email description]
+	 * @return [type] [description]
+	 */
 	public static function send_contractor_notification_email(  ){
 		$h = \gcalc\rest::getHeaders( "//", true )[ 'selected' ];
 		$_status = false;
@@ -44,8 +44,6 @@ class rest{
 		//$r['calculation'] = $calculation;
 		return $r;
 	}
-
-
 
 
 	/**
@@ -283,18 +281,6 @@ class rest{
 			$r['credentials'] = $user->get_credentials();
 
 		}
-
-
-
-		/*
-		//
-		$allh = getallheaders();
-		$data = array( 'cokolwiek'=> $allh );
-		
-		//echo json_decode(json_encode( $data ));
-		//echo json_encode( $data );
-		die();
-		*/
 
 		return json_decode( json_encode( $r ) );
 	}
