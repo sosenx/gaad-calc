@@ -874,9 +874,9 @@ $r=1;
 	/**
 	* getter bvars
 	*
-	* @param bool $filter return product related attributes only | NULL
+	* @param $filter return product related attributes only | NULL
 	*/
-	function get_bvars( bool $filter = NULL ){
+	function get_bvars( $filter = NULL ){
 		if ( $filter ) {
 			$bvars = array();
 			foreach ($this->bvars as $key => $value){
@@ -893,7 +893,7 @@ $r=1;
 	/**
 	* getter bvars
 	*
-	* @param bool $filter return product related attributes only | NULL
+	* @param $filter return product related attributes only | NULL
 	*/
 	function get_done( $filter = NULL ){
 		

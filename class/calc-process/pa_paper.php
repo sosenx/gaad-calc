@@ -35,7 +35,7 @@ class pa_paper extends \gcalc\cprocess{
 
 	/**
 	 * Checks if product object have validation function and uses it
-	 * @param  boolean $valid [description]
+	 * @param  $valid [description]
 	 * @return [type]         [description]
 	 */
 	private function validate_cargs_product( $valid ){

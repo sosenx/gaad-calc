@@ -271,7 +271,7 @@ class product {
 	 * @param  boolean|null $return_bool [description]
 	 * @return [type]                    [description]
 	 */
-	public function product_exists( boolean $return_bool = NULL ){
+	public function product_exists( $return_bool = NULL ){
 		$title = $this->get_title();
 		$q = new \WP_Query( array(
 			'post_type' 	=> 'product',	

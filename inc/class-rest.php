@@ -295,7 +295,7 @@ class rest{
 	*
 	* @return array 
 	*/
-	public static function getHeaders( $regexp = NULL, bool $return_rest = NULL ) {
+	public static function getHeaders( $regexp = NULL, $return_rest = NULL ) {
 		/*
 		* Headers to return array
 		*/
