@@ -56,6 +56,8 @@ class product {
 	 */
 		public static function product_constructor_method( $product_slug, $method_name ){
 			$get_attr_filter_method = \gcalc\calc_product::get_product_constructor_method( $method_name, $product_slug );
+			var_dump($get_attr_filter_method);
+			
 			$get_attr_filter_data = $get_attr_filter_method['exists'] 
 			? $get_attr_filter_method['product_constructor_name'].'::'.$get_attr_filter_method['method_name']
 			: false;
