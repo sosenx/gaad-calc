@@ -238,7 +238,7 @@ if ( !defined( GCALC_NAMESPACE . 'GCALC_AUTOSEND_CALCULATION_TO_CONTRACTOR_ON_SA
 	
 	require_once( 'class/products/class-brochure.php' );
 	
-	require_once( 'class/products/class-writing-pad.php' );
+//	require_once( 'class/products/class-writing-pad.php' );
 	
 	//require_once( 'class/products/class-ticket.php' );
 	//require_once( 'class/products/class-poster.php' );
