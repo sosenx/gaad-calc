@@ -221,7 +221,7 @@ class register_woo_elements{
 	* @param array 	$attribute_value
 	* @param string $attribute_sett
 	*/
-	public static function add_product_attribute( $post_id, string $attribute_name, array $attribute_value, string $attribute_sett ) {
+	public static function add_product_attribute( $post_id, \string $attribute_name, \array $attribute_value, \string $attribute_sett ) {
 		$attribute_name = preg_match('/^pa_.*/', $attribute_name ) ? $attribute_name : 'pa_' . $attribute_name;
 		wp_set_object_terms($post_id, $attribute_value, $attribute_name, true);
 	    $data = array(
