@@ -371,7 +371,7 @@ class actions {
   */
   public static function put_components( $dir ){ 
     global $post;
-    $dir = str_replace( '\\', '/', $dir )
+    $dir = str_replace( '\\', '/', $dir );
     if ( !is_dir( $dir ) ) {
      return;
     }
