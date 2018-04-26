@@ -211,8 +211,9 @@ class rest{
 	  \remove_filter( 'rest_pre_serve_request', 'rest_send_cors_headers' );
 	  \add_filter( 'rest_pre_serve_request', function( $value ) {
 	    \header( 'Access-Control-Allow-Origin: *' );
+	    \header( 'Access-Control-Allow-Origin: http://gaadcalcapi.dfirma.pl/' );
 	    \header('Access-Control-Allow-Credentials: true');
-	    \header( 'Access-Control-Allow-Methods: GET' );
+	    \header( 'Access-Control-Allow-Methods: GET, PUT' );
 	    \header( 'Access-Control-Allow-Headers: apikey,apisecret,authorization,group_bw,group_color,group_cover,pa_bw_format,pa_bw_pages,pa_bw_paper,pa_bw_print,pa_color_format,pa_color_pages,pa_color_paper,pa_color_print,pa_color_stack,pa_cover_cloth_covering_paper,pa_cover_cloth_covering_print,pa_cover_cloth_covering_spot_uv,pa_cover_cloth_covering_finish,pa_cover_dust_jacket_paper,pa_cover_dust_jacket_print,pa_cover_dust_jacket_spot_uv,pa_cover_dust_jacket_finish,pa_cover_flaps,pa_cover_format,pa_cover_left_flap_width,pa_cover_paper,pa_cover_print,pa_cover_ribbon,pa_cover_right_flap_width,pa_cover_spot_uv,pa_cover_type,pa_cover_finish,pa_format,pa_multi_quantity,multi_quantity,pa_paper,pa_print,pa_quantity,pa_spot_uv,pa_finish,product_slug, pa_cover_board_thickness, pa_folding, markup_bw_print, markup_color_print, markup_cover_cloth_covering_print, markup_cover_dust_jacket_print, markup_cover_endpaper_print, markup_cover_paper, markup_cover_print, markup_cover_type, spine_shape ' );
 
 	   // \gcalc\rest::cors();
