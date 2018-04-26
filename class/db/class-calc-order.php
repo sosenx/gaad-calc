@@ -18,7 +18,7 @@ class calc_order{
 	/**
 	*
 	*/
-	public function __construct( int $product_id ){
+	public function __construct( integer $product_id ){
 		$this->product_id = $product_id;
 		$this->aquire();
 	}

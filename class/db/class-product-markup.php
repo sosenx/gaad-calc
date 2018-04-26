@@ -31,7 +31,7 @@ class product_markup{
 
 
 
-	function __construct( array $product_attributes, int $product_id, $parent ) {
+	function __construct( array $product_attributes, integer $product_id, $parent ) {
 		$this->parent = $parent;	
 		$this->product_id = $product_id;
 		$this->product = new \WC_Product( $product_id );

@@ -57,7 +57,7 @@ abstract class cprocess_calculation{
 	*/
 	private $pa_parent;
 
-	function __construct( array $product_attributes, int $product_id, \gcalc\calculate $parent, array $group, \gcalc\cprocess $pa_parent ){	
+	function __construct( array $product_attributes, integer $product_id, \gcalc\calculate $parent, array $group, \gcalc\cprocess $pa_parent ){	
 		$this->parent = $parent;
 		$this->pa_parent = $pa_parent;
 		$this->group = $group;

@@ -6,7 +6,7 @@ class pa_color_paper extends \gcalc\cprocess{
 
 
 
-	function __construct( array $product_attributes, int $product_id, \gcalc\calculate $parent, array $group ){	
+	function __construct( array $product_attributes, integer $product_id, \gcalc\calculate $parent, array $group ){	
 		$this->cargs = $product_attributes;
 		$this->parent = $parent;
 		$this->group = $group;
