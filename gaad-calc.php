@@ -89,7 +89,7 @@ if ( !defined( GCALC_NAMESPACE . 'GCALC_FORCE_CREATE_WOO_ELEMENTS') )
 	* Forces to create all WP or WOO related objects and elements (posts, products, taxonomies, terms etc.)
 	* Created mostly for developmnet reasons.
 	*/
-	define( GCALC_NAMESPACE . 'GCALC_FORCE_CREATE_WOO_ELEMENTS', true ); //
+	define( GCALC_NAMESPACE . 'GCALC_FORCE_CREATE_WOO_ELEMENTS', false ); //
 
 
 
@@ -98,7 +98,7 @@ if ( !defined( GCALC_NAMESPACE . 'GCALC_DISABLE_CREATE_PRODUCTS') )
 	* Disables predefined product creation
 	* Created mostly for developmnet reasons.
 	*/
-	define( GCALC_NAMESPACE . 'GCALC_DISABLE_CREATE_PRODUCTS', false );
+	define( GCALC_NAMESPACE . 'GCALC_DISABLE_CREATE_PRODUCTS', true );
 
 
 
@@ -107,7 +107,7 @@ if ( !defined( GCALC_NAMESPACE . 'GCALC_DISABLE_CREATE_USERS') )
 	* Disables predefined users creation
 	* Created mostly for developmnet reasons.
 	*/
-	define( GCALC_NAMESPACE . 'GCALC_DISABLE_CREATE_USERS', flase );
+	define( GCALC_NAMESPACE . 'GCALC_DISABLE_CREATE_USERS', true );
 
 
 if ( !defined( GCALC_NAMESPACE . 'GCALC_DISABLE_CREATE_ATTRIBUTES') )
@@ -115,7 +115,7 @@ if ( !defined( GCALC_NAMESPACE . 'GCALC_DISABLE_CREATE_ATTRIBUTES') )
 	* Disables predefined attributes creation
 	* Created mostly for developmnet reasons.
 	*/
-	define( GCALC_NAMESPACE . 'GCALC_DISABLE_CREATE_ATTRIBUTES', false );
+	define( GCALC_NAMESPACE . 'GCALC_DISABLE_CREATE_ATTRIBUTES', true );
 
 
 
