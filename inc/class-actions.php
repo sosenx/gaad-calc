@@ -371,8 +371,14 @@ class actions {
   */
   public static function put_components( $dir ){ 
     global $post;
-    $tpl_dir = opendir( $dir = str_replace( '\\', '/', $dir ) );
+    $dir = str_replace( '\\', '/', $dir )
+    if ( !is_dir( $dir ) ) {
+     return;
+    }
+    $tpl_dir = opendir(  );
     $post_slug = $post->post_name; 
+
+
     if ( $tpl_dir) {
      
         while ( $f = readdir($tpl_dir) ){
