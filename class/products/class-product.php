@@ -62,9 +62,8 @@ class product {
 			: false;
 			
 			
-			//$product_attr_filter_data = $get_attr_filter_data ? $get_attr_filter_data() : false;
-			//return $get_attr_filter_data ? $get_attr_filter_data() : false;
-			return false;
+			$product_attr_filter_data = $get_attr_filter_data ? $get_attr_filter_data() : false;
+			return $get_attr_filter_data ? $get_attr_filter_data() : false;
 		}
 
 	/**
