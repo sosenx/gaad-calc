@@ -61,9 +61,10 @@ class product {
 			? $get_attr_filter_method['product_constructor_name'].'::'.$get_attr_filter_method['method_name']
 			: false;
 			
-			var_dump( call_user_method($get_attr_filter_method['method_name'], $get_attr_filter_method['product_constructor_name']) );
-		$product_attr_filter_data = $get_attr_filter_data ? $get_attr_filter_data() : false;
-			return $get_attr_filter_data ? $get_attr_filter_data() : false;
+			
+			//$product_attr_filter_data = $get_attr_filter_data ? $get_attr_filter_data() : false;
+			//return $get_attr_filter_data ? $get_attr_filter_data() : false;
+			return false;
 		}
 
 	/**
