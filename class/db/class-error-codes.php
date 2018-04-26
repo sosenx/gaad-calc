@@ -176,7 +176,7 @@ class codes{
 	/**
 	*
 	*/
-	public function get( integer $code ){		
+	public function get( \integer $code ){		
 		if ( array_key_exists( $code, $this->codes) ) {
 			return $this->codes[ $code ];	
 		}

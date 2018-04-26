@@ -4,7 +4,7 @@ namespace gcalc\pa;
 
 class pa_finish extends \gcalc\cprocess{
 
-	function __construct( array $product_attributes, integer $product_id, \gcalc\calculate $parent, array $group ){	
+	function __construct( array $product_attributes, \integer $product_id, \gcalc\calculate $parent, array $group ){	
 		$this->cargs = $product_attributes;
 		$this->group = $group;
 		$this->parent = $parent;
