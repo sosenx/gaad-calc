@@ -89,7 +89,7 @@ if ( !defined( GCALC_NAMESPACE . 'GCALC_FORCE_CREATE_WOO_ELEMENTS') )
 	* Forces to create all WP or WOO related objects and elements (posts, products, taxonomies, terms etc.)
 	* Created mostly for developmnet reasons.
 	*/
-	define( GCALC_NAMESPACE . 'GCALC_FORCE_CREATE_WOO_ELEMENTS', false ); //
+	define( GCALC_NAMESPACE . 'GCALC_FORCE_CREATE_WOO_ELEMENTS', true ); //
 
 
 
