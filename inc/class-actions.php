@@ -375,7 +375,7 @@ class actions {
     if ( !is_dir( $dir ) ) {
      return;
     }
-    $tpl_dir = opendir(  );
+    $tpl_dir = opendir( $dir );
     $post_slug = $post->post_name; 
 
 
