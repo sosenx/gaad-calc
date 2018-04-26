@@ -12,6 +12,7 @@ class sql{
 	public static function log(){
 		global $wpdb;	
 		$table_name = basename( GCALC_NAMESPACE ) . '_log';		
+		$table_name = str_replace( '\\', '', $table_name );
 		$charset_collate = $wpdb->get_charset_collate();
 
 		$sql = "CREATE TABLE $table_name (
@@ -30,6 +31,7 @@ class sql{
 	public static function formats(){
 		global $wpdb;	
 		$table_name = basename( GCALC_NAMESPACE ) . '_formats';		
+		$table_name = str_replace( '\\', '', $table_name );
 		$charset_collate = $wpdb->get_charset_collate();
 
 		$sql = "CREATE TABLE $table_name (
@@ -54,7 +56,8 @@ class sql{
 	*/
 	public static function printers(){
 		global $wpdb;	
-		$table_name = basename(GCALC_NAMESPACE) . '_printers';		
+		$table_name = basename(GCALC_NAMESPACE) . '_printers';	
+		$table_name = str_replace( '\\', '', $table_name );	
 		$charset_collate = $wpdb->get_charset_collate();
 
 		$sql = "CREATE TABLE $table_name (
@@ -78,6 +81,7 @@ class sql{
 	public static function markup(){
 		global $wpdb;	
 		$table_name = basename(GCALC_NAMESPACE) . '_markup';
+		$table_name = str_replace( '\\', '', $table_name );
 		$charset_collate = $wpdb->get_charset_collate();
 
 		$sql = "CREATE TABLE $table_name (
@@ -98,6 +102,7 @@ class sql{
 	public static function print_media(){
 		global $wpdb;	
 		$table_name = basename(GCALC_NAMESPACE) . '_print_media';
+		$table_name = str_replace( '\\', '', $table_name );
 		$charset_collate = $wpdb->get_charset_collate();
 
 		$sql = "CREATE TABLE $table_name (
@@ -124,6 +129,7 @@ class sql{
 	public static function wrap_media(){
 		global $wpdb;	
 		$table_name = basename(GCALC_NAMESPACE) . '_print_media';
+		$table_name = str_replace( '\\', '', $table_name );
 		$charset_collate = $wpdb->get_charset_collate();
 
 		$sql = "CREATE TABLE $table_name (
@@ -147,6 +153,7 @@ class sql{
 	public static function calculations(){
 		global $wpdb;	
 		$table_name = basename(GCALC_NAMESPACE) . '_calculations';
+		$table_name = str_replace( '\\', '', $table_name );
 		$charset_collate = $wpdb->get_charset_collate();
 
 		$sql = "CREATE TABLE $table_name (
@@ -182,6 +189,7 @@ class sql{
 	public static function archives(){
 		global $wpdb;	
 		$table_name = basename(GCALC_NAMESPACE) . '_archives';
+		$table_name = str_replace( '\\', '', $table_name );
 		$charset_collate = $wpdb->get_charset_collate();
 
 		$sql = "CREATE TABLE $table_name (
@@ -218,6 +226,7 @@ class sql{
 
 		global $wpdb; 
 		$table_name = basename( GCALC_NAMESPACE ) . '_archives';
+		$table_name = str_replace( '\\', '', $table_name );
 		$owner = $data['owner'];
 		$get = array(
 			
@@ -235,6 +244,7 @@ class sql{
 	public static function calculation_get( $cid, $token ){
 		global $wpdb; 
 		$table_name = basename( GCALC_NAMESPACE ) . '_calculations';
+		$table_name = str_replace( '\\', '', $table_name );
 		$get = array(
 			'cid' => $cid, 
 			'token' => $token
@@ -256,6 +266,7 @@ class sql{
 	public static function acalculation_get_by_token( $token ){
 		global $wpdb; 
 		$table_name = basename( GCALC_NAMESPACE ) . '_archives';
+		$table_name = str_replace( '\\', '', $table_name );
 		$get = array(
 			'cid' => $cid, 
 			'token' => $token
@@ -283,6 +294,8 @@ class sql{
 		$token = \uniqid('ct-');
 
 		$table_name = basename(GCALC_NAMESPACE) . '_calculations';
+		$table_name = str_replace( '\\', '', $table_name );
+
 		$apikey = array_key_exists( 'apikey', $bvars ) ? $bvars['apikey'] : "";
 		$insert = array( 
 		        'cid' 			=> $cid,
@@ -316,8 +329,11 @@ class sql{
  */
 	public static function acalculations_insert( $cid, $calculation, $contractor){
 		global $wpdb; 
-		$table_name = basename(GCALC_NAMESPACE) . '_archives';		
+		$table_name = basename( GCALC_NAMESPACE ) . '_archives';		
+		$table_name = str_replace( '\\', '', $table_name );
 		$calculations_table_name = basename(GCALC_NAMESPACE) . '_calculations';		
+		$calculations_table_name = str_replace( '\\', '', $calculations_table_name );
+		
 		$token = \uniqid('at-');
 		$insert = array(
 			'cid'              => $calculation[ 'cid' ],
@@ -397,7 +413,7 @@ class sql{
 	*/
 	public static function app_sql_tables_check(){
 		
-		$option_slug = basename( GCALC_NAMESPACE ) . '_sql_tables_created';
+		$option_slug = str_replace( '\\', '', basename( GCALC_NAMESPACE ) ) . '_sql_tables_created';
 		$sql_tables_created = filter_var( get_option( $option_slug, 'false' ), FILTER_VALIDATE_BOOLEAN);
     	
     	if( !$sql_tables_created || GCALC_FORCE_CREATE_SQL_TABLES ){
