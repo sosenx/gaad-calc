@@ -373,18 +373,20 @@ class actions {
     global $post;
     $tpl_dir = opendir( $dir = str_replace( '\\', '/', $dir ) );
     $post_slug = $post->post_name; 
-
-    while ( $f = readdir($tpl_dir) ){
-      $id = array();
-      preg_match('/(.*)[\.]{1}.*$/', $f, $id);
-      $id = basename( $dir ) . '-' . empty( $id ) ? $f : $id[ 1 ];
+    if ( $tpl_dir) {
      
-      $component = $dir . '/'.$f;      
-      if( is_file( $component ) ){
-        $component = filters::dir_to_url( $component );
-        $template_id = $post_slug . '-' . str_replace( '-php', '', sanitize_title( $id ) );
-        ?><script type="application/javascript" src="<?php echo $component; ?>" id="<?php echo $template_id; ?>"></script><?php
-      }      
+        while ( $f = readdir($tpl_dir) ){
+          $id = array();
+          preg_match('/(.*)[\.]{1}.*$/', $f, $id);
+          $id = basename( $dir ) . '-' . empty( $id ) ? $f : $id[ 1 ];
+         
+          $component = $dir . '/'.$f;      
+          if( is_file( $component ) ){
+            $component = filters::dir_to_url( $component );
+            $template_id = $post_slug . '-' . str_replace( '-php', '', sanitize_title( $id ) );
+            ?><script type="application/javascript" src="<?php echo $component; ?>" id="<?php echo $template_id; ?>"></script><?php
+          }      
+        }
     }
   }
   //
