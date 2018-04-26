@@ -83,9 +83,10 @@ class register_woo_elements{
 	public static function create_products(){
 		if ( !\gcalc\GCALC_DISABLE_CREATE_PRODUCTS ) {
 			
+			new \gcalc\db\product\book();	
+			/*
 			new \gcalc\db\product\business_card();	
 			new \gcalc\db\product\flyer();	
-			new \gcalc\db\product\book();	
 			new \gcalc\db\product\catalog();	
 			new \gcalc\db\product\perfect_bound_catalog();	
 			new \gcalc\db\product\saddle_stitched_catalog();	
@@ -100,8 +101,8 @@ class register_woo_elements{
 			new \gcalc\db\product\letterhead_color();	
 			new \gcalc\db\product\letterhead_bw();	
 			
-		
-			new \gcalc\db\product\writing_pad();	
+		*/
+				
 		}
 	}
 
