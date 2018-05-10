@@ -87,7 +87,7 @@ class api_user {
 
 		$this->access = array(
 			/*
-				Master
+				Master 
 			*/
 			'ce4b3733db41a7b795350b7067a3debcf0e85a0e4f84c83ff0ae2e8808f240da39724ea9b6970b47756bbf54d5f401681d042fb96867905604d790257be4d217' => array(
 				"credentials" => array(	
@@ -148,7 +148,20 @@ class api_user {
 			//master
 			"b7067a3debcf0e85a0e4f84c83ff0ae2e880" => array(
 				"gaad" => array( "pwd" => "koot123" ),
-				"admin" => array( "pwd" => "fthemes" )
+				"wojtek" => array( "pwd" => "wojtek123" ),
+				"admin" => array( "pwd" => "fthemes" ),
+
+
+				"aniab"    => array( "pwd" => "aniab321" ),
+				"klaudiar" => array( "pwd" => "klaudiar543" ),
+				"magdac"   => array( "pwd" => "magdac324" ),
+				"gosiap"   => array( "pwd" => "gosiap765" ),
+				"monikag"  => array( "pwd" => "monikag342" ),
+				"klaudiam" => array( "pwd" => "klaudiam543" ),
+				"toamszp"  => array( "pwd" => "toamszp128" ),
+
+
+
 			),
 			//inner
 			"ea97586b4aa0c141e4456912f3325f7f" => array(

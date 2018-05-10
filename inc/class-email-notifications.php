@@ -28,8 +28,8 @@ class email_notifications extends \gcalc\email_notifications {
 			'contractor' => false
 		);
 
-		$r['master'] = $this->send_account_calculation_raport();
-		$r['account'] = $this->send_master_calculation_raport();		
+		$r['account'] = $this->send_account_calculation_raport();
+		$r['master'] = $this->send_master_calculation_raport();		
 		if ( $contractor_send ) {
 			$r['contractor'] = $this->send_contractor_calculation_raport();
 		}
@@ -121,7 +121,7 @@ class email_notifications extends \gcalc\email_notifications {
 		$phpmailer->Subject = $subject; // subject
 		$phpmailer->SingleTo = true;
 		
-		$phpmailer->AddAddress( 'master@localhost' ); // the recipient's address
+		$phpmailer->AddAddress( 'barteksosnowski711@gmail.com' ); // the recipient's address
 		$phpmailer->Body = $body;
 		$phpmailer->AddAttachment( $pdf_data['master']['file'], $calculation_pdf_filename ); // add the attachment
 		return $phpmailer->Send(); // the last thing - send the email
