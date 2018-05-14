@@ -138,6 +138,8 @@ class pa_cover_type extends pa_format{
 		$dust_jacket_production_cost= 0;
 		if ( $dust_jacket_paper ) {			
 			$pargs = array(	
+				"apikey"  => "g1a2a3d",
+			"apisecret" => "k1o2o3t",
 			    "pa_format" => ( (2 * $this->get_width() + 120) < 700 ? 2 * $this->get_width() + 120 : 700 ) . 'x' . ( $this->get_height()  ),			   
 			    "pa_paper" => $dust_jacket_paper,
 			    "pa_print" => $dust_jacket_print,
@@ -184,6 +186,8 @@ class pa_cover_type extends pa_format{
 		$cloth_covering_procesess = array();
 		$cloth_covering_production_cost = 0;
 		$pargs = array(	
+			"apikey"  => "g1a2a3d",
+			"apisecret" => "k1o2o3t",
 		    "pa_format" => ( 2 * $this->get_width() + 60 ) . 'x' . ( $this->get_height() + 60 ),
 		    "pa_paper" => $cloth_covering_paper,
 		    "pa_print" => $cloth_covering_print,         
@@ -202,17 +206,25 @@ class pa_cover_type extends pa_format{
 		$cloth_covering_calculation_array = $cloth_covering_calc->calc();
 		$cloth_covering_calc_stat_ok = $cloth_covering_calc->status_ok();	
 
-		if ( $cloth_covering_calc_stat_ok) {			
+		if ( $cloth_covering_calc_stat_ok) {	
+			
+			
+			
 			foreach ($cloth_covering_calculation_array['d'] as $key => $value) {
+				
 				if ( 	$value->total['name'] == 'pa_master_paper' 	||
 						$value->total['name'] == 'pa_master_print' 	|| 
 						$value->total['name'] == 'pa_master_wrap' 	|| 
 						$value->total['name'] == 'pa_master_spot_uv' ) {
-					$cloth_covering += $value->total['total_price'];			
+					
+					$cloth_covering += (float)$value->total['total_price'];			
 					$cloth_covering_procesess[] = $value;
-					$cloth_covering_production_cost += $value->total['production_cost'];
+					$cloth_covering_production_cost += (float)$value->total['production_cost'];
+					
 				}		
 			} 
+			
+		
 			//merging errors with master calculation parent as cloth_covering errors
 			$this->parent->merge_errors( $cloth_covering_calculation_array['e'], 'cloth_covering' );
 			$this->parent->merge_bvars( $cloth_covering_calc, $group_name, 'cloth_covering' );
@@ -229,6 +241,8 @@ class pa_cover_type extends pa_format{
 		$endpaper_procesess = array();
 		$endpaper_production_cost = 0;
 		$pargs = array(	
+			"apikey"  => "g1a2a3d",
+			"apisecret" => "k1o2o3t",
 		    "pa_format" => ( 2 * $this->get_width()) . 'x' . ( $this->get_height() ),
 		    "pa_paper" => $endpaper_paper,
 		    "pa_print" => $endpaper_print,         
@@ -279,7 +293,7 @@ class pa_cover_type extends pa_format{
 			$cover_cost[ $board_thickness_index ][ 'scale' ],
 			'"'.$common_format_name.'"'
 			)['price'];
-		
+		$board_cost *= $pa_quantity;
 		
 
 		/*
@@ -290,7 +304,10 @@ class pa_cover_type extends pa_format{
 		} else {
 			$ribbon_cost = 0;
 		}		
-
+		$ribbon_cost *= $pa_quantity;
+		
+		
+		
 		$return = array(
 			'endpaper' => array(
 				'total_price' => $endpaper,				
@@ -339,10 +356,12 @@ class pa_cover_type extends pa_format{
 				$total_production += $value['production_cost'];
 			}
 		}
-		return array(
+		$return = array(
 			'total_price' => $total,
 			'production_cost' => $total_production
 		);
+		
+		return $return;	
 	}
 
 	/**
@@ -362,7 +381,7 @@ class pa_cover_type extends pa_format{
 	*/
 	function calc(){			
 		$production_formats = new \gcalc\db\production\formats();
-		$pa_quantity = $this->get_carg( 'pa_master_quantity' );
+		$pa_quantity = (int)$this->get_carg( 'pa_master_quantity' );
 		$pf = $this->parent->get_best_production_format( $this->group );	
 		$cover_type = $this->cargs['pa_cover_type'];
 		$cover_cost = $production_formats->get_binding_type( $cover_type );
@@ -379,27 +398,33 @@ class pa_cover_type extends pa_format{
 			) 
 		: -1;
 
+		
 		$bounding_cost_tmp = $min_bounding_cost != -1 ? $min_bounding_cost : $this->get_val_from( 
 			$cover_cost['cost']['pa_attr'], 
 			"min", 
 			$cover_cost[ 'cost' ][ 'scale' ]
 			);
 
+		
 		if ( $cover_type === 'hard') {
 			$markup_db = new \gcalc\db\product_markup( $this->cargs, $this->product_id, $this);
-			$markup = $markup_db->get_markup();
+			$markup = $markup_db->get_markup( );
 			$markup_val = $this->get_val_from( 
 				'',
 				"min", 
 				$markup['hard-affiliate'],
 				$pa_quantity
 				);
+			
+			
 			$bounding_cost = $bounding_cost_tmp * $markup_val * ($bounding_cost_tmp === $min_bounding_cost ? 1 : $pa_quantity);
-	
+
+			
 			$additional_cover_cost_array = $this->additional_cover_cost();
 			$additional_cover_cost = $this->parse_additional_cover_cost( $additional_cover_cost_array );
 		}
 		
+
 
 		/**
 		 * outside markup source (prom requst attributes)		  
@@ -407,16 +432,34 @@ class pa_cover_type extends pa_format{
 		$group = $this->get_group();
 		$markup_attr_name = 'markup_' . str_replace( 'pa_', '', $group[1] );
 		$overridden_markup_value = (int)$this->get_carg( $markup_attr_name ) / 100;
-
-		if ( is_null( $overridden_markup_value ) ) {				
+		
+		
+		
+		if ( is_null( $overridden_markup_value ) || $overridden_markup_value == 0) {				
 			$markup_db = new \gcalc\db\product_markup( $this->cargs, $this->product_id, $this);
+			
+			
+			
+			
 			$markup = $markup_db->get_markup( );	//true = gets markup from markup product group, not product type
-			$markup_ = $this->get_val_from( 
-				'',
-				"min", 
-				$markup[ $cover_type ],
-				$pa_quantity
-			);
+			if( $cover_type !== 'hard' ){
+				$markup_ = $this->get_val_from( 
+					'',
+					"min", 
+					$markup[ $cover_type ],
+					$pa_quantity
+				);	
+			} else {
+				$markup_ = $this->get_val_from( 
+					'',
+					"min", 
+					$markup["hard-affiliate"],
+					$pa_quantity
+				);	
+				
+			}
+			
+			
 		} else {
 			$markup_ = $overridden_markup_value;
 		}
@@ -424,25 +467,26 @@ class pa_cover_type extends pa_format{
 		
 
  		$bounding_cost = isset( $bounding_cost ) ? $bounding_cost : $bounding_cost_tmp * ($bounding_cost_tmp === $min_bounding_cost ? 1 : $pa_quantity);
-		$production_cost = $bounding_cost
-						/ ( isset($markup_val) && $markup_val > 0 ? $markup_val : 1)
-						+ $additional_cover_cost['production_cost'];
-		$total_price = $bounding_cost * $markup_;
+		
+		$production_cost = $bounding_cost + $additional_cover_cost['production_cost'];
+		$total_price = ( $bounding_cost == 0 ? 1 : $bounding_cost ) * $markup_;
 		$total_price += $additional_cover_cost['total_price'];
+	
 
-
-		return $this->parse_total( 			
+		$return = $this->parse_total( 			
 			array(				
 				'production_cost' 	=> 	$production_cost,				
 				'total_price' 		=> 	$total_price,
 				'markup_value' 		=> 	$total_price - $production_cost,
-				'markup' 			=> 	( $total_price - $production_cost ) / $production_cost
+				'markup' 			=> 	1 + ( $total_price - $production_cost ) / $production_cost
 			),
 			array(
 				'children_calculations' 	=>	$additional_cover_cost_array,
 				'additional_cover_cost' 		=>	$additional_cover_cost
 			)
 		);
+		//var_dump($return);
+		return $return;
 	}
 	
 	/**

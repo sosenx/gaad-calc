@@ -32,7 +32,7 @@ class pa_print extends \gcalc\cprocess_calculation{
 		$markup_attr_name = 'markup_' . str_replace( 'pa_', '', $group[1] );
 		$overridden_markup_value = (int)$this->get_carg( $markup_attr_name ) / 100;
 
-		if ( is_null( $overridden_markup_value ) ) {				
+		if ( is_null( $overridden_markup_value ) || $overridden_markup_value == 0 ) {				
 			$markup_db = new \gcalc\db\product_markup( $this->cargs, $this->product_id, $this);
 			$markup = $markup_db->get_markup( true );	//true = gets markup from markup product group, not product type
 			$markup_ = $this->get_val_from( 

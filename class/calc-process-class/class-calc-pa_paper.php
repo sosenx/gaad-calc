@@ -44,7 +44,7 @@ class pa_paper extends \gcalc\cprocess_calculation{
 		$markup_attr_name = 'markup_' . str_replace( 'pa_', '', $group[1] );
 		$overridden_markup_value = (int)$this->get_carg( $markup_attr_name ) / 100;
 
-		if ( is_null( $overridden_markup_value ) ) {
+		if ( is_null( $overridden_markup_value ) || $overridden_markup_value == 0 ) {
 			$markup_db = new \gcalc\db\product_markup( $this->cargs, $this->product_id, $this);
 			$markup = $markup_db->get_markup();
 			$markup_ = $markup['markup'];		
@@ -52,7 +52,6 @@ class pa_paper extends \gcalc\cprocess_calculation{
 			$markup_ = $overridden_markup_value;
 		}
 	
-
 		$production_cost = $sheet_cost * $sheets_quantity * $pages;//* (int)$this->cargs['pa_quantity'];
 		$total_price = $production_cost * $markup_;
 

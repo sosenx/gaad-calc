@@ -151,7 +151,7 @@ class rest{
 				'master' => $pdf_master->master_calculation_pdf( $wp_post_data[ 'master' ]['post_id'] ),
 			);
 		}
-
+/*
 		$email_not = new \gcalc\calculations\email_notifications( 
 			array(
 				'post_data' => $wp_post_data,
@@ -162,7 +162,7 @@ class rest{
 			\get_user_by( 'login', $calculation[ 'user' ] )
 		);
 		$send_notification_email_status = $email_not->send();
-
+*/
 		$r = array( 
 			'plugin_name'                    => "gcalc",
 			'handler'                        => "put_acalculation",

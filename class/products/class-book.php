@@ -40,7 +40,7 @@ class book extends product {
 		 */
 			public static function get_markups_changes(  ){
 				$r = array(
-
+/*
 					'markup_cover_type'                =>array(
 																'min' 			=> 130, 
 																'max' 			=> 1000,
@@ -49,7 +49,7 @@ class book extends product {
 																'default'		=> 200,
 																'precision'		=> 0,
 																'enabled'		=> true
-						),
+						),*/
 					'markup_bw_print'                  =>array(
 																'min' 			=> 130, 
 																'max' 			=> 1000,
@@ -68,7 +68,7 @@ class book extends product {
 																'precision'		=> 0,
 																'enabled'		=> true
 						),
-					'markup_cover_print'               =>array(
+					/*'markup_cover_print'               =>array(
 																'min' 			=> 130, 
 																'max' 			=> 1000,
 																'label' 		=> 'Cover print',
@@ -112,7 +112,7 @@ class book extends product {
 																'default'		=> 200,
 																'precision'		=> 0,
 																'enabled'		=> false
-						),
+						),*/
 
 				);
 				

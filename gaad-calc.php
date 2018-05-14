@@ -81,7 +81,7 @@ if ( !defined( GCALC_NAMESPACE . 'GCALC_FORCE_CREATE_SQL_TABLES') )
 	/*
 	* Forces to create sql tables even in there are some in the database. Created mostly for developmnet reasons
 	*/
-	define( GCALC_NAMESPACE . 'GCALC_FORCE_CREATE_SQL_TABLES', true ); 
+	define( GCALC_NAMESPACE . 'GCALC_FORCE_CREATE_SQL_TABLES', false ); 
 
 
 if ( !defined( GCALC_NAMESPACE . 'GCALC_FORCE_CREATE_WOO_ELEMENTS') )

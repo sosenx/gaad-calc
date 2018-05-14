@@ -81,11 +81,14 @@ class register_woo_elements{
 	*	
 	*/
 	public static function create_products(){
+		//new \gcalc\db\product\business_card();
 		if ( !\gcalc\GCALC_DISABLE_CREATE_PRODUCTS ) {
 			
-			new \gcalc\db\product\book();	
+			
 			/*
-			new \gcalc\db\product\business_card();	
+			new \gcalc\db\product\book();	
+			
+				
 			new \gcalc\db\product\flyer();	
 			new \gcalc\db\product\catalog();	
 			new \gcalc\db\product\perfect_bound_catalog();	
