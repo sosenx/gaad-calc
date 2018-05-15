@@ -23,7 +23,7 @@ class pa_print extends \gcalc\cprocess_calculation{
 		$pa_quantity = $this->get_carg( 'pa_master_quantity' );
 		$sheets_quantity = (int)( $pa_quantity / $pf['pieces']) + ( $pa_quantity % $pf['pieces'] > 0 ? 1 : 0 );
 		$print_color_mode = substr( $pf['print_color_mode'], 0, 2);		
-		$pages = $this->get_pages( );				
+		$pages = $this->get_pages( ) / 2;				// devide by 2 cos we dealing with pages 2pages == 1 sheet
 
 		/**
 		 * outside markup source (prom requst attributes)		  
@@ -32,7 +32,7 @@ class pa_print extends \gcalc\cprocess_calculation{
 		$markup_attr_name = 'markup_' . str_replace( 'pa_', '', $group[1] );
 		$overridden_markup_value = (int)$this->get_carg( $markup_attr_name ) / 100;
 
-		if ( is_null( $overridden_markup_value ) || $overridden_markup_value == 0 ) {				
+		if ( is_null( $overridden_markup_value ) || $overridden_markup_value === 0 ) {				
 			$markup_db = new \gcalc\db\product_markup( $this->cargs, $this->product_id, $this);
 			$markup = $markup_db->get_markup( true );	//true = gets markup from markup product group, not product type
 			$markup_ = $this->get_val_from( 
@@ -45,7 +45,7 @@ class pa_print extends \gcalc\cprocess_calculation{
 			$markup_ = $overridden_markup_value;
 		}
 
-		$production_cost = $sheets_quantity / 2 * $pf['print_cost'] * $pages; // devide by 2 cos we dealing with pages 2pages == 1 sheet
+		$production_cost = $sheets_quantity * $pf['print_cost'] * $pages; 
 		
 		$total_price = $production_cost * $markup_;
 		

@@ -32,19 +32,20 @@ class pa_cover_print extends \gcalc\cprocess_calculation{
 		$markup_attr_name = 'markup_' . str_replace( 'pa_', '', $group[1] );
 		$overridden_markup_value = (int)$this->get_carg( $markup_attr_name ) / 100;
 
-		if ( is_null( $overridden_markup_value ) ) {				
+		if ( is_null( $overridden_markup_value ) || $overridden_markup_value === 0 ) {				
 			$markup_db = new \gcalc\db\product_markup( $this->cargs, $this->product_id, $this);
-			$markup = $markup_db->get_markup( true );	//true = gets markup from markup product group, not product type
+			$markup = $markup_db->get_markup( );	//true = gets markup from markup product group, not product type
+			
 			$markup_ = $this->get_val_from( 
 				'', 
 				"min", 
-				$markup['markup'][$print_color_mode],
+				$markup["markup_cover_print"][$print_color_mode],
 				$pa_quantity
 				);
 		} else {
 			$markup_ = $overridden_markup_value;
 		}
-
+		
 		$production_cost = $sheets_quantity * $pf['print_cost'] * $pages; // devide by 2 cos we dealing with pages 2pages == 1 sheet
 		
 		$total_price = $production_cost * $markup_;

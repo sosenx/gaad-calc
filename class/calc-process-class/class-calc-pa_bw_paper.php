@@ -35,7 +35,7 @@ class pa_bw_paper extends \gcalc\cprocess_calculation{
 		$pf = $this->parent->get_best_production_format( $this->group );		
 		$sheet_cost = $pf['format_sq'] / 1000000 * $c * $weight;		
 		$sheets_quantity = (int)($this->cargs['pa_quantity'] / $pf['pieces']) + ( $this->cargs['pa_quantity'] % $pf['pieces'] > 0 ? 1 : 0 );
-		$pages = $this->get_pages( );
+		$pages = $this->get_pages( ) / 2;
 		$markup_db = new \gcalc\db\product_markup( $this->cargs, $this->product_id, $this);
 		$markup = $markup_db->get_markup();
 

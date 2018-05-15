@@ -108,19 +108,55 @@ class product_markup{
 					),
 
 					'perfect_binding' => array(							
-						array( 'price' => 1, 	'v' => 0 ),
+						array( 'price' => 4.1,	'v' => 0 	),
+							array( 'price' => 3.34,	'v' => 25 	),							
+							array( 'price' => 2.48,	'v' => 50 	),
+							array( 'price' => 2.28,	'v' => 100  ),
+							array( 'price' => 2.08, 'v' => 200  ),
+							array( 'price' => 2.04, 'v' => 300  ),
+							array( 'price' => 1.82, 'v' => 400  ),
+							array( 'price' => 1.7, 	'v' => 500  ),
+							array( 'price' => 1.6, 	'v' => 750  ),
+							array( 'price' => 1.5, 	'v' => 1000 )
 					),
 
 					'saddle_stitch' => array(							
-						array( 'price' => 1, 	'v' => 0 ),
+						array( 'price' => 4.1,	'v' => 0 	),
+							array( 'price' => 3.34,	'v' => 25 	),							
+							array( 'price' => 2.48,	'v' => 50 	),
+							array( 'price' => 2.28,	'v' => 100  ),
+							array( 'price' => 2.08, 'v' => 200  ),
+							array( 'price' => 2.04, 'v' => 300  ),
+							array( 'price' => 1.82, 'v' => 400  ),
+							array( 'price' => 1.7, 	'v' => 500  ),
+							array( 'price' => 1.6, 	'v' => 750  ),
+							array( 'price' => 1.5, 	'v' => 1000 )
 					),
 
 					'section_sewn' => array(							
-						array( 'price' => 1, 	'v' => 0 ),
+						array( 'price' => 4.1,	'v' => 0 	),
+							array( 'price' => 3.34,	'v' => 25 	),							
+							array( 'price' => 2.48,	'v' => 50 	),
+							array( 'price' => 2.28,	'v' => 100  ),
+							array( 'price' => 2.08, 'v' => 200  ),
+							array( 'price' => 2.04, 'v' => 300  ),
+							array( 'price' => 1.82, 'v' => 400  ),
+							array( 'price' => 1.7, 	'v' => 500  ),
+							array( 'price' => 1.6, 	'v' => 750  ),
+							array( 'price' => 1.5, 	'v' => 1000 )
 					),
 
 					'spiral_binding' => array(							
-						array( 'price' => 1, 	'v' => 0 ),
+						array( 'price' => 4.1,	'v' => 0 	),
+							array( 'price' => 3.34,	'v' => 25 	),							
+							array( 'price' => 2.48,	'v' => 50 	),
+							array( 'price' => 2.28,	'v' => 100  ),
+							array( 'price' => 2.08, 'v' => 200  ),
+							array( 'price' => 2.04, 'v' => 300  ),
+							array( 'price' => 1.82, 'v' => 400  ),
+							array( 'price' => 1.7, 	'v' => 500  ),
+							array( 'price' => 1.6, 	'v' => 750  ),
+							array( 'price' => 1.5, 	'v' => 1000 )
 					),
 
 					'hard-affiliate' => array(							
@@ -156,6 +192,35 @@ class product_markup{
 							array( 'price' => 2.48,	'v' => 50 	),
 							array( 'price' => 2.28,	'v' => 100  ),
 							array( 'price' => 2.08, 'v' => 200  ),
+							array( 'price' => 2.04, 'v' => 300  ),
+							array( 'price' => 1.82, 'v' => 400  ),
+							array( 'price' => 1.7, 	'v' => 500  ),
+							array( 'price' => 1.6, 	'v' => 750  ),
+							array( 'price' => 1.5, 	'v' => 1000 )
+						)
+					), // markup
+					
+					
+					'markup_cover_print' => array( // common print markup, universal
+						'0x' => array( 0 => 0 ),
+						'1x' => array(
+							array( 'price' => 8.1,	'v' => 0 	),
+							array( 'price' => 6.34,	'v' => 25 	),							
+							array( 'price' => 5.48,	'v' => 50 	),
+							array( 'price' => 4.28,	'v' => 100  ),
+							array( 'price' => 3.08, 'v' => 200  ),
+							array( 'price' => 2.04, 'v' => 300  ),
+							array( 'price' => 1.82, 'v' => 400  ),
+							array( 'price' => 1.7, 	'v' => 500  ),
+							array( 'price' => 1.6, 	'v' => 750  ),
+							array( 'price' => 1.5, 	'v' => 1000 )
+													),
+						'4x' => array(
+							array( 'price' => 8.1,	'v' => 0 	),
+							array( 'price' => 6.34,	'v' => 25 	),							
+							array( 'price' => 5.48,	'v' => 50 	),
+							array( 'price' => 4.28,	'v' => 100  ),
+							array( 'price' => 3.08, 'v' => 200  ),
 							array( 'price' => 2.04, 'v' => 300  ),
 							array( 'price' => 1.82, 'v' => 400  ),
 							array( 'price' => 1.7, 	'v' => 500  ),

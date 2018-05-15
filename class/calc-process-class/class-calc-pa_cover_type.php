@@ -98,12 +98,12 @@ class pa_cover_type extends pa_format{
 
 		$cloth_covering_paper       = $this->get_cloth_covering_paper( $this->get_carg('pa_cover_cloth_covering_paper') );
 		$cloth_covering_print       = $this->get_cloth_covering_print( $this->get_carg('pa_cover_cloth_covering_print') );
-		$cloth_covering_wrap        = $this->get_cloth_covering_wrap( $this->get_carg('pa_cover_cloth_covering_wrap') );
+		$cloth_covering_wrap        = $this->get_cloth_covering_wrap( $this->get_carg('pa_cover_cloth_covering_finish') );
 		$cloth_covering_spot_uv     = $this->get_cloth_covering_spot_uv( $this->get_carg('pa_cover_cloth_covering_spot_uv') );
 		
 		$dust_jacket_paper          = $this->get_dust_jacket_paper( $this->get_carg('pa_cover_dust_jacket_paper') );
 		$dust_jacket_print          = $this->get_dust_jacket_print( $this->get_carg('pa_cover_dust_jacket_print') );
-		$dust_jacket_wrap           = $this->get_dust_jacket_wrap( $this->get_carg('pa_cover_dust_jacket_wrap') );
+		$dust_jacket_wrap           = $this->get_dust_jacket_wrap( $this->get_carg('pa_cover_dust_jacket_finish') );
 		$dust_jacket_spot_uv        = $this->get_dust_jacket_spot_uv( $this->get_carg('pa_cover_dust_jacket_spot_uv') );
 		
 		$board_thickness            = $this->get_board_thickness( $this->get_carg('pa_cover_board_thickness') );
@@ -161,7 +161,7 @@ class pa_cover_type extends pa_format{
 				foreach ($dust_jacket_calculation_array['d'] as $key => $value) {
 					if ( 	$value->total['name'] == 'pa_master_paper' 	||
 							$value->total['name'] == 'pa_master_print' 	|| 
-							$value->total['name'] == 'pa_master_wrap' 	|| 
+							$value->total['name'] == 'pa_master_finish' 	|| 
 							$value->total['name'] == 'pa_master_spot_uv' ) {
 						$dust_jacket += $value->total['total_price'];			
 						$dust_jacket_procesess[] = $value;
@@ -197,7 +197,6 @@ class pa_cover_type extends pa_format{
 		    "product_slug" => "business-card",
 		);
 
-
 		if ( isset( $markup_cover_cloth_covering_print ) ) {
 			$pargs[ 'markup_print' ] = $markup_cover_cloth_covering_print;				
 		}
@@ -214,7 +213,7 @@ class pa_cover_type extends pa_format{
 				
 				if ( 	$value->total['name'] == 'pa_master_paper' 	||
 						$value->total['name'] == 'pa_master_print' 	|| 
-						$value->total['name'] == 'pa_master_wrap' 	|| 
+						$value->total['name'] == 'pa_master_finish' 	|| 
 						$value->total['name'] == 'pa_master_spot_uv' ) {
 					
 					$cloth_covering += (float)$value->total['total_price'];			

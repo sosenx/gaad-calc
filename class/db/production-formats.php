@@ -667,10 +667,10 @@ class formats{
 			'0x0' => 0,
 			'gloss-1x1' => .2,
 			'gloss-1x0' => .1,
-			'mat-1x1' => .2,
-			'mat-1x0' => .1,
-			'soft-1x1' => .8,
-			'soft-1x0' => .4,
+			'matt-1x1' => .2,
+			'matt-1x0' => .1,
+			'soft-touch-1x1' => .8,
+			'soft-touch-1x0' => .4,
 		);
 
 		$this->total_cost_equasion = array(

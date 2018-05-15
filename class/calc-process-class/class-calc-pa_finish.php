@@ -19,6 +19,7 @@ class pa_finish extends \gcalc\cprocess_calculation{
 	*/
 	function calc(){
 		$group = $this->get_group();
+		$group[1] =  str_replace('_master', '', $group[1]);
 		$production_formats = new \gcalc\db\production\formats();
 		$pf = $this->parent->get_best_production_format( $this->group );				
 		$sheets_quantity = (int)($this->cargs['pa_quantity'] / $pf['pieces']) + ( $this->cargs['pa_quantity'] % $pf['pieces'] > 0 ? 1 : 0 );
@@ -33,7 +34,7 @@ class pa_finish extends \gcalc\cprocess_calculation{
 			$wrap = $this->cargs[ $key ];
 		}
 		$wrap_cost *= preg_match('/BN/', $pf['format']) ? 2 : 1;
-
+		
 		$markup_ = $markup['markup'];		
 		$production_cost = $sheets_quantity * $wrap_cost;
 		$total_price = $production_cost * $markup_;
